@@ -6,4 +6,5 @@
     <color name="colorSplash">#00BCD4</color>
     <color name="colorSeleccion">#FF9800</color>
     <color name="colorBlanco">#FFFFFF</color>
+    <color name="colorGrisClaro">#605D5D</color>
 </resources>

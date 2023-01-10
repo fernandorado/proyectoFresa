@@ -68,12 +68,12 @@
         android:id="@+id/btnRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar"
-        android:backgroundTint="@color/colorSplash"
         android:layout_marginLeft="300dp"
         android:layout_marginRight="25dp"
         android:layout_marginBottom="25dp"
-        />
+        android:backgroundTint="@color/colorSplash"
+        android:text="Registrar" />
+
     <Button
         android:id="@+id/btnCancelar"
         android:layout_width="wrap_content"

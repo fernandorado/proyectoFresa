@@ -31,8 +31,8 @@ open class MenuCultivoFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    lateinit var cardMenuGastos: CardView
-    lateinit var cardMenuIngresos: CardView
+    lateinit var cardRegJornal: CardView
+    lateinit var cardRegCosecha: CardView
     lateinit var cardRegInsumos: CardView
     lateinit var cardGanancias: CardView
     lateinit var txtNombre: TextView
@@ -68,10 +68,11 @@ open class MenuCultivoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_menu_cultivo, container, false)
-        cardMenuGastos=vista.findViewById(R.id.cardMenuGastos)
-        cardMenuIngresos=vista.findViewById(R.id.cardMenuIngresos)
+        cardRegJornal=vista.findViewById(R.id.cardRegJornal)
+        cardRegInsumos=vista.findViewById(R.id.cardRegInsumos)
+        cardRegCosecha=vista.findViewById(R.id.cardRegCosecha)
         cardGanancias=vista.findViewById(R.id.cardGanancias)
-        txtNombre = vista.findViewById(R.id.textNombreCultivo)
+        txtNombre = vista.findViewById(R.id.textCal)
 
         txtNombre.setText(DialogoGesCultivo.cultivoSeleccionado.nombre) //Nombre de mensaje de Bienvenida
 
@@ -84,16 +85,23 @@ open class MenuCultivoFragment : Fragment() {
 
 
 
-        cardMenuGastos.setOnClickListener(object : View.OnClickListener {
+        cardRegJornal.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View){
-                interfaceComunicaFragments.menuGastos()
+                interfaceComunicaFragments.regJornal()
 
             }
         })
 
-        cardMenuIngresos.setOnClickListener(object : View.OnClickListener {
+        cardRegInsumos.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View){
-                interfaceComunicaFragments.menuIngresos()
+                interfaceComunicaFragments.regInsumos()
+
+            }
+        })
+
+        cardRegCosecha.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View){
+                interfaceComunicaFragments.regCosecha()
 
             }
         })
