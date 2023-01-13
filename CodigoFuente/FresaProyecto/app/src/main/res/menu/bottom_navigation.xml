@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/registro"
+        android:icon="@drawable/ic_registro"
+        android:title="Registro"/>
+
+    <item
+        android:id="@+id/informe"
+        android:icon="@drawable/ic_informe"
+        android:title="Informe"/>
+
+</menu>

@@ -3,6 +3,12 @@
     <style name="Base.Theme.FresaProyecto" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/colorSplash</item>
+        <item name="colorPrimaryVariant">@color/colorSplash</item>
+        <item name="colorSecondary">@color/colorSplash</item>
+        <item name="colorSecondaryVariant">@color/colorSplash</item>
+        <item name="android:statusBarColor" tools:targetApi='l'>?attr/colorPrimaryVariant</item>
+        <item name="bottomNavigationStyle">@style/BottomNavigation2</item>
     </style>
 
     <style name="Theme.FresaProyecto" parent="Base.Theme.FresaProyecto" />
@@ -15,4 +21,15 @@
     <style name="Theme.FresaProyecto.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.FresaProyecto.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="BottomNavigation2" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <item name="materialThemeOverlay">@style/BottomNavigation</item>
+    </style>
+
+    <style name="BottomNavigation">
+        <item name="android:background">@color/colorSplash</item>
+        <item name="itemIconTint">@color/white</item>
+        <item name="itemTextColor">@color/white</item>
+        <item name="selectableItemBackground">@color/colorSplash</item>
+    </style>
 </resources>

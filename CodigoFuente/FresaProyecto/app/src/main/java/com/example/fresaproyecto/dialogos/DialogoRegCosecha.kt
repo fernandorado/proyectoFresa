@@ -155,7 +155,7 @@ class DialogoRegCosecha : DialogFragment() {
         btnGuardar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                //registrarCosecha()
+                registrarCosecha()
             }
         })
         btnExtra.setOnClickListener(object : View.OnClickListener {
@@ -293,12 +293,17 @@ class DialogoRegCosecha : DialogFragment() {
         })
     }
 
+    private fun registrarCosecha(){
 
-    /*private fun registrarCosecha(){
+        //if((campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
+            var registro= "Extra: "+campoLibrasExtra.text.toString()+ "   Precio: "+ campoPrecioExtra.text.toString() +"\n"
+            registro += "Primera: "+campoLibrasPrimera.text.toString()+ "   Precio: "+ campoPrecioPrimera.text.toString() +"\n"
+            registro += "Segunda: "+campoLibrasSegunda.text.toString()+ "   Precio: "+ campoPrecioSegunda.text.toString() +"\n"
+            registro += "Tercera: "+campoLibrasTercera.text.toString()+ "   Precio: "+ campoPrecioTercera.text.toString() +"\n"
+            registro += "Cuarta: "+campoLibrasCuarta.text.toString()+ "   Precio: "+ campoPrecioCuarta.text.toString() +"\n"
+            registro += "Quinta: "+campoLibrasQuinta.text.toString()+ "   Precio: "+ campoPrecioQuinta.text.toString() +"\n"
+            registro += "Madura FF: "+campoLibrasMadura.text.toString()+ "   Precio: "+ campoPrecioMadura.text.toString() +"\n"
 
-        if((campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
-            var registro= "Nombre: "+campoCantidad.text.toString()+"\n"
-            registro +="Cantidad: "+campoPrecio.text.toString()+"\n"
             print("Registrar:  "+registro)
             Toast.makeText(actividad, "REGISTRAR:\n"+registro, Toast.LENGTH_LONG).show()
             //La linea sigueinte deberia ir dentro de un IF que verifique si la consulta SQL es correcta
@@ -306,7 +311,7 @@ class DialogoRegCosecha : DialogFragment() {
             //conexion con la base de datos
             val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null,1)
             val db: SQLiteDatabase = conexion.writableDatabase
-            val values = ContentValues()
+            var values = ContentValues()
 
             //valores para agregar a la tabla de cultivos
             //values.put(Utilidades.CAMPO_ID_CULTIVO, .text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
@@ -334,7 +339,7 @@ class DialogoRegCosecha : DialogFragment() {
             if(idResultante != -1){
                 println("Registrar: " +registro)
                 Toast.makeText(actividad, "¡Registro Éxitoso! " +registro, Toast.LENGTH_SHORT).show()
-                Utilidades.calcularBeneficioCultivo(actividad)
+                //Utilidades.calcularBeneficioCultivo(actividad)
 
             }else{
                 Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT).show()
@@ -342,15 +347,15 @@ class DialogoRegCosecha : DialogFragment() {
             db.close()
 
             dismiss()
-        }else{
+        /*}else{
             if(campoCantidad.text.toString().isEmpty()){
                 campoCantidad.setError("Este campo no puede quedar vacio")
             }else if (campoPrecio.text.toString().isEmpty()){
                 campoPrecio.setError("Este campo no puede quedar vacio")
             }
             Toast.makeText(actividad, "Verifique que todos los campos esten registrados \n ", Toast.LENGTH_LONG).show()
-        }
-    }*/
+        }*/
+    }
 
     companion object {
         /**

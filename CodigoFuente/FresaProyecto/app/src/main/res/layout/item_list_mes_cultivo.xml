@@ -9,8 +9,9 @@
         android:id="@+id/cardMes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        app:cardUseCompatPadding="true">
+        app:cardCornerRadius="8dp"
+        app:cardElevation="9dp"
+        android:layout_margin="12dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

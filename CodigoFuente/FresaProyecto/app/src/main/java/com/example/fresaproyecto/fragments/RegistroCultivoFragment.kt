@@ -8,14 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.cardview.widget.CardView
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.findFragment
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.dialogos.DialogoGesCultivo
-import com.example.fresaproyecto.dialogos.DialogoGesPersona
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -26,24 +21,34 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [InicioFragment.newInstance] factory method to
+ * Use the [RegistroCultivoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-open class MenuCultivoFragment : Fragment() {
+class RegistroCultivoFragment : Fragment() {
+    private var param1: String? = null
+    private var param2: String? = null
 
-    var fragmentRegistro: RegistroCultivoFragment = RegistroCultivoFragment()
-    var fragmentInforme: InformeCultivoFragment = InformeCultivoFragment()
-    lateinit var navigation: BottomNavigationView
+    lateinit var cardRegJornal: CardView
+    lateinit var cardRegCosecha: CardView
+    lateinit var cardRegInsumos: CardView
+    lateinit var cardGanancias: CardView
+    lateinit var txtNombre: TextView
 
     lateinit var vista: View
-    lateinit var vista2: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
-
+    lateinit var navigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        /*val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            interfaceComunicaFragments.inicio()
+        }*/
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
+        }
     }
 
     override fun onAttach(context: Context) {
@@ -58,39 +63,48 @@ open class MenuCultivoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_menu_cultivo, container, false)
-        reemplazarFragment(fragmentRegistro)
+        vista = inflater.inflate(R.layout.fragment_registro_cultivo, container, false)
+        cardRegJornal=vista.findViewById(R.id.cardRegJornal)
+        cardRegInsumos=vista.findViewById(R.id.cardRegInsumos)
+        cardRegCosecha=vista.findViewById(R.id.cardRegCosecha)
+        txtNombre = vista.findViewById(R.id.textCal)
 
-        navigation = vista.findViewById(R.id.bottom_navigation)
-        navigation.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.informe -> reemplazarFragment(fragmentInforme)
-                R.id.registro -> reemplazarFragment(fragmentRegistro)
-                else ->{
 
-                }
-            }
-            true
-        }
+        txtNombre.setText(DialogoGesCultivo.cultivoSeleccionado.nombre) //Nombre de mensaje de Bienvenida
 
         eventosMenu()
 
         return vista
     }
 
-    private fun reemplazarFragment(fragment: Fragment){
-        val fragmentManager = activity?.supportFragmentManager
-        val fragmentTransaction = fragmentManager?.beginTransaction()
-        fragmentTransaction!!.replace(R.id.frame_container, fragment)
-        fragmentTransaction.commit()
-    }
-
     private fun eventosMenu() {
 
 
+
+        cardRegJornal.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View){
+                interfaceComunicaFragments.regJornal()
+
+            }
+        })
+
+        cardRegInsumos.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View){
+                interfaceComunicaFragments.regInsumos()
+
+            }
+        })
+
+        cardRegCosecha.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View){
+                interfaceComunicaFragments.regCosecha()
+
+            }
+        })
+
     }
+
 
     companion object {
         /**
@@ -99,12 +113,12 @@ open class MenuCultivoFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment InicioFragment.
+         * @return A new instance of fragment RegistroCultivoFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            MenuCultivoFragment().apply {
+            RegistroCultivoFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
