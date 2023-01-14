@@ -182,7 +182,7 @@ class DialogoRegInsumos : DialogFragment() {
             if(idResultante != -1){
                 println("Registrar: " +registro)
                 Toast.makeText(actividad, "¡Registro Éxitoso! " +registro, Toast.LENGTH_SHORT).show()
-                Utilidades.calcularBeneficioCultivo(actividad)
+                //Utilidades.calcularBeneficioCultivo(actividad)
 
             }else{
                 Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT).show()

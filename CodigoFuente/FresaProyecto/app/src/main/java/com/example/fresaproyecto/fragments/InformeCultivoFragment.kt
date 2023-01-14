@@ -11,6 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.DatePickerFragment
+import com.example.fresaproyecto.clases.Utilidades
+import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
+import com.example.fresaproyecto.clases.vo.CultivoVo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 
@@ -31,6 +34,7 @@ class InformeCultivoFragment : Fragment() {
     lateinit var interfaceComunicaFragments: IComunicaFragments
     var año : Int = 0
     var mes : Int = 0
+    //var beneficioCultivo: BeneficioCultivoVo = Utilidades.beneficioCultivo!!
 
     //TextView de año
     lateinit var txtAño1 : TextView
@@ -394,8 +398,16 @@ class InformeCultivoFragment : Fragment() {
         return vista
     }
 
+
     private fun informePorFecha(año : Int, mes : Int){
-        
+        //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
+        Utilidades.calcularBeneficioCultivo(actividad,1, 2023)
+
+        txtFecha.setText(""+mes+"."+año)
+        println("Lista de Beneficios: "+Utilidades.listaBeneficioCultivo!![0].beneficio.toString())
+        txtBeneficio.setText(Utilidades.listaBeneficioCultivo!![0].beneficio.toString())
+        txtIngreso.setText(Utilidades.listaBeneficioCultivo!![0].ingresos.toString())
+        txtGasto.setText(Utilidades.listaBeneficioCultivo!![0].gastos.toString())
     }
 
     private fun informeEnero(){

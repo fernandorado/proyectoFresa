@@ -304,34 +304,34 @@ object Utilidades {
             listaBeneficioPersonal!!.add(beneficio)
 
 
-        /*consultarListaIngresoPersonal(actividad)
-        consultarListaGastoPersonal(actividad)
+            /*consultarListaIngresoPersonal(actividad)
+            consultarListaGastoPersonal(actividad)
 
 
-            for (iIn in listaIngresoPersonal!!){
-                println("Lista de mes: ")
-                println(iIn.mes +" "+ iIn.año + " "+ iIn.precio)
-                for (iG in listaGastoPersonal!!){
-                    println("Gasto: ")
-                    println(iG.mes +" "+ iG.año + " "+ iG.precio)
-                    if (iIn.año == iG.año && iIn.mes == iG.mes){
-                        if (iIn.mes != null){
-                            beneficio.mes = iIn.mes
-                        }else if(iG.mes != null){
-                            beneficio.mes = iG.mes
+                for (iIn in listaIngresoPersonal!!){
+                    println("Lista de mes: ")
+                    println(iIn.mes +" "+ iIn.año + " "+ iIn.precio)
+                    for (iG in listaGastoPersonal!!){
+                        println("Gasto: ")
+                        println(iG.mes +" "+ iG.año + " "+ iG.precio)
+                        if (iIn.año == iG.año && iIn.mes == iG.mes){
+                            if (iIn.mes != null){
+                                beneficio.mes = iIn.mes
+                            }else if(iG.mes != null){
+                                beneficio.mes = iG.mes
+                            }
+                            if (iIn.año != null){
+                                beneficio.año = iIn.año
+                            }else if(iG.año != null){
+                                beneficio.año = iG.año
+                            }
+                            beneficio.ingresos= iIn.precio
+                            beneficio.gastos= iG.precio
+                            beneficio.beneficio= iIn.precio-iG.precio
+                            listaBeneficioPersonal!!.add(beneficio)
                         }
-                        if (iIn.año != null){
-                            beneficio.año = iIn.año
-                        }else if(iG.año != null){
-                            beneficio.año = iG.año
-                        }
-                        beneficio.ingresos= iIn.precio
-                        beneficio.gastos= iG.precio
-                        beneficio.beneficio= iIn.precio-iG.precio
-                        listaBeneficioPersonal!!.add(beneficio)
                     }
-                }
-            }*/
+                }*/
 
             println("Beneficio: ")
             for (i in listaBeneficioPersonal!!){
@@ -421,7 +421,7 @@ object Utilidades {
         db.close()
     }
 
-    fun calcularBeneficioCultivoAct(actividad: Activity) {
+    /*fun calcularBeneficioCultivoAct(actividad: Activity) {
         val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conn.getReadableDatabase()
         var beneficioCultivo: BeneficioCultivoVo
@@ -529,8 +529,10 @@ object Utilidades {
 
     }
 
+     */
 
-    fun calcularBeneficioCultivo(actividad: Activity) {
+
+    fun calcularBeneficioCultivo(actividad: Activity, mes: Int, año: Int) {
         val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conn.getReadableDatabase()
         var beneficioCultivo: BeneficioCultivoVo
@@ -547,89 +549,42 @@ object Utilidades {
         println("Mes Actual: $mesActual")
         println("Año Actual: $añoActual")
 
-        val cursor = db.rawQuery("SELECT *\n" +
-                "FROM(\n" +
-                "  SELECT mes_cosecha, mes_jornal, mes_insumo, año_cosecha, año_jornal, año_insumo, ifnull(gasto_jornal,0) as gasto_jornal, ifnull(gasto_insumo,0) as gasto_insumo, ingreso_cosecha, (ifnull(ingreso_cosecha,0))-((ifnull(gasto_jornal,0))+(ifnull(gasto_insumo,0)))as beneficio\n" +
-                "from (\n" +
-                "  (select sum(jornal.precio_jornal*jornal.cant_jornal) as gasto_jornal, año_jornal, mes_jornal\n" +
-                "\tfrom jornal\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by  mes_jornal)\n" +
-                "  \n" +
-                "  LEFT JOIN\n" +
-                "  (\n" +
-                "    \n" +
-                "    (select sum(cosecha.precio_cosecha*cosecha.libras_cosecha) as ingreso_cosecha, año_cosecha, mes_cosecha\n" +
-                "\tfrom cosecha\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by cosecha.año_cosecha, cosecha.mes_cosecha)\n" +
-                "    \n" +
-                "  \n" +
-                "    LEFT JOIN\n" +
-                "  \n" +
-                "  (select sum((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado) as gasto_insumo, año_insumo, mes_insumo\n" +
-                "\tfrom insumo\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by año_insumo, mes_insumo)\n" +
-                "  )\n" +
-                "  ON año_insumo = año_cosecha and mes_insumo=mes_cosecha\n" +
-                ")\n" +
-                "  UNION\n" +
-                "  \n" +
-                "  SELECT mes_cosecha, mes_jornal, mes_insumo, año_cosecha, año_jornal, año_insumo, ifnull(gasto_jornal,0) as gasto_jornal, ifnull(gasto_insumo,0) as gasto_insumo, ingreso_cosecha, (ifnull(ingreso_cosecha,0))-((ifnull(gasto_jornal,0))+(ifnull(gasto_insumo,0)))as beneficio\n" +
-                "from (\n" +
-                "  (select sum(cosecha.precio_cosecha*cosecha.libras_cosecha) as ingreso_cosecha, año_cosecha, mes_cosecha\n" +
-                "\tfrom cosecha\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by cosecha.año_cosecha, cosecha.mes_cosecha)\n" +
-                "  LEFT JOIN\n" +
-                "  (\n" +
-                "    (select sum(jornal.precio_jornal*jornal.cant_jornal) as gasto_jornal, año_jornal,año_jornal, mes_jornal\n" +
-                "\tfrom jornal\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by año_jornal, mes_jornal)\n" +
-                "  \n" +
-                "    LEFT JOIN\n" +
-                "  \n" +
-                "  (select sum((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado) as gasto_insumo, año_insumo, mes_insumo\n" +
-                "\tfrom insumo\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by año_insumo, mes_insumo)\n" +
-                "    ON año_insumo = año_jornal and mes_insumo=mes_jornal\n" +
-                "  )\n" +
-                "  ON año_insumo = año_cosecha and mes_insumo=mes_cosecha\n" +
-                ")\n" +
-                ")", null)
-        while (cursor.moveToNext()) {
+        for (i in 1..3){
+            val cursor = db.rawQuery("SELECT (Gasto_jornal+Gasto_insumo) Gasto, Ingreso,(ingreso-(gasto_jornal+gasto_insumo)) as Beneficio\n" +
+                    "FROM(\n" +
+                    "(SELECT ifnull(sum(jornal.precio_jornal*jornal.cant_jornal),0) as Gasto_jornal\n" +
+                    "from jornal\n" +
+                    "WHERE año_jornal = "+año+" and mes_jornal = "+i+")\n" +
+                    ",\n" +
+                    "(SELECT ifnull(sum((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado),0) as Gasto_insumo\n" +
+                    "FROM insumo\n" +
+                    "WHERE año_insumo = "+año+" and mes_insumo = "+i+")\n" +
+                    ",\n" +
+                    "(select (sum(libras_extra*precio_extra)+sum(libras_primera*precio_primera) +\n" +
+                    "        sum(libras_segunda*precio_segunda) +sum(libras_tercera*precio_tercera)+\n" +
+                    "sum(libras_cuarta*precio_cuarta)+sum(libras_quinta*precio_quinta)+\n" +
+                    "sum(libras_madura*precio_madura)) AS Ingreso\n" +
+                    "from cosecha\n" +
+                    "WHERE año_cosecha = "+año+" and mes_cosecha = "+i+")\n" +
+                    ")", null)
+            while (cursor.moveToNext()) {
 
-            beneficioCultivo = BeneficioCultivoVo()
-            //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
-            // y le asigno la respuesta cuando sea diferente de nulo
-            if (cursor.getString(0) != null){
-                beneficioCultivo.mes = cursor.getString(0)
-            }else if(cursor.getString(1) != null){
-                beneficioCultivo.mes = cursor.getString(1)
-            }else if(cursor.getString(2) != null){
-                beneficioCultivo.mes = cursor.getString(2)
-            }
-            if (cursor.getString(3) != null){
-                beneficioCultivo.año= cursor.getString(3)
-            }else if(cursor.getString(4) != null){
-                beneficioCultivo.año= cursor.getString(4)
-            }else if(cursor.getString(5) != null){
-                beneficioCultivo.año= cursor.getString(5)
-            }
-            beneficioCultivo.gastoJornal= cursor.getInt(6)
-            beneficioCultivo.gastoInsumo= cursor.getInt(7)
-            beneficioCultivo.ingresos= cursor.getInt(8)
-            beneficioCultivo.beneficio= cursor.getInt(9)
-            listaBeneficioCultivo!!.add(beneficioCultivo)
+                beneficioCultivo = BeneficioCultivoVo()
+                //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
+                // y le asigno la respuesta cuando sea diferente de nulo
+                beneficioCultivo.gastos= cursor.getInt(0)
+                beneficioCultivo.ingresos= cursor.getInt(1)
+                beneficioCultivo.beneficio= cursor.getInt(2)
+                listaBeneficioCultivo!!.add(beneficioCultivo)
 
-            println("Beneficio: ")
-            for (i in listaBeneficioCultivo!!){
-                println("------------------")
-                println(i.mes + " "+ i.año + " "+i.ingresos +" "+ i.gastoJornal+ " "+ i.gastoInsumo+ " "+i.beneficio)
+
             }
+        }
+
+        println("Beneficio: ")
+        for (i in listaBeneficioCultivo!!){
+            println("------------------")
+            println("Lista de Beneficios: "+i.ingresos +" "+ i.gastos+ " "+i.beneficio)
         }
         db.close()
     }

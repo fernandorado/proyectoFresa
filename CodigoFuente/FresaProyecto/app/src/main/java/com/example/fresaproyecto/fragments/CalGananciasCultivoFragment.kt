@@ -63,8 +63,8 @@ class CalGananciasCultivoFragment : Fragment() {
         recyclerBeneficioAct.setHasFixedSize(true)
 
         fabAtras = vista.findViewById(R.id.btnIcoAtras)
-        llenarAdaptadorBeneficios()
-        llenarAdaptadorBeneficioAct()
+        //llenarAdaptadorBeneficios()
+        //llenarAdaptadorBeneficioAct()
         eventosMenu()
 
         return vista
@@ -81,7 +81,7 @@ class CalGananciasCultivoFragment : Fragment() {
 
         })
     }
-    fun llenarAdaptadorBeneficios() {
+    /*fun llenarAdaptadorBeneficios() {
 
         Utilidades.calcularBeneficioCultivo(actividad)
 
@@ -116,6 +116,8 @@ class CalGananciasCultivoFragment : Fragment() {
 
         recyclerBeneficioAct.adapter=miAdaptadorBeneficioActual
     }
+
+     */
 
 
     companion object {

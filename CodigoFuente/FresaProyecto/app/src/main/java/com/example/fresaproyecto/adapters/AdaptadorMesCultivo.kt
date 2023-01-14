@@ -73,12 +73,14 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
             viewHolderMes.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorBlanco))
         }
 
-        viewHolderMes.txtMes.setText(listaMes[i].mes.toString())
+        /*viewHolderMes.txtMes.setText(listaMes[i].mes.toString())
         viewHolderMes.txtAño.setText(listaMes[i].año.toString())
         viewHolderMes.txtIngreso.setText(listaMes[i].ingresos.toString())
         viewHolderMes.txtGastoJornal.setText(listaMes[i].gastoJornal.toString())
         viewHolderMes.txtGastoInsumo.setText(listaMes[i].gastoInsumo.toString())
         viewHolderMes.txtGanancia.setText(listaMes[i].beneficio.toString())
+
+         */
 
     }
 
