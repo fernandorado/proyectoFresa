@@ -550,7 +550,7 @@ object Utilidades {
         println("Año Actual: $añoActual")
 
         for (i in 1..3){
-            val cursor = db.rawQuery("SELECT (Gasto_jornal+Gasto_insumo) Gasto, Ingreso,(ingreso-(gasto_jornal+gasto_insumo)) as Beneficio\n" +
+            val cursor = db.rawQuery("SELECT Gasto_jornal,Gasto_insumo,(Gasto_jornal+Gasto_insumo) Gasto,Ingreso,ifnull((ingreso-(gasto_jornal+gasto_insumo)),0) as Beneficio,Extra,Primera,Segunda,Tercera,Cuarta,Quinta,Madura\n" +
                     "FROM(\n" +
                     "(SELECT ifnull(sum(jornal.precio_jornal*jornal.cant_jornal),0) as Gasto_jornal\n" +
                     "from jornal\n" +
@@ -560,10 +560,12 @@ object Utilidades {
                     "FROM insumo\n" +
                     "WHERE año_insumo = "+año+" and mes_insumo = "+i+")\n" +
                     ",\n" +
-                    "(select (sum(libras_extra*precio_extra)+sum(libras_primera*precio_primera) +\n" +
+                    "(select ifnull((sum(libras_extra*precio_extra)+sum(libras_primera*precio_primera) +\n" +
                     "        sum(libras_segunda*precio_segunda) +sum(libras_tercera*precio_tercera)+\n" +
                     "sum(libras_cuarta*precio_cuarta)+sum(libras_quinta*precio_quinta)+\n" +
-                    "sum(libras_madura*precio_madura)) AS Ingreso\n" +
+                    "sum(libras_madura*precio_madura)),0) AS Ingreso, sum(libras_extra) Extra, sum(libras_primera) Primera,\n" +
+                    " sum(libras_segunda) Segunda, sum(libras_tercera) Tercera, sum(libras_cuarta) Cuarta, sum(libras_quinta) Quinta, \n" +
+                    " sum(libras_madura) Madura\n" +
                     "from cosecha\n" +
                     "WHERE año_cosecha = "+año+" and mes_cosecha = "+i+")\n" +
                     ")", null)
@@ -572,9 +574,21 @@ object Utilidades {
                 beneficioCultivo = BeneficioCultivoVo()
                 //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
                 // y le asigno la respuesta cuando sea diferente de nulo
-                beneficioCultivo.gastos= cursor.getInt(0)
-                beneficioCultivo.ingresos= cursor.getInt(1)
-                beneficioCultivo.beneficio= cursor.getInt(2)
+
+                beneficioCultivo.gastoJornal= cursor.getInt(0)
+                beneficioCultivo.gastoInsumo= cursor.getInt(1)
+                beneficioCultivo.gastos= cursor.getInt(2)
+                beneficioCultivo.ingresos= cursor.getInt(3)
+                beneficioCultivo.beneficio= cursor.getInt(4)
+                beneficioCultivo.extra= cursor.getInt(5)
+                beneficioCultivo.primera= cursor.getInt(6)
+                beneficioCultivo.segunda= cursor.getInt(7)
+                beneficioCultivo.tercera= cursor.getInt(8)
+                beneficioCultivo.cuarta= cursor.getInt(9)
+                beneficioCultivo.quinta= cursor.getInt(10)
+                beneficioCultivo.madura= cursor.getInt(11)
+                beneficioCultivo.año= año
+                beneficioCultivo.mes= i
                 listaBeneficioCultivo!!.add(beneficioCultivo)
 
 

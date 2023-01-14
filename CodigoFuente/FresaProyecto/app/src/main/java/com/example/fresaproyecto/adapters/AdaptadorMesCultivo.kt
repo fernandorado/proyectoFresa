@@ -21,7 +21,7 @@ import com.example.fresaproyecto.interfaces.IComunicaFragments
 class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
     RecyclerView.Adapter<AdaptadorMesCultivo.ViewHolderMes>(), View.OnClickListener {
     private var listener: View.OnClickListener? = null
-    var listaMes: List<BeneficioCultivoVo> = Utilidades.listaBeneficioCultivo!!
+    var listaInformeMes: List<BeneficioCultivoVo> = Utilidades.listaBeneficioCultivo!!
     lateinit var vista: View
     lateinit var vgrupo: ViewGroup
     lateinit var vistaAct: View
@@ -57,7 +57,7 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
         val pos: Int = i
 
         //viewHolderMes.txtId.setText(listaPersona.get(i).nombre)  Otra forma
-        viewHolderMes.cardMes.setOnClickListener(object : View.OnClickListener {
+        viewHolderMes.cardInformeMes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 posicionMarcada=pos
 
@@ -67,20 +67,35 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
 
         if (posicionMarcada == i){
             //Mes Seleccionado deberia ser aqui
-            CalGananciasCultivoFragment.mesSeleccionado = listaMes.get(pos) //Agregando el beneficio por mes
-            viewHolderMes.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorSeleccion))
+            CalGananciasCultivoFragment.mesSeleccionado = listaInformeMes.get(pos) //Agregando el beneficio por mes
+            //viewHolderMes.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorSeleccion))
         }else{
-            viewHolderMes.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorBlanco))
+            //viewHolderMes.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorBlanco))
         }
 
-        /*viewHolderMes.txtMes.setText(listaMes[i].mes.toString())
-        viewHolderMes.txtAño.setText(listaMes[i].año.toString())
-        viewHolderMes.txtIngreso.setText(listaMes[i].ingresos.toString())
-        viewHolderMes.txtGastoJornal.setText(listaMes[i].gastoJornal.toString())
-        viewHolderMes.txtGastoInsumo.setText(listaMes[i].gastoInsumo.toString())
-        viewHolderMes.txtGanancia.setText(listaMes[i].beneficio.toString())
+        /*viewHolderMes.txtMes.setText(listaInformeMes[i].mes.toString())
+        viewHolderMes.txtAño.setText(listaInformeMes[i].año.toString())
+        viewHolderMes.txtIngreso.setText(listaInformeMes[i].ingresos.toString())
+        viewHolderMes.txtGastoJornal.setText(listaInformeMes[i].gastoJornal.toString())
+        viewHolderMes.txtGastoInsumo.setText(listaInformeMes[i].gastoInsumo.toString())
+        viewHolderMes.txtGanancia.setText(listaInformeMes[i].beneficio.toString())
 
          */
+
+        viewHolderMes.txtIngreso.setText(listaInformeMes[i].ingresos.toString())
+        viewHolderMes.txtGasJornal.setText(listaInformeMes[i].gastoJornal.toString())
+        viewHolderMes.txtGasInsumo.setText(listaInformeMes[i].gastoInsumo.toString())
+        viewHolderMes.txtIngreso.setText(listaInformeMes[i].ingresos.toString())
+        viewHolderMes.txtBeneficio.setText(listaInformeMes[i].beneficio.toString())
+        viewHolderMes.txtCosechaExtra.setText(listaInformeMes[i].extra.toString())
+        viewHolderMes.txtCosechaPrimera.setText(listaInformeMes[i].primera.toString())
+        viewHolderMes.txtCosechaSegunda.setText(listaInformeMes[i].segunda.toString())
+        viewHolderMes.txtCosechaTercera.setText(listaInformeMes[i].tercera.toString())
+        viewHolderMes.txtCosechaCuarta.setText(listaInformeMes[i].cuarta.toString())
+        viewHolderMes.txtCosechaQuinta.setText(listaInformeMes[i].quinta.toString())
+        viewHolderMes.txtCosechaMadura.setText(listaInformeMes[i].madura.toString())
+        viewHolderMes.txtMes.setText(listaInformeMes[i].mes.toString()+". ")
+        viewHolderMes.txtAño.setText(listaInformeMes[i].año.toString())
 
     }
 
@@ -91,7 +106,7 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
 
     override fun getItemCount(): Int {
         //return (listaIngresos.size + listaGastos.size)
-        return listaMes.size
+        return listaInformeMes.size
     }
 
     override fun onClick(view: View) {
@@ -101,24 +116,42 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
     }
 
     inner class ViewHolderMes(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var txtMes: TextView
-        var txtAño: TextView
-        var txtGastoInsumo: TextView
-        var txtGastoJornal: TextView
-        var txtIngreso: TextView
-        var txtGanancia: TextView
-        var cardMes: CardView
-        var barraSeleccion: TextView
+        var txtAño : TextView
+        var txtMes : TextView
+        //TextView de Informe General
+        //----------TextView por mes
+        //TextView mes Enero
+        var txtGasInsumo :TextView
+        var txtGasJornal :TextView
+        var txtIngreso : TextView
+        var txtBeneficio :TextView
+        var txtCosechaExtra :TextView
+        var txtCosechaPrimera :TextView
+        var txtCosechaSegunda :TextView
+        var txtCosechaTercera :TextView
+        var txtCosechaCuarta :TextView
+        var txtCosechaQuinta :TextView
+        var txtCosechaMadura :TextView
+
+        var cardInformeMes: CardView
 
         init {
-            txtMes = itemView.findViewById(R.id.idMes)
-            txtAño = itemView.findViewById(R.id.idAño)
-            txtGastoInsumo = itemView.findViewById(R.id.idGastoInsumo)
-            txtGastoJornal = itemView.findViewById(R.id.idGastoJornal)
-            txtIngreso = itemView.findViewById(R.id.idIngresoMensual)
-            txtGanancia = itemView.findViewById(R.id.idGanancias)
-            cardMes = itemView.findViewById(R.id.cardMes)
-            barraSeleccion = itemView.findViewById((R.id.barraSeleccionMes))
+            txtAño = vista.findViewById(R.id.txtAño)
+            txtMes = vista.findViewById(R.id.txtMes)
+
+            txtGasInsumo = vista.findViewById(R.id.txtInsumo)
+            txtGasJornal = vista.findViewById(R.id.txtJornal)
+            txtIngreso = vista.findViewById(R.id.txtIngreso)
+            txtBeneficio = vista.findViewById(R.id.txtBeneficio)
+            txtCosechaExtra = vista.findViewById(R.id.txtPrecioExtra)
+            txtCosechaPrimera = vista.findViewById(R.id.txtPrecioPrimera)
+            txtCosechaSegunda = vista.findViewById(R.id.txtPrecioSegunda)
+            txtCosechaTercera = vista.findViewById(R.id.txtPrecioTercera)
+            txtCosechaCuarta = vista.findViewById(R.id.txtPrecioCuarta)
+            txtCosechaQuinta = vista.findViewById(R.id.txtPrecioQuinta)
+            txtCosechaMadura = vista.findViewById(R.id.txtPrecioMadura)
+            cardInformeMes = vista.findViewById(R.id.cardInformeMes)
+
         }
     }
 
