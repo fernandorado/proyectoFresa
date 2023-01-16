@@ -44,7 +44,7 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
 
         context = viewGroup.context
 
-                vista = LayoutInflater.from(viewGroup.context)
+        vista = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_list_mes_cultivo, viewGroup, false)
 
 
@@ -82,11 +82,11 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
 
          */
 
-        viewHolderMes.txtIngreso.setText(listaInformeMes[i].ingresos.toString())
-        viewHolderMes.txtGasJornal.setText(listaInformeMes[i].gastoJornal.toString())
-        viewHolderMes.txtGasInsumo.setText(listaInformeMes[i].gastoInsumo.toString())
-        viewHolderMes.txtIngreso.setText(listaInformeMes[i].ingresos.toString())
-        viewHolderMes.txtBeneficio.setText(listaInformeMes[i].beneficio.toString())
+        viewHolderMes.txtIngreso.setText("$"+listaInformeMes[i].ingresos.toString())
+        viewHolderMes.txtGasJornal.setText("$"+listaInformeMes[i].gastoJornal.toString())
+        viewHolderMes.txtGasInsumo.setText("$"+listaInformeMes[i].gastoInsumo.toString())
+        viewHolderMes.txtIngreso.setText("$"+listaInformeMes[i].ingresos.toString())
+        viewHolderMes.txtBeneficio.setText("$"+listaInformeMes[i].beneficio.toString())
         viewHolderMes.txtCosechaExtra.setText(listaInformeMes[i].extra.toString())
         viewHolderMes.txtCosechaPrimera.setText(listaInformeMes[i].primera.toString())
         viewHolderMes.txtCosechaSegunda.setText(listaInformeMes[i].segunda.toString())
@@ -94,8 +94,26 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
         viewHolderMes.txtCosechaCuarta.setText(listaInformeMes[i].cuarta.toString())
         viewHolderMes.txtCosechaQuinta.setText(listaInformeMes[i].quinta.toString())
         viewHolderMes.txtCosechaMadura.setText(listaInformeMes[i].madura.toString())
-        viewHolderMes.txtMes.setText(listaInformeMes[i].mes.toString()+". ")
+
+        var mesLetras = when (listaInformeMes[i].mes){
+            1 -> "Enero"
+            2 -> "Febrero"
+            3 -> "Marzo"
+            4 -> "Abril"
+            5 -> "Mayo"
+            6 -> "Junio"
+            7 -> "Julio"
+            8 -> "Agosto"
+            9 -> "Septiembre"
+            10 -> "Octubre"
+            11 -> "Noviembre"
+            12 -> "Diciembre"
+            else -> "Sin Fecha"
+        }
+
+        viewHolderMes.txtMes.setText(mesLetras + ". ")
         viewHolderMes.txtAño.setText(listaInformeMes[i].año.toString())
+
 
     }
 

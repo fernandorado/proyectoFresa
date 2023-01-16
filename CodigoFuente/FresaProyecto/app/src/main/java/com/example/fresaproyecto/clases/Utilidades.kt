@@ -549,7 +549,7 @@ object Utilidades {
         println("Mes Actual: $mesActual")
         println("Año Actual: $añoActual")
 
-        for (i in 1..3){
+        for (i in 1..12){
             val cursor = db.rawQuery("SELECT Gasto_jornal,Gasto_insumo,(Gasto_jornal+Gasto_insumo) Gasto,Ingreso,ifnull((ingreso-(gasto_jornal+gasto_insumo)),0) as Beneficio,Extra,Primera,Segunda,Tercera,Cuarta,Quinta,Madura\n" +
                     "FROM(\n" +
                     "(SELECT ifnull(sum(jornal.precio_jornal*jornal.cant_jornal),0) as Gasto_jornal\n" +

@@ -1,8 +1,12 @@
 package com.example.fresaproyecto.fragments
 
 import android.app.Activity
+import android.app.DatePickerDialog
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.os.Bundle
+import android.text.format.DateUtils.getMonthString
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +19,8 @@ import com.example.fresaproyecto.R
 import com.example.fresaproyecto.adapters.AdaptadorMesCultivo
 import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
-import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
-import com.example.fresaproyecto.clases.vo.CultivoVo
-import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -44,6 +46,7 @@ class InformeCultivoFragment : Fragment() {
     //TextView de Informe General
     lateinit var txtIngreso : TextView
     lateinit var txtFecha : TextView
+    lateinit var txtFechaSelec : TextView
     lateinit var txtGasto : TextView
     lateinit var txtBeneficio : TextView
     //----------TextView por mes
@@ -73,7 +76,7 @@ class InformeCultivoFragment : Fragment() {
     }
 
     fun onDateSelected (day:Int, month:Int, year:Int){
-        txtFecha.setText("$year-$month-$day")
+        txtFechaSelec.setText("$year-$month-$day")
         mes=month
         año=year
     }
@@ -82,6 +85,8 @@ class InformeCultivoFragment : Fragment() {
         val datePicker = DatePickerFragment{day, month, year -> onDateSelected(year, month+1, day)}
         datePicker.show(parentFragmentManager, "datePicker")
     }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -92,10 +97,11 @@ class InformeCultivoFragment : Fragment() {
 
         txtIngreso = vista.findViewById(R.id.txtValorIngreso)
         txtFecha = vista.findViewById(R.id.txtFechaInf)
+        txtFechaSelec = vista.findViewById(R.id.txtFecha)
         txtGasto = vista.findViewById(R.id.txtValorGasto)
         txtBeneficio = vista.findViewById(R.id.txtBeneficio)
 
-        txtFecha.setOnClickListener{ showDatePickerDialog() }
+        txtFechaSelec.setOnClickListener{  }
 
         recyclerInformeMes = vista.findViewById(R.id.recyclerInformeMes)
         recyclerInformeMes.layoutManager = LinearLayoutManager(actividad)
