@@ -71,6 +71,11 @@
                         android:text="Extra:" />
 
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrisClaro" />
+
+                    <TextView
                         android:id="@+id/txtLibraExtra"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -96,6 +101,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Primera:" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrisClaro" />
 
                     <TextView
                         android:id="@+id/txtLibraPrimera"
@@ -125,6 +135,11 @@
                         android:text="Segunda:" />
 
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrisClaro" />
+
+                    <TextView
                         android:id="@+id/txtLibraSegunda"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -150,6 +165,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tercera:" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrisClaro" />
 
                     <TextView
                         android:id="@+id/txtLibraTercera"
@@ -180,6 +200,11 @@
                         android:text="Cuarta:" />
 
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrisClaro" />
+
+                    <TextView
                         android:id="@+id/txtLibraCuarta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -207,6 +232,11 @@
                         android:text="Quinta:" />
 
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrisClaro" />
+
+                    <TextView
                         android:id="@+id/txtLibraQuinta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -232,6 +262,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Madura FF:" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/colorGrisClaro" />
 
                     <TextView
                         android:id="@+id/txtLibraMadura"

@@ -20,6 +20,7 @@ import com.example.fresaproyecto.adapters.AdaptadorMesCultivo
 import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.interfaces.IComunicaFragments
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -44,24 +45,9 @@ class InformeCultivoFragment : Fragment() {
 
     //TextView de año
     //TextView de Informe General
-    lateinit var txtIngreso : TextView
-    lateinit var txtFecha : TextView
     lateinit var txtFechaSelec : TextView
-    lateinit var txtGasto : TextView
-    lateinit var txtBeneficio : TextView
     //----------TextView por mes
     //TextView mes Enero
-    lateinit var txtFechaEnr :TextView
-    lateinit var txtGasInsumoEnr :TextView
-    lateinit var txtGasJornalEnr :TextView
-    lateinit var txtBeneficioEnr :TextView
-    lateinit var txtCosechaExtraEnr :TextView
-    lateinit var txtCosechaPrimeraEnr :TextView
-    lateinit var txtCosechaSegundaEnr :TextView
-    lateinit var txtCosechaTerceraEnr :TextView
-    lateinit var txtCosechaCuartaEnr :TextView
-    lateinit var txtCosechaQuintaEnr :TextView
-    lateinit var txtCosechaMaduraEnr :TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,6 +65,7 @@ class InformeCultivoFragment : Fragment() {
         txtFechaSelec.setText("$year-$month-$day")
         mes=month
         año=year
+        añoSeleccionado=year
     }
 
     private fun showDatePickerDialog() {
@@ -92,12 +79,12 @@ class InformeCultivoFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_informe_cultivo, container, false)
+        val dateFormatY = SimpleDateFormat("yyyy")
+        val añoActual = dateFormatY.format(Date())
 
-        txtIngreso = vista.findViewById(R.id.txtValorIngreso)
-        txtFecha = vista.findViewById(R.id.txtFechaInf)
+        añoSeleccionado = añoActual.toInt()
+
         txtFechaSelec = vista.findViewById(R.id.txtFecha)
-        txtGasto = vista.findViewById(R.id.txtValorGasto)
-        txtBeneficio = vista.findViewById(R.id.txtBeneficio)
 
         txtFechaSelec.setOnClickListener{ showDatePickerDialog() }
 
@@ -114,11 +101,7 @@ class InformeCultivoFragment : Fragment() {
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
         Utilidades.calcularBeneficioCultivo(actividad,1, 2023)
 
-        txtFecha.setText(""+mes+"."+año)
         println("Lista de Beneficios: "+Utilidades.listaBeneficioCultivo!![0].beneficio.toString())
-        txtBeneficio.setText(Utilidades.listaBeneficioCultivo!![0].beneficio.toString())
-        txtIngreso.setText(Utilidades.listaBeneficioCultivo!![0].ingresos.toString())
-        txtGasto.setText(Utilidades.listaBeneficioCultivo!![0].gastos.toString())
 
         var miAdaptadorInforme = AdaptadorMesCultivo(Utilidades.listaBeneficioCultivo!!)
         miAdaptadorInforme.setOnClickListener(object : View.OnClickListener {
@@ -136,6 +119,7 @@ class InformeCultivoFragment : Fragment() {
 
     companion object {
         var mesSeleccionado: Int = 0
+        var añoSeleccionado: Int = 0
         lateinit var recyclerInformeMes: RecyclerView
         lateinit var interfaceComunicaFragments: IComunicaFragments
 

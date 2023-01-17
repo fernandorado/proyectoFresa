@@ -204,7 +204,32 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:text="Calidad"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Libras"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
                                     android:text="Extra:" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/colorGrisClaro" />
 
                                 <TextView
                                     android:id="@+id/txtPrecioExtra"
@@ -227,6 +252,11 @@
                                     android:text="Primera:" />
 
                                 <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/colorGrisClaro" />
+
+                                <TextView
                                     android:id="@+id/txtPrecioPrimera"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -247,6 +277,11 @@
                                     android:text="Segunda:" />
 
                                 <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/colorGrisClaro" />
+
+                                <TextView
                                     android:id="@+id/txtPrecioSegunda"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -265,6 +300,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Tercera:" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/colorGrisClaro" />
 
                                 <TextView
                                     android:id="@+id/txtPrecioTercera"
@@ -288,6 +328,11 @@
                                     android:text="Cuarta:" />
 
                                 <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/colorGrisClaro" />
+
+                                <TextView
                                     android:id="@+id/txtPrecioCuarta"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -308,6 +353,11 @@
                                     android:text="Quinta:" />
 
                                 <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/colorGrisClaro" />
+
+                                <TextView
                                     android:id="@+id/txtPrecioQuinta"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -326,6 +376,11 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Madura FF:" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:background="@color/colorGrisClaro" />
 
                                 <TextView
                                     android:id="@+id/txtPrecioMadura"

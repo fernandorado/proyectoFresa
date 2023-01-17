@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi
 import com.example.fresaproyecto.clases.vo.*
 import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.dialogos.DialogoGesPersona
+import com.example.fresaproyecto.fragments.InformeCultivoFragment
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -27,6 +28,9 @@ object Utilidades {
     var listaJornalCultivo: ArrayList<JornalCultivoVo>? = null
     var listaInsumoCultivo: ArrayList<InsumoCultivoVo>? = null
     var listaCosechaCultivo: ArrayList<CosechaCultivoVo>? = null
+
+    var año1 = InformeCultivoFragment.añoSeleccionado
+    var mes1 = InformeCultivoFragment.mesSeleccionado
 
     const val NOMBRE_BD = "fresa_bd"
 

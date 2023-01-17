@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +35,14 @@ class DetalleGanCultivoFragment : Fragment() {
     lateinit var tab_layout: TabLayout
     lateinit var view_pager: ViewPager2
     lateinit var myViewPagerAdapter : MyViewPagerAdapter
+    //TextView de Informe General
+    lateinit var txtIngreso : TextView
+    lateinit var txtFecha : TextView
+    lateinit var txtFechaSelec : TextView
+    lateinit var txtGasto : TextView
+    lateinit var txtBeneficio : TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,11 +64,17 @@ class DetalleGanCultivoFragment : Fragment() {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_detalle_gan_cultivo, container, false)
 
+        txtIngreso = vista.findViewById(R.id.txtValorIngreso)
+        txtFecha = vista.findViewById(R.id.txtFechaInf)
+        txtGasto = vista.findViewById(R.id.txtValorGasto)
+        txtBeneficio = vista.findViewById(R.id.txtBeneficio)
 
         view_pager = vista.findViewById(R.id.view_pager)
         tab_layout = vista.findViewById(R.id.tab_layout)
         myViewPagerAdapter = MyViewPagerAdapter(this)
         view_pager.setAdapter(myViewPagerAdapter)
+        informePorFecha(1,2023)
+
 
         tab_layout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -80,12 +95,38 @@ class DetalleGanCultivoFragment : Fragment() {
         return vista
     }
 
+    private fun informePorFecha(mes:Int,año:Int){
+        Utilidades.calcularBeneficioCultivo(actividad, mes,año)
 
-    private fun reemplazarFragment(fragment: Fragment){
-        val fragmentManager = activity?.supportFragmentManager
-        val fragmentTransaction = fragmentManager?.beginTransaction()
-        fragmentTransaction!!.replace(R.id.frame_container, fragment)
-        fragmentTransaction.commit()
+        var mesLetras = when (mes){
+            1 -> "Enero"
+            2 -> "Febrero"
+            3 -> "Marzo"
+            4 -> "Abril"
+            5 -> "Mayo"
+            6 -> "Junio"
+            7 -> "Julio"
+            8 -> "Agosto"
+            9 -> "Septiembre"
+            10 -> "Octubre"
+            11 -> "Noviembre"
+            12 -> "Diciembre"
+            else -> "Null"
+        }
+
+        txtFecha.setText(""+mesLetras+"."+año)
+        txtBeneficio.setText(Utilidades.listaBeneficioCultivo!![0].beneficio.toString())
+        txtIngreso.setText(Utilidades.listaBeneficioCultivo!![0].ingresos.toString())
+        txtGasto.setText(Utilidades.listaBeneficioCultivo!![0].gastos.toString())
+
+        var miAdaptadorInforme = AdaptadorMesCultivo(Utilidades.listaBeneficioCultivo!!)
+        miAdaptadorInforme.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))
+            }
+        })
+
+        InformeCultivoFragment.recyclerInformeMes.adapter=miAdaptadorInforme
     }
 
 
