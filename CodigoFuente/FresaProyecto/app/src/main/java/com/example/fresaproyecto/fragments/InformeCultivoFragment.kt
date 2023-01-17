@@ -37,7 +37,7 @@ class InformeCultivoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     lateinit var vista: View
     lateinit var actividad: Activity
-    lateinit var interfaceComunicaFragments: IComunicaFragments
+
     var año : Int = 0
     var mes : Int = 0
     //var beneficioCultivo: BeneficioCultivoVo = Utilidades.beneficioCultivo!!
@@ -86,8 +86,6 @@ class InformeCultivoFragment : Fragment() {
         datePicker.show(parentFragmentManager, "datePicker")
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -101,7 +99,7 @@ class InformeCultivoFragment : Fragment() {
         txtGasto = vista.findViewById(R.id.txtValorGasto)
         txtBeneficio = vista.findViewById(R.id.txtBeneficio)
 
-        txtFechaSelec.setOnClickListener{  }
+        txtFechaSelec.setOnClickListener{ showDatePickerDialog() }
 
         recyclerInformeMes = vista.findViewById(R.id.recyclerInformeMes)
         recyclerInformeMes.layoutManager = LinearLayoutManager(actividad)
@@ -111,7 +109,6 @@ class InformeCultivoFragment : Fragment() {
 
         return vista
     }
-
 
     private fun informePorFecha(año : Int, mes : Int){
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
@@ -140,35 +137,13 @@ class InformeCultivoFragment : Fragment() {
     companion object {
         var mesSeleccionado: Int = 0
         lateinit var recyclerInformeMes: RecyclerView
+        lateinit var interfaceComunicaFragments: IComunicaFragments
 
-        /*fun llenarAdaptadorInformeMes() {
-
-            Utilidades.consultarListaCultivos(DialogoGesCultivo.actividad)
-
-            //se asigna la lista de jugadores por defecto
-            var miAdaptadorInforme = AdaptadorInforme(Utilidades.listaCultivos!!)
-            miAdaptadorInforme.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(view: View?) {
-                    DialogoGesCultivo.mesSeleccionado = Utilidades.listaCultivos!!.get(
-                        DialogoGesCultivo.recyclerInformeMes.getChildAdapterPosition(view!!))
-
-                    println("Nombre: " + DialogoGesCultivo.mesSeleccionado.nombre)
-                }
-            })
-
-            DialogoGesCultivo.recyclerInformeMes.adapter=miAdaptadorInforme
+        fun cambiarFragment(mes: Int){
+            mesSeleccionado=mes
+            interfaceComunicaFragments.resultadoMensualCultivo()
         }
-        
-         */
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InformeCultivoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             InformeCultivoFragment().apply {

@@ -264,6 +264,21 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         toast.show()
     }
 
+    override fun resultadoMensualCultivo() {
+
+        val fragmentResMensualCultivo = DetalleGanCultivoFragment()
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.contenedorFragments, fragmentResMensualCultivo)
+        transaction.addToBackStack(null)
+        transaction.commit()
+
+        val text ="Resultado Mensual"
+        val duration = Toast.LENGTH_SHORT
+        val toast = Toast.makeText(applicationContext, text, duration)
+        toast.show()
+    }
+
     override fun regJornal() {
         val dialog = DialogoRegJornal()
         dialog.show(supportFragmentManager, "DialogoRegJornal")

@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
+import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.fragments.CalGananciasCultivoFragment
+import com.example.fresaproyecto.fragments.InformeCultivoFragment
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 
@@ -33,9 +35,6 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
     var d: AlertDialog? = null
     lateinit var builder: AlertDialog
     var posicionMarcada: Int = 0
-
-
-
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolderMes {
 
@@ -59,8 +58,8 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
         //viewHolderMes.txtId.setText(listaPersona.get(i).nombre)  Otra forma
         viewHolderMes.cardInformeMes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                posicionMarcada=pos
-
+                posicionMarcada=(pos+1)
+                InformeCultivoFragment.cambiarFragment(posicionMarcada)
                 notifyDataSetChanged()
             }
         })

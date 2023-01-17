@@ -7,9 +7,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
+import com.example.fresaproyecto.adapters.AdaptadorCosechaMesCultivo
+import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.interfaces.IComunicaFragments
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -18,23 +21,16 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [InicioFragment.newInstance] factory method to
+ * Use the [CosechaCultivoFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-open class MenuCultivoFragment : Fragment() {
-
-    var fragmentRegistro: RegistroCultivoFragment = RegistroCultivoFragment()
-    var fragmentInforme: InformeCultivoFragment = InformeCultivoFragment()
-    lateinit var navigation: BottomNavigationView
-
+class CosechaCultivoFragment : Fragment() {
+    // TODO: Rename and change types of parameters
     lateinit var vista: View
-    lateinit var vista2: View
+    lateinit var recyclerCosechaMes: RecyclerView
     lateinit var actividad: Activity
-    lateinit var interfaceComunicaFragments: IComunicaFragments
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
     }
 
@@ -42,7 +38,7 @@ open class MenuCultivoFragment : Fragment() {
         super.onAttach(context)
         if (context is Activity) {
             actividad = context
-            interfaceComunicaFragments = actividad as IComunicaFragments
+            InformeCultivoFragment.interfaceComunicaFragments = actividad as IComunicaFragments
         }
     }
 
@@ -50,33 +46,28 @@ open class MenuCultivoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_menu_cultivo, container, false)
-        reemplazarFragment(fragmentRegistro)
-
-        navigation = vista.findViewById(R.id.bottom_navigation)
-        navigation.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.informe -> reemplazarFragment(fragmentInforme)
-                R.id.registro -> reemplazarFragment(fragmentRegistro)
-                else ->{
-
-                }
-            }
-            true
-        }
-
+        vista =  inflater.inflate(R.layout.fragment_cosecha_cultivo, container, false)
+        recyclerCosechaMes = vista.findViewById(R.id.recyclerCosecha)
+        recyclerCosechaMes.layoutManager = LinearLayoutManager(actividad)
+        recyclerCosechaMes.setHasFixedSize(true)
+        cosechaPorFecha(1,2023)
         return vista
     }
 
-    private fun reemplazarFragment(fragment: Fragment){
-        val fragmentManager = activity?.supportFragmentManager
-        val fragmentTransaction = fragmentManager?.beginTransaction()
-        fragmentTransaction!!.replace(R.id.frame_container, fragment)
-        fragmentTransaction.commit()
-    }
+    private fun cosechaPorFecha(año : Int, mes : Int){
+        //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
+        Utilidades.consultarCosechaMes(actividad,1, 2023)
 
+        var miAdaptadorCosecha = AdaptadorCosechaMesCultivo(Utilidades.listaCosechaCultivo!!)
+        miAdaptadorCosecha.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))
+            }
+        })
+
+        recyclerCosechaMes.adapter=miAdaptadorCosecha
+    }
 
     companion object {
         /**
@@ -85,12 +76,12 @@ open class MenuCultivoFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment InicioFragment.
+         * @return A new instance of fragment CosechaCultivoFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            MenuCultivoFragment().apply {
+            CosechaCultivoFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

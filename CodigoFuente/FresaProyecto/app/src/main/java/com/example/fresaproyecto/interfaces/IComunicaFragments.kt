@@ -16,6 +16,7 @@ interface IComunicaFragments {
     fun regGastos()
     fun regIngresos()
     fun resultadoMensual()
+    fun resultadoMensualCultivo()
     fun actPersona()
     fun actCultivo()
     fun regPersona()
