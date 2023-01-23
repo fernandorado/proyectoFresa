@@ -70,7 +70,8 @@
         <com.echo.holographlibrary.BarGraph
             android:id="@+id/graphBar"
             android:layout_width="match_parent"
-            android:layout_height="150dp"/>
+            android:layout_height="150dp"
+            android:layout_margin="20dp"/>
 
 
 

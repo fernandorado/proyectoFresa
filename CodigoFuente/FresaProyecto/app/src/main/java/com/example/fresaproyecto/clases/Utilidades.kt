@@ -545,6 +545,7 @@ object Utilidades {
         var beneficioCultivo: BeneficioCultivoVo
 
         //Beneficio de Cultivo
+
         listaBeneficioCultivo = ArrayList<BeneficioCultivoVo>()
 
         val dateFormat = SimpleDateFormat("MM")
@@ -597,7 +598,6 @@ object Utilidades {
                 beneficioCultivo.año= año
                 beneficioCultivo.mes= i
                 listaBeneficioCultivo!!.add(beneficioCultivo)
-
 
             }
         }

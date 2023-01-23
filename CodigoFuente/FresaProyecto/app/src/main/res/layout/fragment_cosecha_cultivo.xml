@@ -21,6 +21,68 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
+        <com.echo.holographlibrary.PieGraph
+            android:id="@+id/graphPie"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="20dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txtExtra"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Libras"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/txtPrimera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Libras"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/txtSegunda"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Libras"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/txtTercera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Libras"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/txtCuarta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Libras"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/txtQuinta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Libras"
+                android:layout_marginRight="20dp"/>
+
+            <TextView
+                android:id="@+id/txtMadura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Libras"/>
+
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerCosecha"
             android:layout_width="match_parent"

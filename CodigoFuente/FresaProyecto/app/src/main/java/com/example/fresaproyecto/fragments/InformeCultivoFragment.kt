@@ -1,18 +1,13 @@
 package com.example.fresaproyecto.fragments
 
 import android.app.Activity
-import android.app.DatePickerDialog
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
-import android.text.format.DateUtils.getMonthString
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,7 +47,7 @@ class InformeCultivoFragment : Fragment() {
     //TextView de año
     //TextView de Informe General
     lateinit var txtFechaSelec: TextView
-    var listaInformeMes: List<BeneficioCultivoVo> = Utilidades.listaBeneficioCultivo!!
+    var listaInformeMes: ArrayList<BeneficioCultivoVo>? = null
     var puntos = ArrayList<Bar>()
     //----------TextView por mes
     //TextView mes Enero
@@ -86,6 +81,7 @@ class InformeCultivoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_informe_cultivo, container, false)
         val dateFormatY = SimpleDateFormat("yyyy")
@@ -110,8 +106,13 @@ class InformeCultivoFragment : Fragment() {
     }
 
     fun graficarBarras() {
-        val barra = Bar()
-        for (i in listaInformeMes) {
+        Utilidades.calcularBeneficioCultivo(actividad, 1, 2023)
+
+        listaInformeMes= Utilidades.listaBeneficioCultivo!!
+
+        puntos.clear()
+        for (i in listaInformeMes!!) {
+            val barra = Bar()
             var color = generarColorHecAleatorio()
             barra.color = Color.parseColor(color)
             var mesLetras = when (i.mes) {
@@ -131,11 +132,9 @@ class InformeCultivoFragment : Fragment() {
             }
             barra.name = mesLetras
             barra.value = i.beneficio.toString().toFloat()
-
             puntos.add(barra)
-
-            barGraphMes.bars = puntos
         }
+        barGraphMes.bars = puntos
     }
 
     fun generarColorHecAleatorio(): String {
@@ -152,6 +151,8 @@ class InformeCultivoFragment : Fragment() {
     private fun informePorFecha(año: Int, mes: Int) {
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
         Utilidades.calcularBeneficioCultivo(actividad, 1, 2023)
+
+        listaInformeMes= Utilidades.listaBeneficioCultivo!!
 
         println("Lista de Beneficios: " + Utilidades.listaBeneficioCultivo!![0].beneficio.toString())
 

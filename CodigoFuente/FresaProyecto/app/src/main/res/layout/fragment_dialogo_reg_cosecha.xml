@@ -95,12 +95,12 @@
                         android:text="Libras Recogidas por Calidad: "
                         android:textColor="@android:color/black" />
 
-                    <androidx.gridlayout.widget.GridLayout
+                    <GridLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="4dp"
-                        app:columnCount="4"
-                        app:rowCount="2">
+                        android:columnCount="4"
+                        android:rowCount="2">
                         <Button
                             android:id="@+id/btnExtra"
                             android:layout_width="wrap_content"
@@ -150,7 +150,7 @@
                             android:text="Madura FF"
                             android:backgroundTint="@color/colorGrisClaro"/>
 
-                    </androidx.gridlayout.widget.GridLayout>
+                    </GridLayout>
 
                     <LinearLayout
                         android:id="@+id/layoutExtra"
