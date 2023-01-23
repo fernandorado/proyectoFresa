@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.ContentValues.TAG
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.text.format.DateUtils.getMonthString
 import android.util.Log
@@ -15,13 +16,18 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.echo.holographlibrary.Bar
+import com.echo.holographlibrary.BarGraph
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.adapters.AdaptadorMesCultivo
 import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
+import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.math.roundToInt
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,13 +45,15 @@ class InformeCultivoFragment : Fragment() {
     lateinit var vista: View
     lateinit var actividad: Activity
 
-    var año : Int = 0
-    var mes : Int = 0
+    var año: Int = 0
+    var mes: Int = 0
     //var beneficioCultivo: BeneficioCultivoVo = Utilidades.beneficioCultivo!!
 
     //TextView de año
     //TextView de Informe General
-    lateinit var txtFechaSelec : TextView
+    lateinit var txtFechaSelec: TextView
+    var listaInformeMes: List<BeneficioCultivoVo> = Utilidades.listaBeneficioCultivo!!
+    var puntos = ArrayList<Bar>()
     //----------TextView por mes
     //TextView mes Enero
 
@@ -61,15 +69,16 @@ class InformeCultivoFragment : Fragment() {
         }
     }
 
-    fun onDateSelected (day:Int, month:Int, year:Int){
+    fun onDateSelected(day: Int, month: Int, year: Int) {
         txtFechaSelec.setText("$year-$month-$day")
-        mes=month
-        año=year
-        añoSeleccionado=year
+        mes = month
+        año = year
+        añoSeleccionado = year
     }
 
     private fun showDatePickerDialog() {
-        val datePicker = DatePickerFragment{day, month, year -> onDateSelected(year, month+1, day)}
+        val datePicker =
+            DatePickerFragment { day, month, year -> onDateSelected(year, month + 1, day) }
         datePicker.show(parentFragmentManager, "datePicker")
     }
 
@@ -86,22 +95,65 @@ class InformeCultivoFragment : Fragment() {
 
         txtFechaSelec = vista.findViewById(R.id.txtFecha)
 
-        txtFechaSelec.setOnClickListener{ showDatePickerDialog() }
+        txtFechaSelec.setOnClickListener { showDatePickerDialog() }
+
+        barGraphMes = vista.findViewById(R.id.graphBar)
 
         recyclerInformeMes = vista.findViewById(R.id.recyclerInformeMes)
         recyclerInformeMes.layoutManager = LinearLayoutManager(actividad)
         recyclerInformeMes.setHasFixedSize(true)
 
-        informePorFecha(año,mes)
+        graficarBarras()
+        informePorFecha(año, mes)
 
         return vista
     }
 
-    private fun informePorFecha(año : Int, mes : Int){
-        //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
-        Utilidades.calcularBeneficioCultivo(actividad,1, 2023)
+    fun graficarBarras() {
+        val barra = Bar()
+        for (i in listaInformeMes) {
+            var color = generarColorHecAleatorio()
+            barra.color = Color.parseColor(color)
+            var mesLetras = when (i.mes) {
+                1 -> "Enero"
+                2 -> "Febrero"
+                3 -> "Marzo"
+                4 -> "Abril"
+                5 -> "Mayo"
+                6 -> "Junio"
+                7 -> "Julio"
+                8 -> "Agosto"
+                9 -> "Septiembre"
+                10 -> "Octubre"
+                11 -> "Noviembre"
+                12 -> "Diciembre"
+                else -> "Sin Fecha"
+            }
+            barra.name = mesLetras
+            barra.value = i.beneficio.toString().toFloat()
 
-        println("Lista de Beneficios: "+Utilidades.listaBeneficioCultivo!![0].beneficio.toString())
+            puntos.add(barra)
+
+            barGraphMes.bars = puntos
+        }
+    }
+
+    fun generarColorHecAleatorio(): String {
+        val letras =
+            arrayOf("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
+        var color = "#"
+        for (i in 0..5) {
+            color += letras[(Math.random() * 15).roundToInt()]
+        }
+        return color
+
+    }
+
+    private fun informePorFecha(año: Int, mes: Int) {
+        //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
+        Utilidades.calcularBeneficioCultivo(actividad, 1, 2023)
+
+        println("Lista de Beneficios: " + Utilidades.listaBeneficioCultivo!![0].beneficio.toString())
 
         var miAdaptadorInforme = AdaptadorMesCultivo(Utilidades.listaBeneficioCultivo!!)
         miAdaptadorInforme.setOnClickListener(object : View.OnClickListener {
@@ -110,10 +162,10 @@ class InformeCultivoFragment : Fragment() {
             }
         })
 
-        recyclerInformeMes.adapter=miAdaptadorInforme
+        recyclerInformeMes.adapter = miAdaptadorInforme
     }
 
-    private fun informeEnero(){
+    private fun informeEnero() {
 
     }
 
@@ -121,10 +173,11 @@ class InformeCultivoFragment : Fragment() {
         var mesSeleccionado: Int = 0
         var añoSeleccionado: Int = 0
         lateinit var recyclerInformeMes: RecyclerView
+        lateinit var barGraphMes: BarGraph
         lateinit var interfaceComunicaFragments: IComunicaFragments
 
-        fun cambiarFragment(mes: Int){
-            mesSeleccionado=mes
+        fun cambiarFragment(mes: Int) {
+            mesSeleccionado = mes
             interfaceComunicaFragments.resultadoMensualCultivo()
         }
 

@@ -45,7 +45,7 @@ class AdaptadorCultivo(listaCultivo: List<CultivoVo>) :
         context = viewGroup.context
 
                 vista = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_list_cultivo, viewGroup, false)
+            .inflate(R.layout.item_list_cultivos, viewGroup, false)
 
         vista.setOnClickListener(this)
         return ViewHolderCultivo(vista)
@@ -90,22 +90,6 @@ class AdaptadorCultivo(listaCultivo: List<CultivoVo>) :
                             nombre = listaCultivo[ViewHolderCultivo.adapterPosition].nombre.toString()
                             cantidad = listaCultivo[ViewHolderCultivo.adapterPosition].cantidad
 
-
-
-
-
-                            /*val dialogoActualizarPersona = DialogoActPersona()
-
-                            val fragmentManager: FragmentManager =
-                                (view.getContext() as FragmentActivity).supportFragmentManager // instantiate your view context
-
-                            val fragmentTransaction: FragmentTransaction =
-                                fragmentManager.beginTransaction()*/
-
-
-
-                            //dialogoActualizarPersona.show(fragmentManager, "DialogoRegPersonas")
-                            //val builder = AlertDialog.Builder(vista.context)
                             dialogoActualizar()
 
 
@@ -116,7 +100,6 @@ class AdaptadorCultivo(listaCultivo: List<CultivoVo>) :
                             println("getAdapterPosition"+ identificacion)
                             nombre = listaCultivo[ViewHolderCultivo.adapterPosition].nombre.toString()
                             cantidad = listaCultivo[ViewHolderCultivo.adapterPosition].cantidad
-
 
                             dialogoEliminar().show()
 
@@ -142,61 +125,26 @@ class AdaptadorCultivo(listaCultivo: List<CultivoVo>) :
         builder.setTitle("Actualizar")
         builder.setView(vistaAct)
 
-        /*.setPositiveButton("Actualizar") { dialog, _ ->
-            //Se cierra el dialogo
-            actualizarUsuario()
-
-
-            //Se remueven las vistas
-            vgrupo.removeView(vistaAct)
-            vgrupo.removeView(vista)
-
-        }
-
-        .setNegativeButton("Cerrar") { dialog, _ ->
-            //Se cierra el dialogo
-            dialog.dismiss()
-            //Se remueven las vistas
-            vgrupo.removeView(vistaAct)
-            vgrupo.removeView(vista)
-
-        }
-    .setCancelable(false)
-    .create()*/
-
-
         vgrupo.removeView(vista)
 
 
         var btnActualizar: Button = vistaAct.findViewById(R.id.btnActualizarAct)
         var btnCancelar: Button = vistaAct.findViewById(R.id.btnCancelarAct)
 
-
-
-
-
-
         btnActualizar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
                 actualizarUsuario()
 
-
-
             }
 
         })
 
-
         btnCancelar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
 
-
-                //d?.dismiss()
                 builder.dismiss()
                 vgrupo.removeView(vistaAct)
-
-
 
             }
 
@@ -337,13 +285,15 @@ class AdaptadorCultivo(listaCultivo: List<CultivoVo>) :
         var txtCant: TextView
         var txtNombre: TextView
         var menuPopUp: ImageView
+        var imgCultivo: ImageView
         var cardCultivo: CardView
         var barraSeleccion: TextView
 
         init {
-            txtCant = itemView.findViewById(R.id.idCantidad)
-            txtNombre = itemView.findViewById(R.id.idNombre)
+            txtCant = itemView.findViewById(R.id.idCantidadCultivo)
+            txtNombre = itemView.findViewById(R.id.idNombreCultivo)
             menuPopUp = itemView.findViewById(R.id.menuOpciones)
+            imgCultivo = itemView.findViewById(R.id.idImagenCultivo)
             cardCultivo = itemView.findViewById(R.id.cardCultivo)
             barraSeleccion = itemView.findViewById((R.id.barraSeleccionIdCultivo))
         }

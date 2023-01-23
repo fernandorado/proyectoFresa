@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
@@ -79,7 +80,8 @@ class DialogoGesCultivo : DialogFragment(), OnClickListenerCultivo {
         vista = inflater.inflate(R.layout.fragment_dialogo_ges_cultivo, container,false)
 
         recyclerCultivos = vista.findViewById(R.id.recyclerCultivo)
-        recyclerCultivos.layoutManager = LinearLayoutManager(actividad)
+        //recyclerCultivos.layoutManager = LinearLayoutManager(actividad)
+        recyclerCultivos.layoutManager = GridLayoutManager(context, 2)
         recyclerCultivos.setHasFixedSize(true)
 
 
