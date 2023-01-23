@@ -56,7 +56,6 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
         viewHolderMes.cardInformeMes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 posicionMarcada=(pos+1)
-                InformeCultivoFragment.cambiarFragment(posicionMarcada)
                 notifyDataSetChanged()
             }
         })

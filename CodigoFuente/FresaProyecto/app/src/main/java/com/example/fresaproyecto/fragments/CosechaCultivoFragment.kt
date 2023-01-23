@@ -29,6 +29,7 @@ class CosechaCultivoFragment : Fragment() {
     lateinit var vista: View
     lateinit var recyclerCosechaMes: RecyclerView
     lateinit var actividad: Activity
+    lateinit var interfaceComunicaFragments: IComunicaFragments
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,7 @@ class CosechaCultivoFragment : Fragment() {
         super.onAttach(context)
         if (context is Activity) {
             actividad = context
-            InformeCultivoFragment.interfaceComunicaFragments = actividad as IComunicaFragments
+            interfaceComunicaFragments = actividad as IComunicaFragments
         }
     }
 

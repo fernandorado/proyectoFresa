@@ -34,7 +34,7 @@
                 android:layout_width="50dp"
                 android:layout_height="49dp"
                 android:background="@color/colorSplash"
-                android:src="@mipmap/ic_atras" />
+                android:src="@drawable/ic_cerrar" />
 
         </RelativeLayout>
 

@@ -12,10 +12,16 @@
         <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_detalle_gan_cultivo.xml" value="0.264" />
         <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_detalle_res_men.xml" value="0.1" />
         <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogo_ges_cultivo.xml" value="0.264" />
-        <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogo_reg_cosecha.xml" value="0.264" />
+        <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogo_ges_persona.xml" value="0.1" />
+        <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogo_reg_cosecha.xml" value="0.2" />
         <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogo_reg_cultivo.xml" value="0.1" />
         <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogo_reg_gastos.xml" value="0.16" />
+        <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogo_reg_insumos.xml" value="0.1" />
+        <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogo_reg_jornal.xml" value="0.1" />
+        <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogo_reg_personas.xml" value="0.1" />
+        <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_dialogos_reg_ingresos.xml" value="0.1" />
         <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_informe_cultivo.xml" value="0.264" />
+        <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_inicio.xml" value="0.1" />
         <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_insumo_cultivo.xml" value="0.1" />
         <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_jornal_cultivo.xml" value="0.1" />
         <entry key="..\:/Users/ferna/Documents/GitHub/proyectoFresa/CodigoFuente/FresaProyecto/app/src/main/res/layout/fragment_menu_cultivo.xml" value="0.1" />

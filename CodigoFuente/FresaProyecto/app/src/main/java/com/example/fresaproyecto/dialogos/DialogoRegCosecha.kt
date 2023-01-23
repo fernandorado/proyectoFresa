@@ -10,8 +10,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
+import com.example.fresaproyecto.adapters.AdaptadorCosechaMesCultivo
 import com.example.fresaproyecto.clases.ConexionSQLiteHelper
 import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
@@ -43,6 +47,13 @@ class DialogoRegCosecha : DialogFragment() {
     lateinit var btnCuarta: Button
     lateinit var btnQuinta: Button
     lateinit var btnMadura: Button
+    lateinit var btnOkExtra: Button
+    lateinit var btnOkPrimera: Button
+    lateinit var btnOkSegunda: Button
+    lateinit var btnOkTercera: Button
+    lateinit var btnOkCuarta: Button
+    lateinit var btnOkQuinta: Button
+    lateinit var btnOkMadura: Button
     lateinit var layoutExtra: LinearLayout
     lateinit var layoutPrimera: LinearLayout
     lateinit var layoutSegunda: LinearLayout
@@ -66,6 +77,69 @@ class DialogoRegCosecha : DialogFragment() {
     lateinit var campoPrecioMadura: EditText
     lateinit var campoFecha: EditText
     lateinit var campoObservacion: EditText
+
+    lateinit var txtExtraLibraReg: TextView
+    lateinit var txtPrimeraLibraReg: TextView
+    lateinit var txtSegundaLibraReg: TextView
+    lateinit var txtTerceraLibraReg: TextView
+    lateinit var txtCuartaLibraReg: TextView
+    lateinit var txtQuintaLibraReg: TextView
+    lateinit var txtMaduraLibraReg: TextView
+
+    lateinit var txtExtraPrecioReg: TextView
+    lateinit var txtPrimeraPrecioReg: TextView
+    lateinit var txtSegundaPrecioReg: TextView
+    lateinit var txtTerceraPrecioReg: TextView
+    lateinit var txtCuartaPrecioReg: TextView
+    lateinit var txtQuintaPrecioReg: TextView
+    lateinit var txtMaduraPrecioReg: TextView
+
+    lateinit var txtTotalReg: TextView
+    var total: Int = 0
+
+    lateinit var layoutExtraReg: RelativeLayout
+    lateinit var layoutPrimeraReg: RelativeLayout
+    lateinit var layoutSegundaReg: RelativeLayout
+    lateinit var layoutTerceraReg: RelativeLayout
+    lateinit var layoutCuartaReg: RelativeLayout
+    lateinit var layoutQuintaReg: RelativeLayout
+    lateinit var layoutMaduraReg: RelativeLayout
+
+    lateinit var cardListaReg: CardView
+
+    //Variables para almacenar los editText
+    var librasExtra: String = ""
+    var precioExtra: String = ""
+    var librasPrimera: String = ""
+    var precioPrimera: String = ""
+    var librasSegunda: String = ""
+    var precioSegunda: String = ""
+    var librasTercera: String = ""
+    var precioTercera: String = ""
+    var librasCuarta: String = ""
+    var precioCuarta: String = ""
+    var librasQuinta: String = ""
+    var precioQuinta: String = ""
+    var librasMadura: String = ""
+    var precioMadura: String = ""
+
+    //variables para almacenar valores de los EditText convertidos en Int
+    var le: Int = 0
+    var lp: Int = 0
+    var ls: Int = 0
+    var lt: Int = 0
+    var lc: Int = 0
+    var lq: Int = 0
+    var lm: Int = 0
+    var pe: Int = 0
+    var pp: Int = 0
+    var ps: Int = 0
+    var pt: Int = 0
+    var pc: Int = 0
+    var pq: Int = 0
+    var pm: Int = 0
+
+    lateinit var recyclerCosechaMes: RecyclerView
     var dia: Int = 0
     var mes: Int = 0
     var año: Int = 0
@@ -91,7 +165,6 @@ class DialogoRegCosecha : DialogFragment() {
     ): View? {
 
 
-
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_dialogo_reg_cosecha, container, false)
         btnGuardar = vista.findViewById(R.id.idBtnGuardar)
@@ -102,6 +175,13 @@ class DialogoRegCosecha : DialogFragment() {
         btnCuarta = vista.findViewById(R.id.btnCuarta)
         btnQuinta = vista.findViewById(R.id.btnQuinta)
         btnMadura = vista.findViewById(R.id.btnMadura)
+        btnOkExtra = vista.findViewById(R.id.btnOkExtra)
+        btnOkPrimera = vista.findViewById(R.id.btnOkPrimera)
+        btnOkSegunda = vista.findViewById(R.id.btnOkSegunda)
+        btnOkTercera = vista.findViewById(R.id.btnOkTercera)
+        btnOkCuarta = vista.findViewById(R.id.btnOkCuarta)
+        btnOkQuinta = vista.findViewById(R.id.btnOkQuinta)
+        btnOkMadura = vista.findViewById(R.id.btnOkMadura)
         layoutExtra = vista.findViewById(R.id.layoutExtra)
         layoutPrimera = vista.findViewById(R.id.layoutPrimera)
         layoutSegunda = vista.findViewById(R.id.layoutSegunda)
@@ -110,41 +190,75 @@ class DialogoRegCosecha : DialogFragment() {
         layoutQuinta = vista.findViewById(R.id.layoutQuinta)
         layoutMadura = vista.findViewById(R.id.layoutMadura)
         campoLibrasExtra = vista.findViewById(R.id.campoCantExtra)
-        campoPrecioExtra= vista.findViewById(R.id.campoPrecioExtra)
+        campoPrecioExtra = vista.findViewById(R.id.campoPrecioExtra)
         campoLibrasPrimera = vista.findViewById(R.id.campoCantPrimera)
-        campoPrecioPrimera= vista.findViewById(R.id.campoPrecioPrimera)
+        campoPrecioPrimera = vista.findViewById(R.id.campoPrecioPrimera)
         campoLibrasSegunda = vista.findViewById(R.id.campoCantSegunda)
-        campoPrecioSegunda= vista.findViewById(R.id.campoPrecioSegunda)
+        campoPrecioSegunda = vista.findViewById(R.id.campoPrecioSegunda)
         campoLibrasTercera = vista.findViewById(R.id.campoCantTercera)
-        campoPrecioTercera= vista.findViewById(R.id.campoPrecioTercera)
+        campoPrecioTercera = vista.findViewById(R.id.campoPrecioTercera)
         campoLibrasCuarta = vista.findViewById(R.id.campoCantCuarta)
-        campoPrecioCuarta= vista.findViewById(R.id.campoPrecioCuarta)
+        campoPrecioCuarta = vista.findViewById(R.id.campoPrecioCuarta)
         campoLibrasQuinta = vista.findViewById(R.id.campoCantQuinta)
-        campoPrecioQuinta= vista.findViewById(R.id.campoPrecioQuinta)
+        campoPrecioQuinta = vista.findViewById(R.id.campoPrecioQuinta)
         campoLibrasMadura = vista.findViewById(R.id.campoCantMaduraFF)
-        campoPrecioMadura= vista.findViewById(R.id.campoPrecioMaduraFF)
+        campoPrecioMadura = vista.findViewById(R.id.campoPrecioMaduraFF)
         campoObservacion = vista.findViewById(R.id.campoObservacion)
         campoFecha = vista.findViewById(R.id.campoFechaCosecha)
-        campoFecha.setOnClickListener{ showDatePickerDialog() }
+        campoFecha.setOnClickListener { showDatePickerDialog() }
+
+        layoutExtraReg = vista.findViewById(R.id.layoutExtraReg)
+        layoutPrimeraReg = vista.findViewById(R.id.layoutPrimeraReg)
+        layoutSegundaReg = vista.findViewById(R.id.layoutSegundaReg)
+        layoutTerceraReg = vista.findViewById(R.id.layoutTerceraReg)
+        layoutCuartaReg = vista.findViewById(R.id.layoutCuartaReg)
+        layoutQuintaReg = vista.findViewById(R.id.layoutQuintaReg)
+        layoutMaduraReg = vista.findViewById(R.id.layoutMaduraReg)
+
+        txtExtraLibraReg = vista.findViewById(R.id.txtExtraLibraReg)
+        txtPrimeraLibraReg = vista.findViewById(R.id.txtPrimeraLibraReg)
+        txtSegundaLibraReg = vista.findViewById(R.id.txtSegundaLibraReg)
+        txtTerceraLibraReg = vista.findViewById(R.id.txtTerceraLibraReg)
+        txtCuartaLibraReg = vista.findViewById(R.id.txtCuartaLibraReg)
+        txtQuintaLibraReg = vista.findViewById(R.id.txtQuintaLibraReg)
+        txtMaduraLibraReg = vista.findViewById(R.id.txtMaduraLibraReg)
+
+        txtExtraPrecioReg = vista.findViewById(R.id.txtExtraPrecioReg)
+        txtPrimeraPrecioReg = vista.findViewById(R.id.txtPrimeraPrecioReg)
+        txtSegundaPrecioReg = vista.findViewById(R.id.txtSegundaPrecioReg)
+        txtTerceraPrecioReg = vista.findViewById(R.id.txtTerceraPrecioReg)
+        txtCuartaPrecioReg = vista.findViewById(R.id.txtCuartaPrecioReg)
+        txtQuintaPrecioReg = vista.findViewById(R.id.txtQuintaPrecioReg)
+        txtMaduraPrecioReg = vista.findViewById(R.id.txtMaduraPrecioReg)
+
+        txtTotalReg = vista.findViewById(R.id.txtTotalReg)
+
+        cardListaReg = vista.findViewById(R.id.cardListaReg)
 
         fabAtras = vista.findViewById(R.id.btnIcoAtras)
+
+        recyclerCosechaMes = vista.findViewById(R.id.recyclerCosechaRegistros)
+        recyclerCosechaMes.layoutManager = LinearLayoutManager(actividad)
+        recyclerCosechaMes.setHasFixedSize(true)
+        cosechaPorDia(1, 2023)
         eventosMenu()
         return vista
     }
 
     private fun showDatePickerDialog() {
-        val datePicker = DatePickerFragment{day, month, year -> onDateSelected(year, month+1, day)}
+        val datePicker =
+            DatePickerFragment { day, month, year -> onDateSelected(year, month + 1, day) }
         datePicker.show(parentFragmentManager, "datePicker")
     }
 
-    fun onDateSelected (day:Int, month:Int, year:Int){
+    fun onDateSelected(day: Int, month: Int, year: Int) {
         campoFecha.setText("$year-$month-$day")
-        dia=day
-        mes=month
-        año=year
+        dia = day
+        mes = month
+        año = year
     }
 
-    private fun eventosMenu(){
+    private fun eventosMenu() {
         fabAtras.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
@@ -161,142 +275,478 @@ class DialogoRegCosecha : DialogFragment() {
         btnExtra.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                btnExtra.setBackgroundColor(resources.getColor(R.color.colorSplash))
-                btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                layoutExtra.visibility = View.VISIBLE
-                layoutPrimera.visibility = View.GONE
-                layoutSegunda.visibility = View.GONE
-                layoutTercera.visibility = View.GONE
-                layoutCuarta.visibility = View.GONE
-                layoutQuinta.visibility = View.GONE
-                layoutMadura.visibility = View.GONE
+                mostrarExtra()
             }
         })
         btnPrimera.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnPrimera.setBackgroundColor(resources.getColor(R.color.colorSplash))
-                btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                layoutExtra.visibility = View.GONE
-                layoutPrimera.visibility = View.VISIBLE
-                layoutSegunda.visibility = View.GONE
-                layoutTercera.visibility = View.GONE
-                layoutCuarta.visibility = View.GONE
-                layoutQuinta.visibility = View.GONE
-                layoutMadura.visibility = View.GONE
+                mostrarPrimera()
             }
         })
         btnSegunda.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnSegunda.setBackgroundColor(resources.getColor(R.color.colorSplash))
-                btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                layoutExtra.visibility = View.GONE
-                layoutPrimera.visibility = View.GONE
-                layoutSegunda.visibility = View.VISIBLE
-                layoutTercera.visibility = View.GONE
-                layoutCuarta.visibility = View.GONE
-                layoutQuinta.visibility = View.GONE
-                layoutMadura.visibility = View.GONE
+                mostrarSegundad()
             }
         })
         btnTercera.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnTercera.setBackgroundColor(resources.getColor(R.color.colorSplash))
-                btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                layoutExtra.visibility = View.GONE
-                layoutPrimera.visibility = View.GONE
-                layoutSegunda.visibility = View.GONE
-                layoutTercera.visibility = View.VISIBLE
-                layoutCuarta.visibility = View.GONE
-                layoutQuinta.visibility = View.GONE
-                layoutMadura.visibility = View.GONE
+                mostrarTercera()
             }
         })
         btnCuarta.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnCuarta.setBackgroundColor(resources.getColor(R.color.colorSplash))
-                btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                layoutExtra.visibility = View.GONE
-                layoutPrimera.visibility = View.GONE
-                layoutSegunda.visibility = View.GONE
-                layoutTercera.visibility = View.GONE
-                layoutCuarta.visibility = View.VISIBLE
-                layoutQuinta.visibility = View.GONE
-                layoutMadura.visibility = View.GONE
+                mostrarCuarta()
             }
         })
         btnQuinta.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnQuinta.setBackgroundColor(resources.getColor(R.color.colorSplash))
-                btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                layoutExtra.visibility = View.GONE
-                layoutPrimera.visibility = View.GONE
-                layoutSegunda.visibility = View.GONE
-                layoutTercera.visibility = View.GONE
-                layoutCuarta.visibility = View.GONE
-                layoutQuinta.visibility = View.VISIBLE
-                layoutMadura.visibility = View.GONE
+                mostrarQuinta()
             }
         })
         btnMadura.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-                btnMadura.setBackgroundColor(resources.getColor(R.color.colorSplash))
-                layoutExtra.visibility = View.GONE
-                layoutPrimera.visibility = View.GONE
-                layoutSegunda.visibility = View.GONE
-                layoutTercera.visibility = View.GONE
-                layoutCuarta.visibility = View.GONE
-                layoutQuinta.visibility = View.GONE
-                layoutMadura.visibility = View.VISIBLE
+                mostrarMadura()
+            }
+        })
+
+        btnOkExtra.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (campoLibrasExtra.text.toString().isEmpty() or campoPrecioExtra.text.toString()
+                        .isEmpty()
+                ) {
+                    if (campoLibrasExtra.text.toString().isEmpty()) {
+                        campoLibrasExtra.setError("Digite un valor mayor a cero para continuar")
+                    } else if (campoPrecioExtra.text.toString().isEmpty()) {
+                        campoPrecioExtra.setError("Digite un valor mayor a cero para continuar")
+                    }
+                } else {
+                    mostrarPrimera()
+
+                    librasExtra = campoLibrasExtra.text.toString()
+
+                   precioExtra = campoPrecioExtra.text.toString()
+
+                    //Variables de libras y precio por calidad
+                    le = librasExtra.toInt()
+                    pe = precioExtra.toInt()
+
+                    total = (total + (le * pe))
+
+                    // Do some work here
+                    cardListaReg.visibility = View.VISIBLE
+                    layoutExtraReg.visibility = View.VISIBLE
+                    txtExtraLibraReg.setText(campoLibrasExtra.text.toString())
+                    txtExtraPrecioReg.setText("$" + campoPrecioExtra.text.toString())
+
+                    txtTotalReg.setText("$" + total)
+                }
+
+            }
+        })
+
+
+
+        btnOkPrimera.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (campoLibrasPrimera.text.toString()
+                        .isEmpty() or campoPrecioPrimera.text.toString()
+                        .isEmpty()
+                ) {
+                    if (campoLibrasPrimera.text.toString().isEmpty()) {
+                        campoLibrasPrimera.setError("Digite un valor mayor a cero para continuar")
+                    } else if (campoPrecioPrimera.text.toString().isEmpty()) {
+                        campoPrecioPrimera.setError("Digite un valor mayor a cero para continuar")
+                    }
+                } else {
+                    mostrarSegundad()
+
+                    librasPrimera = campoLibrasPrimera.text.toString()
+                    precioPrimera = campoPrecioPrimera.text.toString()
+
+                    //Variables de libras y precio por calidad
+                    lp = librasPrimera.toInt()
+                    pp = precioPrimera.toInt()
+
+                    total = (total + (lp * pp))
+
+                    // Do some work here
+                    cardListaReg.visibility = View.VISIBLE
+                    layoutPrimeraReg.visibility = View.VISIBLE
+                    txtPrimeraLibraReg.setText(campoLibrasPrimera.text.toString())
+                    txtPrimeraPrecioReg.setText("$" + campoPrecioPrimera.text.toString())
+
+                    txtTotalReg.setText("$" + total)
+                }
+
+            }
+        })
+
+
+
+
+        btnOkSegunda.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (campoLibrasSegunda.text.toString()
+                        .isEmpty() or campoPrecioSegunda.text.toString()
+                        .isEmpty()
+                ) {
+                    if (campoLibrasSegunda.text.toString().isEmpty()) {
+                        campoLibrasSegunda.setError("Digite un valor mayor a cero para continuar")
+                    } else if (campoPrecioSegunda.text.toString().isEmpty()) {
+                        campoPrecioSegunda.setError("Digite un valor mayor a cero para continuar")
+                    }
+                } else {
+                    mostrarTercera()
+
+                    librasSegunda = campoLibrasSegunda.text.toString()
+
+                    precioSegunda = campoPrecioSegunda.text.toString()
+
+                    //Variables de libras y precio por calidad
+                    ls = librasSegunda.toInt()
+                    ps = precioSegunda.toInt()
+
+                    total = (total + (ls * ps))
+
+                    // Do some work here
+                    cardListaReg.visibility = View.VISIBLE
+                    layoutSegundaReg.visibility = View.VISIBLE
+                    txtSegundaLibraReg.setText(campoLibrasSegunda.text.toString())
+                    txtSegundaPrecioReg.setText("$" + campoPrecioSegunda.text.toString())
+
+                    txtTotalReg.setText("$" + total)
+                }
+
+            }
+        })
+
+
+
+        btnOkTercera.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (campoLibrasTercera.text.toString()
+                        .isEmpty() or campoPrecioTercera.text.toString()
+                        .isEmpty()
+                ) {
+                    if (campoLibrasTercera.text.toString().isEmpty()) {
+                        campoLibrasTercera.setError("Digite un valor mayor a cero para continuar")
+                    } else if (campoPrecioTercera.text.toString().isEmpty()) {
+                        campoPrecioTercera.setError("Digite un valor mayor a cero para continuar")
+                    }
+                } else {
+                    mostrarCuarta()
+
+                    librasTercera = campoLibrasTercera.text.toString()
+
+                    precioTercera = campoPrecioTercera.text.toString()
+
+                    //Variables de libras y precio por calidad
+                    lt = librasTercera.toInt()
+                    pt = precioTercera.toInt()
+
+                    total = (total + (lt * pt))
+
+                    // Do some work here
+                    cardListaReg.visibility = View.VISIBLE
+                    layoutTerceraReg.visibility = View.VISIBLE
+                    txtTerceraLibraReg.setText(campoLibrasTercera.text.toString())
+                    txtTerceraPrecioReg.setText("$" + campoPrecioTercera.text.toString())
+
+                    txtTotalReg.setText("$" + total)
+
+                }
+            }
+        })
+
+
+
+        btnOkCuarta.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (campoLibrasCuarta.text.toString()
+                        .isEmpty() or campoPrecioCuarta.text.toString()
+                        .isEmpty()
+                ) {
+                    if (campoLibrasCuarta.text.toString().isEmpty()) {
+                        campoLibrasCuarta.setError("Digite un valor mayor a cero para continuar")
+                    } else if (campoPrecioCuarta.text.toString().isEmpty()) {
+                        campoPrecioCuarta.setError("Digite un valor mayor a cero para continuar")
+                    }
+                } else {
+                    mostrarQuinta()
+
+                    librasCuarta = campoLibrasCuarta.text.toString()
+
+                    precioCuarta = campoPrecioCuarta.text.toString()
+
+                    //Variables de libras y precio por calidad
+                    lc = librasCuarta.toInt()
+                    pc = precioCuarta.toInt()
+
+                    total = (total + (lc * pc))
+
+                    // Do some work here
+                    cardListaReg.visibility = View.VISIBLE
+                    layoutCuartaReg.visibility = View.VISIBLE
+                    txtCuartaLibraReg.setText(campoLibrasCuarta.text.toString())
+                    txtCuartaPrecioReg.setText("$" + campoPrecioCuarta.text.toString())
+
+                    txtTotalReg.setText("$" + total)
+                }
+
+            }
+        })
+
+
+
+
+        btnOkQuinta.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (campoLibrasQuinta.text.toString()
+                        .isEmpty() or campoPrecioQuinta.text.toString()
+                        .isEmpty()
+                ) {
+                    if (campoLibrasQuinta.text.toString().isEmpty()) {
+                        campoLibrasQuinta.setError("Digite un valor mayor a cero para continuar")
+                    } else if (campoPrecioQuinta.text.toString().isEmpty()) {
+                        campoPrecioQuinta.setError("Digite un valor mayor a cero para continuar")
+                    }
+                } else {
+                    mostrarMadura()
+
+                    librasQuinta = campoLibrasQuinta.text.toString()
+
+                    precioQuinta = campoPrecioQuinta.text.toString()
+
+                    //Variables de libras y precio por calidad
+                    lq = librasQuinta.toInt()
+                    pq = precioQuinta.toInt()
+
+                    total = (total + (lq * pq))
+
+                    // Do some work here
+                    cardListaReg.visibility = View.VISIBLE
+                    layoutQuintaReg.visibility = View.VISIBLE
+                    txtQuintaLibraReg.setText(campoLibrasQuinta.text.toString())
+                    txtQuintaPrecioReg.setText("$" + campoPrecioQuinta.text.toString())
+
+                    txtTotalReg.setText("$" + total)
+                }
+            }
+        })
+
+        btnOkMadura.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                if (campoLibrasMadura.text.toString()
+                        .isEmpty() or campoPrecioMadura.text.toString().isEmpty()
+                ) {
+                    if (campoLibrasMadura.text.toString().isEmpty()) {
+                        campoLibrasMadura.setError("Digite un valor mayor a cero para continuar")
+                    } else if (campoPrecioMadura.text.toString().isEmpty()) {
+                        campoPrecioMadura.setError("Digite un valor mayor a cero para continuar")
+                    }
+                } else {
+                    btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+                    layoutMadura.visibility = View.GONE
+
+                    librasMadura = campoLibrasMadura.text.toString()
+                    precioMadura = campoPrecioMadura.text.toString()
+
+                    //Variables de libras y precio por calidad
+                    lm = librasMadura.toInt()
+                    pm = precioMadura.toInt()
+
+                    total = (total + (lm * pm))
+
+                    // Do some work here
+                    cardListaReg.visibility = View.VISIBLE
+                    layoutMaduraReg.visibility = View.VISIBLE
+                    txtMaduraLibraReg.setText(campoLibrasMadura.text.toString())
+                    txtMaduraPrecioReg.setText("$" + campoPrecioMadura.text.toString())
+                    txtTotalReg.setText("$" + total)
+                }
             }
         })
     }
 
-    private fun registrarCosecha(){
+    private fun mostrarExtra(){
+        btnExtra.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        layoutExtra.visibility = View.VISIBLE
+        layoutPrimera.visibility = View.GONE
+        layoutSegunda.visibility = View.GONE
+        layoutTercera.visibility = View.GONE
+        layoutCuarta.visibility = View.GONE
+        layoutQuinta.visibility = View.GONE
+        layoutMadura.visibility = View.GONE
+    }
+    private fun mostrarPrimera(){
+        btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnPrimera.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        layoutExtra.visibility = View.GONE
+        layoutPrimera.visibility = View.VISIBLE
+        layoutSegunda.visibility = View.GONE
+        layoutTercera.visibility = View.GONE
+        layoutCuarta.visibility = View.GONE
+        layoutQuinta.visibility = View.GONE
+        layoutMadura.visibility = View.GONE
+    }
+
+    private fun mostrarSegundad(){
+        btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnSegunda.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        layoutExtra.visibility = View.GONE
+        layoutPrimera.visibility = View.GONE
+        layoutSegunda.visibility = View.VISIBLE
+        layoutTercera.visibility = View.GONE
+        layoutCuarta.visibility = View.GONE
+        layoutQuinta.visibility = View.GONE
+        layoutMadura.visibility = View.GONE
+    }
+
+    private fun mostrarTercera(){
+        btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnTercera.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        layoutExtra.visibility = View.GONE
+        layoutPrimera.visibility = View.GONE
+        layoutSegunda.visibility = View.GONE
+        layoutTercera.visibility = View.VISIBLE
+        layoutCuarta.visibility = View.GONE
+        layoutQuinta.visibility = View.GONE
+        layoutMadura.visibility = View.GONE
+    }
+    private fun mostrarCuarta(){
+        btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnCuarta.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        layoutExtra.visibility = View.GONE
+        layoutPrimera.visibility = View.GONE
+        layoutSegunda.visibility = View.GONE
+        layoutTercera.visibility = View.GONE
+        layoutCuarta.visibility = View.VISIBLE
+        layoutQuinta.visibility = View.GONE
+        layoutMadura.visibility = View.GONE
+    }private fun mostrarQuinta(){
+        btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnQuinta.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        layoutExtra.visibility = View.GONE
+        layoutPrimera.visibility = View.GONE
+        layoutSegunda.visibility = View.GONE
+        layoutTercera.visibility = View.GONE
+        layoutCuarta.visibility = View.GONE
+        layoutQuinta.visibility = View.VISIBLE
+        layoutMadura.visibility = View.GONE
+    }
+
+    private fun mostrarMadura(){
+        btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
+        btnMadura.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        layoutExtra.visibility = View.GONE
+        layoutPrimera.visibility = View.GONE
+        layoutSegunda.visibility = View.GONE
+        layoutTercera.visibility = View.GONE
+        layoutCuarta.visibility = View.GONE
+        layoutQuinta.visibility = View.GONE
+        layoutMadura.visibility = View.VISIBLE
+    }
+
+    private fun registrarCosecha() {
 
         //if((campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
-            var registro= "Extra: "+campoLibrasExtra.text.toString()+ "   Precio: "+ campoPrecioExtra.text.toString() +"\n"
+        if (campoFecha.text.toString().isEmpty() or (le<1)or (pe<1) or (lp<1)or (pp<1)or (ls<1)or (ps<1)or (lt<1)or (pt<1)or (lc<1)or (pc<1)or (lq<1)or (pq<1)or (lm<1)or (pm<1)) {
+            if (campoFecha.text.toString().isEmpty()) {
+                campoFecha.setError("Este campo no puede quedar vacio")
+            }else if ((le<1) or (pe<1)) {
+                mostrarExtra()
+                if((le<1)){
+                    campoLibrasExtra.setError("Digite un valor mayor a cero para continuar")
+                }else if((pe<1)){
+                    campoPrecioExtra.setError("Digite un valor mayor a cero para continuar")
+                }
+            }else if ((lp<1) or (pp<1)) {
+                mostrarPrimera()
+                if((lp<1)){
+                    campoLibrasPrimera.setError("Digite un valor mayor a cero para continuar")
+                }else if((pp<1)){
+                    campoPrecioPrimera.setError("Digite un valor mayor a cero para continuar")
+                }
+            }else if ((ls<1) or (ps<1)) {
+                mostrarSegundad()
+                if((ls<1)){
+                    campoLibrasSegunda.setError("Digite un valor mayor a cero para continuar")
+                }else if((ps<1)){
+                    campoPrecioSegunda.setError("Digite un valor mayor a cero para continuar")
+                }
+            }else if ((lt<1) or (pt<1)) {
+                mostrarTercera()
+                if((lt<1)){
+                    campoLibrasTercera.setError("Digite un valor mayor a cero para continuar")
+                }else if((pt<1)){
+                    campoPrecioTercera.setError("Digite un valor mayor a cero para continuar")
+                }
+            }else if ((lc<1) or (pc<1)) {
+                mostrarCuarta()
+                if((lc<1)){
+                    campoLibrasCuarta.setError("Digite un valor mayor a cero para continuar")
+                }else if((pc<1)){
+                    campoPrecioCuarta.setError("Digite un valor mayor a cero para continuar")
+                }
+            }else if ((lq<1) or (pq<1)) {
+                mostrarQuinta()
+                if((lq<1)){
+                    campoLibrasQuinta.setError("Digite un valor mayor a cero para continuar")
+                }else if((pq<1)){
+                    campoPrecioQuinta.setError("Digite un valor mayor a cero para continuar")
+                }
+            }else if ((lm<1) or (pm<1)) {
+                mostrarMadura()
+                if((lm<1)){
+                    campoLibrasMadura.setError("Digite un valor mayor a cero para continuar")
+                }else if((pm<1)){
+                    campoPrecioMadura.setError("Digite un valor mayor a cero para continuar")
+                }
+            }
+        } else {
+            /*var registro= "Extra: "+campoLibrasExtra.text.toString()+ "   Precio: "+ campoPrecioExtra.text.toString() +"\n"
             registro += "Primera: "+campoLibrasPrimera.text.toString()+ "   Precio: "+ campoPrecioPrimera.text.toString() +"\n"
             registro += "Segunda: "+campoLibrasSegunda.text.toString()+ "   Precio: "+ campoPrecioSegunda.text.toString() +"\n"
             registro += "Tercera: "+campoLibrasTercera.text.toString()+ "   Precio: "+ campoPrecioTercera.text.toString() +"\n"
@@ -306,10 +756,12 @@ class DialogoRegCosecha : DialogFragment() {
 
             print("Registrar:  "+registro)
             Toast.makeText(actividad, "REGISTRAR:\n"+registro, Toast.LENGTH_LONG).show()
+
+             */
             //La linea sigueinte deberia ir dentro de un IF que verifique si la consulta SQL es correcta
 
             //conexion con la base de datos
-            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null,1)
+            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
             val db: SQLiteDatabase = conexion.writableDatabase
             var values = ContentValues()
 
@@ -334,27 +786,33 @@ class DialogoRegCosecha : DialogFragment() {
             values.put(Utilidades.CAMPO_PRECIO_MADURA, campoPrecioMadura.text.toString())
             values.put(Utilidades.CAMPO_OBSERVACION_COSECHA, campoObservacion.text.toString())
             values.put(Utilidades.CAMPO_CULTIVO_COSECHA, DialogoGesCultivo.cultivoSeleccionado.id)
-            val idResultante:Number = db.insert(Utilidades.TABLA_COSECHA, Utilidades.CAMPO_ID_CULTIVO, values)
+            val idResultante: Number =
+                db.insert(Utilidades.TABLA_COSECHA, Utilidades.CAMPO_ID_CULTIVO, values)
 
-            if(idResultante != -1){
-                println("Registrar: " +registro)
-                Toast.makeText(actividad, "¡Registro Éxitoso! " +registro, Toast.LENGTH_SHORT).show()
+            if (idResultante != -1) {
+                Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT).show()
+                dismiss()
                 //Utilidades.calcularBeneficioCultivo(actividad)
-
-            }else{
-                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
+                    .show()
             }
             db.close()
+        }
+    }
 
-            dismiss()
-        /*}else{
-            if(campoCantidad.text.toString().isEmpty()){
-                campoCantidad.setError("Este campo no puede quedar vacio")
-            }else if (campoPrecio.text.toString().isEmpty()){
-                campoPrecio.setError("Este campo no puede quedar vacio")
+    private fun cosechaPorDia(año: Int, mes: Int) {
+        //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
+        Utilidades.consultarCosechaDia(actividad, 1, 2023, 23, 1)
+
+        var miAdaptadorCosecha = AdaptadorCosechaMesCultivo(Utilidades.listaCosechaCultivo!!)
+        miAdaptadorCosecha.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))
             }
-            Toast.makeText(actividad, "Verifique que todos los campos esten registrados \n ", Toast.LENGTH_LONG).show()
-        }*/
+        })
+
+        recyclerCosechaMes.adapter = miAdaptadorCosecha
     }
 
     companion object {

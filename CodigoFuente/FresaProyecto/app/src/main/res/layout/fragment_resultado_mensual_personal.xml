@@ -30,10 +30,10 @@
 
             <ImageButton
                 android:id="@+id/btnIcoAtras"
-                android:layout_width="50dp"
-                android:layout_height="49dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:background="@color/colorSplash"
-                android:src="@mipmap/ic_atras" />
+                android:src="@drawable/ic_flecha_atras" />
 
         </RelativeLayout>
 
