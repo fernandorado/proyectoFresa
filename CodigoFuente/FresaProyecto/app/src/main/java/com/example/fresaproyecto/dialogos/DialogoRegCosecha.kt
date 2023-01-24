@@ -3,13 +3,18 @@ package com.example.fresaproyecto.dialogos
 import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -104,6 +109,9 @@ class DialogoRegCosecha : DialogFragment() {
     lateinit var layoutCuartaReg: RelativeLayout
     lateinit var layoutQuintaReg: RelativeLayout
     lateinit var layoutMaduraReg: RelativeLayout
+
+    lateinit var btnCamara: Button
+    lateinit var imagenView: ImageView
 
     lateinit var cardListaReg: CardView
 
@@ -231,6 +239,9 @@ class DialogoRegCosecha : DialogFragment() {
         txtQuintaPrecioReg = vista.findViewById(R.id.txtQuintaPrecioReg)
         txtMaduraPrecioReg = vista.findViewById(R.id.txtMaduraPrecioReg)
 
+        btnCamara = vista.findViewById(R.id.btnCamara)
+        imagenView = vista.findViewById<ImageView>(R.id.imagenView)
+
         txtTotalReg = vista.findViewById(R.id.txtTotalReg)
 
         cardListaReg = vista.findViewById(R.id.cardListaReg)
@@ -272,6 +283,9 @@ class DialogoRegCosecha : DialogFragment() {
                 registrarCosecha()
             }
         })
+        btnCamara.setOnClickListener {
+            startForResult.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { })
+        }
         btnExtra.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
@@ -330,7 +344,7 @@ class DialogoRegCosecha : DialogFragment() {
 
                     librasExtra = campoLibrasExtra.text.toString()
 
-                   precioExtra = campoPrecioExtra.text.toString()
+                    precioExtra = campoPrecioExtra.text.toString()
 
                     //Variables de libras y precio por calidad
                     le = librasExtra.toInt()
@@ -574,7 +588,7 @@ class DialogoRegCosecha : DialogFragment() {
         })
     }
 
-    private fun mostrarExtra(){
+    private fun mostrarExtra() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorSplash))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -590,7 +604,8 @@ class DialogoRegCosecha : DialogFragment() {
         layoutQuinta.visibility = View.GONE
         layoutMadura.visibility = View.GONE
     }
-    private fun mostrarPrimera(){
+
+    private fun mostrarPrimera() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorSplash))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -607,7 +622,7 @@ class DialogoRegCosecha : DialogFragment() {
         layoutMadura.visibility = View.GONE
     }
 
-    private fun mostrarSegundad(){
+    private fun mostrarSegundad() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorSplash))
@@ -624,7 +639,7 @@ class DialogoRegCosecha : DialogFragment() {
         layoutMadura.visibility = View.GONE
     }
 
-    private fun mostrarTercera(){
+    private fun mostrarTercera() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -640,7 +655,8 @@ class DialogoRegCosecha : DialogFragment() {
         layoutQuinta.visibility = View.GONE
         layoutMadura.visibility = View.GONE
     }
-    private fun mostrarCuarta(){
+
+    private fun mostrarCuarta() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -655,7 +671,9 @@ class DialogoRegCosecha : DialogFragment() {
         layoutCuarta.visibility = View.VISIBLE
         layoutQuinta.visibility = View.GONE
         layoutMadura.visibility = View.GONE
-    }private fun mostrarQuinta(){
+    }
+
+    private fun mostrarQuinta() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -672,7 +690,7 @@ class DialogoRegCosecha : DialogFragment() {
         layoutMadura.visibility = View.GONE
     }
 
-    private fun mostrarMadura(){
+    private fun mostrarMadura() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -689,59 +707,71 @@ class DialogoRegCosecha : DialogFragment() {
         layoutMadura.visibility = View.VISIBLE
     }
 
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+                val imageBitmap = intent?.extras?.get("data") as Bitmap
+                imagenView.setImageBitmap(imageBitmap)
+            }
+
+        }
+
     private fun registrarCosecha() {
 
         //if((campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
-        if (campoFecha.text.toString().isEmpty() or (le<1)or (pe<1) or (lp<1)or (pp<1)or (ls<1)or (ps<1)or (lt<1)or (pt<1)or (lc<1)or (pc<1)or (lq<1)or (pq<1)or (lm<1)or (pm<1)) {
+        if (campoFecha.text.toString()
+                .isEmpty() or (le < 1) or (pe < 1) or (lp < 1) or (pp < 1) or (ls < 1) or (ps < 1) or (lt < 1) or (pt < 1) or (lc < 1) or (pc < 1) or (lq < 1) or (pq < 1) or (lm < 1) or (pm < 1)
+        ) {
             if (campoFecha.text.toString().isEmpty()) {
                 campoFecha.setError("Este campo no puede quedar vacio")
-            }else if ((le<1) or (pe<1)) {
+            } else if ((le < 1) or (pe < 1)) {
                 mostrarExtra()
-                if((le<1)){
+                if ((le < 1)) {
                     campoLibrasExtra.setError("Digite un valor mayor a cero para continuar")
-                }else if((pe<1)){
+                } else if ((pe < 1)) {
                     campoPrecioExtra.setError("Digite un valor mayor a cero para continuar")
                 }
-            }else if ((lp<1) or (pp<1)) {
+            } else if ((lp < 1) or (pp < 1)) {
                 mostrarPrimera()
-                if((lp<1)){
+                if ((lp < 1)) {
                     campoLibrasPrimera.setError("Digite un valor mayor a cero para continuar")
-                }else if((pp<1)){
+                } else if ((pp < 1)) {
                     campoPrecioPrimera.setError("Digite un valor mayor a cero para continuar")
                 }
-            }else if ((ls<1) or (ps<1)) {
+            } else if ((ls < 1) or (ps < 1)) {
                 mostrarSegundad()
-                if((ls<1)){
+                if ((ls < 1)) {
                     campoLibrasSegunda.setError("Digite un valor mayor a cero para continuar")
-                }else if((ps<1)){
+                } else if ((ps < 1)) {
                     campoPrecioSegunda.setError("Digite un valor mayor a cero para continuar")
                 }
-            }else if ((lt<1) or (pt<1)) {
+            } else if ((lt < 1) or (pt < 1)) {
                 mostrarTercera()
-                if((lt<1)){
+                if ((lt < 1)) {
                     campoLibrasTercera.setError("Digite un valor mayor a cero para continuar")
-                }else if((pt<1)){
+                } else if ((pt < 1)) {
                     campoPrecioTercera.setError("Digite un valor mayor a cero para continuar")
                 }
-            }else if ((lc<1) or (pc<1)) {
+            } else if ((lc < 1) or (pc < 1)) {
                 mostrarCuarta()
-                if((lc<1)){
+                if ((lc < 1)) {
                     campoLibrasCuarta.setError("Digite un valor mayor a cero para continuar")
-                }else if((pc<1)){
+                } else if ((pc < 1)) {
                     campoPrecioCuarta.setError("Digite un valor mayor a cero para continuar")
                 }
-            }else if ((lq<1) or (pq<1)) {
+            } else if ((lq < 1) or (pq < 1)) {
                 mostrarQuinta()
-                if((lq<1)){
+                if ((lq < 1)) {
                     campoLibrasQuinta.setError("Digite un valor mayor a cero para continuar")
-                }else if((pq<1)){
+                } else if ((pq < 1)) {
                     campoPrecioQuinta.setError("Digite un valor mayor a cero para continuar")
                 }
-            }else if ((lm<1) or (pm<1)) {
+            } else if ((lm < 1) or (pm < 1)) {
                 mostrarMadura()
-                if((lm<1)){
+                if ((lm < 1)) {
                     campoLibrasMadura.setError("Digite un valor mayor a cero para continuar")
-                }else if((pm<1)){
+                } else if ((pm < 1)) {
                     campoPrecioMadura.setError("Digite un valor mayor a cero para continuar")
                 }
             }
