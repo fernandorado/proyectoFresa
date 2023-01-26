@@ -5,20 +5,25 @@ package com.example.fresaproyecto.adapters
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fresaproyecto.MainActivity
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.Utilidades
-import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
 import com.example.fresaproyecto.clases.vo.CosechaCultivoVo
-import com.example.fresaproyecto.dialogos.DialogoGesCultivo
-import com.example.fresaproyecto.fragments.CalGananciasCultivoFragment
-import com.example.fresaproyecto.fragments.InformeCultivoFragment
 import com.example.fresaproyecto.interfaces.IComunicaFragments
+import java.io.ByteArrayInputStream
 
 
 class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
@@ -26,6 +31,11 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
     private var listener: View.OnClickListener? = null
     var listaCosechaMes: List<CosechaCultivoVo> = Utilidades.listaCosechaCultivo!!
     lateinit var vista: View
+    lateinit var vistaImagen: View
+    lateinit var imgFactura: ImageView
+    lateinit var bitmap: Bitmap
+    lateinit var viewGroup2: ViewGroup
+
     lateinit var context: Context
     lateinit var actividad: Activity
     var identificacion : Int = 0
@@ -37,14 +47,14 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolderMes {
 
-
+        viewGroup2 = viewGroup
         context = viewGroup.context
 
         vista = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_list_cosecha_mes_cultivo, viewGroup, false)
-
-
-        vista.setOnClickListener(this)
+        vistaImagen = LayoutInflater.from(viewGroup.context)
+            .inflate(R.layout.imagen, viewGroup, false)
+        imgFactura = vistaImagen.findViewById(R.id.imgFactura)
         return ViewHolderMes(vista)
     }
 
@@ -103,9 +113,33 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
         viewHolderMes.txtPrecioMadura.setText("$"+listaCosechaMes[i].precioMadura.toString())
         viewHolderMes.txtTotal.setText("$"+listaCosechaMes[i].dineroTotal.toString())
 
+        viewHolderMes.txtVerFactura.setOnClickListener{
+            val blob: ByteArray = listaCosechaMes[i].imgFactura.inputStream().readBytes()
+            val bais = ByteArrayInputStream(blob)
+            bitmap = BitmapFactory.decodeStream(bais)
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+            builder.setTitle("Factura")
+                .setPositiveButton("Cerrar") { dialog, _ ->
+                    dialog.dismiss()
+                    viewGroup2.removeView(vista)
+                }
+            var titulo:AlertDialog = builder.create()
+            imgFactura.setImageBitmap(bitmap)
+            titulo.setView(vistaImagen)
+            titulo.show()
+        }
 
     }
 
+    /*fun mostrarDialogo(bitmap: Bitmap) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        builder.setTitle("Factura")
+            .setPositiveButton("Cerrar") { dialog, _ ->
+                dialog.dismiss()
+            }
+        builder.show()
+        imgFactura.setImageBitmap(bitmap)
+    }*/
 
     fun setOnClickListener(listener: View.OnClickListener?) {
         this.listener = listener
@@ -142,6 +176,8 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
         var txtPrecioCuarta :TextView
         var txtPrecioQuinta :TextView
         var txtPrecioMadura :TextView
+        var txtVerFactura :TextView
+
 
         var cardInformeMes: CardView
 
@@ -163,6 +199,9 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
             txtPrecioQuinta = vista.findViewById(R.id.txtPrecioQuinta)
             txtPrecioMadura = vista.findViewById(R.id.txtPrecioMadura)
             txtTotal = vista.findViewById(R.id.txtTotalCosecha)
+            txtVerFactura = vista.findViewById(R.id.txtVerFactura)
+
+
 
             cardInformeMes = vista.findViewById(R.id.cardCosechaMes)
 

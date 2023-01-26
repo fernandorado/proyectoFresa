@@ -1,22 +1,32 @@
 package com.example.fresaproyecto.dialogos
 
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.ContentValues
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.MediaScannerConnection
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
@@ -25,7 +35,10 @@ import com.example.fresaproyecto.clases.ConexionSQLiteHelper
 import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.interfaces.IComunicaFragments
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.IOException
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,6 +52,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class DialogoRegCosecha : DialogFragment() {
     // TODO: Rename and change types of parameters
+
+    var progreso: ProgressDialog? = null
 
     lateinit var vista: View
     lateinit var actividad: Activity
@@ -151,6 +166,17 @@ class DialogoRegCosecha : DialogFragment() {
     var dia: Int = 0
     var mes: Int = 0
     var año: Int = 0
+
+    private val COD_SELECCIONA = 10
+    private val COD_FOTO = 20
+    private val CARPETA_PRINCIPAL = "misImagenesApp/" //directorio principal
+    lateinit var fileImagen: File
+    lateinit var bitmap: Bitmap
+    lateinit var path:String
+    private val CARPETA_IMAGEN = "imagenes" //carpeta donde se guardan las fotos
+
+    private val DIRECTORIO_IMAGEN = CARPETA_PRINCIPAL + CARPETA_IMAGEN //ruta carpeta de directorios
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -284,7 +310,9 @@ class DialogoRegCosecha : DialogFragment() {
             }
         })
         btnCamara.setOnClickListener {
-            startForResult.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { })
+            //startForResult.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { }
+            mostrarDialogOpciones()
+
         }
         btnExtra.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
@@ -707,17 +735,131 @@ class DialogoRegCosecha : DialogFragment() {
         layoutMadura.visibility = View.VISIBLE
     }
 
+    private fun mostrarDialogOpciones() {
+        val opciones = arrayOf<CharSequence>("Tomar Foto", "Elegir de Galeria", "Cancelar")
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Elige una Opción")
+        builder.setItems(opciones, DialogInterface.OnClickListener { dialogInterface, i ->
+            if (opciones[i] == "Tomar Foto") {
+                startForResult.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { })
+            } else {
+                if (opciones[i] == "Elegir de Galeria") {
+                    val intent = Intent(
+                        Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                    )
+                    intent.type = "image/"
+                    startActivityForResult(
+                        Intent.createChooser(intent, "Seleccione"),
+                        COD_SELECCIONA
+                    )
+                } else {
+                    dialogInterface.dismiss()
+                }
+            }
+        })
+        builder.show()
+    }
+
+    private fun abriCamara() {
+        val miFile = File(Environment.getExternalStorageDirectory(), DIRECTORIO_IMAGEN)
+        var isCreada: Boolean = miFile.exists()
+        if (isCreada == false) {
+            isCreada = miFile.mkdirs()
+        }
+        if (isCreada == true) {
+            val consecutivo = System.currentTimeMillis() / 1000
+            val nombre = "$consecutivo.jpg"
+            //path = (Environment.getExternalStorageDirectory()+File.separator + DIRECTORIO_IMAGEN + File.separator.toString() + nombre) //indicamos la ruta de almacenamiento
+            fileImagen = File(path)
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileImagen))
+
+            ////
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                //val authorities = context!!.packageName + ".provider"
+                //val imageUri: Uri = FileProvider.getUriForFile(context!!, authorities, fileImagen)
+                //intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+            } else {
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileImagen))
+            }
+            startActivityForResult(intent, COD_FOTO)
+
+            ////
+        }
+    }
+
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val intent = result.data
-                val imageBitmap = intent?.extras?.get("data") as Bitmap
-                imagenView.setImageBitmap(imageBitmap)
+                var imageBitmap = intent?.extras?.get("data") as Bitmap
+                var ancho :Float = (600).toFloat()
+                var alto :Float = (800).toFloat()
+                bitmap = redimensionarImagen(imageBitmap,ancho ,alto )
+                imagenView.setImageBitmap(bitmap)
             }
 
         }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            COD_SELECCIONA -> {
+                val miPath: Uri? = data!!.data
+                imagenView.setImageURI(miPath)
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
+                    imagenView.setImageBitmap(bitmap)
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
+            }
+            COD_FOTO -> {
+                MediaScannerConnection.scanFile(
+                    context, arrayOf<String>(path), null
+                ) { path, uri -> Log.i("Path", "" + path) }
+                bitmap = BitmapFactory.decodeFile(path)
+            }
+        }
+        var ancho :Float = (600).toFloat()
+        var alto :Float = (800).toFloat()
+        bitmap = redimensionarImagen(bitmap, ancho, alto)
+        imagenView.setImageBitmap(bitmap)
+    }
+
+    private fun redimensionarImagen (bitmap: Bitmap, anchoNuevo:Float, altoNuevo:Float) :Bitmap{
+        var ancho = bitmap.width
+        var alto = bitmap.height
+        if(ancho>anchoNuevo || alto>altoNuevo){
+            var escalaAncho= anchoNuevo/ancho
+            var escalaAlto = altoNuevo/alto
+
+            var matrix: Matrix = Matrix()
+            matrix.postScale(escalaAncho, escalaAlto)
+            return Bitmap.createBitmap(bitmap, 0,0,ancho,alto,matrix, false)
+        }else {
+            return bitmap
+        }
+    }
+/*
+    public fun guardarImagen(id:Long, bitmap:Bitmap ){
+        // tamaño del baos depende del tamaño de tus imagenes en promedio
+        var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos)
+        var blob = baos.toByteArray()
+        // aqui tenemos el byte[] con el imagen comprimido, ahora lo guardemos en SQLite
+        insert.clearBindings();
+        insert.bindLong(1, id));
+        insert.bindBlob(2, blob);
+        insert.executeInsert();
+        db.close();
+    }*/
+
     private fun registrarCosecha() {
+        progreso= ProgressDialog(getContext())
+        progreso!!.setMessage("Cargando...")
+
 
         //if((campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
         if (campoFecha.text.toString()
@@ -789,7 +931,7 @@ class DialogoRegCosecha : DialogFragment() {
 
              */
             //La linea sigueinte deberia ir dentro de un IF que verifique si la consulta SQL es correcta
-
+            progreso!!.show()
             //conexion con la base de datos
             val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
             val db: SQLiteDatabase = conexion.writableDatabase
@@ -816,11 +958,18 @@ class DialogoRegCosecha : DialogFragment() {
             values.put(Utilidades.CAMPO_PRECIO_MADURA, campoPrecioMadura.text.toString())
             values.put(Utilidades.CAMPO_OBSERVACION_COSECHA, campoObservacion.text.toString())
             values.put(Utilidades.CAMPO_CULTIVO_COSECHA, DialogoGesCultivo.cultivoSeleccionado.id)
+            var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos)
+            var blob = baos.toByteArray()
+            values.put(Utilidades.CAMPO_IMG_FACTURA, blob)
+
+            //values.put(Utilidades.CAMPO_IMG_FACTURA)
             val idResultante: Number =
                 db.insert(Utilidades.TABLA_COSECHA, Utilidades.CAMPO_ID_CULTIVO, values)
 
             if (idResultante != -1) {
                 Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT).show()
+                progreso!!.hide()
                 dismiss()
                 //Utilidades.calcularBeneficioCultivo(actividad)
             } else {

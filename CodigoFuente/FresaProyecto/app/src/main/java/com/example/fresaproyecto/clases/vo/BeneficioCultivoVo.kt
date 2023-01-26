@@ -1,5 +1,7 @@
 package com.example.fresaproyecto.clases.vo
 
+import java.io.ByteArrayInputStream
+
 class BeneficioCultivoVo {
 
     var gastoJornal = 0
@@ -16,6 +18,7 @@ class BeneficioCultivoVo {
     var madura = 0
     var mes = 0
     var año = 0
+
 
     constructor(ingresos: Int,gastoJornal:Int,gastoInsumo:Int,gastos:Int, beneficio:Int, extra:Int,
                 primera:Int, segunda:Int, tercera:Int, cuarta:Int, quinta:Int, madura:Int,

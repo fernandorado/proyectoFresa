@@ -1,5 +1,7 @@
 package com.example.fresaproyecto.clases.vo
 
+import java.io.ByteArrayInputStream
+
 class CosechaCultivoVo {
 
     var extra = 0
@@ -20,10 +22,12 @@ class CosechaCultivoVo {
     var dia = 0
     var mes = 0
     var año = 0
+    lateinit var imgFactura : ByteArray
 
     constructor(extra:Int,precioExtra:Int,primera:Int,precioPrimera:Int, segunda:Int,precioSegunda:Int,
                 tercera:Int,precioTercera:Int, cuarta:Int,precioCuarta:Int, quinta:Int,precioQuinta:Int,
-                madura:Int,precioMadura:Int,dineroTotal:Int,dia:Int,mes:Int, año:Int) {
+                madura:Int,precioMadura:Int,dineroTotal:Int,dia:Int,mes:Int, año:Int, imgFactura : ByteArray
+    ) {
         this.extra = extra
         this.precioExtra = precioExtra
         this.primera = primera
@@ -42,6 +46,7 @@ class CosechaCultivoVo {
         this.dia = dia
         this.mes = mes
         this.año = año
+        this.imgFactura = imgFactura
     }
 
 

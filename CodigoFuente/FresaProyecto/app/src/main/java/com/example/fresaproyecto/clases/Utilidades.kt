@@ -116,6 +116,7 @@ object Utilidades {
     const val CAMPO_LIBRAS_MADURA = "libras_madura"
     const val CAMPO_PRECIO_MADURA = "precio_madura"
     const val CAMPO_OBSERVACION_COSECHA = "observacion_cosecha"
+    const val CAMPO_IMG_FACTURA = "img_factura"
 
 
     const val CREAR_TABLA_PERSONA =
@@ -136,7 +137,7 @@ object Utilidades {
     const val CREAR_TABLA_COSECHA =
         //"DROP TABLE" + TABLA_COSECHA+";" +
         "CREATE TABLE " + TABLA_COSECHA + " (" + CAMPO_ID_COSECHA + " INTEGER PRIMARY KEY, " + CAMPO_DIA_COSECHA + " INTEGER, " + CAMPO_MES_COSECHA + " INTEGER, " + CAMPO_AÑO_COSECHA + " INTEGER, "+ CAMPO_LIBRAS_EXTRA + " INTEGER, " + CAMPO_PRECIO_EXTRA + " INTEGER, " + CAMPO_LIBRAS_PRIMERA + " INTEGER, " + CAMPO_PRECIO_PRIMERA + " INTEGER, " + CAMPO_LIBRAS_SEGUNDA + " INTEGER, " + CAMPO_PRECIO_SEGUNDA + " INTEGER, " +
-                CAMPO_LIBRAS_TERCERA + " INTEGER, " + CAMPO_PRECIO_TERCERA + " INTEGER, " + CAMPO_LIBRAS_CUARTA + " INTEGER, " + CAMPO_PRECIO_CUARTA + " INTEGER, " + CAMPO_LIBRAS_QUINTA + " INTEGER, " + CAMPO_LIBRAS_MADURA + " INTEGER, " + CAMPO_PRECIO_MADURA + " INTEGER, "+ CAMPO_PRECIO_QUINTA + " INTEGER, "+ CAMPO_OBSERVACION_COSECHA + " TEXT, " + CAMPO_CULTIVO_COSECHA+ " INTEGER REFERENCES " + TABLA_CULTIVO + "("+ CAMPO_ID_CULTIVO+") ON DELETE NO ACTION ON UPDATE CASCADE);"
+                CAMPO_LIBRAS_TERCERA + " INTEGER, " + CAMPO_PRECIO_TERCERA + " INTEGER, " + CAMPO_LIBRAS_CUARTA + " INTEGER, " + CAMPO_PRECIO_CUARTA + " INTEGER, " + CAMPO_LIBRAS_QUINTA + " INTEGER, " + CAMPO_LIBRAS_MADURA + " INTEGER, " + CAMPO_PRECIO_MADURA + " INTEGER, "+ CAMPO_PRECIO_QUINTA + " INTEGER, "+ CAMPO_OBSERVACION_COSECHA + " TEXT, " + CAMPO_IMG_FACTURA + " BLOB, "+ CAMPO_CULTIVO_COSECHA+ " INTEGER REFERENCES " + TABLA_CULTIVO + "("+ CAMPO_ID_CULTIVO+") ON DELETE NO ACTION ON UPDATE CASCADE);"
     const val CREAR_TABLA_INSUMOS =
         //"DROP TABLE" + TABLA_INSUMOS+";" +
         "CREATE TABLE " + TABLA_INSUMOS + " (" + CAMPO_ID_INSUMO + " INTEGER PRIMARY KEY, " + CAMPO_DIA_INSUMO + " INTEGER, " + CAMPO_MES_INSUMO + " INTEGER, " + CAMPO_AÑO_INSUMO + " INTEGER, " + CAMPO_NOMBRE_INSUMO + " TEXT, " + CAMPO_PRECIO_INSUMO + " INTEGER, " + CAMPO_CANT_INSUMO + " INTEGER, " + CAMPO_CANT_USADO_INSUMO+ " INTEGER, " + CAMPO_CULTIVO_INSUMO+ " INTEGER REFERENCES " + TABLA_CULTIVO + "("+ CAMPO_ID_CULTIVO+") ON DELETE NO ACTION ON UPDATE CASCADE);"
@@ -707,7 +708,7 @@ object Utilidades {
         println("Año Actual: $añoActual")
 
         val cursor = db.rawQuery("select  dia_cosecha, mes_cosecha, año_cosecha,libras_extra Extra, libras_primera Primera,libras_segunda Segunda, libras_tercera Tercera, libras_cuarta Cuarta, libras_quinta Quinta,libras_madura Madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta, \n" +
-                " precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha\n" +
+                " precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha , img_factura \n" +
                 "from cosecha\n" +
                 "where mes_cosecha = "+mes+" and año_cosecha = "+año, null)
         while (cursor.moveToNext()) {
@@ -734,6 +735,7 @@ object Utilidades {
             cosechaCultivo.precioQuinta= cursor.getInt(15)
             cosechaCultivo.precioMadura= cursor.getInt(16)
             cosechaCultivo.dineroTotal= cursor.getInt(17)
+            cosechaCultivo.imgFactura = cursor.getBlob(18)
 
             listaCosechaCultivo!!.add(cosechaCultivo)
         }
