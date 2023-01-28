@@ -5,6 +5,8 @@ import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -19,6 +21,7 @@ import com.example.fresaproyecto.clases.vo.CultivoVo
 import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.dialogos.DialogoGesPersona
 import com.example.fresaproyecto.interfaces.IComunicaFragments
+import java.io.ByteArrayInputStream
 
 
 class AdaptadorCultivo(listaCultivo: List<CultivoVo>) :
@@ -36,6 +39,7 @@ class AdaptadorCultivo(listaCultivo: List<CultivoVo>) :
     lateinit var interfaceComunicaFragments: IComunicaFragments
     lateinit var builder: AlertDialog
     var posicionMarcada: Int = 0
+    lateinit var bitmap: Bitmap
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolderCultivo {
 
@@ -73,6 +77,11 @@ class AdaptadorCultivo(listaCultivo: List<CultivoVo>) :
         //ViewHolderCultivo.txtId.setText(listaCultivo.get(i).nombre)  Otra forma
         ViewHolderCultivo.txtCant.setText(listaCultivo[i].cantidad.toString())
         ViewHolderCultivo.txtNombre.setText(listaCultivo[i].nombre.toString())
+        val blob: ByteArray = listaCultivo[i].imgCultivo.inputStream().readBytes()
+        val bais = ByteArrayInputStream(blob)
+        bitmap = BitmapFactory.decodeStream(bais)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+        ViewHolderCultivo.imgCultivo.setImageBitmap(bitmap)
         ViewHolderCultivo.menuPopUp.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
 

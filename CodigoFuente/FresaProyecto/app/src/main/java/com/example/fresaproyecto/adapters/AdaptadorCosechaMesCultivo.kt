@@ -50,11 +50,14 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
         viewGroup2 = viewGroup
         context = viewGroup.context
 
+
         vista = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_list_cosecha_mes_cultivo, viewGroup, false)
         vistaImagen = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.imagen, viewGroup, false)
         imgFactura = vistaImagen.findViewById(R.id.imgFactura)
+        viewGroup.removeView(vista)
+        viewGroup.removeView(vistaImagen)
         return ViewHolderMes(vista)
     }
 
@@ -122,6 +125,7 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
                 .setPositiveButton("Cerrar") { dialog, _ ->
                     dialog.dismiss()
                     viewGroup2.removeView(vista)
+                    viewGroup2.removeView(vistaImagen)
                 }
             var titulo:AlertDialog = builder.create()
             imgFactura.setImageBitmap(bitmap)

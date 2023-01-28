@@ -55,6 +55,8 @@ class DialogoRegCosecha : DialogFragment() {
 
     var progreso: ProgressDialog? = null
 
+    var contReg: Int = 0
+
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
@@ -172,7 +174,7 @@ class DialogoRegCosecha : DialogFragment() {
     private val CARPETA_PRINCIPAL = "misImagenesApp/" //directorio principal
     lateinit var fileImagen: File
     lateinit var bitmap: Bitmap
-    lateinit var path:String
+    lateinit var path: String
     private val CARPETA_IMAGEN = "imagenes" //carpeta donde se guardan las fotos
 
     private val DIRECTORIO_IMAGEN = CARPETA_PRINCIPAL + CARPETA_IMAGEN //ruta carpeta de directorios
@@ -306,7 +308,7 @@ class DialogoRegCosecha : DialogFragment() {
         btnGuardar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                registrarCosecha()
+                validadRegistro()
             }
         })
         btnCamara.setOnClickListener {
@@ -369,7 +371,7 @@ class DialogoRegCosecha : DialogFragment() {
                     }
                 } else {
                     mostrarPrimera()
-
+                    contReg = contReg + 1
                     librasExtra = campoLibrasExtra.text.toString()
 
                     precioExtra = campoPrecioExtra.text.toString()
@@ -407,6 +409,7 @@ class DialogoRegCosecha : DialogFragment() {
                     }
                 } else {
                     mostrarSegundad()
+                    contReg = contReg + 1
 
                     librasPrimera = campoLibrasPrimera.text.toString()
                     precioPrimera = campoPrecioPrimera.text.toString()
@@ -445,6 +448,7 @@ class DialogoRegCosecha : DialogFragment() {
                     }
                 } else {
                     mostrarTercera()
+                    contReg = contReg + 1
 
                     librasSegunda = campoLibrasSegunda.text.toString()
 
@@ -483,6 +487,7 @@ class DialogoRegCosecha : DialogFragment() {
                     }
                 } else {
                     mostrarCuarta()
+                    contReg = contReg + 1
 
                     librasTercera = campoLibrasTercera.text.toString()
 
@@ -521,6 +526,7 @@ class DialogoRegCosecha : DialogFragment() {
                     }
                 } else {
                     mostrarQuinta()
+                    contReg = contReg + 1
 
                     librasCuarta = campoLibrasCuarta.text.toString()
 
@@ -560,6 +566,7 @@ class DialogoRegCosecha : DialogFragment() {
                     }
                 } else {
                     mostrarMadura()
+                    contReg = contReg + 1
 
                     librasQuinta = campoLibrasQuinta.text.toString()
 
@@ -595,6 +602,7 @@ class DialogoRegCosecha : DialogFragment() {
                 } else {
                     btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
                     layoutMadura.visibility = View.GONE
+                    contReg = contReg + 1
 
                     librasMadura = campoLibrasMadura.text.toString()
                     precioMadura = campoPrecioMadura.text.toString()
@@ -761,32 +769,24 @@ class DialogoRegCosecha : DialogFragment() {
         builder.show()
     }
 
-    private fun abriCamara() {
-        val miFile = File(Environment.getExternalStorageDirectory(), DIRECTORIO_IMAGEN)
-        var isCreada: Boolean = miFile.exists()
-        if (isCreada == false) {
-            isCreada = miFile.mkdirs()
-        }
-        if (isCreada == true) {
-            val consecutivo = System.currentTimeMillis() / 1000
-            val nombre = "$consecutivo.jpg"
-            //path = (Environment.getExternalStorageDirectory()+File.separator + DIRECTORIO_IMAGEN + File.separator.toString() + nombre) //indicamos la ruta de almacenamiento
-            fileImagen = File(path)
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileImagen))
+    private fun mostrarDialogRegistro(): AlertDialog {
+        val builder = AlertDialog.Builder(vista.context)
 
-            ////
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                //val authorities = context!!.packageName + ".provider"
-                //val imageUri: Uri = FileProvider.getUriForFile(context!!, authorities, fileImagen)
-                //intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
-            } else {
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(fileImagen))
+        builder.setTitle("Registro")
+            .setMessage(
+                "¿Esta seguro que el registro de cosecha está completo?" +
+                        "Verifique la información.\n" +
+                        "Recuerde tomar la foto a su factura."
+            )
+            .setPositiveButton("Si") { dialog, _ ->
+                dialog.dismiss()
+                registrarCosecha()
             }
-            startActivityForResult(intent, COD_FOTO)
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.dismiss()
+            }
 
-            ////
-        }
+        return builder.create()
     }
 
     private val startForResult =
@@ -794,9 +794,9 @@ class DialogoRegCosecha : DialogFragment() {
             if (result.resultCode == Activity.RESULT_OK) {
                 val intent = result.data
                 var imageBitmap = intent?.extras?.get("data") as Bitmap
-                var ancho :Float = (600).toFloat()
-                var alto :Float = (800).toFloat()
-                bitmap = redimensionarImagen(imageBitmap,ancho ,alto )
+                var ancho: Float = (600).toFloat()
+                var alto: Float = (800).toFloat()
+                bitmap = redimensionarImagen(imageBitmap, ancho, alto)
                 imagenView.setImageBitmap(bitmap)
             }
 
@@ -809,7 +809,8 @@ class DialogoRegCosecha : DialogFragment() {
                 val miPath: Uri? = data!!.data
                 imagenView.setImageURI(miPath)
                 try {
-                    bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
+                    bitmap =
+                        MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
                     imagenView.setImageBitmap(bitmap)
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -822,23 +823,23 @@ class DialogoRegCosecha : DialogFragment() {
                 bitmap = BitmapFactory.decodeFile(path)
             }
         }
-        var ancho :Float = (600).toFloat()
-        var alto :Float = (800).toFloat()
+        var ancho: Float = (600).toFloat()
+        var alto: Float = (800).toFloat()
         bitmap = redimensionarImagen(bitmap, ancho, alto)
         imagenView.setImageBitmap(bitmap)
     }
 
-    private fun redimensionarImagen (bitmap: Bitmap, anchoNuevo:Float, altoNuevo:Float) :Bitmap{
+    private fun redimensionarImagen(bitmap: Bitmap, anchoNuevo: Float, altoNuevo: Float): Bitmap {
         var ancho = bitmap.width
         var alto = bitmap.height
-        if(ancho>anchoNuevo || alto>altoNuevo){
-            var escalaAncho= anchoNuevo/ancho
-            var escalaAlto = altoNuevo/alto
+        if (ancho > anchoNuevo || alto > altoNuevo) {
+            var escalaAncho = anchoNuevo / ancho
+            var escalaAlto = altoNuevo / alto
 
             var matrix: Matrix = Matrix()
             matrix.postScale(escalaAncho, escalaAlto)
-            return Bitmap.createBitmap(bitmap, 0,0,ancho,alto,matrix, false)
-        }else {
+            return Bitmap.createBitmap(bitmap, 0, 0, ancho, alto, matrix, false)
+        } else {
             return bitmap
         }
     }
@@ -856,15 +857,12 @@ class DialogoRegCosecha : DialogFragment() {
         db.close();
     }*/
 
-    private fun registrarCosecha() {
-        progreso= ProgressDialog(getContext())
-        progreso!!.setMessage("Cargando...")
-
-
-        //if((campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
+    private fun validadRegistro() {
         if (campoFecha.text.toString()
-                .isEmpty() or (le < 1) or (pe < 1) or (lp < 1) or (pp < 1) or (ls < 1) or (ps < 1) or (lt < 1) or (pt < 1) or (lc < 1) or (pc < 1) or (lq < 1) or (pq < 1) or (lm < 1) or (pm < 1)
+                .isEmpty() or (contReg < 1)
         ) {
+            Toast.makeText(actividad, "¡Verifique sus datos! ", Toast.LENGTH_SHORT).show()
+
             if (campoFecha.text.toString().isEmpty()) {
                 campoFecha.setError("Este campo no puede quedar vacio")
             } else if ((le < 1) or (pe < 1)) {
@@ -918,66 +916,77 @@ class DialogoRegCosecha : DialogFragment() {
                 }
             }
         } else {
-            /*var registro= "Extra: "+campoLibrasExtra.text.toString()+ "   Precio: "+ campoPrecioExtra.text.toString() +"\n"
-            registro += "Primera: "+campoLibrasPrimera.text.toString()+ "   Precio: "+ campoPrecioPrimera.text.toString() +"\n"
-            registro += "Segunda: "+campoLibrasSegunda.text.toString()+ "   Precio: "+ campoPrecioSegunda.text.toString() +"\n"
-            registro += "Tercera: "+campoLibrasTercera.text.toString()+ "   Precio: "+ campoPrecioTercera.text.toString() +"\n"
-            registro += "Cuarta: "+campoLibrasCuarta.text.toString()+ "   Precio: "+ campoPrecioCuarta.text.toString() +"\n"
-            registro += "Quinta: "+campoLibrasQuinta.text.toString()+ "   Precio: "+ campoPrecioQuinta.text.toString() +"\n"
-            registro += "Madura FF: "+campoLibrasMadura.text.toString()+ "   Precio: "+ campoPrecioMadura.text.toString() +"\n"
-
-            print("Registrar:  "+registro)
-            Toast.makeText(actividad, "REGISTRAR:\n"+registro, Toast.LENGTH_LONG).show()
-
-             */
-            //La linea sigueinte deberia ir dentro de un IF que verifique si la consulta SQL es correcta
-            progreso!!.show()
-            //conexion con la base de datos
-            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
-            val db: SQLiteDatabase = conexion.writableDatabase
-            var values = ContentValues()
-
-            //valores para agregar a la tabla de cultivos
-            //values.put(Utilidades.CAMPO_ID_CULTIVO, .text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
-            values.put(Utilidades.CAMPO_DIA_COSECHA, dia)
-            values.put(Utilidades.CAMPO_MES_COSECHA, mes)
-            values.put(Utilidades.CAMPO_AÑO_COSECHA, año)
-            values.put(Utilidades.CAMPO_LIBRAS_EXTRA, campoLibrasExtra.text.toString())
-            values.put(Utilidades.CAMPO_PRECIO_EXTRA, campoPrecioExtra.text.toString())
-            values.put(Utilidades.CAMPO_LIBRAS_PRIMERA, campoLibrasPrimera.text.toString())
-            values.put(Utilidades.CAMPO_PRECIO_PRIMERA, campoPrecioPrimera.text.toString())
-            values.put(Utilidades.CAMPO_LIBRAS_SEGUNDA, campoLibrasSegunda.text.toString())
-            values.put(Utilidades.CAMPO_PRECIO_SEGUNDA, campoPrecioSegunda.text.toString())
-            values.put(Utilidades.CAMPO_LIBRAS_TERCERA, campoLibrasTercera.text.toString())
-            values.put(Utilidades.CAMPO_PRECIO_TERCERA, campoPrecioTercera.text.toString())
-            values.put(Utilidades.CAMPO_LIBRAS_CUARTA, campoLibrasCuarta.text.toString())
-            values.put(Utilidades.CAMPO_PRECIO_CUARTA, campoPrecioCuarta.text.toString())
-            values.put(Utilidades.CAMPO_LIBRAS_QUINTA, campoLibrasQuinta.text.toString())
-            values.put(Utilidades.CAMPO_PRECIO_QUINTA, campoPrecioQuinta.text.toString())
-            values.put(Utilidades.CAMPO_LIBRAS_MADURA, campoLibrasMadura.text.toString())
-            values.put(Utilidades.CAMPO_PRECIO_MADURA, campoPrecioMadura.text.toString())
-            values.put(Utilidades.CAMPO_OBSERVACION_COSECHA, campoObservacion.text.toString())
-            values.put(Utilidades.CAMPO_CULTIVO_COSECHA, DialogoGesCultivo.cultivoSeleccionado.id)
-            var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos)
-            var blob = baos.toByteArray()
-            values.put(Utilidades.CAMPO_IMG_FACTURA, blob)
-
-            //values.put(Utilidades.CAMPO_IMG_FACTURA)
-            val idResultante: Number =
-                db.insert(Utilidades.TABLA_COSECHA, Utilidades.CAMPO_ID_CULTIVO, values)
-
-            if (idResultante != -1) {
-                Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT).show()
-                progreso!!.hide()
-                dismiss()
-                //Utilidades.calcularBeneficioCultivo(actividad)
-            } else {
-                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
-                    .show()
-            }
-            db.close()
+            mostrarDialogRegistro().show()
         }
+    }
+
+    private fun registrarCosecha() {
+        progreso = ProgressDialog(getContext())
+        progreso!!.setMessage("Cargando...")
+
+
+        //if((campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
+
+        /*var registro= "Extra: "+campoLibrasExtra.text.toString()+ "   Precio: "+ campoPrecioExtra.text.toString() +"\n"
+        registro += "Primera: "+campoLibrasPrimera.text.toString()+ "   Precio: "+ campoPrecioPrimera.text.toString() +"\n"
+        registro += "Segunda: "+campoLibrasSegunda.text.toString()+ "   Precio: "+ campoPrecioSegunda.text.toString() +"\n"
+        registro += "Tercera: "+campoLibrasTercera.text.toString()+ "   Precio: "+ campoPrecioTercera.text.toString() +"\n"
+        registro += "Cuarta: "+campoLibrasCuarta.text.toString()+ "   Precio: "+ campoPrecioCuarta.text.toString() +"\n"
+        registro += "Quinta: "+campoLibrasQuinta.text.toString()+ "   Precio: "+ campoPrecioQuinta.text.toString() +"\n"
+        registro += "Madura FF: "+campoLibrasMadura.text.toString()+ "   Precio: "+ campoPrecioMadura.text.toString() +"\n"
+
+        print("Registrar:  "+registro)
+        Toast.makeText(actividad, "REGISTRAR:\n"+registro, Toast.LENGTH_LONG).show()
+
+         */
+        //La linea sigueinte deberia ir dentro de un IF que verifique si la consulta SQL es correcta
+        progreso!!.show()
+        //conexion con la base de datos
+        val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
+        val db: SQLiteDatabase = conexion.writableDatabase
+        var values = ContentValues()
+
+        //valores para agregar a la tabla de cultivos
+        //values.put(Utilidades.CAMPO_ID_CULTIVO, .text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
+        values.put(Utilidades.CAMPO_DIA_COSECHA, dia)
+        values.put(Utilidades.CAMPO_MES_COSECHA, mes)
+        values.put(Utilidades.CAMPO_AÑO_COSECHA, año)
+        values.put(Utilidades.CAMPO_LIBRAS_EXTRA, campoLibrasExtra.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_EXTRA, campoPrecioExtra.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_PRIMERA, campoLibrasPrimera.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_PRIMERA, campoPrecioPrimera.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_SEGUNDA, campoLibrasSegunda.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_SEGUNDA, campoPrecioSegunda.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_TERCERA, campoLibrasTercera.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_TERCERA, campoPrecioTercera.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_CUARTA, campoLibrasCuarta.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_CUARTA, campoPrecioCuarta.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_QUINTA, campoLibrasQuinta.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_QUINTA, campoPrecioQuinta.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_MADURA, campoLibrasMadura.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_MADURA, campoPrecioMadura.text.toString())
+        values.put(Utilidades.CAMPO_OBSERVACION_COSECHA, campoObservacion.text.toString())
+        values.put(Utilidades.CAMPO_CULTIVO_COSECHA, DialogoGesCultivo.cultivoSeleccionado.id)
+        var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        var blob = baos.toByteArray()
+        values.put(Utilidades.CAMPO_IMG_FACTURA, blob)
+
+        //values.put(Utilidades.CAMPO_IMG_FACTURA)
+        val idResultante: Number =
+            db.insert(Utilidades.TABLA_COSECHA, Utilidades.CAMPO_ID_CULTIVO, values)
+
+        if (idResultante != -1) {
+            Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT).show()
+            progreso!!.hide()
+            dismiss()
+            //Utilidades.calcularBeneficioCultivo(actividad)
+        } else {
+            Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
+                .show()
+        }
+        db.close()
+
     }
 
     private fun cosechaPorDia(año: Int, mes: Int) {

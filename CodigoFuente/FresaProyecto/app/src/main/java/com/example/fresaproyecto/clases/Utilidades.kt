@@ -64,12 +64,7 @@ object Utilidades {
     const val CAMPO_ID_CULTIVO = "id_cultivo"
     const val CAMPO_NOMBRE_CULTIVO = "nombre"
     const val CAMPO_CANT_PLANTAS = "cant_plantas"
-
-    //Constantes campos tabla jornal
-    const val TABLA_GASTOS_CULTIVO = "gastosCultivo"
-    const val CAMPO_ID_GASTOS = "id_gastos"
-    const val CAMPO_ID_JORNALG = "id_jornal"  //Lo que pienso es poner las llaves de los jornales, insumos
-    const val CAMPO_PRECIO_GASTOS = "precio_gastos"
+    const val CAMPO_FOTO_CULTIVO = "img_cultivo"
 
     //Constantes campos tabla jornal
     const val TABLA_JORNAL = "jornal"
@@ -130,7 +125,7 @@ object Utilidades {
         "CREATE TABLE " + TABLA_GASTO_PERSONAL + " (" + CAMPO_ID_GASTO + " INTEGER PRIMARY KEY, " + CAMPO_DIA_GASTO + " INTEGER, " + CAMPO_MES_GASTO + " INTEGER, " + CAMPO_AÑO_GASTO + " INTEGER, "+ CAMPO_CONCEPTO_GASTO +" TEXT, " + CAMPO_PRECIO_GASTO + " INTEGER, " + CAMPO_PERSONA_GASTO+ " INTEGER REFERENCES " + TABLA_PERSONA + "("+CAMPO_ID_PERSONA+") ON DELETE NO ACTION ON UPDATE CASCADE);"
     const val CREAR_TABLA_CULTIVO =
         //"DROP TABLE" + TABLA_CULTIVO+";" +
-        "CREATE TABLE " + TABLA_CULTIVO + " (" + CAMPO_ID_CULTIVO + " INTEGER PRIMARY KEY, " + CAMPO_NOMBRE_CULTIVO + " TEXT, " + CAMPO_CANT_PLANTAS + " INTEGER);"
+        "CREATE TABLE " + TABLA_CULTIVO + " (" + CAMPO_ID_CULTIVO + " INTEGER PRIMARY KEY, " + CAMPO_NOMBRE_CULTIVO + " TEXT, " +  CAMPO_CANT_PLANTAS + " INTEGER, " + CAMPO_FOTO_CULTIVO + " BLOB);"
     const val CREAR_TABLA_JORNAL =
         //"DROP TABLE" + TABLA_JORNAL+";" +
         "CREATE TABLE " + TABLA_JORNAL + " (" + CAMPO_ID_JORNAL + " INTEGER PRIMARY KEY, " + CAMPO_DIA_JORNAL + " INTEGER, " + CAMPO_MES_JORNAL + " INTEGER, " + CAMPO_AÑO_JORNAL + " INTEGER, "+ CAMPO_CANT_JORNAL + " INTEGER, " + CAMPO_ACTV_JORNAL + " TEXT, " + CAMPO_PRECIO_JORNAL + " INTEGER, " + CAMPO_CULTIVO_JORNAL+ " INTEGER REFERENCES " + TABLA_CULTIVO + "("+ CAMPO_ID_CULTIVO+") ON DELETE NO ACTION ON UPDATE CASCADE);"
@@ -173,6 +168,7 @@ object Utilidades {
             cultivo.id= cursor.getInt(0)
             cultivo.nombre = cursor.getString(1)
             cultivo.cantidad= cursor.getInt(2)
+            cultivo.imgCultivo= cursor.getBlob(3)
             listaCultivos!!.add(cultivo)
 
         }/*
