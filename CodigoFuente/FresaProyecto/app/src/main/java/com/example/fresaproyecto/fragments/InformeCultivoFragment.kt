@@ -11,8 +11,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.demogorgorn.monthpicker.MonthPickerDialog
 import com.echo.holographlibrary.Bar
 import com.echo.holographlibrary.BarGraph
+import com.example.fresaproyecto.MainActivity
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.adapters.AdaptadorMesCultivo
 import com.example.fresaproyecto.clases.DatePickerFragment
@@ -22,7 +24,6 @@ import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 
 
@@ -65,20 +66,6 @@ class InformeCultivoFragment : Fragment() {
         }
     }
 
-    fun onDateSelected(day: Int, month: Int, year: Int) {
-        txtFechaSelec.setText("$year-$month-$day")
-        mes = month
-        año = year
-        añoSeleccionado = year
-        graficarBarras()
-        informePorFecha(añoSeleccionado)
-    }
-
-    private fun showDatePickerDialog() {
-        val datePicker =
-            DatePickerFragment { day, month, year -> onDateSelected(year, month + 1, day) }
-        datePicker.show(parentFragmentManager, "datePicker")
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -94,7 +81,7 @@ class InformeCultivoFragment : Fragment() {
 
         txtFechaSelec = vista.findViewById(R.id.txtFecha)
 
-        txtFechaSelec.setOnClickListener { showDatePickerDialog() }
+        txtFechaSelec.setOnClickListener { monthYear() }
 
         barGraphMes = vista.findViewById(R.id.graphBar)
 
@@ -103,9 +90,31 @@ class InformeCultivoFragment : Fragment() {
         recyclerInformeMes.setHasFixedSize(true)
 
         graficarBarras()
-        informePorFecha(año)
+        informePorFecha(añoActual.toInt())
 
         return vista
+    }
+
+    fun monthYear(){
+        var today :Calendar = Calendar.getInstance()
+        val builder = MonthPickerDialog.Builder(actividad,
+            { selectedMonth, selectedYear ->
+                txtFechaSelec.setText(""+selectedYear)
+                añoSeleccionado = selectedYear
+                graficarBarras()
+                informePorFecha(selectedYear)
+            }, today.get(Calendar.YEAR), today.get(Calendar.MONTH)
+        )
+
+        builder.setActivatedMonth(Calendar.JULY)
+            .setMinYear(2023)
+            .setActivatedYear(today.get(Calendar.YEAR))
+            .setMaxYear(2100)
+            .setTitle("Seleccione el Año")
+            .showYearOnly()
+            .build().show()
+
+
     }
 
     fun graficarBarras() {
@@ -169,9 +178,6 @@ class InformeCultivoFragment : Fragment() {
         recyclerInformeMes.adapter = miAdaptadorInforme
     }
 
-    private fun informeEnero() {
-
-    }
 
     companion object {
         var mesSeleccionado: Int = 0

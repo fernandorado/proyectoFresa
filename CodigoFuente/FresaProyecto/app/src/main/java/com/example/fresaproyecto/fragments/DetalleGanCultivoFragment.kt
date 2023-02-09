@@ -104,18 +104,18 @@ class DetalleGanCultivoFragment : Fragment() {
         mes = mes-1
 
         var mesLetras = when (mes){
-            1 -> "Enero"
-            2 -> "Febrero"
-            3 -> "Marzo"
-            4 -> "Abril"
-            5 -> "Mayo"
-            6 -> "Junio"
-            7 -> "Julio"
-            8 -> "Agosto"
-            9 -> "Septiembre"
-            10 -> "Octubre"
-            11 -> "Noviembre"
-            12 -> "Diciembre"
+            0 -> "Enero"
+            1 -> "Febrero"
+            2 -> "Marzo"
+            3 -> "Abril"
+            4 -> "Mayo"
+            5 -> "Junio"
+            6 -> "Julio"
+            7 -> "Agosto"
+            8 -> "Septiembre"
+            9 -> "Octubre"
+            10 -> "Noviembre"
+            11 -> "Diciembre"
             else -> "Null"
         }
 
