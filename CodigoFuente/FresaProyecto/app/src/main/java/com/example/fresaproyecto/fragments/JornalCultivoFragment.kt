@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.adapters.AdaptadorJornalMesCultivo
 import com.example.fresaproyecto.clases.Utilidades
+import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,6 +29,10 @@ class JornalCultivoFragment : Fragment() {
     lateinit var recyclerJornalMes: RecyclerView
     lateinit var vista: View
     lateinit var actividad: Activity
+    var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
+
+    var mes = InformeCultivoFragment.fecha.mes
+    var año = InformeCultivoFragment.fecha.año
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,13 +55,13 @@ class JornalCultivoFragment : Fragment() {
         recyclerJornalMes = vista.findViewById(R.id.recyclerJornal)
         recyclerJornalMes.layoutManager = LinearLayoutManager(actividad)
         recyclerJornalMes.setHasFixedSize(true)
-        jornalPorFecha(1,2023)
+        jornalPorFecha(mes,año)
         return vista
     }
 
     private fun jornalPorFecha(año : Int, mes : Int){
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
-        Utilidades.consultarJornalesMes(actividad,1, 2023)
+        Utilidades.consultarJornalesMes(actividad,mes, año, idCultivo)
 
         var miAdaptadorJornal = AdaptadorJornalMesCultivo(Utilidades.listaJornalCultivo!!)
         miAdaptadorJornal.setOnClickListener(object : View.OnClickListener {

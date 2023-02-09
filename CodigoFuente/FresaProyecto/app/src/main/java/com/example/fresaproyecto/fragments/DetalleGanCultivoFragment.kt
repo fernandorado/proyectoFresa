@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.adapters.*
 import com.example.fresaproyecto.clases.Utilidades
+import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
@@ -42,7 +43,10 @@ class DetalleGanCultivoFragment : Fragment() {
     lateinit var txtGasto : TextView
     lateinit var txtBeneficio : TextView
 
+    var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
 
+    var mes = InformeCultivoFragment.fecha.mes
+    var año = InformeCultivoFragment.fecha.año
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +77,7 @@ class DetalleGanCultivoFragment : Fragment() {
         tab_layout = vista.findViewById(R.id.tab_layout)
         myViewPagerAdapter = MyViewPagerAdapter(this)
         view_pager.setAdapter(myViewPagerAdapter)
-        informePorFecha(1,2023)
+        informePorFecha(año)
 
 
         tab_layout.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener {
@@ -95,8 +99,9 @@ class DetalleGanCultivoFragment : Fragment() {
         return vista
     }
 
-    private fun informePorFecha(mes:Int,año:Int){
-        Utilidades.calcularBeneficioCultivo(actividad, mes,año)
+    private fun informePorFecha(año:Int){
+        Utilidades.calcularBeneficioCultivo(actividad, año, idCultivo)
+        mes = mes-1
 
         var mesLetras = when (mes){
             1 -> "Enero"
@@ -115,9 +120,9 @@ class DetalleGanCultivoFragment : Fragment() {
         }
 
         txtFecha.setText(""+mesLetras+"."+año)
-        txtBeneficio.setText(Utilidades.listaBeneficioCultivo!![0].beneficio.toString())
-        txtIngreso.setText(Utilidades.listaBeneficioCultivo!![0].ingresos.toString())
-        txtGasto.setText(Utilidades.listaBeneficioCultivo!![0].gastos.toString())
+        txtBeneficio.setText(Utilidades.listaBeneficioCultivo!![mes].beneficio.toString())
+        txtIngreso.setText(Utilidades.listaBeneficioCultivo!![mes].ingresos.toString())
+        txtGasto.setText(Utilidades.listaBeneficioCultivo!![mes].gastos.toString())
 
         var miAdaptadorInforme = AdaptadorMesCultivo(Utilidades.listaBeneficioCultivo!!)
         miAdaptadorInforme.setOnClickListener(object : View.OnClickListener {

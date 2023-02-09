@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.adapters.AdaptadorInsumoMesCultivo
 import com.example.fresaproyecto.clases.Utilidades
+import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,6 +29,11 @@ class InsumoCultivoFragment : Fragment() {
     lateinit var recyclerInsumoMes: RecyclerView
     lateinit var vista: View
     lateinit var actividad: Activity
+    var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
+    var mes = InformeCultivoFragment.fecha.mes
+    var año = InformeCultivoFragment.fecha.año
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +57,13 @@ class InsumoCultivoFragment : Fragment() {
         recyclerInsumoMes.layoutManager = LinearLayoutManager(actividad)
         recyclerInsumoMes.setHasFixedSize(true)
 
-        insumoPorFecha(1,2023)
+        insumoPorFecha()
         return vista
     }
 
-    private fun insumoPorFecha(año : Int, mes : Int){
+    private fun insumoPorFecha(){
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
-        Utilidades.consultarInsumosMes(actividad,1, 2023)
+        Utilidades.consultarInsumosMes(actividad,mes, año, idCultivo)
 
         var miAdaptadorInsumo = AdaptadorInsumoMesCultivo(Utilidades.listaInsumoCultivo!!)
         miAdaptadorInsumo.setOnClickListener(object : View.OnClickListener {

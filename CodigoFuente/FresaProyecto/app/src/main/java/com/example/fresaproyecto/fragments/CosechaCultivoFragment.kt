@@ -20,6 +20,7 @@ import com.example.fresaproyecto.adapters.AdaptadorCosechaMesCultivo
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
 import com.example.fresaproyecto.clases.vo.CosechaCultivoVo
+import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import kotlin.math.roundToInt
 
@@ -52,6 +53,11 @@ class CosechaCultivoFragment : Fragment() {
     lateinit var txtQuintaLibra: TextView
     lateinit var txtMaduraLibra: TextView
 
+    var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
+
+    var mes = InformeCultivoFragment.fecha.mes
+    var año = InformeCultivoFragment.fecha.año
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -69,7 +75,7 @@ class CosechaCultivoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        Utilidades.consultarCosechaMes(actividad, 1, 2023)
+        Utilidades.consultarCosechaMes(actividad, mes, año, idCultivo)
         vista = inflater.inflate(R.layout.fragment_cosecha_cultivo, container, false)
         pieGraphMes = vista.findViewById(R.id.graphPie)
 
@@ -84,70 +90,61 @@ class CosechaCultivoFragment : Fragment() {
         recyclerCosechaMes = vista.findViewById(R.id.recyclerCosecha)
         recyclerCosechaMes.layoutManager = LinearLayoutManager(actividad)
         recyclerCosechaMes.setHasFixedSize(true)
-        cosechaPorFecha(1, 2023)
+        cosechaPorFecha()
         graficarPie()
         return vista
     }
 
     fun graficarPie() {
-        var mes = InformeCultivoFragment.mesSeleccionado
-        listaCalidad.add("Extra")
-        listaCalidad.add("Primera")
-        listaCalidad.add("Segunda")
-        listaCalidad.add("Tercera")
-        listaCalidad.add("Cuarta")
-        listaCalidad.add("Quinta")
-        listaCalidad.add("Madura FF")
 
         listaInformeMes = Utilidades.listaBeneficioCultivo!!
 
+        mes = mes-1
         for (i in 1..7) {
             var rebanada = PieSlice()
             var color = generarColorHecAleatorio()
             rebanada.color = Color.parseColor(color)
-            //rebanada.name = listaCalidad[i]
             when (i) {
                 1 -> {
-                    rebanada.value = listaInformeMes!![0].extra.toString().toFloat()
-                    txtExtraLibra.text = "Extra: "+listaInformeMes!![0].extra.toString() + "lb"
+                    rebanada.value = listaInformeMes!![mes].extra.toString().toFloat()
+                    txtExtraLibra.text = "Extra: "+listaInformeMes!![mes].extra.toString() + "lb"
                     txtExtraLibra.setBackgroundColor(Color.parseColor(color))
 
                 }
                 2 -> {
-                    rebanada.value = listaInformeMes!![0].primera.toString().toFloat()
-                    txtPrimeraLibra.text = "Primera: "+listaInformeMes!![0].primera.toString() + "lb"
+                    rebanada.value = listaInformeMes!![mes].primera.toString().toFloat()
+                    txtPrimeraLibra.text = "Primera: "+listaInformeMes!![mes].primera.toString() + "lb"
                     txtPrimeraLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 3 -> {
-                    rebanada.value = listaInformeMes!![0].segunda.toString().toFloat()
-                    txtSegundaLibra.text = "Segunda: "+listaInformeMes!![0].segunda.toString() + "lb"
+                    rebanada.value = listaInformeMes!![mes].segunda.toString().toFloat()
+                    txtSegundaLibra.text = "Segunda: "+listaInformeMes!![mes].segunda.toString() + "lb"
                     txtSegundaLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 4 -> {
-                    rebanada.value = listaInformeMes!![0].tercera.toString().toFloat()
-                    txtTerceraLibra.text = "Tercera: "+listaInformeMes!![0].tercera.toString() + "lb"
+                    rebanada.value = listaInformeMes!![mes].tercera.toString().toFloat()
+                    txtTerceraLibra.text = "Tercera: "+listaInformeMes!![mes].tercera.toString() + "lb"
                     txtTerceraLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 5 -> {
-                    rebanada.value = listaInformeMes!![0].cuarta.toString().toFloat()
-                    txtCuartaLibra.text = "Cuarta: "+listaInformeMes!![0].cuarta.toString() + "lb"
+                    rebanada.value = listaInformeMes!![mes].cuarta.toString().toFloat()
+                    txtCuartaLibra.text = "Cuarta: "+listaInformeMes!![mes].cuarta.toString() + "lb"
                     txtCuartaLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 6 -> {
-                    rebanada.value = listaInformeMes!![0].quinta.toString().toFloat()
-                    txtQuintaLibra.text = "Quinta: "+listaInformeMes!![0].quinta.toString() + "lb"
+                    rebanada.value = listaInformeMes!![mes].quinta.toString().toFloat()
+                    txtQuintaLibra.text = "Quinta: "+listaInformeMes!![mes].quinta.toString() + "lb"
                     txtQuintaLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 7 -> {
-                    rebanada.value = listaInformeMes!![0].madura.toString().toFloat()
-                    txtMaduraLibra.text = "Madura FF: "+listaInformeMes!![0].madura.toString() + "lb"
+                    rebanada.value = listaInformeMes!![mes].madura.toString().toFloat()
+                    txtMaduraLibra.text = "Madura FF: "+listaInformeMes!![mes].madura.toString() + "lb"
                     txtMaduraLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 else -> (0).toFloat()
             }
             pieGraphMes.addSlice(rebanada)
         }
-        //pieGraphMes.addSlice(rebanada) = puntos
     }
 
     fun generarColorHecAleatorio(): String {
@@ -161,9 +158,8 @@ class CosechaCultivoFragment : Fragment() {
 
     }
 
-    private fun cosechaPorFecha(año: Int, mes: Int) {
+    private fun cosechaPorFecha() {
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
-
 
         var miAdaptadorCosecha = AdaptadorCosechaMesCultivo(Utilidades.listaCosechaCultivo!!)
         miAdaptadorCosecha.setOnClickListener(object : View.OnClickListener {

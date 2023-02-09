@@ -425,118 +425,7 @@ object Utilidades {
         db.close()
     }
 
-    /*fun calcularBeneficioCultivoAct(actividad: Activity) {
-        val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
-        val db: SQLiteDatabase = conn.getReadableDatabase()
-        var beneficioCultivo: BeneficioCultivoVo
-
-        //Beneficio de Cultivo
-        listaBeneficioCultivo = ArrayList<BeneficioCultivoVo>()
-        beneficioCultivo = BeneficioCultivoVo()
-
-        val dateFormat = SimpleDateFormat("MM")
-        val mesActual = dateFormat.format(Date())
-
-        val dateFormatY = SimpleDateFormat("yyyy")
-        val añoActual = dateFormatY.format(Date())
-
-        println("Mes Actual: $mesActual")
-        println("Año Actual: $añoActual")
-
-        val cursor = db.rawQuery("SELECT *\n" +
-                "FROM(\n" +
-                "  SELECT mes_cosecha, mes_jornal, mes_insumo, año_cosecha, año_jornal, año_insumo, ifnull(gasto_jornal,0) as gasto_jornal, ifnull(gasto_insumo,0) as gasto_insumo, ingreso_cosecha, (ifnull(ingreso_cosecha,0))-((ifnull(gasto_jornal,0))+(ifnull(gasto_insumo,0)))as beneficio\n" +
-                "from (\n" +
-                "  (select sum(jornal.precio_jornal*jornal.cant_jornal) as gasto_jornal, año_jornal, mes_jornal\n" +
-                "\tfrom jornal\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by  mes_jornal)\n" +
-                "  \n" +
-                "  LEFT JOIN\n" +
-                "  (\n" +
-                "    \n" +
-                "    (select sum(cosecha.precio_cosecha*cosecha.libras_cosecha) as ingreso_cosecha, año_cosecha, mes_cosecha\n" +
-                "\tfrom cosecha\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by cosecha.año_cosecha, cosecha.mes_cosecha)\n" +
-                "    \n" +
-                "  \n" +
-                "    LEFT JOIN\n" +
-                "  \n" +
-                "  (select sum((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado) as gasto_insumo, año_insumo, mes_insumo\n" +
-                "\tfrom insumo\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by año_insumo, mes_insumo)\n" +
-                "  )\n" +
-                "  ON año_insumo = año_cosecha and mes_insumo=mes_cosecha\n" +
-                ")\n" +
-                "  UNION\n" +
-                "  \n" +
-                "  SELECT mes_cosecha, mes_jornal, mes_insumo, año_cosecha, año_jornal, año_insumo, ifnull(gasto_jornal,0) as gasto_jornal, ifnull(gasto_insumo,0) as gasto_insumo, ingreso_cosecha, (ifnull(ingreso_cosecha,0))-((ifnull(gasto_jornal,0))+(ifnull(gasto_insumo,0)))as beneficio\n" +
-                "from (\n" +
-                "  (select sum(cosecha.precio_cosecha*cosecha.libras_cosecha) as ingreso_cosecha, año_cosecha, mes_cosecha\n" +
-                "\tfrom cosecha\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by cosecha.año_cosecha, cosecha.mes_cosecha)\n" +
-                "  LEFT JOIN\n" +
-                "  (\n" +
-                "    (select sum(jornal.precio_jornal*jornal.cant_jornal) as gasto_jornal, año_jornal,año_jornal, mes_jornal\n" +
-                "\tfrom jornal\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by año_jornal, mes_jornal)\n" +
-                "  \n" +
-                "    LEFT JOIN\n" +
-                "  \n" +
-                "  (select sum((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado) as gasto_insumo, año_insumo, mes_insumo\n" +
-                "\tfrom insumo\n" +
-                "\tWHERE id_cultivo is "+ DialogoGesCultivo.cultivoSeleccionado.id+" \n" +
-                "\tGROUP by año_insumo, mes_insumo)\n" +
-                "    ON año_insumo = año_jornal and mes_insumo=mes_jornal\n" +
-                "  )\n" +
-                "  ON año_insumo = año_cosecha and mes_insumo=mes_cosecha\n" +
-                ")\n" +
-                ")\n" +
-                "WHERE año_insumo IS " + añoActual + " and mes_insumo IS " +mesActual+" OR año_cosecha IS " + añoActual + " and mes_cosecha IS " +mesActual+"  OR  año_jornal IS " + añoActual +" and mes_jornal IS " +mesActual+" \n"
-            , null)
-        while (cursor.moveToNext()) {
-
-            beneficioCultivo = BeneficioCultivoVo()
-            //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
-            // y le asigno la respuesta cuando sea diferente de nulo
-            if (cursor.getString(0) != null){
-                beneficioCultivo.mes = cursor.getString(0)
-            }else if(cursor.getString(1) != null){
-                beneficioCultivo.mes = cursor.getString(1)
-            }else if(cursor.getString(2) != null){
-                beneficioCultivo.mes = cursor.getString(2)
-            }
-            if (cursor.getString(3) != null){
-                beneficioCultivo.año= cursor.getString(3)
-            }else if(cursor.getString(4) != null){
-                beneficioCultivo.año= cursor.getString(4)
-            }else if(cursor.getString(5) != null){
-                beneficioCultivo.año= cursor.getString(5)
-            }
-            beneficioCultivo.gastoJornal= cursor.getInt(6)
-            beneficioCultivo.gastoInsumo= cursor.getInt(7)
-            beneficioCultivo.ingresos= cursor.getInt(8)
-            beneficioCultivo.beneficio= cursor.getInt(9)
-            listaBeneficioCultivo!!.add(beneficioCultivo)
-
-            println("Beneficio: ")
-            for (i in listaBeneficioCultivo!!){
-                println("------------------")
-                println(i.mes + " "+ i.año + " "+i.ingresos +" "+ i.gastoJornal+ " "+ i.gastoInsumo+ " "+i.beneficio)
-            }
-        }
-        db.close()
-
-    }
-
-     */
-
-
-    fun calcularBeneficioCultivo(actividad: Activity, mes: Int, año: Int) {
+    fun calcularBeneficioCultivo(actividad: Activity, año: Int, idCultivo:Int) {
         val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conn.getReadableDatabase()
         var beneficioCultivo: BeneficioCultivoVo
@@ -559,11 +448,11 @@ object Utilidades {
                     "FROM(\n" +
                     "(SELECT ifnull(sum(jornal.precio_jornal*jornal.cant_jornal),0) as Gasto_jornal\n" +
                     "from jornal\n" +
-                    "WHERE año_jornal = "+año+" and mes_jornal = "+i+")\n" +
+                    "WHERE año_jornal = "+año+" and mes_jornal = "+i+" and id_cultivo = " + idCultivo+")\n" +
                     ",\n" +
                     "(SELECT ifnull(sum((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado),0) as Gasto_insumo\n" +
                     "FROM insumo\n" +
-                    "WHERE año_insumo = "+año+" and mes_insumo = "+i+")\n" +
+                    "WHERE año_insumo = "+año+" and mes_insumo = "+i+" and id_cultivo = " + idCultivo+")\n" +
                     ",\n" +
                     "(select ifnull((sum(libras_extra*precio_extra)+sum(libras_primera*precio_primera) +\n" +
                     "        sum(libras_segunda*precio_segunda) +sum(libras_tercera*precio_tercera)+\n" +
@@ -572,7 +461,7 @@ object Utilidades {
                     " sum(libras_segunda) Segunda, sum(libras_tercera) Tercera, sum(libras_cuarta) Cuarta, sum(libras_quinta) Quinta, \n" +
                     " sum(libras_madura) Madura\n" +
                     "from cosecha\n" +
-                    "WHERE año_cosecha = "+año+" and mes_cosecha = "+i+")\n" +
+                    "WHERE año_cosecha = "+año+" and mes_cosecha = "+i+" and id_cultivo = " + idCultivo+ " )\n" +
                     ")", null)
             while (cursor.moveToNext()) {
 
@@ -607,7 +496,7 @@ object Utilidades {
         db.close()
     }
 
-    fun consultarJornalesMes(actividad: Activity, mes: Int, año: Int) {
+    fun consultarJornalesMes(actividad: Activity, mes: Int, año: Int, idCultivo:Int) {
         val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conn.getReadableDatabase()
         var jornalCultivo: JornalCultivoVo
@@ -627,7 +516,7 @@ object Utilidades {
 
         val cursor = db.rawQuery("select dia_jornal, mes_jornal, año_jornal,actv_jornal, cant_jornal, precio_jornal, (cant_jornal*precio_jornal)as Gasto_Total\n" +
                 "from jornal\n" +
-                "where mes_jornal = "+mes+" and año_jornal= "+año, null)
+                "where mes_jornal = "+mes+" and año_jornal= "+año+" and id_cultivo = " + idCultivo, null)
         while (cursor.moveToNext()) {
             jornalCultivo = JornalCultivoVo()
 
@@ -647,7 +536,7 @@ object Utilidades {
         db.close()
     }
 
-    fun consultarInsumosMes(actividad: Activity, mes: Int, año: Int) {
+    fun consultarInsumosMes(actividad: Activity, mes: Int, año: Int, idCultivo:Int) {
         val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conn.getReadableDatabase()
         var insumoCultivo: InsumoCultivoVo
@@ -667,7 +556,7 @@ object Utilidades {
 
         val cursor = db.rawQuery("select dia_insumo, mes_insumo, año_insumo,nombre_insumo, precio_insumo, cant_usado, ((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado)as Gasto_Total\n" +
                 "from insumo\n" +
-                "where mes_insumo = "+mes+" and año_insumo= "+año, null)
+                "where mes_insumo = "+mes+" and año_insumo= "+año+" and id_cultivo = " + idCultivo, null)
         while (cursor.moveToNext()) {
             insumoCultivo = InsumoCultivoVo()
 
@@ -686,7 +575,7 @@ object Utilidades {
         db.close()
     }
 
-    fun consultarCosechaMes(actividad: Activity, mes: Int, año: Int) {
+    fun consultarCosechaMes(actividad: Activity, mes: Int, año: Int, idCultivo:Int) {
         val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conn.getReadableDatabase()
         var cosechaCultivo: CosechaCultivoVo
@@ -706,7 +595,7 @@ object Utilidades {
         val cursor = db.rawQuery("select  dia_cosecha, mes_cosecha, año_cosecha,libras_extra Extra, libras_primera Primera,libras_segunda Segunda, libras_tercera Tercera, libras_cuarta Cuarta, libras_quinta Quinta,libras_madura Madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta, \n" +
                 " precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha , img_factura \n" +
                 "from cosecha\n" +
-                "where mes_cosecha = "+mes+" and año_cosecha = "+año, null)
+                "where mes_cosecha = "+mes+" and año_cosecha = "+año +" and id_cultivo = " + idCultivo, null)
         while (cursor.moveToNext()) {
             cosechaCultivo = CosechaCultivoVo()
 

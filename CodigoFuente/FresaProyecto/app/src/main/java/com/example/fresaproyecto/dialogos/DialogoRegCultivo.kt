@@ -146,16 +146,28 @@ class DialogoRegCultivo : DialogFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
+
             COD_SELECCIONA -> {
-                val miPath: Uri? = data!!.data
-                imgCultivo.setImageURI(miPath)
-                try {
-                    bitmap =
-                        MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
-                    imgCultivo.setImageBitmap(bitmap)
-                } catch (e: IOException) {
-                    e.printStackTrace()
+                var ancho: Float = (600).toFloat()
+                var alto: Float = (800).toFloat()
+                var miPath: Uri? = null
+
+                if(data == null){
+                    Toast.makeText(actividad, "¡No has seleccionado una imagen.! ", Toast.LENGTH_SHORT).show()
+                }else{
+                    miPath = data!!.data
+                    imgCultivo.setImageURI(miPath)
+                    try {
+                        bitmap =
+                            MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
+                        bitmap = redimensionarImagen(bitmap, ancho, alto)
+                        imgCultivo.setImageBitmap(bitmap)
+
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
                 }
+
             }
             COD_FOTO -> {
                 MediaScannerConnection.scanFile(
@@ -164,10 +176,7 @@ class DialogoRegCultivo : DialogFragment() {
                 bitmap = BitmapFactory.decodeFile(path)
             }
         }
-        var ancho: Float = (600).toFloat()
-        var alto: Float = (800).toFloat()
-        bitmap = redimensionarImagen(bitmap, ancho, alto)
-        imgCultivo.setImageBitmap(bitmap)
+
     }
 
     private fun redimensionarImagen(bitmap: Bitmap, anchoNuevo: Float, altoNuevo: Float): Bitmap {

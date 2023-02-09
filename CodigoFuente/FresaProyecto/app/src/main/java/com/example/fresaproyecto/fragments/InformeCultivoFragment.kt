@@ -18,6 +18,7 @@ import com.example.fresaproyecto.adapters.AdaptadorMesCultivo
 import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
+import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import java.text.SimpleDateFormat
 import java.util.*
@@ -42,7 +43,7 @@ class InformeCultivoFragment : Fragment() {
 
     var año: Int = 0
     var mes: Int = 0
-    //var beneficioCultivo: BeneficioCultivoVo = Utilidades.beneficioCultivo!!
+    var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
 
     //TextView de año
     //TextView de Informe General
@@ -69,6 +70,8 @@ class InformeCultivoFragment : Fragment() {
         mes = month
         año = year
         añoSeleccionado = year
+        graficarBarras()
+        informePorFecha(añoSeleccionado)
     }
 
     private fun showDatePickerDialog() {
@@ -100,13 +103,13 @@ class InformeCultivoFragment : Fragment() {
         recyclerInformeMes.setHasFixedSize(true)
 
         graficarBarras()
-        informePorFecha(año, mes)
+        informePorFecha(año)
 
         return vista
     }
 
     fun graficarBarras() {
-        Utilidades.calcularBeneficioCultivo(actividad, 1, 2023)
+        Utilidades.calcularBeneficioCultivo(actividad, añoSeleccionado, idCultivo)
 
         listaInformeMes= Utilidades.listaBeneficioCultivo!!
 
@@ -148,9 +151,9 @@ class InformeCultivoFragment : Fragment() {
 
     }
 
-    private fun informePorFecha(año: Int, mes: Int) {
+    private fun informePorFecha(año: Int) {
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
-        Utilidades.calcularBeneficioCultivo(actividad, 1, 2023)
+        Utilidades.calcularBeneficioCultivo(actividad,año, idCultivo)
 
         listaInformeMes= Utilidades.listaBeneficioCultivo!!
 
@@ -173,6 +176,7 @@ class InformeCultivoFragment : Fragment() {
     companion object {
         var mesSeleccionado: Int = 0
         var añoSeleccionado: Int = 0
+        lateinit var fecha: BeneficioCultivoVo
         lateinit var recyclerInformeMes: RecyclerView
         lateinit var barGraphMes: BarGraph
         lateinit var interfaceComunicaFragments: IComunicaFragments

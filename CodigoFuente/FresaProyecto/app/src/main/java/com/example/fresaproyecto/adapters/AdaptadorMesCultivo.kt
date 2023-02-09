@@ -59,18 +59,13 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
         viewHolderMes.cardInformeMes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 posicionMarcada=(pos+1)
-                InformeCultivoFragment.cambiarFragment(posicionMarcada)
+                InformeCultivoFragment.fecha = listaInformeMes.get(pos) //Agregando el beneficio por mes
+                InformeCultivoFragment.cambiarFragment(InformeCultivoFragment.fecha.mes)
                 notifyDataSetChanged()
             }
         })
 
-        if (posicionMarcada == i){
-            //Mes Seleccionado deberia ser aqui
-            CalGananciasCultivoFragment.mesSeleccionado = listaInformeMes.get(pos) //Agregando el beneficio por mes
-            //viewHolderMes.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorSeleccion))
-        }else{
-            //viewHolderMes.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorBlanco))
-        }
+
 
         /*viewHolderMes.txtMes.setText(listaInformeMes[i].mes.toString())
         viewHolderMes.txtAño.setText(listaInformeMes[i].año.toString())
@@ -174,6 +169,7 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
 
     init {
         //this.listaPersona = listaPersona
+        lateinit var mesSeleccionado: BeneficioCultivoVo
     }
 }
 
