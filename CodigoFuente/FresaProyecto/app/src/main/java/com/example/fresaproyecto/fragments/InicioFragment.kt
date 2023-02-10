@@ -2,15 +2,19 @@ package com.example.fresaproyecto.fragments
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.interfaces.IComunicaFragments
+import java.net.URI
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,9 +34,15 @@ open class InicioFragment : Fragment() {
     lateinit var cardRegPersonal: CardView
     lateinit var cardRegCultivo: CardView
 
+    lateinit var imgSembrarFuturo: ImageView
+    lateinit var imgMundoMujer: ImageView
+
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
+
+    private var urlSembrarFuturo : String = "https://www.facebook.com/people/Fundaci%C3%B3n-Sembrar-Futuro/100063007820541/"
+    private var urlMundoMujer : String = "https://www.fmm.org.co/"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +71,9 @@ open class InicioFragment : Fragment() {
         cardRegCultivo=vista.findViewById(R.id.cardRegCultivo)
         cardRegPersonal=vista.findViewById(R.id.cardRegPersonal)
 
+        imgSembrarFuturo= vista.findViewById(R.id.imgSembrarFuturo)
+        imgMundoMujer= vista.findViewById(R.id.imgMundoMujer)
+
         eventosMenu()
 
         return vista
@@ -82,6 +95,22 @@ open class InicioFragment : Fragment() {
             override fun onClick(v: View){
                 interfaceComunicaFragments.gestionarPersona()
 
+            }
+        })
+
+        imgSembrarFuturo.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View){
+                var link :Uri = Uri.parse(urlSembrarFuturo)
+                var i: Intent = Intent(Intent.ACTION_VIEW, link)
+                startActivity(i)
+            }
+        })
+
+        imgMundoMujer.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View){
+                var link :Uri = Uri.parse(urlMundoMujer)
+                var i: Intent = Intent(Intent.ACTION_VIEW, link)
+                startActivity(i)
             }
         })
     }

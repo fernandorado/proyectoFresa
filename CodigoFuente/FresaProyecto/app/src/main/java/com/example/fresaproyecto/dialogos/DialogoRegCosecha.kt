@@ -38,6 +38,8 @@ import com.example.fresaproyecto.interfaces.IComunicaFragments
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -56,6 +58,7 @@ class DialogoRegCosecha : DialogFragment() {
     var progreso: ProgressDialog? = null
 
     var contReg: Int = 0
+    var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
 
     lateinit var vista: View
     lateinit var actividad: Activity
@@ -200,7 +203,6 @@ class DialogoRegCosecha : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_dialogo_reg_cosecha, container, false)
         btnGuardar = vista.findViewById(R.id.idBtnGuardar)
@@ -279,7 +281,18 @@ class DialogoRegCosecha : DialogFragment() {
         recyclerCosechaMes = vista.findViewById(R.id.recyclerCosechaRegistros)
         recyclerCosechaMes.layoutManager = LinearLayoutManager(actividad)
         recyclerCosechaMes.setHasFixedSize(true)
-        cosechaPorDia(1, 2023)
+
+        val dateFormat = SimpleDateFormat("MM")
+        val mesActual = dateFormat.format(Date())
+
+        val dateFormatY = SimpleDateFormat("yyyy")
+        val añoActual = dateFormatY.format(Date())
+
+        val dateFormatD = SimpleDateFormat("dd")
+        val diaActual = dateFormatD.format(Date())
+
+        cosechaPorDia(añoActual.toInt(), mesActual.toInt(), diaActual.toInt())
+
         eventosMenu()
         return vista
     }
@@ -288,6 +301,8 @@ class DialogoRegCosecha : DialogFragment() {
         val datePicker =
             DatePickerFragment { day, month, year -> onDateSelected(year, month + 1, day) }
         datePicker.show(parentFragmentManager, "datePicker")
+
+
     }
 
     fun onDateSelected(day: Int, month: Int, year: Int) {
@@ -295,6 +310,8 @@ class DialogoRegCosecha : DialogFragment() {
         dia = day
         mes = month
         año = year
+
+        cosechaPorDia(año, mes, dia)
     }
 
     private fun eventosMenu() {
@@ -989,9 +1006,9 @@ class DialogoRegCosecha : DialogFragment() {
 
     }
 
-    private fun cosechaPorDia(año: Int, mes: Int) {
+    private fun cosechaPorDia(año: Int, mes: Int, dia:Int) {
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
-        Utilidades.consultarCosechaDia(actividad, 1, 2023, 23, 1)
+        Utilidades.consultarCosechaDia(actividad, mes, año, dia, idCultivo)
 
         var miAdaptadorCosecha = AdaptadorCosechaMesCultivo(Utilidades.listaCosechaCultivo!!)
         miAdaptadorCosecha.setOnClickListener(object : View.OnClickListener {
