@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.ImageButton
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.DialogFragment
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.ConexionSQLiteHelper
@@ -45,9 +42,10 @@ class DialogoRegJornal : DialogFragment() {
     lateinit var campoActividad: EditText
     lateinit var campoPrecio: EditText
     lateinit var campoFecha: EditText
-
+    lateinit var actividadSpinner: Spinner
+    var listaActividad: ArrayList<String>? = ArrayList<String>()
     lateinit var adp: ArrayAdapter<*>
-    var concepto: String = "" //Elemento seleccionado del Spinner (Concepto del ingreso)
+
     var dia: Int = 0
     var mes: Int = 0
     var año: Int = 0

@@ -88,6 +88,7 @@ object Utilidades {
     const val CAMPO_PRECIO_INSUMO = "precio_insumo"
     const val CAMPO_CANT_INSUMO = "cant_insumo"
     const val CAMPO_CANT_USADO_INSUMO = "cant_usado"
+    const val CAMPO_UNIDAD_INSUMO = "unidad_insumo"
 
     //Constantes campos tabla cosecha
     const val TABLA_COSECHA = "cosecha"
@@ -135,7 +136,7 @@ object Utilidades {
                 CAMPO_LIBRAS_TERCERA + " INTEGER, " + CAMPO_PRECIO_TERCERA + " INTEGER, " + CAMPO_LIBRAS_CUARTA + " INTEGER, " + CAMPO_PRECIO_CUARTA + " INTEGER, " + CAMPO_LIBRAS_QUINTA + " INTEGER, " + CAMPO_LIBRAS_MADURA + " INTEGER, " + CAMPO_PRECIO_MADURA + " INTEGER, "+ CAMPO_PRECIO_QUINTA + " INTEGER, "+ CAMPO_OBSERVACION_COSECHA + " TEXT, " + CAMPO_IMG_FACTURA + " BLOB, "+ CAMPO_CULTIVO_COSECHA+ " INTEGER REFERENCES " + TABLA_CULTIVO + "("+ CAMPO_ID_CULTIVO+") ON DELETE NO ACTION ON UPDATE CASCADE);"
     const val CREAR_TABLA_INSUMOS =
         //"DROP TABLE" + TABLA_INSUMOS+";" +
-        "CREATE TABLE " + TABLA_INSUMOS + " (" + CAMPO_ID_INSUMO + " INTEGER PRIMARY KEY, " + CAMPO_DIA_INSUMO + " INTEGER, " + CAMPO_MES_INSUMO + " INTEGER, " + CAMPO_AÑO_INSUMO + " INTEGER, " + CAMPO_NOMBRE_INSUMO + " TEXT, " + CAMPO_PRECIO_INSUMO + " INTEGER, " + CAMPO_CANT_INSUMO + " INTEGER, " + CAMPO_CANT_USADO_INSUMO+ " INTEGER, " + CAMPO_CULTIVO_INSUMO+ " INTEGER REFERENCES " + TABLA_CULTIVO + "("+ CAMPO_ID_CULTIVO+") ON DELETE NO ACTION ON UPDATE CASCADE);"
+        "CREATE TABLE " + TABLA_INSUMOS + " (" + CAMPO_ID_INSUMO + " INTEGER PRIMARY KEY, " + CAMPO_DIA_INSUMO + " INTEGER, " + CAMPO_MES_INSUMO + " INTEGER, " + CAMPO_AÑO_INSUMO + " INTEGER, " + CAMPO_NOMBRE_INSUMO + " TEXT, " + CAMPO_PRECIO_INSUMO + " INTEGER, " + CAMPO_CANT_INSUMO + " INTEGER, " + CAMPO_CANT_USADO_INSUMO+ " INTEGER, " + CAMPO_UNIDAD_INSUMO + " TEXT, "+ CAMPO_CULTIVO_INSUMO+ " INTEGER REFERENCES " + TABLA_CULTIVO + "("+ CAMPO_ID_CULTIVO+") ON DELETE NO ACTION ON UPDATE CASCADE);"
 
 
     fun consultarListaPersonas(actividad: Activity) {
@@ -554,7 +555,7 @@ object Utilidades {
         println("Mes Actual: $mesActual")
         println("Año Actual: $añoActual")
 
-        val cursor = db.rawQuery("select dia_insumo, mes_insumo, año_insumo,nombre_insumo, precio_insumo, cant_usado, ((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado)as Gasto_Total\n" +
+        val cursor = db.rawQuery("select dia_insumo, mes_insumo, año_insumo,nombre_insumo, precio_insumo, cant_usado, unidad_insumo, ((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado)as Gasto_Total\n" +
                 "from insumo\n" +
                 "where mes_insumo = "+mes+" and año_insumo= "+año+" and id_cultivo = " + idCultivo, null)
         while (cursor.moveToNext()) {
@@ -568,7 +569,10 @@ object Utilidades {
             insumoCultivo.año= cursor.getInt(2)
             insumoCultivo.nombreInsumo= cursor.getString(3)
             insumoCultivo.precioInsumo= cursor.getInt(4)
-            insumoCultivo.gastoTotalInsumo= cursor.getInt(5)
+            insumoCultivo.cantidadInsumo= cursor.getInt(5)
+            insumoCultivo.unidadInsumo= cursor.getString(6)
+            insumoCultivo.gastoTotalInsumo= cursor.getInt(7)
+
 
             listaInsumoCultivo!!.add(insumoCultivo)
         }

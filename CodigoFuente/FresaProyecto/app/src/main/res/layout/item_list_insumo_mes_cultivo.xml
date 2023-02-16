@@ -20,14 +20,25 @@
             android:layout_margin="5dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtFechaInsumo"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:text="Mes. "
-                android:textSize="12dp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/icon_insumos"/>
+                <TextView
+                    android:id="@+id/txtFechaInsumo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="1dp"
+                    android:text="Mes. "
+                    android:textSize="12dp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"

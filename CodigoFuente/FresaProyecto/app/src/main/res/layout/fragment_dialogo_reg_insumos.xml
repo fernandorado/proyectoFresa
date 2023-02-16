@@ -114,7 +114,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5sp"
-                android:text="Cantidad del producto:"
+                android:text="Cantidad por presentación:"
                 android:textColor="@android:color/black"
                 android:textSize="25sp" />
 
@@ -164,13 +164,6 @@
                 android:textColor="@android:color/black"
                 android:textSize="25sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50sp"
-                android:text="Unidad: "
-                android:textColor="@android:color/black"
-                android:textSize="25sp" />
 
         </LinearLayout>
 
@@ -189,12 +182,6 @@
                 android:hint="0"
                 android:inputType="number" />
 
-            <Spinner
-                android:id="@+id/spinnerUnidadUsada"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="130sp"/>
         </LinearLayout>
 
 

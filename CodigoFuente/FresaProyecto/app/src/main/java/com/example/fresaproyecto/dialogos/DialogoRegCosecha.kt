@@ -270,7 +270,7 @@ class DialogoRegCosecha : DialogFragment() {
         txtMaduraPrecioReg = vista.findViewById(R.id.txtMaduraPrecioReg)
 
         btnCamara = vista.findViewById(R.id.btnCamara)
-        imagenView = vista.findViewById<ImageView>(R.id.imagenView)
+        imagenView = vista.findViewById(R.id.imagenView)
 
         txtTotalReg = vista.findViewById(R.id.txtTotalReg)
 
@@ -822,16 +822,28 @@ class DialogoRegCosecha : DialogFragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
+
             COD_SELECCIONA -> {
-                val miPath: Uri? = data!!.data
-                imagenView.setImageURI(miPath)
-                try {
-                    bitmap =
-                        MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
-                    imagenView.setImageBitmap(bitmap)
-                } catch (e: IOException) {
-                    e.printStackTrace()
+                var ancho: Float = (600).toFloat()
+                var alto: Float = (800).toFloat()
+                var miPath: Uri? = null
+
+                if(data == null){
+                    Toast.makeText(actividad, "¡No has seleccionado una imagen.! ", Toast.LENGTH_SHORT).show()
+                }else{
+                    miPath = data!!.data
+                    imagenView.setImageURI(miPath)
+                    try {
+                        bitmap =
+                            MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
+                        bitmap = redimensionarImagen(bitmap, ancho, alto)
+                        imagenView.setImageBitmap(bitmap)
+
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
                 }
+
             }
             COD_FOTO -> {
                 MediaScannerConnection.scanFile(
@@ -840,10 +852,6 @@ class DialogoRegCosecha : DialogFragment() {
                 bitmap = BitmapFactory.decodeFile(path)
             }
         }
-        var ancho: Float = (600).toFloat()
-        var alto: Float = (800).toFloat()
-        bitmap = redimensionarImagen(bitmap, ancho, alto)
-        imagenView.setImageBitmap(bitmap)
     }
 
     private fun redimensionarImagen(bitmap: Bitmap, anchoNuevo: Float, altoNuevo: Float): Bitmap {

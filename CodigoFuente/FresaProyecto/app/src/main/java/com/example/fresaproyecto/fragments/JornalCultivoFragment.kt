@@ -55,11 +55,11 @@ class JornalCultivoFragment : Fragment() {
         recyclerJornalMes = vista.findViewById(R.id.recyclerJornal)
         recyclerJornalMes.layoutManager = LinearLayoutManager(actividad)
         recyclerJornalMes.setHasFixedSize(true)
-        jornalPorFecha(mes,año)
+        jornalPorFecha()
         return vista
     }
 
-    private fun jornalPorFecha(año : Int, mes : Int){
+    private fun jornalPorFecha(){
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
         Utilidades.consultarJornalesMes(actividad,mes, año, idCultivo)
 

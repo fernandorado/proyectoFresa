@@ -1,10 +1,7 @@
 package com.example.fresaproyecto
 
-import android.content.DialogInterface
 import android.os.Bundle
-import android.view.KeyEvent
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.fresaproyecto.clases.ConexionSQLiteHelper
 import com.example.fresaproyecto.clases.Utilidades
@@ -66,7 +63,7 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         setContentView(R.layout.activity_main);
         val fragmentInicio =  InicioFragment();
 
-        Utilidades.consultarListaPersonas(this)
+        //Utilidades.consultarListaPersonas(this)
 
         val conexion = ConexionSQLiteHelper(this, Utilidades.NOMBRE_BD, null,1)
 

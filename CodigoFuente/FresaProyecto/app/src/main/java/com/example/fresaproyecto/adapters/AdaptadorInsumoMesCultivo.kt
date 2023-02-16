@@ -78,7 +78,7 @@ class AdaptadorInsumoMesCultivo(listaInsumoMesCultivo: List<InsumoCultivoVo>) :
 
         viewHolderMes.txtFecha.setText(listaInsumoMes[i].dia.toString()+ " de "+mesLetras+ " de "+listaInsumoMes[i].año.toString())
         viewHolderMes.txtNombreInsumo.setText(listaInsumoMes[i].nombreInsumo)
-        viewHolderMes.txtCantUsoInsumo.setText(listaInsumoMes[i].cantidadInsumo.toString() + " Insumoes")
+        viewHolderMes.txtCantUsoInsumo.setText(listaInsumoMes[i].cantidadInsumo.toString() + " " + listaInsumoMes[i].unidadInsumo)
         viewHolderMes.txtPrecioInsumo.setText("$"+listaInsumoMes[i].precioInsumo.toString())
         viewHolderMes.txtPrecioInsumoTotal.setText("$"+listaInsumoMes[i].gastoTotalInsumo.toString())
 

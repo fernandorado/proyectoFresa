@@ -44,6 +44,7 @@ class DialogoRegInsumos : DialogFragment() {
     lateinit var campoPrecio: EditText
     lateinit var campoFecha: EditText
     lateinit var unidadSpinner: Spinner
+    lateinit var elemento: String
     var listaUnidad: ArrayList<String>? = ArrayList<String>()
     lateinit var adp: ArrayAdapter<*>
     var dia: Int = 0
@@ -101,7 +102,7 @@ class DialogoRegInsumos : DialogFragment() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val elemento: String = unidadSpinner.adapter.getItem(position) as String
+                elemento= unidadSpinner.adapter.getItem(position) as String
                 Toast.makeText(actividad, "Seleccionaste :\n" + elemento, Toast.LENGTH_LONG).show()
 
             }
@@ -176,6 +177,7 @@ class DialogoRegInsumos : DialogFragment() {
             values.put(Utilidades.CAMPO_CANT_INSUMO, campoCantidad.text.toString())
             values.put(Utilidades.CAMPO_CANT_USADO_INSUMO, campoCantidadUsado.text.toString())
             values.put(Utilidades.CAMPO_PRECIO_INSUMO, campoPrecio.text.toString())
+            values.put(Utilidades.CAMPO_UNIDAD_INSUMO, elemento)
             values.put(Utilidades.CAMPO_CULTIVO_INSUMO, DialogoGesCultivo.cultivoSeleccionado.id)
             val idResultante:Number = db.insert(Utilidades.TABLA_INSUMOS, Utilidades.CAMPO_ID_CULTIVO, values)
 
