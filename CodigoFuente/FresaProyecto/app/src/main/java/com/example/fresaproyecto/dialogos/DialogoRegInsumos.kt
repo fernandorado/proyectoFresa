@@ -36,7 +36,7 @@ class DialogoRegInsumos : DialogFragment() {
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
-    lateinit var fabRegistro: FloatingActionButton
+    lateinit var btnGuardar: Button
     lateinit var fabAtras: ImageButton
     lateinit var campoNombre: EditText
     lateinit var campoCantidad: EditText
@@ -83,7 +83,7 @@ class DialogoRegInsumos : DialogFragment() {
         adp = ArrayAdapter(actividad, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, listaUnidad!!)
 
         vista = inflater.inflate(R.layout.fragment_dialogo_reg_insumos, container, false)
-        fabRegistro = vista.findViewById(R.id.idFabRegistro)
+        btnGuardar = vista.findViewById(R.id.idBtnGuardar)
         campoNombre = vista.findViewById(R.id.campoNombreInsumo)
         campoCantidad = vista.findViewById(R.id.campoCantidad)
         campoCantidadUsado = vista.findViewById(R.id.campoCantidadUsada)
@@ -142,7 +142,7 @@ class DialogoRegInsumos : DialogFragment() {
             }
 
         })
-        fabRegistro.setOnClickListener(object : View.OnClickListener {
+        btnGuardar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
                 registrarInsumo()
@@ -156,7 +156,32 @@ class DialogoRegInsumos : DialogFragment() {
 
 
     private fun registrarInsumo(){
-        if((campoNombre.text.toString()!=null && !campoNombre.text.toString().trim().equals("")) and (campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
+
+        if (campoFecha.text.isEmpty() or campoNombre.text.trim().equals("") or campoPrecio.text.isEmpty() or campoCantidad.text.isEmpty() or campoCantidadUsado.text.isEmpty()){
+            Toast.makeText(actividad, "Verifique que todos los campos esten registrados \n ", Toast.LENGTH_LONG).show()
+
+            if (campoFecha.text.isEmpty()) {
+                campoFecha.setError("Este campo no puede estar vacio")
+            }
+
+            if (campoNombre.text.toString().trim().equals("")) {
+                campoNombre.setError("Este campo no puede estar vacio")
+            }
+
+            if (campoCantidad.text.isEmpty()) {
+                campoCantidad.setError("Este campo no puede estar vacio")
+            }
+
+            if (campoPrecio.text.isEmpty()) {
+                campoPrecio.setError("Este campo no puede estar vacio")
+            }
+
+            if (campoCantidadUsado.text.isEmpty()) {
+                campoCantidadUsado.setError("Este campo no puede estar vacio")
+            }
+
+        }else{
+
             var registro= "Nombre: "+campoNombre.text.toString()+"\n"
             registro +="Cantidad: "+campoPrecio.text.toString()+"\n"
             registro +="Cantidad: "+campoCantidad.text.toString()+"\n"
@@ -170,7 +195,7 @@ class DialogoRegInsumos : DialogFragment() {
 
             //valores para agregar a la tabla de cultivos
             //values.put(Utilidades.CAMPO_ID_CULTIVO, .text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
-            values.put(Utilidades.CAMPO_NOMBRE_INSUMO, campoNombre.text.toString())
+            values.put(Utilidades.CAMPO_NOMBRE_INSUMO, campoNombre.text.toString().trim())
             values.put(Utilidades.CAMPO_DIA_INSUMO, dia)
             values.put(Utilidades.CAMPO_MES_INSUMO, mes)
             values.put(Utilidades.CAMPO_AÑO_INSUMO, año)
@@ -192,15 +217,9 @@ class DialogoRegInsumos : DialogFragment() {
             db.close()
 
             dismiss()
-        }else{
-            if(campoNombre.text.toString().isEmpty()){
-                campoNombre.setError("Este campo no puede quedar vacio")
-            }else if (campoPrecio.text.toString().isEmpty()){
-                campoPrecio.setError("Este campo no puede quedar vacio")
-            }else if(campoCantidad.text.toString().isEmpty()) {
-                campoCantidad.setError("Este campo no puede quedar vacio")
-            }
-            Toast.makeText(actividad, "Verifique que todos los campos esten registrados \n ", Toast.LENGTH_LONG).show()
+
+
+
         }
     }
 

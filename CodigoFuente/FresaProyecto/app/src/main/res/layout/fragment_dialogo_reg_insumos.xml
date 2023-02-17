@@ -187,13 +187,16 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/idFabRegistro"
+    <Button
+        android:id="@+id/idBtnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:drawableLeft="@drawable/ic_confirmacion2"
+        android:backgroundTint="@color/colorSplash"
+        android:text="Guardar"
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
         android:layout_marginBottom="7dp"

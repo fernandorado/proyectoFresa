@@ -36,7 +36,7 @@ class DialogoRegJornal : DialogFragment() {
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
-    lateinit var fabRegistro: FloatingActionButton
+    lateinit var btnGuardar: Button
     lateinit var fabAtras: ImageButton
     lateinit var campoCantidad: EditText
     lateinit var campoActividad: EditText
@@ -45,6 +45,7 @@ class DialogoRegJornal : DialogFragment() {
     lateinit var actividadSpinner: Spinner
     var listaActividad: ArrayList<String>? = ArrayList<String>()
     lateinit var adp: ArrayAdapter<*>
+    lateinit var actividadSelec: String
 
     var dia: Int = 0
     var mes: Int = 0
@@ -74,33 +75,76 @@ class DialogoRegJornal : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Lista de Actividades
+        listaActividad!!.add("Limpieza del lote")
+        listaActividad!!.add("Preparación del terreno y encalado")
+        listaActividad!!.add("Desinfección y elaboración de camas")
+        listaActividad!!.add("Puesta de plástico")
+        listaActividad!!.add("Montaje fertirriego")
+        listaActividad!!.add("Construcción reservorio")
+        listaActividad!!.add("Ahoyado del plástico")
+        listaActividad!!.add("Siembra de plantas")
+        listaActividad!!.add("Resiembra")
+        listaActividad!!.add("Deshierbe/desestolone/desflore/deshoje")
+        listaActividad!!.add("Fumigación plagas y/o enfermedades")
+        listaActividad!!.add("Fertilización foliar")
+        listaActividad!!.add("Fertilización al suelo")
+        listaActividad!!.add("Cosecha")
+        listaActividad!!.add("OTRO")
+
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_dialogo_reg_jornal, container, false)
-        fabRegistro = vista.findViewById(R.id.idFabRegistro)
+        btnGuardar = vista.findViewById(R.id.idBtnGuardar)
         campoFecha = vista.findViewById(R.id.campoFechaJornal)
-        campoFecha.setOnClickListener{ showDatePickerDialog() }
+        campoFecha.setOnClickListener { showDatePickerDialog() }
         campoCantidad = vista.findViewById(R.id.campoCantidadJor)
-        campoActividad = vista.findViewById(R.id.campoActividad)
         campoPrecio = vista.findViewById(R.id.campoPrecio)
+        campoActividad = vista.findViewById(R.id.campoActividadOtro)
         fabAtras = vista.findViewById(R.id.btnIcoAtras)
+        // Spinner Actividad
+        adp = ArrayAdapter(
+            actividad,
+            androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+            listaActividad!!
+        )
+
+        actividadSpinner = vista.findViewById(R.id.spinnerActividad)
+        actividadSpinner.adapter = adp
+        actividadSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                actividadSelec = actividadSpinner.adapter.getItem(position) as String
+                Toast.makeText(actividad, "Seleccionaste :\n" + actividadSelec, Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
         eventosMenu()
 
         return vista
     }
 
     private fun showDatePickerDialog() {
-        val datePicker = DatePickerFragment{day, month, year -> onDateSelected(year, month+1, day)}
+        val datePicker =
+            DatePickerFragment { day, month, year -> onDateSelected(year, month + 1, day) }
         datePicker.show(parentFragmentManager, "datePicker")
     }
 
-    fun onDateSelected (day:Int, month:Int, year:Int){
+    fun onDateSelected(day: Int, month: Int, year: Int) {
         campoFecha.setText("$year-$month-$day")
-        dia=day
-        mes=month
-        año=year
+        dia = day
+        mes = month
+        año = year
     }
 
-    private fun eventosMenu(){
+    private fun eventosMenu() {
         fabAtras.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
@@ -109,7 +153,7 @@ class DialogoRegJornal : DialogFragment() {
             }
 
         })
-        fabRegistro.setOnClickListener(object : View.OnClickListener {
+        btnGuardar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
                 registrarJornal()
@@ -119,15 +163,32 @@ class DialogoRegJornal : DialogFragment() {
     }
 
 
-    private fun registrarJornal(){
-        if((campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
-            var registro= "Cantidad: "+campoCantidad.text.toString()+"\n"
-            registro +="Precio: "+campoPrecio.text.toString()+"\n"
-            print("Registrar:  "+registro)
-            Toast.makeText(actividad, "REGISTRAR:\n"+registro, Toast.LENGTH_LONG).show()
-            //La linea sigueinte deberia ir dentro de un IF que verifique si la consulta SQL es correcta
+    private fun registrarJornal() {
+        if (campoFecha.text.isEmpty() or campoCantidad.text.isEmpty() or campoPrecio.text.isEmpty() or ((actividadSelec == "OTRO") and (campoActividad.text.toString().trim().equals("")))
+        ) {
+            Toast.makeText(
+                actividad,
+                "Verifique que todos los campos esten registrados \n ",
+                Toast.LENGTH_SHORT
+            ).show()
+            if (campoFecha.text.isEmpty()) {
+                campoFecha.setError("Este campo no puede estar vacio")
+            }
 
-            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null,1)
+            if (campoCantidad.text.isEmpty()) {
+                campoCantidad.setError("Este campo no puede estar vacio")
+            }
+
+            if (campoPrecio.text.isEmpty()) {
+                campoPrecio.setError("Este campo no puede estar vacio")
+            }
+
+            if ((actividadSelec == "OTRO") and (campoActividad.text.toString().trim().equals(""))) {
+                campoActividad.setError("Este campo no puede quedar vacio")
+            }
+        } else {
+
+            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
             val db: SQLiteDatabase = conexion.writableDatabase
             val values = ContentValues()
 
@@ -137,29 +198,29 @@ class DialogoRegJornal : DialogFragment() {
             values.put(Utilidades.CAMPO_MES_JORNAL, mes)
             values.put(Utilidades.CAMPO_AÑO_JORNAL, año)
             values.put(Utilidades.CAMPO_CANT_JORNAL, campoCantidad.text.toString())
-            values.put(Utilidades.CAMPO_ACTV_JORNAL, campoActividad.text.toString())
+            if (actividadSelec == "OTRO") {
+                values.put(Utilidades.CAMPO_ACTV_JORNAL, campoActividad.text.toString().trim())
+            } else {
+                values.put(Utilidades.CAMPO_ACTV_JORNAL, actividadSelec)
+            }
             values.put(Utilidades.CAMPO_PRECIO_JORNAL, campoPrecio.text.toString())
             values.put(Utilidades.CAMPO_CULTIVO_JORNAL, DialogoGesCultivo.cultivoSeleccionado.id)
-            val idResultante:Number = db.insert(Utilidades.TABLA_JORNAL, Utilidades.CAMPO_ID_JORNAL, values)
+            val idResultante: Number =
+                db.insert(Utilidades.TABLA_JORNAL, Utilidades.CAMPO_ID_JORNAL, values)
 
-            if(idResultante != -1){
-                println("Registrar: " +registro)
-                Toast.makeText(actividad, "¡Registro Éxitoso! " +registro, Toast.LENGTH_SHORT).show()
+            if (idResultante != -1) {
+                Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT)
+                    .show()
                 //Utilidades.calcularBeneficioCultivo(actividad)
 
-            }else{
-                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
+                    .show()
             }
             db.close()
 
             dismiss()
-        }else{
-            if(campoCantidad.text.toString().isEmpty()){
-                campoCantidad.setError("Este campo no puede quedar vacio")
-            }else if (campoPrecio.text.toString().isEmpty()){
-                campoPrecio.setError("Este campo no puede quedar vacio")
-            }
-            Toast.makeText(actividad, "Verifique que todos los campos esten registrados \n ", Toast.LENGTH_LONG).show()
+
         }
     }
 

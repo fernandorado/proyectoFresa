@@ -949,22 +949,6 @@ class DialogoRegCosecha : DialogFragment() {
         progreso = ProgressDialog(getContext())
         progreso!!.setMessage("Cargando...")
 
-
-        //if((campoCantidad.text.toString()!=null && !campoCantidad.text.toString().trim().equals("")) and (campoPrecio.text.toString()!=null && !campoPrecio.text.toString().trim().equals(""))){
-
-        /*var registro= "Extra: "+campoLibrasExtra.text.toString()+ "   Precio: "+ campoPrecioExtra.text.toString() +"\n"
-        registro += "Primera: "+campoLibrasPrimera.text.toString()+ "   Precio: "+ campoPrecioPrimera.text.toString() +"\n"
-        registro += "Segunda: "+campoLibrasSegunda.text.toString()+ "   Precio: "+ campoPrecioSegunda.text.toString() +"\n"
-        registro += "Tercera: "+campoLibrasTercera.text.toString()+ "   Precio: "+ campoPrecioTercera.text.toString() +"\n"
-        registro += "Cuarta: "+campoLibrasCuarta.text.toString()+ "   Precio: "+ campoPrecioCuarta.text.toString() +"\n"
-        registro += "Quinta: "+campoLibrasQuinta.text.toString()+ "   Precio: "+ campoPrecioQuinta.text.toString() +"\n"
-        registro += "Madura FF: "+campoLibrasMadura.text.toString()+ "   Precio: "+ campoPrecioMadura.text.toString() +"\n"
-
-        print("Registrar:  "+registro)
-        Toast.makeText(actividad, "REGISTRAR:\n"+registro, Toast.LENGTH_LONG).show()
-
-         */
-        //La linea sigueinte deberia ir dentro de un IF que verifique si la consulta SQL es correcta
         progreso!!.show()
         //conexion con la base de datos
         val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
@@ -990,7 +974,7 @@ class DialogoRegCosecha : DialogFragment() {
         values.put(Utilidades.CAMPO_PRECIO_QUINTA, campoPrecioQuinta.text.toString())
         values.put(Utilidades.CAMPO_LIBRAS_MADURA, campoLibrasMadura.text.toString())
         values.put(Utilidades.CAMPO_PRECIO_MADURA, campoPrecioMadura.text.toString())
-        values.put(Utilidades.CAMPO_OBSERVACION_COSECHA, campoObservacion.text.toString())
+        values.put(Utilidades.CAMPO_OBSERVACION_COSECHA, campoObservacion.text.toString().trim())
         values.put(Utilidades.CAMPO_CULTIVO_COSECHA, DialogoGesCultivo.cultivoSeleccionado.id)
         var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)

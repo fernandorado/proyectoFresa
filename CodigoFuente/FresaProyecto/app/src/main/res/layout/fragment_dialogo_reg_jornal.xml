@@ -68,9 +68,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:hint="Seleccione la Fecha"
             android:clickable="false"
-            android:focusable="false"/>
+            android:focusable="false"
+            android:hint="Seleccione la Fecha" />
 
         <TextView
             android:layout_width="match_parent"
@@ -89,20 +89,42 @@
             android:hint="0"
             android:inputType="number" />
 
-        <TextView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5sp"
-            android:text="Actividad"
-            android:textColor="@android:color/black"
-            android:textSize="25sp" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/campoActividad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Digite la Actividad"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:text="Actividad"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrisClaro" />
+
+                <Spinner
+                    android:id="@+id/spinnerActividad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <EditText
+                    android:id="@+id/campoActividadOtro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Actividad" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:layout_width="match_parent"
@@ -123,13 +145,16 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/idFabRegistro"
+    <Button
+        android:id="@+id/idBtnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:drawableLeft="@drawable/ic_confirmacion2"
+        android:backgroundTint="@color/colorSplash"
+        android:text="Guardar"
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
         android:layout_marginBottom="7dp"
