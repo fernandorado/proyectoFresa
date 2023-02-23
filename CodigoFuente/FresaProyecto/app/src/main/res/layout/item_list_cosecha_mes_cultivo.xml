@@ -49,10 +49,9 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
-                    android:text= "@string/VerFact"
-                    android:textIsSelectable="true"
-                    android:textStyle="italic"
-                    android:textColor="#0099CC"/>
+                    android:text="@string/VerFact"
+                    android:textColor="#0099CC"
+                    android:textStyle="italic" />
 
             </RelativeLayout>
 

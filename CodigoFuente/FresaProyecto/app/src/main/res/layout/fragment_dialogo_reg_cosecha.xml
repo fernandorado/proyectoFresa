@@ -1,971 +1,1103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dialogos.DialogoRegCosecha"
-    android:background="@drawable/fondogeneral">
+    android:background="@drawable/fondogeneral"
+    tools:context=".dialogos.DialogoRegCosecha">
 
     <!-- TODO: Update blank fragment layout -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#3fff">
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/idLayoutFondo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorSplash"
+            android:elevation="8dp">
+
+            <ImageView
+                android:id="@+id/im"
+                android:layout_width="60dp"
+                android:layout_height="49dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="52dp"
+                android:layout_marginLeft="52dp"
+                android:src="@drawable/icono" />
+
+            <ImageButton
+                android:id="@+id/btnIcoAtras"
+                android:layout_width="50dp"
+                android:layout_height="49dp"
+                android:background="@color/colorSplash"
+                android:src="@drawable/ic_cerrar" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/idLayoutFondo"
-                android:layout_width="match_parent"
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorSplash"
-                android:elevation="8dp">
+                android:layout_gravity="center"
+                app:cardCornerRadius="300dp">
 
                 <ImageView
-                    android:id="@+id/im"
-                    android:layout_width="60dp"
-                    android:layout_height="49dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="52dp"
-                    android:layout_marginLeft="52dp"
-                    android:src="@drawable/icono" />
-
-                <ImageButton
-                    android:id="@+id/btnIcoAtras"
-                    android:layout_width="50dp"
-                    android:layout_height="49dp"
-                    android:background="@color/colorSplash"
-                    android:src="@drawable/ic_cerrar" />
-
-            </RelativeLayout>
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/cosecha" />
+            </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp">
+                android:alpha="0.9"
+                android:gravity="center"
+                android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="300dp">
-                    <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:src="@drawable/cosecha"/>
-                </androidx.cardview.widget.CardView>
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/stylo_fondo_borde"
+                    android:backgroundTint="@color/white"
+                    android:text="REGISTRO DE COSECHA"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:alpha="0.9"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:background="@drawable/stylo_fondo_borde"
+                    android:backgroundTint="@color/colorSplash"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5sp"
-                        android:layout_marginBottom="5sp"
-                        android:textColor="@color/black"
-                        android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/white"
-                        android:textStyle="bold"
-                        android:textSize="25dp"
-                        android:text="REGISTRO DE COSECHA" />
+                        android:text="Fecha: "
+                        android:textColor="@android:color/black" />
 
                     <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorGrisClaro" />
+
+                    <EditText
+                        android:id="@+id/campoFechaCosecha"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorSplash"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5sp"
-                            android:text="Fecha: "
-                            android:textColor="@android:color/black" />
-
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorGrisClaro"/>
-
-                        <EditText
-                            android:id="@+id/campoFechaCosecha"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Seleccione la Fecha"
-                            android:clickable="false"
-                            android:focusable="false"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorSplash"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5sp"
-                            android:text="Libras Recogidas por Calidad: "
-                            android:textColor="@android:color/black" />
-
-                        <GridLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="4dp"
-                            android:columnCount="4"
-                            android:rowCount="2">
-                            <Button
-                                android:id="@+id/btnExtra"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Extra"
-                                android:textColor="@color/black"
-                                android:backgroundTint="@color/colorGrisClaro"/>
-                            <Button
-                                android:id="@+id/btnPrimera"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Primera"
-                                android:textColor="@color/black"
-                                android:backgroundTint="@color/colorGrisClaro"/>
-                            <Button
-                                android:id="@+id/btnSegunda"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Segunda"
-                                android:textColor="@color/black"
-                                android:backgroundTint="@color/colorGrisClaro"/>
-                            <Button
-                                android:id="@+id/btnTercera"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Tercera"
-                                android:textColor="@color/black"
-                                android:backgroundTint="@color/colorGrisClaro"/>
-                            <Button
-                                android:id="@+id/btnCuarta"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Cuarta"
-                                android:textColor="@color/black"
-                                android:backgroundTint="@color/colorGrisClaro"/>
-
-                            <Button
-                                android:id="@+id/btnQuinta"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Quinta"
-                                android:textColor="@color/black"
-                                android:backgroundTint="@color/colorGrisClaro"/>
-                            <Button
-                                android:id="@+id/btnMadura"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:text="Madura FF"
-                                android:textColor="@color/black"
-                                android:backgroundTint="@color/colorGrisClaro"/>
-
-                        </GridLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layoutExtra"
-                            android:visibility="gone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Extra: "
-                                android:textColor="@android:color/black" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Libras: "
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoCantExtra"
-                                    android:layout_width="80dp"
-                                    android:layout_height="wrap_content"
-                                    android:hint="0"
-                                    android:inputType="number" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Precio:"
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoPrecioExtra"
-                                    android:layout_width="80dp"
-                                    android:layout_height="wrap_content"
-                                    android:hint="0"
-                                    android:inputType="number"/>
-                                <Button
-                                    android:id="@+id/btnOkExtra"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:text="Siguiente"/>
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layoutPrimera"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:visibility="gone">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Primera: "
-                                android:textColor="@android:color/black" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Libras: "
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoCantPrimera"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:hint="0"
-                                    android:inputType="number" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Precio:"
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoPrecioPrimera"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:hint="0"
-                                    android:inputType="number"/>
-                                <Button
-                                    android:id="@+id/btnOkPrimera"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:text="Siguiente"/>
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layoutSegunda"
-                            android:visibility="gone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Segunda: "
-                                android:textColor="@android:color/black" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Libras: "
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoCantSegunda"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="0"
-                                    android:inputType="number" />
-
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Precio:"
-                                    android:textColor="@android:color/black"/>
-
-                                <EditText
-                                    android:id="@+id/campoPrecioSegunda"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="0"
-                                    android:inputType="number"/>
-                                <Button
-                                    android:id="@+id/btnOkSegunda"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:text="Siguiente"/>
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layoutTercera"
-                            android:visibility="gone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Tercera "
-                                android:textColor="@android:color/black" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Libras: "
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoCantTercera"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="0"
-                                    android:inputType="number" />
-
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Precio:"
-                                    android:textColor="@android:color/black"
-                                    />
-
-                                <EditText
-                                    android:id="@+id/campoPrecioTercera"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:hint="0"
-                                    android:inputType="number"/>
-                                <Button
-                                    android:id="@+id/btnOkTercera"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:text="Siguiente"/>
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layoutCuarta"
-                            android:visibility="gone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Cuarta "
-                                android:textColor="@android:color/black" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Libras: "
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoCantCuarta"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="0"
-                                    android:inputType="number" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Precio:"
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoPrecioCuarta"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="0"
-                                    android:inputType="number"/>
-                                <Button
-                                    android:id="@+id/btnOkCuarta"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:text="Siguiente"/>
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/layoutQuinta"
-                            android:visibility="gone"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Quinta "
-                                android:textColor="@android:color/black" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Libras: "
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoCantQuinta"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="0"
-                                    android:inputType="number" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Precio:"
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoPrecioQuinta"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="0"
-                                    android:inputType="number"/>
-                                <Button
-                                    android:id="@+id/btnOkQuinta"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:text="Siguiente"/>
-
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:id="@+id/layoutMadura"
-                            android:visibility="gone"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Madura FF"
-                                android:textColor="@android:color/black" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Libras: "
-                                    android:textColor="@android:color/black" />
-
-                                <EditText
-                                    android:id="@+id/campoCantMaduraFF"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="0"
-                                    android:inputType="number" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5sp"
-                                    android:text="Precio:"
-                                    android:textColor="@android:color/black"/>
-
-                                <EditText
-                                    android:id="@+id/campoPrecioMaduraFF"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-
-                                    android:hint="0"
-                                    android:inputType="number"/>
-
-                                <Button
-                                    android:id="@+id/btnOkMadura"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="25dp"
-                                    android:text="Finalizar"/>
-
-                            </LinearLayout>
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorSplash"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginBottom="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5sp"
-                            android:text="Observación: "
-                            android:textColor="@android:color/black" />
-
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorGrisClaro"/>
-
-                        <EditText
-                            android:id="@+id/campoObservacion"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Observación"/>
-
-                    </LinearLayout>
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:hint="Seleccione la Fecha" />
 
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardListaReg"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_marginLeft="36dp"
-                android:layout_marginRight="36dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="6dp"
-                    android:layout_marginLeft="6dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/stylo_fondo_borde"
+                    android:backgroundTint="@color/colorSplash"
                     android:orientation="vertical">
 
-                    <RelativeLayout
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:text="Libras Recogidas por Calidad: "
+                        android:textColor="@android:color/black" />
+
+                    <GridLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@color/colorGrisClaro">
+                        android:columnCount="4"
+                        android:padding="4dp"
+                        android:rowCount="2">
 
-                        <TextView
+                        <Button
+                            android:id="@+id/btnExtra"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Calidad"
-                            android:layout_marginLeft="15dp"
-                            android:textStyle="bold"
-                            android:layout_alignParentLeft="true"/>
+                            android:backgroundTint="@color/colorGrisClaro"
+                            android:text="Extra"
+                            android:textColor="@color/black" />
 
-                        <TextView
+                        <Button
+                            android:id="@+id/btnPrimera"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Libras"
-                            android:textStyle="bold"
-                            android:layout_centerInParent="true"/>
+                            android:layout_marginLeft="10dp"
+                            android:backgroundTint="@color/colorGrisClaro"
+                            android:text="Primera"
+                            android:textColor="@color/black" />
 
-                        <TextView
+                        <Button
+                            android:id="@+id/btnSegunda"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Precio"
-                            android:textStyle="bold"
-                            android:layout_marginRight="15dp"
-                            android:layout_alignParentRight="true"/>
+                            android:layout_marginLeft="10dp"
+                            android:backgroundTint="@color/colorGrisClaro"
+                            android:text="Segunda"
+                            android:textColor="@color/black" />
 
-                    </RelativeLayout>
+                        <Button
+                            android:id="@+id/btnTercera"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:backgroundTint="@color/colorGrisClaro"
+                            android:text="Tercera"
+                            android:textColor="@color/black" />
+
+                        <Button
+                            android:id="@+id/btnCuarta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/colorGrisClaro"
+                            android:text="Cuarta"
+                            android:textColor="@color/black" />
+
+                        <Button
+                            android:id="@+id/btnQuinta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:backgroundTint="@color/colorGrisClaro"
+                            android:text="Quinta"
+                            android:textColor="@color/black" />
+
+                        <Button
+                            android:id="@+id/btnMadura"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:backgroundTint="@color/colorGrisClaro"
+                            android:text="Madura FF"
+                            android:textColor="@color/black" />
+
+                    </GridLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutExtra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="EXTRA "
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorGrisClaro" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Libras: "
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoCantExtra"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Precio:"
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoPrecioExtra"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <Button
+                                android:id="@+id/btnOkExtra"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:backgroundTint="@color/colorNaranja"
+                                android:text="Siguiente"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutPrimera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="PRIMERA "
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorGrisClaro" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Libras: "
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoCantPrimera"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Precio:"
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoPrecioPrimera"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <Button
+                                android:id="@+id/btnOkPrimera"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:backgroundTint="@color/colorNaranja"
+                                android:text="Siguiente"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutSegunda"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="SEGUNDA "
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorGrisClaro" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Libras: "
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoCantSegunda"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Precio:"
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoPrecioSegunda"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <Button
+                                android:id="@+id/btnOkSegunda"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:backgroundTint="@color/colorNaranja"
+                                android:text="Siguiente"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTercera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="TERCERA "
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorGrisClaro" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Libras: "
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoCantTercera"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Precio:"
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoPrecioTercera"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <Button
+                                android:id="@+id/btnOkTercera"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:backgroundTint="@color/colorNaranja"
+                                android:text="Siguiente"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutCuarta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="CUARTA "
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorGrisClaro" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Libras: "
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoCantCuarta"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Precio:"
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoPrecioCuarta"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <Button
+                                android:id="@+id/btnOkCuarta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:backgroundTint="@color/colorNaranja"
+                                android:text="Siguiente"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutQuinta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="QUINTA "
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorGrisClaro" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Libras: "
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoCantQuinta"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Precio:"
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoPrecioQuinta"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <Button
+                                android:id="@+id/btnOkQuinta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:backgroundTint="@color/colorNaranja"
+                                android:text="Siguiente"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutMadura"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="MADURA FF"
+                            android:textColor="@android:color/black" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorGrisClaro" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Libras: "
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoCantMaduraFF"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="Precio:"
+                                android:textColor="@android:color/black" />
+
+                            <EditText
+                                android:id="@+id/campoPrecioMaduraFF"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:hint="0"
+                                android:inputType="number" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <Button
+                                android:id="@+id/btnOkMadura"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="25dp"
+                                android:backgroundTint="@color/colorNaranja"
+                                android:text="Finalizar"
+                                android:textColor="@color/black" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/stylo_fondo_borde"
+                    android:backgroundTint="@color/colorSplash"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:text="Observación: "
+                        android:textColor="@android:color/black" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorGrisClaro" />
+
+                    <EditText
+                        android:id="@+id/campoObservacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Observación" />
+
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardListaReg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginRight="36dp"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorGrisClaro"/>
-
-                    <RelativeLayout
-                        android:id="@+id/layoutExtraReg"
-                        android:visibility="gone"
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginRight="6dp"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:background="@color/colorGrisClaro">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="Calidad"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Libras"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:text="Precio"
+                                android:textStyle="bold" />
+
+                        </RelativeLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/colorGrisClaro" />
+
+                        <RelativeLayout
+                            android:id="@+id/layoutExtraReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/txtExtraReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="Extra" />
+
+                            <TextView
+                                android:id="@+id/txtExtraLibraReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Libras" />
+
+                            <TextView
+                                android:id="@+id/txtExtraPrecioReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:text="Precio" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutPrimeraReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:id="@+id/txtPrimeraReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="Primera" />
+
+                            <TextView
+                                android:id="@+id/txtPrimeraLibraReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Libras" />
+
+                            <TextView
+                                android:id="@+id/txtPrimeraPrecioReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:text="Precio" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutSegundaReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="Segunda" />
+
+                            <TextView
+                                android:id="@+id/txtSegundaLibraReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Libras" />
+
+                            <TextView
+                                android:id="@+id/txtSegundaPrecioReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:text="Precio" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutTerceraReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="Tercera" />
+
+                            <TextView
+                                android:id="@+id/txtTerceraLibraReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Libras" />
+
+                            <TextView
+                                android:id="@+id/txtTerceraPrecioReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:text="Precio" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutCuartaReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="Cuarta" />
+
+                            <TextView
+                                android:id="@+id/txtCuartaLibraReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Libras" />
+
+                            <TextView
+                                android:id="@+id/txtCuartaPrecioReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:text="Precio" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutQuintaReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="Quinta" />
+
+                            <TextView
+                                android:id="@+id/txtQuintaLibraReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Libras" />
+
+                            <TextView
+                                android:id="@+id/txtQuintaPrecioReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:text="Precio" />
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/layoutMaduraReg"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginRight="16dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_marginLeft="15dp"
+                                android:text="Madura FF" />
+
+                            <TextView
+                                android:id="@+id/txtMaduraLibraReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:text="Libras" />
+
+                            <TextView
+                                android:id="@+id/txtMaduraPrecioReg"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginRight="15dp"
+                                android:text="Precio" />
+
+                        </RelativeLayout>
 
                         <TextView
-                            android:id="@+id/txtExtraReg"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/txtTotalReg"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="15dp"
-                            android:text="Extra"
-                            android:layout_alignParentLeft="true"/>
-
-                        <TextView
-                            android:id="@+id/txtExtraLibraReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Libras"
-                            android:layout_centerInParent="true"/>
-
-                        <TextView
-                            android:id="@+id/txtExtraPrecioReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_marginRight="15dp"
-                            android:text="Precio"
-                            android:layout_alignParentRight="true"/>
+                            android:background="@color/colorAzul"
+                            android:gravity="right"
+                            android:text="$0" />
 
-                    </RelativeLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                    <RelativeLayout
-                        android:id="@+id/layoutPrimeraReg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
+                <Button
+                    android:id="@+id/btnCamara"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/colorRojo"
+                    android:drawableLeft="@drawable/ic_camara"
+                    android:text="Tomar Foto" />
 
-                        <TextView
-                            android:id="@+id/txtPrimeraReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="Primera"
-                            android:layout_alignParentLeft="true"/>
+                <TextView
+                    android:id="@+id/txtVerFoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/VerImg"
+                    android:textColor="@color/colorRojo"
+                    android:textStyle="italic"/>
 
-                        <TextView
-                            android:id="@+id/txtPrimeraLibraReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Libras"
-                            android:layout_centerInParent="true"/>
+                <ImageView
+                    android:id="@+id/imagenView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
 
-                        <TextView
-                            android:id="@+id/txtPrimeraPrecioReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="Precio"
-                            android:layout_alignParentRight="true"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/layoutSegundaReg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="Segunda"
-                            android:layout_alignParentLeft="true"/>
-
-                        <TextView
-                            android:id="@+id/txtSegundaLibraReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Libras"
-                            android:layout_centerInParent="true"/>
-
-                        <TextView
-                            android:id="@+id/txtSegundaPrecioReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="Precio"
-                            android:layout_alignParentRight="true"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/layoutTerceraReg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:visibility="gone"
-                        android:layout_marginRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="Tercera"
-                            android:layout_alignParentLeft="true"/>
-
-                        <TextView
-                            android:id="@+id/txtTerceraLibraReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Libras"
-                            android:layout_centerInParent="true"/>
-
-                        <TextView
-                            android:id="@+id/txtTerceraPrecioReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="Precio"
-                            android:layout_alignParentRight="true"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/layoutCuartaReg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="Cuarta"
-                            android:layout_alignParentLeft="true"/>
-
-                        <TextView
-                            android:id="@+id/txtCuartaLibraReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Libras"
-                            android:layout_centerInParent="true"/>
-
-                        <TextView
-                            android:id="@+id/txtCuartaPrecioReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="Precio"
-                            android:layout_alignParentRight="true"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/layoutQuintaReg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="15dp"
-                            android:text="Quinta"
-                            android:layout_alignParentLeft="true"/>
-
-                        <TextView
-                            android:id="@+id/txtQuintaLibraReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="Libras" />
-
-                        <TextView
-                            android:id="@+id/txtQuintaPrecioReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="Precio"
-                            android:layout_alignParentRight="true"/>
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/layoutMaduraReg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Madura FF"
-                            android:layout_marginLeft="15dp"
-                            android:layout_alignParentLeft="true"/>
-
-                        <TextView
-                            android:id="@+id/txtMaduraLibraReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:text="Libras"/>
-
-                        <TextView
-                            android:id="@+id/txtMaduraPrecioReg"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
-                            android:text="Precio"
-                            android:layout_alignParentRight="true"/>
-
-                    </RelativeLayout>
-
-                    <TextView
-                        android:id="@+id/txtTotalReg"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="right"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginLeft="15dp"
-                        android:background="@color/colorAzul"
-                        android:text="$0"/>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <Button
-                android:id="@+id/btnCamara"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="Guardar"
-                android:drawableLeft="@drawable/ic_camara"
-                android:backgroundTint="@color/colorRojo"/>
-
-            <ImageView
-                android:id="@+id/imagenView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardCosechaRegistros"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerCosechaRegistros"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardCosechaRegistros"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
 
-            </androidx.cardview.widget.CardView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerCosechaRegistros"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/idBtnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:drawableLeft="@drawable/ic_confirmacion2"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/colorSplash"
-        android:text="Guardar"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginBottom="7dp"
-        android:src="@drawable/ic_confirmacion2" />
+        android:drawableLeft="@drawable/ic_confirmacion2"
+        android:src="@drawable/ic_confirmacion2"
+        android:text="Guardar" />
 
 </RelativeLayout>

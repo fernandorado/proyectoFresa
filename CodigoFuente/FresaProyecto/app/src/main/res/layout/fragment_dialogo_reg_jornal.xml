@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dialogos.DialogoRegJornal">
+    tools:context=".dialogos.DialogoRegJornal"
+    android:background="@drawable/fondogeneral">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -39,143 +40,171 @@
 
         </RelativeLayout>
 
-        <ImageView
-            android:layout_width="242dp"
-            android:layout_height="227dp"
-            android:layout_gravity="center"
-            android:src="@drawable/jornal"></ImageView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5sp"
-            android:gravity="center"
-
-            android:text="Registro de Jornal"
-            android:textColor="@android:color/black"
-            android:textSize="35sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5sp"
-
-            android:text="Fecha: "
-            android:textColor="@android:color/black"
-            android:textSize="25sp" />
-
-        <EditText
-            android:id="@+id/campoFechaJornal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:clickable="false"
-            android:focusable="false"
-            android:hint="Seleccione la Fecha" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5sp"
-
-            android:text="¿Cuántos Jornales Uso Hoy? "
-            android:textColor="@android:color/black"
-            android:textSize="25sp" />
-
-        <EditText
-            android:id="@+id/campoCantidadJor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="0"
-            android:inputType="number" />
-
         <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:cardCornerRadius="20dp">
+
+            <ImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@drawable/jornal" />
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="15dp">
+            android:alpha="0.9"
+            android:gravity="center"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:layout_marginBottom="5sp"
+                android:background="@drawable/stylo_fondo_borde"
+                android:backgroundTint="@color/white"
+                android:text="REGISTRO DE JORNAL"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                >
+                android:background="@drawable/stylo_fondo_borde"
+                android:backgroundTint="@color/colorSplash"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_row="0"
-                    android:layout_column="0"
-                    android:layout_gravity="center"
-                    android:text="Actividad"
-                    android:textColor="@android:color/black"
-                    android:textSize="25sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_marginLeft="5sp"
+                    android:text="Fecha: "
+                    android:textSize="20dp"
+                    android:textColor="@android:color/black" />
 
                 <LinearLayout
-                    android:id="@+id/linearLayout3"
                     android:layout_width="1dp"
-                    android:layout_height="40dp"
-                    android:background="@color/colorGrisClaro"
-                    android:orientation="vertical"
-                    app:layout_constraintStart_toEndOf="@+id/textView3"
-                    tools:layout_editor_absoluteY="2dp" />
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrisClaro" />
+
+                <EditText
+                    android:id="@+id/campoFechaJornal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:hint="Seleccione la Fecha" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/stylo_fondo_borde"
+                android:backgroundTint="@color/colorSplash"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jornales de hoy: "
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrisClaro"/>
+
+                <EditText
+                    android:id="@+id/campoCantidadJor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="0"
+                    android:inputType="number" />
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/stylo_fondo_borde"
+                android:backgroundTint="@color/colorSplash"
+                android:layout_marginTop="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Actividad: "
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorGrisClaro" />
 
                 <Spinner
                     android:id="@+id/spinnerActividad"
                     android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/linearLayout3"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="wrap_content" />
 
                 <LinearLayout
-                    android:id="@+id/layoutActividad"
+                    android:id="@+id/actividadLinearLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/spinnerActividad"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="1dp"
-                        android:layout_height="40dp"
-                        android:background="@color/colorGrisClaro"
-                        android:orientation="vertical" />
+                        android:layout_height="match_parent"
+                        android:background="@color/colorGrisClaro" />
 
                     <EditText
                         android:id="@+id/campoActividadOtro"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Actividad"
-                        android:visibility="visible" />
+                        android:hint="Actividad"/>
                 </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/stylo_fondo_borde"
+                android:backgroundTint="@color/colorSplash"
+                android:layout_marginTop="5dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5sp"
-            android:text="Precio del Jornal"
-            android:textColor="@android:color/black"
-            android:textSize="25sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:text="Precio del Jornal:"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/campoPrecio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="0"
-            android:inputType="number" />
+                <EditText
+                    android:id="@+id/campoPrecio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="$0"
+                    android:inputType="number" />
 
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -183,12 +212,8 @@
         android:id="@+id/idBtnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="7dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginBottom="7dp"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/colorSplash"
         android:drawableLeft="@drawable/ic_confirmacion2"
         android:src="@drawable/ic_confirmacion2"

@@ -79,7 +79,6 @@ class DialogoRegCultivo : DialogFragment() {
         }
     }
 
-
     /**
      * Here we define the methods that we can fire off
      * in our parent Activity once something has changed

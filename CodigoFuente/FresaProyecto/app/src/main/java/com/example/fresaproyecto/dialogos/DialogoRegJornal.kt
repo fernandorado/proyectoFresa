@@ -42,6 +42,7 @@ class DialogoRegJornal : DialogFragment() {
     lateinit var campoActividad: EditText
     lateinit var campoPrecio: EditText
     lateinit var campoFecha: EditText
+    lateinit var actividadLinearLayout: LinearLayout
     lateinit var actividadSpinner: Spinner
     var listaActividad: ArrayList<String>? = ArrayList<String>()
     lateinit var adp: ArrayAdapter<*>
@@ -124,10 +125,15 @@ class DialogoRegJornal : DialogFragment() {
                 actividadSelec = actividadSpinner.adapter.getItem(position) as String
                 Toast.makeText(actividad, "Seleccionaste :\n" + actividadSelec, Toast.LENGTH_LONG)
                     .show()
+                if(actividadSelec == "OTRO"){
+                    actividadLinearLayout.visibility = View.VISIBLE
+                }else{
+                    actividadLinearLayout.visibility = View.GONE
+                }
             }
         }
+        actividadLinearLayout = vista.findViewById(R.id.actividadLinearLayout)
         eventosMenu()
-
         return vista
     }
 

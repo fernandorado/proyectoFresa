@@ -18,9 +18,6 @@ import kotlin.collections.ArrayList
 object Utilidades {
     var listaPersonas: ArrayList<PersonaVo>? = null
     var listaCultivos: ArrayList<CultivoVo>? = null
-    var listaGastoIsumos: ArrayList<GastoInsumoCultivoVo>? = null
-    var listaGastoJornales: ArrayList<GastoJornalCultivoVo>? = null
-    var listaIngresoCosecha: ArrayList<IngresoCosechaCultivoVo>? = null
     var listaIngresoPersonal: ArrayList<IngresoPersonalVo>? = null
     var listaGastoPersonal: ArrayList<GastoPersonalVo>? = null
     var listaBeneficioPersonal: ArrayList<BeneficioPersonalVo>? = null
@@ -28,9 +25,6 @@ object Utilidades {
     var listaJornalCultivo: ArrayList<JornalCultivoVo>? = null
     var listaInsumoCultivo: ArrayList<InsumoCultivoVo>? = null
     var listaCosechaCultivo: ArrayList<CosechaCultivoVo>? = null
-
-    var año1 = InformeCultivoFragment.añoSeleccionado
-    var mes1 = InformeCultivoFragment.mesSeleccionado
 
     const val NOMBRE_BD = "fresa_bd"
 
@@ -649,7 +643,7 @@ object Utilidades {
         println("Año Actual: $añoActual")
 
         val cursor = db.rawQuery("select dia_cosecha, mes_cosecha, año_cosecha,libras_extra Extra, libras_primera Primera,libras_segunda Segunda, libras_tercera Tercera, libras_cuarta Cuarta, libras_quinta Quinta,libras_madura Madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta,\n" +
-                "precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha\n" +
+                "precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha, img_factura\n" +
                 "from cosecha \n" +
                 "WHERE año_cosecha = "+año+" and mes_cosecha = "+mes+" and dia_cosecha = "+dia+" and id_cultivo = " + idCultivo, null)
         while (cursor.moveToNext()) {
@@ -676,6 +670,7 @@ object Utilidades {
             cosechaCultivo.precioQuinta= cursor.getInt(15)
             cosechaCultivo.precioMadura= cursor.getInt(16)
             cosechaCultivo.dineroTotal= cursor.getInt(17)
+            cosechaCultivo.imgFactura = cursor.getBlob(18)
 
             listaCosechaCultivo!!.add(cosechaCultivo)
         }

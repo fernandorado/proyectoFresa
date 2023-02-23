@@ -12,9 +12,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.MediaScannerConnection
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -61,6 +59,8 @@ class DialogoRegCosecha : DialogFragment() {
     var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
 
     lateinit var vista: View
+    lateinit var vistaImagen: View
+    lateinit var imgFactura: ImageView
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
     lateinit var btnGuardar: Button
@@ -120,6 +120,7 @@ class DialogoRegCosecha : DialogFragment() {
     lateinit var txtMaduraPrecioReg: TextView
 
     lateinit var txtTotalReg: TextView
+    lateinit var txtVerFoto: TextView
     var total: Int = 0
 
     lateinit var layoutExtraReg: RelativeLayout
@@ -205,6 +206,9 @@ class DialogoRegCosecha : DialogFragment() {
 
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_dialogo_reg_cosecha, container, false)
+        vistaImagen = inflater.inflate(R.layout.imagen, container, false)
+
+        imgFactura = vistaImagen.findViewById(R.id.imgFactura)
         btnGuardar = vista.findViewById(R.id.idBtnGuardar)
         btnExtra = vista.findViewById(R.id.btnExtra)
         btnPrimera = vista.findViewById(R.id.btnPrimera)
@@ -269,6 +273,8 @@ class DialogoRegCosecha : DialogFragment() {
         txtQuintaPrecioReg = vista.findViewById(R.id.txtQuintaPrecioReg)
         txtMaduraPrecioReg = vista.findViewById(R.id.txtMaduraPrecioReg)
 
+        txtVerFoto = vista.findViewById(R.id.txtVerFoto)
+
         btnCamara = vista.findViewById(R.id.btnCamara)
         imagenView = vista.findViewById(R.id.imagenView)
 
@@ -328,6 +334,22 @@ class DialogoRegCosecha : DialogFragment() {
             }
 
         })
+
+        txtVerFoto.setOnClickListener{
+            val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(context)
+            builder.setTitle("Factura")
+                .setPositiveButton("Cerrar") { dialog, _ ->
+                    dialog.dismiss()
+                    if (vistaImagen != null) {
+                        val parent = vistaImagen!!.parent as ViewGroup
+                        parent?.removeView(vistaImagen)
+                    }
+                }
+            var titulo: android.app.AlertDialog = builder.create()
+            imgFactura.setImageBitmap(bitmap)
+            titulo.setView(vistaImagen)
+            titulo.show()
+        }
         btnGuardar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
