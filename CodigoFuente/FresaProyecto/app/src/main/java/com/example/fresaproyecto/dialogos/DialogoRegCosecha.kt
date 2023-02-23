@@ -293,6 +293,12 @@ class DialogoRegCosecha : DialogFragment() {
 
         cosechaPorDia(añoActual.toInt(), mesActual.toInt(), diaActual.toInt())
 
+        var miPath: Uri? = null
+        val archivo = "android.resource://" + actividad.packageName + "/" + R.drawable.sin_foto
+        miPath = Uri.parse(archivo)
+        bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
+        imagenView.setImageBitmap(bitmap)
+
         eventosMenu()
         return vista
     }
@@ -642,7 +648,7 @@ class DialogoRegCosecha : DialogFragment() {
     }
 
     private fun mostrarExtra() {
-        btnExtra.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnExtra.setBackgroundColor(resources.getColor(R.color.colorNaranja))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -660,7 +666,7 @@ class DialogoRegCosecha : DialogFragment() {
 
     private fun mostrarPrimera() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-        btnPrimera.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnPrimera.setBackgroundColor(resources.getColor(R.color.colorNaranja))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -678,7 +684,7 @@ class DialogoRegCosecha : DialogFragment() {
     private fun mostrarSegundad() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-        btnSegunda.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnSegunda.setBackgroundColor(resources.getColor(R.color.colorNaranja))
         btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -696,7 +702,7 @@ class DialogoRegCosecha : DialogFragment() {
         btnExtra.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-        btnTercera.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnTercera.setBackgroundColor(resources.getColor(R.color.colorNaranja))
         btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
@@ -714,7 +720,7 @@ class DialogoRegCosecha : DialogFragment() {
         btnPrimera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-        btnCuarta.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnCuarta.setBackgroundColor(resources.getColor(R.color.colorNaranja))
         btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         layoutExtra.visibility = View.GONE
@@ -732,7 +738,7 @@ class DialogoRegCosecha : DialogFragment() {
         btnSegunda.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-        btnQuinta.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnQuinta.setBackgroundColor(resources.getColor(R.color.colorNaranja))
         btnMadura.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         layoutExtra.visibility = View.GONE
         layoutPrimera.visibility = View.GONE
@@ -750,7 +756,7 @@ class DialogoRegCosecha : DialogFragment() {
         btnTercera.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnCuarta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
         btnQuinta.setBackgroundColor(resources.getColor(R.color.colorGrisClaro))
-        btnMadura.setBackgroundColor(resources.getColor(R.color.colorSplash))
+        btnMadura.setBackgroundColor(resources.getColor(R.color.colorNaranja))
         layoutExtra.visibility = View.GONE
         layoutPrimera.visibility = View.GONE
         layoutSegunda.visibility = View.GONE

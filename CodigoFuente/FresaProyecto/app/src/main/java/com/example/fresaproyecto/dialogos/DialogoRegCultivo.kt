@@ -29,6 +29,7 @@ import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.IOException
 
 // TODO: Rename parameter arguments, choose names that match
@@ -97,10 +98,14 @@ class DialogoRegCultivo : DialogFragment() {
         fabAtras = vista.findViewById(R.id.btnIcoAtras)
         imgCultivo = vista.findViewById(R.id.imgCultivo)
         btnCamaraCultivo = vista.findViewById(R.id.btnCamaraCultivo)
+
+        var miPath: Uri? = null
+        val archivo = "android.resource://" + actividad.packageName + "/" + R.drawable.sin_foto
+        miPath = Uri.parse(archivo)
+        bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
+        imgCultivo.setImageBitmap(bitmap)
+
         eventosMenu()
-
-
-
 
         return vista
     }

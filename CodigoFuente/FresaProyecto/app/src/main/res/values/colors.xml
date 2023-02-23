@@ -6,9 +6,12 @@
     <color name="colorRojo">#CF3025</color>
     <color name="colorSplash">#00BCD4</color>
     <color name="colorAzul">#2998A6</color>
-    <color name="colorNaranja">#FFC107</color>
+    <color name="colorNaranja">#FF9800</color>
     <color name="colorVerde">#1EB649</color>
     <color name="colorSeleccion">#FF9800</color>
     <color name="colorBlanco">#FFFFFF</color>
     <color name="colorGrisClaro">#B5B2B2</color>
+    <color name="colorVerdePastel">#A7DFBE</color>
+    <color name="colorAzulPastel">#B9FAF4</color>
+    <color name="coloTransparente">#CCFF0088</color>
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -91,39 +92,72 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="15dp">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                >
 
                 <TextView
+                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    android:layout_gravity="center"
                     android:text="Actividad"
                     android:textColor="@android:color/black"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
                     android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorGrisClaro" />
+                    android:layout_height="40dp"
+                    android:background="@color/colorGrisClaro"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    tools:layout_editor_absoluteY="2dp" />
 
                 <Spinner
                     android:id="@+id/spinnerActividad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/campoActividadOtro"
+                <LinearLayout
+                    android:id="@+id/layoutActividad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Actividad" />
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/spinnerActividad"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:background="@color/colorGrisClaro"
+                        android:orientation="vertical" />
 
+                    <EditText
+                        android:id="@+id/campoActividadOtro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Actividad"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -152,12 +186,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:drawableLeft="@drawable/ic_confirmacion2"
-        android:backgroundTint="@color/colorSplash"
-        android:text="Guardar"
         android:layout_marginEnd="7dp"
         android:layout_marginRight="7dp"
         android:layout_marginBottom="7dp"
-        android:src="@drawable/ic_confirmacion2" />
+        android:backgroundTint="@color/colorSplash"
+        android:drawableLeft="@drawable/ic_confirmacion2"
+        android:src="@drawable/ic_confirmacion2"
+        android:text="Guardar" />
 
 </RelativeLayout>
