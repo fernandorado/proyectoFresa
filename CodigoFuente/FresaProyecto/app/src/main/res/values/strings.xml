@@ -12,6 +12,8 @@
     <string name="Eliminar">Eliminar</string>
     <string name="VerFact"><u>Ver Factura</u></string>
     <string name="VerImg"><u>Ver Foto</u></string>
+    <string name="Presentacion">Esta aplicación móvil permite llevar registros productivos y contables a los asociados de las cooperativas pertenecientes a la Fundación Sembrar Futuro-Grupo ALICA, en el marco de la ejecución del Convenio No. 156 suscrito entre la EPSEA Fundación Sembrar Futuro-Grupo ALICA y la Fundación Mundo Mujer.</string>
+    <string name="Autorizacion">La aplicacion requiere permiso para acceder a medios del dispositivo. La informacion almacenada dentro de esta aplicación puede ser usada con la fundación mundo mujer y sembrar fututo.</string>
 
 
     <string name="lorem_ipsum">

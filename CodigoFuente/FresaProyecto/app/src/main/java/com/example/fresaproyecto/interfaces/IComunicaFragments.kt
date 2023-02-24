@@ -20,4 +20,5 @@ interface IComunicaFragments {
     fun actPersona()
     fun actCultivo()
     fun regPersona()
+    fun presentacionApp()
 }

@@ -3,9 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.fresaproyecto">
 
-    <uses-feature android:name="android.hardware.camera.any" android:required="true" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-feature
+        android:name="android.hardware.camera.any"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -18,27 +21,23 @@
         android:theme="@style/Theme.FresaProyecto"
         tools:targetApi="31">
         <activity
+            android:name=".actividades.PresentacionActivity"
+            android:exported="true" />
+        <activity
             android:name=".actividades.SplashActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".MainActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.FresaProyecto"
-            android:configChanges="keyboardHidden|orientation|screenSize">
-
-
-
-        </activity>
+            android:theme="@style/Theme.FresaProyecto"></activity>
     </application>
 
 </manifest>

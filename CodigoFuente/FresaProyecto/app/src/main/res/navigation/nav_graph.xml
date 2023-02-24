@@ -3,26 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
-
+    app:startDestination="@id/splashActivity">
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.fresaproyecto.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/presentacionAplicacionFragment"
+        android:name="com.example.fresaproyecto.onboarding.PresentacionAplicacionFragment"
+        android:label="fragment_presentacion_aplicacion"
+        tools:layout="@layout/fragment_presentacion_aplicacion" />
+    <fragment
+        android:id="@+id/splashActivity"
+        android:name="com.example.fresaproyecto.actividades.SplashActivity"
+        android:label="activity_splash"
+        tools:layout="@layout/activity_splash" >
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_splashActivity2_to_presentacionAplicacionFragment"
+            app:destination="@id/presentacionAplicacionFragment" />
+        <action
+            android:id="@+id/action_splashActivity2_to_inicioFragment"
+            app:destination="@id/inicioFragment" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.fresaproyecto.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
+        android:id="@+id/inicioFragment"
+        android:name="com.example.fresaproyecto.fragments.InicioFragment"
+        android:label="fragment_inicio"
+        tools:layout="@layout/fragment_inicio" />
 </navigation>

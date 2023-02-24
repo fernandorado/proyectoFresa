@@ -8,6 +8,8 @@ import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.dialogos.*
 import com.example.fresaproyecto.fragments.*
 import com.example.fresaproyecto.interfaces.IComunicaFragments
+import com.example.fresaproyecto.onboarding.PresentacionAplicacionFragment
+import com.example.fresaproyecto.onboarding.screens.PresentacionFragment
 
 class MainActivity : AppCompatActivity(), IComunicaFragments{
     //val fragmentManager = supportFragmentManager
@@ -59,17 +61,9 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        val fragmentInicio =  InicioFragment();
-
-        //Utilidades.consultarListaPersonas(this)
-
-        val conexion = ConexionSQLiteHelper(this, Utilidades.NOMBRE_BD, null,1)
-
-
-
-
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        val fragmentInicio =  InicioFragment()
 
         fragmentTransaction.replace(R.id.contenedorFragments, fragmentInicio).commit()
 
@@ -141,6 +135,23 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
                 })
         return builder.create()
     }*/
+
+    override fun presentacionApp() {
+        //val fragmentManager = supportFragmentManager
+        //val fragmentTransaction = fragmentManager.beginTransaction()
+
+        val presentacionFragment= PresentacionAplicacionFragment()
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.contenedorFragments, presentacionFragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+
+        val text ="Presentación de Aplicación"
+        val duration = Toast.LENGTH_SHORT
+        val toast = Toast.makeText(applicationContext, text, duration)
+        toast.show()
+    }
 
     override fun menuCultivo() {
         //val fragmentManager = supportFragmentManager
