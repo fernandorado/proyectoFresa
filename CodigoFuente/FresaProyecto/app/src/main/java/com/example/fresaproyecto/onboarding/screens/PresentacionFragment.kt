@@ -5,12 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.fresaproyecto.R
 class PresentacionFragment : Fragment() {
-    lateinit var txtSiguiente : TextView
+    lateinit var btnSiguiente : Button
     lateinit var viewPager: ViewPager2
 
     override fun onCreateView(
@@ -19,14 +20,14 @@ class PresentacionFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_presentacion, container, false)
-        txtSiguiente = vista.findViewById(R.id.txtSiguiente)
+        btnSiguiente = vista.findViewById(R.id.btnSiguiente)
         viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)!!
         eventosClick()
         return vista
     }
 
     private fun eventosClick() {
-        txtSiguiente.setOnClickListener(object : View.OnClickListener {
+        btnSiguiente.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View){
                 viewPager.currentItem = 1
             }

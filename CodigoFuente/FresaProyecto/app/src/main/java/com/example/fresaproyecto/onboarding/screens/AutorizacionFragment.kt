@@ -7,13 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.fresaproyecto.MainActivity
 import com.example.fresaproyecto.R
 
 class AutorizacionFragment : Fragment() {
-    lateinit var txtAceptar : TextView
+    lateinit var btnAceptar : Button
     lateinit var viewPager: ViewPager2
 
     override fun onCreateView(
@@ -22,14 +23,14 @@ class AutorizacionFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_autorizacion, container, false)
-        txtAceptar = vista.findViewById(R.id.txtAceptar)
+        btnAceptar = vista.findViewById(R.id.btnAceptar)
         viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager)!!
         eventosClick()
         return vista
     }
 
     private fun eventosClick() {
-        txtAceptar.setOnClickListener(object : View.OnClickListener {
+        btnAceptar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View){
                 val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)

@@ -82,10 +82,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:text="Bienvenido "
+                android:text="@string/TituloMenuCultivo"
                 android:textColor="#121111"
-                android:textSize="35sp"
-                android:textStyle="bold" />
+                android:textSize="30sp" />
 
             <TextView
                 android:id="@+id/textCal"
@@ -102,6 +101,7 @@
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="35dp"
                 app:cardElevation="9dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginRight="12dp"
                 android:layout_marginLeft="12dp">
 

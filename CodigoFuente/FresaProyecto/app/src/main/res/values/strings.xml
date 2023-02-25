@@ -12,8 +12,11 @@
     <string name="Eliminar">Eliminar</string>
     <string name="VerFact"><u>Ver Factura</u></string>
     <string name="VerImg"><u>Ver Foto</u></string>
+    <string name="TituloMenuCultivo">Bienvenido al Registro Contable de su Cultivo:</string>
+    <string name="TituloPresentacion">PRESENTACIÓN</string>
+    <string name="TituloAutorizacion">PERMISOS</string>
     <string name="Presentacion">Esta aplicación móvil permite llevar registros productivos y contables a los asociados de las cooperativas pertenecientes a la Fundación Sembrar Futuro-Grupo ALICA, en el marco de la ejecución del Convenio No. 156 suscrito entre la EPSEA Fundación Sembrar Futuro-Grupo ALICA y la Fundación Mundo Mujer.</string>
-    <string name="Autorizacion">La aplicacion requiere permiso para acceder a medios del dispositivo. La informacion almacenada dentro de esta aplicación puede ser usada con la fundación mundo mujer y sembrar fututo.</string>
+    <string name="Autorizacion">Dando cumplimiento a lo dispuesto en la Ley 1581 de 2012, "Por el cual se dictan disposiciones generales para la protección de datos personales" y de conformidad con lo señalado en el Decreto 1377 de 2013, manifiesto que como beneficiario del Convenio No. 156 de 2022, suscrito entre la Fundación Mundo Mujer y la EPSEA Fundación Sembrar Futuro- Grupo ALICA, el cual tiene como objeto “Incrementar los rendimientos del cultivo de fresa con innovación tecnológica, asistencia técnica especializada y fortalecimiento asociativo a 13 familias productoras del Municipio de Sotará (Cauca)”, autorizo el tratamiento de datos personales de los cuales soy titular y que, conjunta o separadamente podrán recolectar, usar y tratar mis datos personales conforme la Política de Tratamiento de Datos Personales, que igualmente, la EPSEA garantizará la confidencialidad, libertad, seguridad, veracidad, transparencia, acceso y circulación restringida de mis datos y se reservará el derecho de modificar su Política de Tratamiento de Datos Personales en cualquier momento. Cualquier cambio será informado.</string>
 
 
     <string name="lorem_ipsum">
