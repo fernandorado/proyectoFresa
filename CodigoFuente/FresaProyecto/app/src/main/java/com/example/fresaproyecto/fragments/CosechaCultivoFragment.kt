@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -52,6 +53,7 @@ class CosechaCultivoFragment : Fragment() {
     lateinit var txtCuartaLibra: TextView
     lateinit var txtQuintaLibra: TextView
     lateinit var txtMaduraLibra: TextView
+    lateinit var layoutCalidad: LinearLayout
 
     var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
 
@@ -86,6 +88,9 @@ class CosechaCultivoFragment : Fragment() {
         txtCuartaLibra = vista.findViewById(R.id.txtCuarta)
         txtQuintaLibra = vista.findViewById(R.id.txtQuinta)
         txtMaduraLibra = vista.findViewById(R.id.txtMadura)
+        layoutCalidad = vista.findViewById(R.id.layoutCalidad)
+        layoutCalidad.visibility = View.GONE
+
 
         recyclerCosechaMes = vista.findViewById(R.id.recyclerCosecha)
         recyclerCosechaMes.layoutManager = LinearLayoutManager(actividad)
@@ -100,6 +105,9 @@ class CosechaCultivoFragment : Fragment() {
         listaInformeMes = Utilidades.listaBeneficioCultivo!!
 
         mes = mes-1
+        if(listaInformeMes!![mes].ingresos >0){
+            layoutCalidad.visibility = View.VISIBLE
+        }
         for (i in 1..7) {
             var rebanada = PieSlice()
             var color = generarColorHecAleatorio()

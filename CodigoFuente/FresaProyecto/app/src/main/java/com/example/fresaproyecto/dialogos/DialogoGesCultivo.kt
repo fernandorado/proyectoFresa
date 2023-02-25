@@ -84,7 +84,6 @@ class DialogoGesCultivo : DialogFragment(), OnClickListenerCultivo {
         recyclerCultivos.layoutManager = GridLayoutManager(context, 2)
         recyclerCultivos.setHasFixedSize(true)
 
-
         btnCerrar = vista.findViewById(R.id.btnCerrar)
         btnExtNuevo = vista.findViewById(R.id.btnNuevo)
         btnExtContinuar = vista.findViewById(R.id.btnContinuar)
@@ -140,14 +139,19 @@ class DialogoGesCultivo : DialogFragment(), OnClickListenerCultivo {
         btnExtContinuar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                val text ="Continuar"
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(context, text, duration)
-                toast.show()
-                interfaceComunicaFragments.menuCultivo()
-                dismiss()
-
-
+                if(identificacion > -1){
+                    val text ="Continuar"
+                    val duration = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, text, duration)
+                    toast.show()
+                    interfaceComunicaFragments.menuCultivo()
+                    dismiss()
+                }else{
+                    val text ="Registre un cultivo para continuar"
+                    val duration = Toast.LENGTH_SHORT
+                    val toast = Toast.makeText(context, text, duration)
+                    toast.show()
+                }
 
             }
 
@@ -156,7 +160,7 @@ class DialogoGesCultivo : DialogFragment(), OnClickListenerCultivo {
 
     companion object {
         lateinit var cultivoSeleccionado: CultivoVo
-        lateinit var identificacion: String
+        var identificacion: Int = -1
         lateinit var recyclerCultivos: RecyclerView
         lateinit var vista: View
         lateinit var actividad: Activity
@@ -175,8 +179,7 @@ class DialogoGesCultivo : DialogFragment(), OnClickListenerCultivo {
             miAdaptadorCultivos.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(view: View?) {
                     cultivoSeleccionado= Utilidades.listaCultivos!!.get(recyclerCultivos.getChildAdapterPosition(view!!))
-
-                    println("Nombre: " + cultivoSeleccionado.nombre)
+                    //identificacion = cultivoSeleccionado.id
                 }
             })
 

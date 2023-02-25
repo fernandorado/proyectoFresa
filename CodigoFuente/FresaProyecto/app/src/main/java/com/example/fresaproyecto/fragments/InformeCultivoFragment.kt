@@ -76,15 +76,10 @@ class InformeCultivoFragment : Fragment() {
         vista = inflater.inflate(R.layout.fragment_informe_cultivo, container, false)
         val dateFormatY = SimpleDateFormat("yyyy")
         val añoActual = dateFormatY.format(Date())
-
         añoSeleccionado = añoActual.toInt()
-
         txtFechaSelec = vista.findViewById(R.id.txtFecha)
-
         txtFechaSelec.setOnClickListener { monthYear() }
-
         barGraphMes = vista.findViewById(R.id.graphBar)
-
         recyclerInformeMes = vista.findViewById(R.id.recyclerInformeMes)
         recyclerInformeMes.layoutManager = LinearLayoutManager(actividad)
         recyclerInformeMes.setHasFixedSize(true)
@@ -128,18 +123,18 @@ class InformeCultivoFragment : Fragment() {
             var color = generarColorHecAleatorio()
             barra.color = Color.parseColor(color)
             var mesLetras = when (i.mes) {
-                1 -> "Enero"
-                2 -> "Febrero"
-                3 -> "Marzo"
-                4 -> "Abril"
-                5 -> "Mayo"
-                6 -> "Junio"
-                7 -> "Julio"
-                8 -> "Agosto"
-                9 -> "Septiembre"
-                10 -> "Octubre"
-                11 -> "Noviembre"
-                12 -> "Diciembre"
+                1 -> "ENERO"
+                2 -> "FEBRERO"
+                3 -> "MARZO"
+                4 -> "ABRIL"
+                5 -> "MAYO"
+                6 -> "JUNIO"
+                7 -> "JULIO"
+                8 -> "AGOSTO"
+                9 -> "SEPTIEMBRE"
+                10 -> "OCTUBRE"
+                11 -> "NOVIEMNRE"
+                12 -> "DICIEMBRE"
                 else -> "Sin Fecha"
             }
             barra.name = mesLetras
