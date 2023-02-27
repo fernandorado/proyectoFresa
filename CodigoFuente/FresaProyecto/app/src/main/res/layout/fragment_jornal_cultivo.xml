@@ -5,6 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".fragments.JornalCultivoFragment">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondogeneral2" />
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"

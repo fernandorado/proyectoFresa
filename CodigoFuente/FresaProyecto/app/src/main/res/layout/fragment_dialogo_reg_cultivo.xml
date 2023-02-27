@@ -44,125 +44,131 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5sp"
-                android:gravity="center"
-                android:text="Registro de Cultivo"
-                android:textColor="@android:color/black"
-                android:textSize="35sp"
-                android:textStyle="bold" />
+            android:layout_marginBottom="50dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:elevation="30dp"
-                    app:cardCornerRadius="160dp">
-
-                    <ImageView
-                        android:id="@+id/imgCultivo"
-                        android:layout_width="242dp"
-                        android:layout_height="227dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/cultivo"></ImageView>
-                </androidx.cardview.widget.CardView>
-
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:gravity="center"
+                    android:text="Registro de Cultivo"
+                    android:textColor="@android:color/black"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:elevation="30dp"
+                        app:cardCornerRadius="160dp">
+
+                        <ImageView
+                            android:id="@+id/imgCultivo"
+                            android:layout_width="242dp"
+                            android:layout_height="227dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/cultivo"></ImageView>
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:backgroundTint="@color/white"
+                        android:gravity="center"
+                        android:text="Guarde la mejor foto de su cultivo" />
+
+                    <Button
+                        android:id="@+id/btnCamaraCultivo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/colorRojo"
+                        android:drawableLeft="@drawable/ic_camara"
+                        android:text="Tomar Foto" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
                     android:background="@drawable/stylo_fondo_borde"
-                    android:backgroundTint="@color/white"
-                    android:text="Guarde la mejor foto de su cultivo" />
+                    android:backgroundTint="@color/colorSplash"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btnCamaraCultivo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/colorRojo"
-                    android:drawableLeft="@drawable/ic_camara"
-                    android:text="Tomar Foto" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:text="Nombre o Lote: "
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
 
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorGrisClaro" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:alpha="0.9"
-                android:background="@drawable/stylo_fondo_borde"
-                android:backgroundTint="@color/colorSplash"
-                android:orientation="horizontal">
+                    <EditText
+                        android:id="@+id/campoNombre"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nombre de Cultivo" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:text="Nombre o Lote: "
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
+                </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorGrisClaro" />
-
-                <EditText
-                    android:id="@+id/campoNombre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nombre de Cultivo" />
+                    android:layout_marginTop="5dp"
+                    android:alpha="0.9"
+                    android:background="@drawable/stylo_fondo_borde"
+                    android:backgroundTint="@color/colorSplash"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:text="Número de Plantas:"
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorGrisClaro" />
+
+                    <EditText
+                        android:id="@+id/campoCantidad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="0"
+                        android:inputType="number" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:alpha="0.9"
-                android:background="@drawable/stylo_fondo_borde"
-                android:backgroundTint="@color/colorSplash"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:text="Número de Plantas:"
-                    android:textColor="@android:color/black"
-                    android:textSize="20sp" />
-
-                <LinearLayout
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorGrisClaro" />
-
-                <EditText
-                    android:id="@+id/campoCantidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="0"
-                    android:inputType="number" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
+        </ScrollView>
     </LinearLayout>
 
     <Button

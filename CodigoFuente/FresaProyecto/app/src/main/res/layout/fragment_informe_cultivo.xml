@@ -7,6 +7,12 @@
     android:layout_marginBottom="50dp"
     tools:context=".fragments.InformeCultivoFragment">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondogeneral2" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,6 +29,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:orientation="horizontal">
 
                 <ImageButton
@@ -32,18 +39,10 @@
                     android:background="@color/colorSplash"
                     android:src="@drawable/ic_flecha_atras" />
 
-                <ImageView
-                    android:id="@+id/im"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:src="@drawable/icono" />
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
                     android:layout_centerInParent="true"
                     android:autoSizeTextType="uniform"
                     android:text="Informe"
@@ -57,10 +56,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
                 android:autoSizeTextType="uniform"
                 android:background="@drawable/stylo_fondo_borde"
-                android:backgroundTint="#CC884C6C"
+                android:backgroundTint="#FF5722"
                 android:drawableRight="@drawable/ic_flecha_abajo"
                 android:gravity="center"
                 android:text="Fecha"

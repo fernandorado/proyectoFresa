@@ -612,7 +612,7 @@ object Utilidades {
             cosechaCultivo.madura= cursor.getInt(9)
             cosechaCultivo.precioExtra= cursor.getInt(10)
             cosechaCultivo.precioPrimera= cursor.getInt(11)
-            cosechaCultivo.precioPrimera= cursor.getInt(12)
+            cosechaCultivo.precioSegunda= cursor.getInt(12)
             cosechaCultivo.precioTercera= cursor.getInt(13)
             cosechaCultivo.precioCuarta= cursor.getInt(14)
             cosechaCultivo.precioQuinta= cursor.getInt(15)

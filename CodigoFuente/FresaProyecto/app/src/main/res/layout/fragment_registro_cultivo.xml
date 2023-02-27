@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".fragments.RegistroCultivoFragment">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondogeneral2" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,15 +37,6 @@
                     android:background="@color/colorSplash"
                     android:src="@drawable/ic_flecha_atras" />
 
-                <ImageView
-                    android:id="@+id/im"
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:src="@drawable/icono" />
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -57,254 +54,257 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/avatarImage"
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="112dp"
-                    android:layout_marginTop="15dp"
-                    android:src="@drawable/icono" />
+                    android:layout_height="60dp"
+                    android:autoSizeMaxTextSize="50sp"
+                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeTextType="uniform"
+                    android:textStyle="bold"
+                    android:text="@string/TituloMenuCultivo"
+                    android:textAlignment="center"
+                    android:textColor="#121111" />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:elevation="30dp"
+                    app:cardCornerRadius="160dp">
+
+                    <ImageView
+                        android:id="@+id/imgCultivo"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/icon_insumos" />
+
+                </androidx.cardview.widget.CardView>
 
                 <TextView
-                    android:id="@+id/textNickname"
+                    android:id="@+id/textCal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/avatarImage"
-                    android:layout_alignParentBottom="true"
-                    android:text="EPSEA"
+                    android:layout_height="70dp"
+                    android:autoSizeMaxTextSize="60sp"
+                    android:autoSizeMinTextSize="10sp"
+                    android:autoSizeTextType="uniform"
+                    android:text="Nombre "
                     android:textAlignment="center"
                     android:textColor="#121111"
-                    android:textSize="35sp"
                     android:textStyle="bold" />
 
-                <LinearLayout
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginRight="12dp"
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="9dp">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/TituloMenuCultivo"
-                        android:textAlignment="center"
-                        android:textColor="#121111"
-                        android:textSize="30sp" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/textCal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Nombre "
-                        android:textAlignment="center"
-                        android:textColor="#121111"
-                        android:textSize="35sp"
-                        android:textStyle="bold" />
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="6dp"
-                        android:layout_marginRight="12dp"
-                        app:cardCornerRadius="35dp"
-                        app:cardElevation="9dp">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Gastos "
+                            android:textAlignment="center"
+                            android:textColor="#121111"
+                            android:textSize="35sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="match_parent"
+                            <GridLayout
+                                android:id="@+id/idGrid"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Gastos "
-                                android:textAlignment="center"
-                                android:textColor="#121111"
-                                android:textSize="35sp"
-                                android:textStyle="bold" />
+                                android:padding="4dp">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:orientation="horizontal">
-
-                                <GridLayout
-                                    android:id="@+id/idGrid"
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardRegJornal"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:padding="4dp">
+                                    android:layout_marginRight="45dp"
+                                    android:foreground="?selectableItemBackground"
+                                    app:cardCornerRadius="60dp"
+                                    app:cardElevation="2dp">
 
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/cardRegJornal"
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginRight="45dp"
-                                        android:foreground="?selectableItemBackground"
-                                        app:cardCornerRadius="25dp"
-                                        app:cardElevation="2dp">
+                                        android:layout_marginBottom="15sp"
+                                        android:layout_marginTop="15sp"
+                                        android:layout_gravity="center_horizontal|center_vertical"
+                                        android:orientation="vertical">
 
-                                        <LinearLayout
+                                        <ImageView
+                                            android:layout_width="110dp"
+                                            android:layout_height="100dp"
+                                            android:layout_gravity="center_horizontal"
+                                            android:src="@drawable/jornal" />
+
+                                        <TextView
                                             android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center_horizontal|center_vertical"
-                                            android:orientation="vertical">
-
-                                            <ImageView
-                                                android:layout_width="110dp"
-                                                android:layout_height="100dp"
-                                                android:layout_gravity="center_horizontal"
-                                                android:src="@drawable/jornal" />
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_gravity="center_horizontal"
-                                                android:text="Jornal"
-                                                android:textAlignment="center"
-                                                android:textColor="@color/funcionesCardView"
-                                                android:textSize="22sp"
-                                                android:textStyle="bold" />
+                                            android:layout_height="match_parent"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="Jornal"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/funcionesCardView"
+                                            android:textSize="22sp"
+                                            android:textStyle="bold" />
 
 
-                                        </LinearLayout>
+                                    </LinearLayout>
 
-                                    </androidx.cardview.widget.CardView>
+                                </androidx.cardview.widget.CardView>
 
 
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/cardRegInsumos"
-                                        android:layout_width="wrap_content"
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardRegInsumos"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:foreground="?selectableItemBackground"
+                                    app:cardCornerRadius="60dp"
+                                    app:cardElevation="2dp">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:foreground="?selectableItemBackground"
-                                        app:cardCornerRadius="25dp"
-                                        app:cardElevation="2dp">
+                                        android:layout_marginBottom="15sp"
+                                        android:layout_marginTop="15sp"
+                                        android:layout_gravity="center_horizontal|center_vertical"
+                                        android:orientation="vertical">
 
-                                        <LinearLayout
+                                        <ImageView
+                                            android:layout_width="110dp"
+                                            android:layout_height="100dp"
+                                            android:layout_gravity="center_horizontal"
+                                            android:src="@drawable/fertilizante" />
+
+                                        <TextView
                                             android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center_horizontal|center_vertical"
-                                            android:orientation="vertical">
-
-                                            <ImageView
-                                                android:layout_width="110dp"
-                                                android:layout_height="100dp"
-                                                android:layout_gravity="center_horizontal"
-                                                android:src="@drawable/fertilizante" />
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_gravity="center_horizontal"
-                                                android:text="Insumos"
-                                                android:textAlignment="center"
-                                                android:textColor="@color/funcionesCardView"
-                                                android:textSize="24sp"
-                                                android:textStyle="bold" />
+                                            android:layout_height="match_parent"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="Insumos"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/funcionesCardView"
+                                            android:textSize="24sp"
+                                            android:textStyle="bold" />
 
 
-                                        </LinearLayout>
+                                    </LinearLayout>
 
-                                    </androidx.cardview.widget.CardView>
-
-
-                                </GridLayout>
+                                </androidx.cardview.widget.CardView>
 
 
-                            </LinearLayout>
+                            </GridLayout>
+
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
 
-                    <androidx.cardview.widget.CardView
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginBottom="14dp"
+                    app:cardCornerRadius="35dp"
+                    app:cardElevation="9dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_marginBottom="14dp"
-                        app:cardCornerRadius="35dp"
-                        app:cardElevation="9dp">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Ingresos "
+                            android:textAlignment="center"
+                            android:textColor="#121111"
+                            android:textSize="35sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                            <TextView
+                            <GridLayout
+                                android:id="@+id/idGridIngresos"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="Ingresos "
-                                android:textAlignment="center"
-                                android:textColor="#121111"
-                                android:textSize="35sp"
-                                android:textStyle="bold" />
+                                android:layout_height="152dp"
+                                android:padding="4dp">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/cardRegCosecha"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:foreground="?selectableItemBackground"
+                                    app:cardCornerRadius="60dp"
+                                    app:cardElevation="2dp">
 
-                                <GridLayout
-                                    android:id="@+id/idGridIngresos"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="152dp"
-                                    android:padding="4dp">
-
-                                    <androidx.cardview.widget.CardView
-                                        android:id="@+id/cardRegCosecha"
-                                        android:layout_width="wrap_content"
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:foreground="?selectableItemBackground"
-                                        app:cardCornerRadius="25dp"
-                                        app:cardElevation="2dp">
+                                        android:layout_marginBottom="15sp"
+                                        android:layout_gravity="center_horizontal|center_vertical"
+                                        android:orientation="vertical">
 
-                                        <LinearLayout
+                                        <ImageView
+                                            android:layout_width="110dp"
+                                            android:layout_height="100dp"
+                                            android:layout_gravity="center_horizontal"
+                                            android:src="@drawable/cosecha" />
+
+                                        <TextView
                                             android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:layout_gravity="center_horizontal|center_vertical"
-                                            android:orientation="vertical">
-
-                                            <ImageView
-                                                android:layout_width="110dp"
-                                                android:layout_height="100dp"
-                                                android:layout_gravity="center_horizontal"
-                                                android:src="@drawable/cosecha" />
-
-                                            <TextView
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_gravity="center_horizontal"
-                                                android:text="Cosecha"
-                                                android:textAlignment="center"
-                                                android:textColor="@color/funcionesCardView"
-                                                android:textSize="22sp"
-                                                android:textStyle="bold" />
+                                            android:layout_height="match_parent"
+                                            android:layout_gravity="center_horizontal"
+                                            android:text="Cosecha"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/funcionesCardView"
+                                            android:textSize="22sp"
+                                            android:textStyle="bold" />
 
 
-                                        </LinearLayout>
+                                    </LinearLayout>
 
 
-                                    </androidx.cardview.widget.CardView>
+                                </androidx.cardview.widget.CardView>
 
-                                </GridLayout>
+                            </GridLayout>
 
-
-                            </LinearLayout>
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
 
-                </LinearLayout>
             </LinearLayout>
         </ScrollView>
 
