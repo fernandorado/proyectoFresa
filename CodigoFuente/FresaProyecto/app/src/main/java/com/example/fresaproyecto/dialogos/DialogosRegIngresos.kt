@@ -42,7 +42,7 @@ class DialogosRegIngresos : DialogFragment() {
     lateinit var campoFecha: EditText
     lateinit var campoMonto: EditText
     lateinit var btnRegistrar: Button
-    lateinit var btnCancelar: Button
+    lateinit var btnCerrar: Button
     lateinit var ingresosSpinner: Spinner
     var concepto: String = "" //Elemento seleccionado del Spinner (Concepto del ingreso)
     var dia: Int = 0
@@ -118,7 +118,7 @@ class DialogosRegIngresos : DialogFragment() {
         campoFecha.setOnClickListener{ showDatePickerDialog() }
         campoMonto = vista.findViewById(R.id.campoMonto)
         btnRegistrar = vista.findViewById(R.id.btnRegistrar)
-        btnCancelar = vista.findViewById(R.id.btnCancelar)
+        btnCerrar = vista.findViewById(R.id.btnIcoCerrar)
         ingresosSpinner = vista.findViewById(R.id.spinnerIngresos)
 
         ingresosSpinner.adapter=adp
@@ -165,7 +165,7 @@ class DialogosRegIngresos : DialogFragment() {
 
         })
 
-        btnCancelar.setOnClickListener(object : View.OnClickListener {
+        btnCerrar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
                 dismiss()

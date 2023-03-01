@@ -1,96 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
     tools:context=".dialogos.DialogoRegPersonas">
 
     <!-- TODO: Update blank fragment layout -->
 
-
-    <RelativeLayout
-        android:id="@+id/idLayoutFondo"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorSplash"
-        android:elevation="8dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/im"
-            android:layout_width="60dp"
-            android:layout_height="49dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="52dp"
-            android:layout_marginLeft="52dp"
-            android:src="@drawable/icono" />
-
-        <ImageButton
-            android:id="@+id/btnIcoAtras"
-            android:layout_width="50dp"
-            android:layout_height="49dp"
+        <RelativeLayout
+            android:id="@+id/idLayoutFondo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/colorSplash"
-            android:src="@drawable/ic_cerrar" />
+            android:elevation="8dp">
 
-    </RelativeLayout>
+            <ImageButton
+                android:id="@+id/btnCerrar"
+                android:layout_width="50dp"
+                android:layout_height="49dp"
+                android:background="@color/colorSplash"
+                android:src="@drawable/ic_cerrar" />
 
-    <ImageView
-        android:id="@+id/imgFinanzas"
-        android:layout_marginTop="20dp"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ahorros"/>
+        </RelativeLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registro de Persona"
-        android:textColor="@android:color/black"
-        android:textSize="35sp"
-        android:gravity="center"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Digite sus datos:"
-        android:layout_marginLeft="5sp"
-        android:textSize="25sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/campoIdentificacion"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Digite su numero de Documento"/>
-    <EditText
-        android:id="@+id/campoNombreP"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Digite su nombre" />
+                <ImageView
+                    android:id="@+id/imgFinanzas"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ahorros" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Registro de Persona"
+                    android:textColor="@android:color/black"
+                    android:textSize="35sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5sp"
+                    android:text="Digite sus datos:"
+                    android:textSize="25sp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:background="@drawable/stylo_fondo_borde"
+                    android:backgroundTint="@color/colorSplash"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:text="Identificación: "
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorGrisClaro" />
+
+                    <EditText
+                        android:id="@+id/campoIdentificacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nombre de Cultivo" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:alpha="0.9"
+                    android:background="@drawable/stylo_fondo_borde"
+                    android:backgroundTint="@color/colorSplash"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5sp"
+                        android:text="Identificación: "
+                        android:textColor="@android:color/black"
+                        android:textSize="20sp" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorGrisClaro" />
+
+                    <EditText
+                        android:id="@+id/campoNombreP"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nombre de Cultivo" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
     <Button
         android:id="@+id/btnRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrar"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:backgroundTint="@color/colorSplash"
-        android:layout_marginLeft="300dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginBottom="25dp"
-        />
-    <Button
-        android:id="@+id/btnCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancelar"
-        android:backgroundTint="@color/colorSplash"
-        android:layout_marginLeft="150dp"
-        android:layout_marginTop="-75dp"
-        />
+        android:text="Registrar" />
 
 
-</LinearLayout>
+</RelativeLayout>

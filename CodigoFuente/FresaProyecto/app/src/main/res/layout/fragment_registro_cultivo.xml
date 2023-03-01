@@ -6,11 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".fragments.RegistroCultivoFragment">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/fondogeneral2" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,9 +59,12 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
+                    android:layout_gravity="center"
                     android:autoSizeMaxTextSize="50sp"
                     android:autoSizeMinTextSize="10sp"
                     android:autoSizeTextType="uniform"
+                    android:background="@drawable/stylo_fondo_borde"
+                    android:backgroundTint="@color/white"
                     android:textStyle="bold"
                     android:text="@string/TituloMenuCultivo"
                     android:textAlignment="center"
@@ -117,7 +116,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Gastos "
+                            android:text="Mis Gastos "
                             android:textAlignment="center"
                             android:textColor="#121111"
                             android:textSize="35sp"
@@ -240,7 +239,7 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ingresos "
+                            android:text="Mis Ingresos "
                             android:textAlignment="center"
                             android:textColor="#121111"
                             android:textSize="35sp"

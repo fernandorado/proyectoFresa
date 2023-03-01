@@ -11,6 +11,7 @@
     <color name="colorSeleccion">#FF9800</color>
     <color name="colorBlanco">#FFFFFF</color>
     <color name="colorGrisClaro">#B5B2B2</color>
+    <color name="colorGris">#505050</color>
     <color name="colorVerdePastel">#A7DFBE</color>
     <color name="colorAzulPastel">#B9FAF4</color>
     <color name="coloTransparente">#CCFF0088</color>

@@ -66,13 +66,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Cantidad de Insumoes" />
+                        android:text="Cantidad de Insumo" />
 
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txtPrecioInsumo"
+                    android:id="@+id/txtPrecioInsumoTotal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|bottom"
@@ -83,20 +83,10 @@
                     android:textSize="12dp" />
 
 
+
             </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorGrisClaro" />
 
-            <TextView
-                android:id="@+id/txtPrecioInsumoTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:textColor="@color/colorRojo"
-                android:text="Precio Total"/>
 
         </LinearLayout>
 

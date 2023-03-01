@@ -110,7 +110,7 @@
                         <LinearLayout
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="@color/colorGrisClaro" />
+                            android:background="@color/colorGris" />
 
                         <EditText
                             android:id="@+id/campoFechaInsumo"
@@ -142,7 +142,7 @@
                         <LinearLayout
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="@color/colorGrisClaro" />
+                            android:background="@color/colorGris" />
 
                         <EditText
                             android:id="@+id/campoNombreInsumo"
@@ -171,7 +171,7 @@
                         <LinearLayout
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
-                            android:background="@color/colorGrisClaro" />
+                            android:background="@color/colorGris" />
 
                         <EditText
                             android:id="@+id/campoPrecio"
@@ -207,7 +207,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:background="@drawable/stylo_fondo_borde"
-                                android:gravity="center"
+                                android:layout_gravity="center"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -220,7 +220,7 @@
                                 <LinearLayout
                                     android:layout_width="1dp"
                                     android:layout_height="match_parent"
-                                    android:background="@color/colorGrisClaro" />
+                                    android:background="@color/colorGris" />
 
                                 <EditText
                                     android:id="@+id/campoCantidad"
@@ -241,7 +241,7 @@
                                 <LinearLayout
                                     android:layout_width="1dp"
                                     android:layout_height="match_parent"
-                                    android:background="@color/colorGrisClaro" />
+                                    android:background="@color/colorGris" />
 
                                 <Spinner
                                     android:id="@+id/spinnerUnidad"
@@ -266,7 +266,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5sp"
                             android:gravity="center"
-                            android:text="USADO"
+                            android:text="CANTIDAD APLICADA"
                             android:textColor="@android:color/black"
                             android:textSize="20sp" />
 
@@ -287,7 +287,7 @@
                             <LinearLayout
                                 android:layout_width="1dp"
                                 android:layout_height="match_parent"
-                                android:background="@color/colorGrisClaro" />
+                                android:background="@color/colorGris" />
 
                             <EditText
                                 android:id="@+id/campoCantidadUsada"
@@ -310,6 +310,7 @@
         android:id="@+id/idBtnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/colorSplash"

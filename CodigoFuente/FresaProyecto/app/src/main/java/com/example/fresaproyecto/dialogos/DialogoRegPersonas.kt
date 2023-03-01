@@ -9,10 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -42,7 +39,7 @@ class DialogoRegPersonas : DialogFragment() {
     lateinit var campoNombre: EditText
     lateinit var campoIdentificacion: EditText
     lateinit var btnRegistrar: Button
-    lateinit var btnCancelar: Button
+    lateinit var btnCerrar: ImageButton
 
 
 
@@ -126,7 +123,7 @@ class DialogoRegPersonas : DialogFragment() {
         campoNombre = vista.findViewById(R.id.campoNombreP)
         campoIdentificacion = vista.findViewById(R.id.campoIdentificacion)
         btnRegistrar = vista.findViewById(R.id.btnRegistrar)
-        btnCancelar = vista.findViewById(R.id.btnCancelar)
+        btnCerrar = vista.findViewById(R.id.btnCerrar)
 
         eventosMenu()
         // Inflate the layout for this fragment
@@ -145,7 +142,7 @@ class DialogoRegPersonas : DialogFragment() {
 
         })
 
-        btnCancelar.setOnClickListener(object : View.OnClickListener {
+        btnCerrar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
                 dismiss()

@@ -28,6 +28,7 @@ import com.example.fresaproyecto.clases.ConexionSQLiteHelper
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
@@ -146,6 +147,15 @@ class DialogoRegCultivo : DialogFragment() {
             }
 
         }
+
+    fun editar(){
+        val blob: ByteArray = DialogoGesCultivo.cultivoSeleccionado.imgCultivo.inputStream().readBytes()
+        val bais = ByteArrayInputStream(blob)
+        bitmap = BitmapFactory.decodeStream(bais)
+        campoName.setText(DialogoGesCultivo.cultivoSeleccionado.nombre)
+        campoCant.setText(DialogoGesCultivo.cultivoSeleccionado.cantidad)
+        imgCultivo.setImageBitmap(bitmap)
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

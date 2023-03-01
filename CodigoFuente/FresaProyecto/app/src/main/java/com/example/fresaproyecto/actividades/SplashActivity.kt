@@ -5,28 +5,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.fragment.findNavController
 import com.example.fresaproyecto.MainActivity
 import com.example.fresaproyecto.R
-import com.example.fresaproyecto.clases.ConexionSQLiteHelper
-import com.example.fresaproyecto.clases.Utilidades
-import com.example.fresaproyecto.dialogos.DialogoGesCultivo
-import com.example.fresaproyecto.fragments.InicioFragment
-import com.example.fresaproyecto.fragments.MenuPersonaFragment
-import com.example.fresaproyecto.interfaces.IComunicaFragments
-import com.example.fresaproyecto.onboarding.PresentacionAplicacionFragment
-import com.example.fresaproyecto.onboarding.screens.PresentacionFragment
 
 class SplashActivity : AppCompatActivity() {
-    lateinit var interfaceComunicaFragments: IComunicaFragments
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        lateinit var interfaceComunicaFragments: IComunicaFragments
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-        val fragmentInicio = PresentacionAplicacionFragment();
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

@@ -17,30 +17,20 @@
             android:background="@color/colorSplash"
             android:elevation="8dp">
 
-            <ImageView
-                android:id="@+id/im"
-                android:layout_width="60dp"
-                android:layout_height="49dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="52dp"
-                android:layout_marginLeft="52dp"
-                android:src="@drawable/icono" />
-
             <ImageButton
                 android:id="@+id/btnIcoAtras"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="49dp"
                 android:background="@color/colorSplash"
-                android:src="@drawable/ic_flecha_atras" />
+                android:src="@drawable/ic_cerrar" />
 
         </RelativeLayout>
 
         <ImageView
-            android:layout_width="186dp"
-            android:layout_height="184dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:src="@drawable/beneficios"></ImageView>
 
         <TextView
