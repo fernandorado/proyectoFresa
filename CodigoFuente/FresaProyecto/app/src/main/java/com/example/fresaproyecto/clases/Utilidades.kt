@@ -677,4 +677,44 @@ object Utilidades {
         db.close()
     }
 
+    fun consultarJornalDia(actividad: Activity, mes: Int, año: Int, dia: Int, idCultivo:Int) {
+        val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
+        val db: SQLiteDatabase = conn.getReadableDatabase()
+        var jornalCultivo: JornalCultivoVo
+
+        //Beneficio de Cultivo
+        listaJornalCultivo = ArrayList<JornalCultivoVo>()
+
+        val dateFormat = SimpleDateFormat("MM")
+        val mesActual = dateFormat.format(Date())
+
+        val dateFormatY = SimpleDateFormat("yyyy")
+        val añoActual = dateFormatY.format(Date())
+
+        println("Mes Actual: $mesActual")
+        println("Año Actual: $añoActual")
+
+        val cursor = db.rawQuery("select dia_jornal, mes_jornal, año_jornal,actv_jornal, cant_jornal, precio_jornal, (cant_jornal*precio_jornal)as Gasto_Total, id_jornal\n" +
+                "from jornal\n" +
+                "where mes_jornal = "+mes+" and año_jornal= "+año+" and dia_jornal = "+dia+" and id_cultivo = " + idCultivo, null)
+        while (cursor.moveToNext()) {
+            jornalCultivo = JornalCultivoVo()
+
+            //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
+            // y le asigno la respuesta cuando sea diferente de nulo
+
+            jornalCultivo.dia= cursor.getInt(0)
+            jornalCultivo.mes= cursor.getInt(1)
+            jornalCultivo.año= cursor.getInt(2)
+            jornalCultivo.actividad= cursor.getString(3)
+            jornalCultivo.cantidadJornal= cursor.getInt(4)
+            jornalCultivo.precioJornal= cursor.getInt(5)
+            jornalCultivo.gastoTotalJornal= cursor.getInt(6)
+            jornalCultivo.id= cursor.getInt(7)
+
+            listaJornalCultivo!!.add(jornalCultivo)
+        }
+        db.close()
+    }
+
 }

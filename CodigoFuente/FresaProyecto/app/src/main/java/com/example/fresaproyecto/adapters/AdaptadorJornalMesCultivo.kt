@@ -43,7 +43,7 @@ class AdaptadorJornalMesCultivo(listaMesCultivo: List<JornalCultivoVo>) :
         val pos: Int = i
 
         //viewHolderMes.txtId.setText(listaPersona.get(i).nombre)  Otra forma
-        viewHolderMes.cardJornalMes.setOnClickListener(object : View.OnClickListener {
+        /*viewHolderMes.cardJornalMes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
                 posicionMarcada=(pos+1)
                 InformeCultivoFragment.cambiarFragment(posicionMarcada)
@@ -51,6 +51,8 @@ class AdaptadorJornalMesCultivo(listaMesCultivo: List<JornalCultivoVo>) :
             }
         })
 
+
+         */
         /*viewHolderMes.txtMes.setText(listaJornalMes[i].mes.toString())
         viewHolderMes.txtAño.setText(listaJornalMes[i].año.toString())
         viewHolderMes.txtIngreso.setText(listaJornalMes[i].ingresos.toString())

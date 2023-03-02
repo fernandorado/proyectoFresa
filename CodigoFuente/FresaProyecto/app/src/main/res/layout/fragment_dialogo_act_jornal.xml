@@ -4,7 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".dialogos.DialogoRegJornal">
+    tools:context=".dialogos.DialogoActJornal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondogeneral2" />
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -55,14 +61,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:alpha="0.9"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtTituloJornal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5sp"
@@ -70,7 +75,7 @@
                         android:background="@drawable/stylo_fondo_borde"
                         android:backgroundTint="@color/white"
                         android:gravity="center"
-                        android:text="REGISTRO DE JORNAL"
+                        android:text="ACTUALIZAR JORNAL"
                         android:textColor="@color/black"
                         android:textSize="25dp"
                         android:textStyle="bold" />
@@ -211,20 +216,6 @@
 
                     </LinearLayout>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardJornalRegistros"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerJornalRegistros"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </androidx.cardview.widget.CardView>
-
-
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
@@ -240,37 +231,7 @@
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/colorSplash"
         android:drawableLeft="@drawable/ic_confirmacion2"
-        android:text="Guardar" />
-
-    <LinearLayout
-        android:id="@+id/idLayoutAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
-
-        <Button
-            android:id="@+id/idBtnCancelarActJornal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:backgroundTint="@color/colorSplash"
-            android:drawableLeft="@drawable/ic_confirmacion2"
-            android:text="Cancelar" />
-
-
-        <Button
-            android:id="@+id/idBtnActualizarJornal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:backgroundTint="@color/colorSplash"
-            android:drawableLeft="@drawable/ic_cerrar"
-            android:text="Actualizar" />
-
-
-    </LinearLayout>
+        android:text="Actualizar" />
 
 
 </RelativeLayout>

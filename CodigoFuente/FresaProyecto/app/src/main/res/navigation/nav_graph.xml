@@ -26,4 +26,18 @@
         android:name="com.example.fresaproyecto.fragments.InicioFragment"
         android:label="fragment_inicio"
         tools:layout="@layout/fragment_inicio" />
+    <dialog
+        android:id="@+id/dialogoRegCultivo"
+        android:name="com.example.fresaproyecto.dialogos.DialogoRegCultivo"
+        android:label="fragment_dialogo_reg_cultivo"
+        tools:layout="@layout/fragment_dialogo_reg_cultivo" />
+    <dialog
+        android:id="@+id/dialogoRegJornal"
+        android:name="com.example.fresaproyecto.dialogos.DialogoRegJornal"
+        android:label="fragment_dialogo_reg_jornal"
+        tools:layout="@layout/fragment_dialogo_reg_jornal" >
+        <action
+            android:id="@+id/action_dialogoRegJornal_self"
+            app:destination="@id/dialogoRegJornal" />
+    </dialog>
 </navigation>

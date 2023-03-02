@@ -132,7 +132,6 @@ class DialogoRegCosecha : DialogFragment() {
     lateinit var layoutMaduraReg: RelativeLayout
 
     lateinit var btnCamara: Button
-    lateinit var imagenView: ImageView
 
     lateinit var cardListaReg: CardView
 
@@ -276,7 +275,6 @@ class DialogoRegCosecha : DialogFragment() {
         txtVerFoto = vista.findViewById(R.id.txtVerFoto)
 
         btnCamara = vista.findViewById(R.id.btnCamara)
-        imagenView = vista.findViewById(R.id.imagenView)
 
         txtTotalReg = vista.findViewById(R.id.txtTotalReg)
 
@@ -298,12 +296,6 @@ class DialogoRegCosecha : DialogFragment() {
         val diaActual = dateFormatD.format(Date())
 
         cosechaPorDia(añoActual.toInt(), mesActual.toInt(), diaActual.toInt())
-
-        var miPath: Uri? = null
-        val archivo = "android.resource://" + actividad.packageName + "/" + R.drawable.sin_foto
-        miPath = Uri.parse(archivo)
-        bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
-        imagenView.setImageBitmap(bitmap)
 
         eventosMenu()
         return vista
@@ -842,7 +834,6 @@ class DialogoRegCosecha : DialogFragment() {
                 var ancho: Float = (600).toFloat()
                 var alto: Float = (800).toFloat()
                 bitmap = redimensionarImagen(imageBitmap, ancho, alto)
-                imagenView.setImageBitmap(bitmap)
             }
 
         }
@@ -860,12 +851,10 @@ class DialogoRegCosecha : DialogFragment() {
                     Toast.makeText(actividad, "¡No has seleccionado una imagen.! ", Toast.LENGTH_SHORT).show()
                 }else{
                     miPath = data!!.data
-                    imagenView.setImageURI(miPath)
                     try {
                         bitmap =
                             MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
                         bitmap = redimensionarImagen(bitmap, ancho, alto)
-                        imagenView.setImageBitmap(bitmap)
 
                     } catch (e: IOException) {
                         e.printStackTrace()

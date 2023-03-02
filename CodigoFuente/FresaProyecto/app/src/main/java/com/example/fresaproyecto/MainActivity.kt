@@ -365,6 +365,29 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         dialog.show(supportFragmentManager, "DialogoActCultivo")
     }
 
+    override fun actJornal() {
+        val dialog = DialogoActCultivo()
+        dialog.show(supportFragmentManager, "DialogoActCultivo")
+    }
+
+    override fun actInsumo() {
+        val dialog = DialogoActCultivo()
+        dialog.show(supportFragmentManager, "DialogoActCultivo")
+    }
+
+    override fun actCosecha() {
+        val dialog = DialogoActCultivo()
+        dialog.show(supportFragmentManager, "DialogoActCultivo")
+    }
+
+    override fun actGasto() {
+        val dialog = DialogoActCultivo()
+        dialog.show(supportFragmentManager, "DialogoActCultivo")
+    }
+
+    override fun actIngreso() {
+        TODO("Not yet implemented")
+    }
 
 
 }
