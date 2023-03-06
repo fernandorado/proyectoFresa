@@ -78,7 +78,6 @@ class AdaptadorCultivo() :
         })
 
         if (posicionMarcada == i) {
-            DialogoGesCultivo.identificacion = posicionMarcada
             DialogoGesCultivo.cultivoSeleccionado =
                 listaCultivo.get(pos) //Agregando la persona Seleccionada
             ViewHolderCultivo.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorSeleccion))
@@ -116,7 +115,6 @@ class AdaptadorCultivo() :
 
                         }
                         R.id.opcEliminar -> {
-                            DialogoGesCultivo.identificacion = -1
                             identificacion = listaCultivo[ViewHolderCultivo.adapterPosition].id
                             println("getAdapterPosition" + identificacion)
                             nombre =

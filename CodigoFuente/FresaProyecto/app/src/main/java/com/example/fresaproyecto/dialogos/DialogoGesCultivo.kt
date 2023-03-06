@@ -81,7 +81,9 @@ class DialogoGesCultivo : DialogFragment(), OnClickListenerCultivo {
         btnExtContinuar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                if (identificacion > -1) {
+
+                Utilidades.consultarListaCultivos(actividad)
+                if (Utilidades.listaCultivos!!.size > 0) {
                     val text = "Continuar"
                     val duration = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, text, duration)
@@ -100,7 +102,6 @@ class DialogoGesCultivo : DialogFragment(), OnClickListenerCultivo {
 
     companion object {
         lateinit var cultivoSeleccionado: CultivoVo
-        var identificacion: Int = -1
         lateinit var recyclerCultivos: RecyclerView
         lateinit var vista: View
         lateinit var actividad: Activity

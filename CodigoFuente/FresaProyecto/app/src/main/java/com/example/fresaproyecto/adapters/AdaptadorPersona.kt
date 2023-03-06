@@ -6,6 +6,7 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.DialogInterface
 import android.database.sqlite.SQLiteDatabase
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.ConexionSQLiteHelper
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.PersonaVo
+import com.example.fresaproyecto.dialogos.DialogoActPersona
 import com.example.fresaproyecto.dialogos.DialogoGesPersona
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
@@ -164,138 +166,21 @@ class AdaptadorPersona() :
     }
 
 
-    fun dialogoActualizar() {
-        vistaAct = LayoutInflater.from(context)
-            .inflate(R.layout.fragment_dialogo_act_persona, vgrupo, false)
-
-        builder = AlertDialog.Builder(vista.context).create()
-
-        //d = builder.create()
-
-        builder.setTitle("Actualizar")
-        builder.setView(vistaAct)
-
-        /*.setPositiveButton("Actualizar") { dialog, _ ->
-            //Se cierra el dialogo
-            actualizarUsuario()
-
-
-            //Se remueven las vistas
-            vgrupo.removeView(vistaAct)
-            vgrupo.removeView(vista)
-
+    private fun unwrap(context: Context): Activity? {
+        var context: Context? = context
+        while (context !is Activity && context is ContextWrapper) {
+            context = context.baseContext
         }
-
-        .setNegativeButton("Cerrar") { dialog, _ ->
-            //Se cierra el dialogo
-            dialog.dismiss()
-            //Se remueven las vistas
-            vgrupo.removeView(vistaAct)
-            vgrupo.removeView(vista)
-
-        }
-    .setCancelable(false)
-    .create()*/
-
-
-        vgrupo.removeView(vista)
-
-
-        var btnActualizar: Button = vistaAct.findViewById(R.id.btnActualizarAct)
-        var btnCancelar: Button = vistaAct.findViewById(R.id.btnCancelarAct)
-
-
-
-
-
-
-        btnActualizar.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                // Do some work here
-                actualizarUsuario()
-
-
-
-            }
-
-        })
-
-
-        btnCancelar.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-
-
-                //d?.dismiss()
-                builder.dismiss()
-                vgrupo.removeView(vistaAct)
-
-
-
-            }
-
-        })
-        return builder.show()
+        return context as Activity?
     }
 
-    private fun actualizarUsuario() {
-        val conexion =
-            ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
-        val db: SQLiteDatabase = conexion.writableDatabase
-        var id: EditText = vistaAct.findViewById(R.id.campoIdentificacionAct)
-        var nombre: EditText = vistaAct.findViewById(R.id.campoNombreAct)
+    fun dialogoActualizar() {
 
+        DialogoActPersona.identificacion = identificacion
+        DialogoActPersona.nombre = nombre
 
-
-
-
-        if((id.text.toString()!=null && !id.text.toString().trim().equals("")) and (nombre.text.toString()!=null && !nombre.text.toString().trim().equals(""))) {
-
-
-            val values = ContentValues()
-            //Esto podria modificarlo
-            values.put(Utilidades.CAMPO_ID_PERSONA,id.text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
-            values.put(Utilidades.CAMPO_NOMBRE_PERSONA, nombre.text.toString())
-
-            val idResultante: Number = db.update(
-                Utilidades.TABLA_PERSONA,
-                values,
-                Utilidades.CAMPO_ID_PERSONA+"="+identificacion,
-                null
-            )
-
-            if (idResultante != -1) {
-                /*Utilidades.listaPersonas!!.removeAt(identificacion)
-            notifyDataSetChanged()
-            //Es para remover con un efecto bonito pero no funcionó del todo bien, elimanaba unos y a veces los confundia en la base de datos*/
-                println("El usuario se Actualizó Exitosamente")
-                Toast.makeText(
-                    context,
-                    "¡El usuario se Actualizó Exitosamente!",
-                    Toast.LENGTH_SHORT
-                ).show()
-                //Utilidades.consultarListaPersonas(MainActivity())
-                DialogoGesPersona.llenarAdaptadorUsuarios()
-
-                builder.dismiss()
-
-
-            } else {
-                Toast.makeText(
-                    context,
-                    "EL usuario no se pudo Actualizar, intente nuevamente.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }else{
-            if(id.text.toString().isBlank()){
-                //id.setError("Este campo no puede quedar vacio")
-                id.error = "Este Campo no puede quedar vacio"
-            }else if (nombre.text.toString().isBlank()){
-                nombre.setError("Este campo no puede quedar vacio")
-            }
-            Toast.makeText(context, "Verifique que todos los campos esten llenos\n ", Toast.LENGTH_LONG).show()
-        }
-        db.close()
+        interfaceComunicaFragments = unwrap(context) as IComunicaFragments
+        interfaceComunicaFragments.actPersona()
     }
 
     fun dialogoEliminar(): AlertDialog {

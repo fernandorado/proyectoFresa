@@ -30,7 +30,8 @@ import com.example.fresaproyecto.interfaces.IComunicaFragments
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 
-class DialogoActCultivo : DialogFragment() {lateinit var vista: View
+class DialogoActCultivo : DialogFragment() {
+    lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
     lateinit var btnActualizar: Button
@@ -207,7 +208,7 @@ class DialogoActCultivo : DialogFragment() {lateinit var vista: View
             var blob = baos.toByteArray()
             //Esto podria modificarlo
             //values.put(Utilidades.CAMPO_ID_PERSONA,id.text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
-            values.put(Utilidades.CAMPO_NOMBRE_CULTIVO, campoName.text.toString())
+            values.put(Utilidades.CAMPO_NOMBRE_CULTIVO, campoName.text.toString().trim())
             values.put(Utilidades.CAMPO_CANT_PLANTAS, campoCant.text.toString())
             values.put(Utilidades.CAMPO_FOTO_CULTIVO, blob)
 

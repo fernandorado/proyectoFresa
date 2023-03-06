@@ -1,77 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".dialogos.DialogoActPersona">
 
     <!-- TODO: Update blank fragment layout -->
 
-
-
-    <ImageView
-        android:id="@+id/imgFinanzas"
-        android:layout_marginTop="20dp"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ahorros"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Actualizar Usuario"
-        android:textColor="@android:color/black"
-        android:textSize="35sp"
-        android:gravity="center"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Digite sus datos:"
-        android:layout_marginLeft="5sp"
-        android:textSize="25sp"/>
-
-    <EditText
-        android:id="@+id/campoIdentificacionAct"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Digite su numero de Documento"/>
-    <EditText
-        android:id="@+id/campoNombreAct"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Digite su nombre" />
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:orientation="vertical">
 
+        <RelativeLayout
+            android:id="@+id/idLayoutFondo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorSplash"
+            android:elevation="8dp">
 
-        <Button
-            android:id="@+id/btnActualizarAct"
+            <ImageButton
+                android:id="@+id/btnIcoCerrrar"
+                android:layout_width="50dp"
+                android:layout_height="49dp"
+                android:background="@color/colorSplash"
+                android:src="@drawable/ic_cerrar" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/imgFinanzas"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ahorros" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Actualizar Usuario"
+            android:textColor="@android:color/black"
+            android:textSize="35sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:text="Digite sus datos:"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/campoIdentificacionAct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Digite su numero de Documento"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/campoNombreAct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:hint="Digite su nombre" />
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Actualizar"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/colorSplash"
-            />
-        <Button
-            android:id="@+id/btnCancelarAct"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancelar"
-            android:backgroundTint="@color/colorSplash"
-            android:layout_gravity="center"
-            android:layout_margin="30dp"
-            />
+            android:layout_gravity="center">
+
+
+            <Button
+                android:id="@+id/btnActualizarAct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/colorSplash"
+                android:text="Actualizar" />
+
+        </LinearLayout>
     </LinearLayout>
 
 
-
-</LinearLayout>
+</RelativeLayout>

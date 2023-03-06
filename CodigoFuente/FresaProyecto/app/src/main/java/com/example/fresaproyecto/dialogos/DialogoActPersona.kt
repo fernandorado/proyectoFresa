@@ -1,36 +1,28 @@
 package com.example.fresaproyecto.dialogos
 
+import android.content.ContentValues
+import android.database.sqlite.SQLiteDatabase
+import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.fresaproyecto.R
+import com.example.fresaproyecto.clases.ConexionSQLiteHelper
+import com.example.fresaproyecto.clases.Utilidades
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DialogoActPersona.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DialogoActPersona : DialogFragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    lateinit var vista: View
+    lateinit var campoId: EditText
+    lateinit var campoNombre: EditText
+    lateinit var btnCerrar: ImageButton
+    lateinit var btnActualizar: Button
 
 
     override fun onCreateView(
@@ -38,26 +30,87 @@ class DialogoActPersona : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dialogo_act_persona, container, false)
+        vista = inflater.inflate(R.layout.fragment_dialogo_act_persona, container, false)
+        campoId = vista.findViewById(R.id.campoIdentificacionAct)
+        campoNombre = vista.findViewById(R.id.campoNombreAct)
+        btnCerrar = vista.findViewById(R.id.btnIcoCerrrar)
+        btnActualizar = vista.findViewById(R.id.btnActualizarAct)
+
+        campoId.setText("" +identificacion)
+        campoNombre.setText(nombre)
+        eventosMenu()
+        return vista
+    }
+
+    private fun eventosMenu(){
+        btnActualizar.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                // Do some work here
+                actualizarUsuario()
+            }
+
+        })
+
+
+        btnCerrar.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                //d?.dismiss()
+                dismiss()
+            }
+
+        })
+    }
+
+    private fun actualizarUsuario() {
+        val conexion =
+            ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
+        val db: SQLiteDatabase = conexion.writableDatabase
+
+        if((campoId.text.toString()!=null && !campoId.text.toString().trim().equals("")) and (campoNombre.text.toString()!=null && !campoNombre.text.toString().trim().equals(""))) {
+
+            val values = ContentValues()
+            //Esto podria modificarlo
+            values.put(Utilidades.CAMPO_ID_PERSONA,campoId.text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
+            values.put(Utilidades.CAMPO_NOMBRE_PERSONA, campoNombre.text.toString().trim())
+
+            val idResultante: Number = db.update(
+                Utilidades.TABLA_PERSONA,
+                values,
+                Utilidades.CAMPO_ID_PERSONA+"="+identificacion,
+                null
+            )
+
+            if (idResultante != -1) {
+                Toast.makeText(
+                    context,
+                    "¡El usuario se Actualizó Exitosamente!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                DialogoGesPersona.llenarAdaptadorUsuarios()
+                dismiss()
+
+
+            } else {
+                Toast.makeText(
+                    context,
+                    "EL usuario no se pudo Actualizar, intente nuevamente.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }else{
+            if(campoId.text.toString().isBlank()){
+                //id.setError("Este campo no puede quedar vacio")
+                campoId.error = "Este Campo no puede quedar vacio"
+            }else if (campoNombre.text.toString().isBlank()){
+                campoNombre.setError("Este campo no puede quedar vacio")
+            }
+            Toast.makeText(context, "Verifique que todos los campos esten llenos\n ", Toast.LENGTH_LONG).show()
+        }
+        db.close()
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DialogoActPersona.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DialogoActPersona().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        var identificacion: Int = 0
+        var nombre: String = ""
     }
 }
