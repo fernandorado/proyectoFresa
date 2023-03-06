@@ -11,8 +11,17 @@
     <color name="colorSeleccion">#FF9800</color>
     <color name="colorBlanco">#FFFFFF</color>
     <color name="colorGrisClaro">#B5B2B2</color>
+    <color name="colorGastos">#BAAA1E</color>
     <color name="colorGris">#505050</color>
+    <color name="colorCard">#FFEAE1E1</color>
+    <color name="colorFormularios">#FFEAE1E1</color>
+    <color name="colorText">#CF3025</color>
     <color name="colorVerdePastel">#A7DFBE</color>
-    <color name="colorAzulPastel">#B9FAF4</color>
+    <color name="colorVerdePastelTitulo">#62CA8D</color>
+    <color name="colorAzulPastel">#B7D7F3</color>
+    <color name="colorRojoPastel">#DABAB8</color>
+    <color name="colorRojoPastelTitulo">#E3837D</color>
+    <color name="colorNaranjaPastel">#F4BD6A</color>
+    <color name="colorNaranjaPastelTitulo">#F3AE48</color>
     <color name="coloTransparente">#CCFF0088</color>
 </resources>

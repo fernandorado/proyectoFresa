@@ -14,13 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
-import com.example.fresaproyecto.dialogos.DialogoGesCultivo
-import com.example.fresaproyecto.fragments.CalGananciasCultivoFragment
 import com.example.fresaproyecto.fragments.InformeCultivoFragment
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 
-class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
+class AdaptadorMesCultivo() :
     RecyclerView.Adapter<AdaptadorMesCultivo.ViewHolderMes>(), View.OnClickListener {
     private var listener: View.OnClickListener? = null
     var listaInformeMes: List<BeneficioCultivoVo> = Utilidades.listaBeneficioCultivo!!
@@ -64,17 +62,6 @@ class AdaptadorMesCultivo(listaMesCultivo: List<BeneficioCultivoVo>) :
                 notifyDataSetChanged()
             }
         })
-
-
-
-        /*viewHolderMes.txtMes.setText(listaInformeMes[i].mes.toString())
-        viewHolderMes.txtAño.setText(listaInformeMes[i].año.toString())
-        viewHolderMes.txtIngreso.setText(listaInformeMes[i].ingresos.toString())
-        viewHolderMes.txtGastoJornal.setText(listaInformeMes[i].gastoJornal.toString())
-        viewHolderMes.txtGastoInsumo.setText(listaInformeMes[i].gastoInsumo.toString())
-        viewHolderMes.txtGanancia.setText(listaInformeMes[i].beneficio.toString())
-
-         */
 
         viewHolderMes.txtIngreso.setText("$"+listaInformeMes[i].ingresos.toString())
         viewHolderMes.txtGasJornal.setText("$"+listaInformeMes[i].gastoJornal.toString())

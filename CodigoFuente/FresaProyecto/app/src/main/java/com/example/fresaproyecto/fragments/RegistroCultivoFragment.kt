@@ -36,7 +36,6 @@ class RegistroCultivoFragment : Fragment() {
     lateinit var cardRegJornal: CardView
     lateinit var cardRegCosecha: CardView
     lateinit var cardRegInsumos: CardView
-    lateinit var cardGanancias: CardView
     lateinit var txtNombre: TextView
     lateinit var imgCultivo: ImageView
 
@@ -62,9 +61,9 @@ class RegistroCultivoFragment : Fragment() {
         bitmap = BitmapFactory.decodeStream(bais)
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_registro_cultivo, container, false)
-        cardRegJornal=vista.findViewById(R.id.cardRegJornal)
-        cardRegInsumos=vista.findViewById(R.id.cardRegInsumos)
-        cardRegCosecha=vista.findViewById(R.id.cardRegCosecha)
+        cardRegJornal = vista.findViewById(R.id.cardRegJornal)
+        cardRegInsumos = vista.findViewById(R.id.cardRegInsumos)
+        cardRegCosecha = vista.findViewById(R.id.cardRegCosecha)
         txtNombre = vista.findViewById(R.id.textCal)
         imgCultivo = vista.findViewById(R.id.imgCultivo)
 
@@ -81,23 +80,22 @@ class RegistroCultivoFragment : Fragment() {
     private fun eventosMenu() {
 
 
-
         cardRegJornal.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View){
+            override fun onClick(v: View) {
                 interfaceComunicaFragments.regJornal()
 
             }
         })
 
         cardRegInsumos.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View){
+            override fun onClick(v: View) {
                 interfaceComunicaFragments.regInsumos()
 
             }
         })
 
         cardRegCosecha.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View){
+            override fun onClick(v: View) {
                 interfaceComunicaFragments.regCosecha()
 
             }

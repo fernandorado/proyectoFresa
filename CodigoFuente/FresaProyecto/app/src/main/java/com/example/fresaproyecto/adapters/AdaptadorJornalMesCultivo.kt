@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.JornalCultivoVo
-import com.example.fresaproyecto.fragments.CalGananciasCultivoFragment
-import com.example.fresaproyecto.fragments.InformeCultivoFragment
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 

@@ -9,20 +9,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_marginBottom="72dp"
+        android:gravity="center"
         android:orientation="vertical">
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="200dp"
-            android:layout_height="80dp"
-            android:src="@drawable/logo_fmundomujer" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="200dp"
-            android:layout_height="90dp"
-            android:src="@drawable/logo_sembrarfuturotransparente" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:src="@drawable/logo_fmundomujer" />
+
+            <LinearLayout
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/colorGrisClaro" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="200dp"
+                android:layout_height="90dp"
+                android:src="@drawable/logo_sembrarfuturotransparente" />
+        </LinearLayout>
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">

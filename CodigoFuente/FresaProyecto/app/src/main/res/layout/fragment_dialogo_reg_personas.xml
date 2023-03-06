@@ -89,7 +89,8 @@
                         android:id="@+id/campoIdentificacion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nombre de Cultivo" />
+                        android:inputType="number"
+                        android:hint="Identificación" />
 
                 </LinearLayout>
 
@@ -106,7 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5sp"
-                        android:text="Identificación: "
+                        android:text="Nombre: "
                         android:textColor="@android:color/black"
                         android:textSize="20sp" />
 
@@ -119,7 +120,7 @@
                         android:id="@+id/campoNombreP"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Nombre de Cultivo" />
+                        android:hint="Nombre" />
 
                 </LinearLayout>
 

@@ -170,40 +170,6 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         toast.show()
     }
 
-    override fun menuGastos() {
-        //val fragmentManager = supportFragmentManager
-        //val fragmentTransaction = fragmentManager.beginTransaction()
-
-        val fragmentMenuCultivoGastos= MenuCultivoGastosFragment()
-
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.contenedorFragments, fragmentMenuCultivoGastos)
-        transaction.addToBackStack(null)
-        transaction.commit()
-
-        val text ="Gastos"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
-    }
-
-
-    override fun menuIngresos() {
-        //val fragmentManager = supportFragmentManager
-        //val fragmentTransaction = fragmentManager.beginTransaction()
-
-        val fragmentMenuCultivoIngresos= MenuCultivoIngresosFragment()
-
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.contenedorFragments, fragmentMenuCultivoIngresos)
-        transaction.addToBackStack(null)
-        transaction.commit()
-
-        val text ="Ingresos"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
-    }
 
     override fun menuPersonal() {
         //val fragmentManager = supportFragmentManager
@@ -309,22 +275,6 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         dialog.show(supportFragmentManager, "DialogoRegInsumos")
 
         val text ="Registro de Insumos"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
-    }
-
-
-
-    override fun calGanancias() {
-        val fragmentCalcularGanancias = CalGananciasCultivoFragment()
-
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.contenedorFragments, fragmentCalcularGanancias)
-        transaction.addToBackStack(null)
-        transaction.commit()
-
-        val text ="Calcular Ganancias"
         val duration = Toast.LENGTH_SHORT
         val toast = Toast.makeText(applicationContext, text, duration)
         toast.show()

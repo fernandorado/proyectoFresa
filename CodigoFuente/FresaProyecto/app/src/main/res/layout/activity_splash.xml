@@ -1,41 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".actividades.SplashActivity"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".actividades.SplashActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/fondo_splash"/>
+        android:src="@drawable/fondo_splash" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="362dp"
-        android:layout_height="210dp"
-        android:layout_gravity="center"
-        android:src="@drawable/logo_sembrarfuturotransparente_borde_blanco"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints">
 
-    <ImageView
-        android:layout_width="354dp"
-        android:layout_height="221dp"
-        android:layout_gravity="center"
-        android:src="@drawable/logo_fmundomujer_borde_blanco"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        <ImageView
+            android:layout_width="354dp"
+            android:layout_height="221dp"
+            android:src="@drawable/logofmmblanco"
+            app:layout_constraintBottom_toTopOf="@+id/imageView" />
+
+        <LinearLayout
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/colorGris" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="362dp"
+            android:layout_height="210dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_sembrarfuturotransparente_borde_blanco" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

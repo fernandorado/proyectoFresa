@@ -192,14 +192,13 @@ class DialogoGesPersona : DialogFragment(), OnClickListenerPersona {
             Utilidades.consultarListaPersonas(actividad)
 
             //se asigna la lista de jugadores por defecto
-            var miAdaptadorJugadores = AdaptadorPersona(Utilidades.listaPersonas!!)
+            var miAdaptadorJugadores = AdaptadorPersona()
 
-            /*miAdaptadorJugadores.setOnClickListener(object : View.OnClickListener {
+            miAdaptadorJugadores.setOnClickListener(object : View.OnClickListener {
                 override fun onClick(view: View?) {
                     personaSeleccionada= Utilidades.listaPersonas!!.get(recyclerUsuarios.getChildAdapterPosition(view!!))
-                    println("Nombre: " + personaSeleccionada.nombre)
                 }
-            })*/
+            })
 
             recyclerUsuarios.adapter=miAdaptadorJugadores
         }

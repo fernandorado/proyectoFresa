@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.dialogos.DialogoGesPersona
 import com.example.fresaproyecto.interfaces.IComunicaFragments
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,26 +25,13 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class MenuPersonaFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    lateinit var cardRegGastos: CardView
-    lateinit var cardRegIngresos: CardView
-    lateinit var cardResultadoMensual: CardView
-    lateinit var txtNombre: TextView
+    var fragmentRegistro: RegistroPersonaFragment = RegistroPersonaFragment()
+    var fragmentInforme: InformePersonalFragment = InformePersonalFragment()
+    lateinit var navigation: BottomNavigationView
 
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -57,62 +45,30 @@ class MenuPersonaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        vista = inflater.inflate(R.layout.fragment_menu_persona, container, false)
-        cardRegIngresos=vista.findViewById(R.id.cardRegIngresos)
-        cardRegGastos=vista.findViewById(R.id.cardRegGastos)
-        cardResultadoMensual=vista.findViewById(R.id.cardResultadoMensual)
-        txtNombre = vista.findViewById(R.id.textNombre)
 
-        txtNombre.setText(DialogoGesPersona.personaSeleccionada.nombre) //Nombre de mensaje de Bienvenida
+        // Inflate the layout for this fragment
+        vista = inflater.inflate(R.layout.fragment_menu_cultivo, container, false)
+        reemplazarFragment(fragmentRegistro)
 
-        eventosMenu()
+        navigation = vista.findViewById(R.id.bottom_navigation)
+        navigation.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.informe -> reemplazarFragment(fragmentInforme)
+                R.id.registro -> reemplazarFragment(fragmentRegistro)
+                else -> {
+
+                }
+            }
+            true
+        }
 
         return vista
     }
 
-    private fun eventosMenu() {
-
-
-
-        cardRegIngresos.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View){
-                interfaceComunicaFragments.regIngresos()
-
-            }
-        })
-
-        cardRegGastos.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View){
-                interfaceComunicaFragments.regGastos()
-
-            }
-        })
-
-        cardResultadoMensual.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View){
-                interfaceComunicaFragments.resultadoMensual()
-
-            }
-        })
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MenuPersonaFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MenuPersonaFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun reemplazarFragment(fragment: Fragment) {
+        val fragmentManager = activity?.supportFragmentManager
+        val fragmentTransaction = fragmentManager?.beginTransaction()
+        fragmentTransaction!!.replace(R.id.frame_container, fragment)
+        fragmentTransaction.commit()
     }
 }

@@ -27,7 +27,7 @@ import com.example.fresaproyecto.dialogos.DialogoGesPersona
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 
-class AdaptadorPersona(listaPersona: List<PersonaVo>) :
+class AdaptadorPersona() :
     RecyclerView.Adapter<AdaptadorPersona.ViewHolderPersona>(), View.OnClickListener {
     private var listener: View.OnClickListener? = null
     var listaPersona: List<PersonaVo> = Utilidades.listaPersonas!!

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".fragments.InicioFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+
 
 
     <LinearLayout
@@ -171,87 +172,6 @@
             </androidx.cardview.widget.CardView>
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="12dp"
-                android:layout_marginBottom="14dp"
-                app:cardCornerRadius="35dp"
-                app:cardElevation="9dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Resultado Mensual"
-                        android:textAlignment="center"
-                        android:textColor="#121111"
-                        android:textSize="35sp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <GridLayout
-                            android:id="@+id/cardResultadoMensual"
-                            android:layout_width="match_parent"
-                            android:layout_height="152dp"
-                            android:padding="4dp">
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/cardRegCosecha"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:foreground="?selectableItemBackground"
-                                app:cardCornerRadius="60dp"
-                                app:cardElevation="2dp">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center_horizontal|center_vertical"
-                                    android:layout_marginBottom="16dp"
-                                    android:orientation="vertical">
-
-                                    <ImageView
-                                        android:layout_width="110dp"
-                                        android:layout_height="100dp"
-                                        android:layout_gravity="center_horizontal"
-                                        android:src="@drawable/beneficios" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:layout_gravity="center_horizontal"
-                                        android:text="Resultado Mensual"
-                                        android:textAlignment="center"
-                                        android:textColor="@color/funcionesCardView"
-                                        android:textSize="22sp"
-                                        android:textStyle="bold" />
-
-
-                                </LinearLayout>
-
-
-                            </androidx.cardview.widget.CardView>
-
-                        </GridLayout>
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </LinearLayout>

@@ -14,11 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.BeneficioPersonalVo
+import com.example.fresaproyecto.fragments.InformeCultivoFragment
+import com.example.fresaproyecto.fragments.InformePersonalFragment
 import com.example.fresaproyecto.fragments.ResMensualPersonalFragment
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 
-class AdaptadorMesPersona(listaMesPersona: List<BeneficioPersonalVo>) :
+class AdaptadorMesPersona() :
     RecyclerView.Adapter<AdaptadorMesPersona.ViewHolderMes>(), View.OnClickListener {
     private var listener: View.OnClickListener? = null
     var listaMes: List<BeneficioPersonalVo> = Utilidades.listaBeneficioPersonal!!
@@ -45,7 +47,7 @@ class AdaptadorMesPersona(listaMesPersona: List<BeneficioPersonalVo>) :
         context = viewGroup.context
 
                 vista = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_list_mes, viewGroup, false)
+            .inflate(R.layout.item_list_mes_personal, viewGroup, false)
 
 
         vista.setOnClickListener(this)
@@ -59,25 +61,35 @@ class AdaptadorMesPersona(listaMesPersona: List<BeneficioPersonalVo>) :
         //viewHolderMes.txtId.setText(listaPersona.get(i).nombre)  Otra forma
         viewHolderMes.cardMes.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View) {
-                posicionMarcada=pos
-
+                posicionMarcada=(pos+1)
+                InformePersonalFragment.fecha = listaMes.get(pos) //Agregando el beneficio por mes
+                InformePersonalFragment.cambiarFragment(InformePersonalFragment.fecha.mes)
                 notifyDataSetChanged()
             }
         })
 
-        if (posicionMarcada == i){
-            //Mes Seleccionado deberia ser aqui
-            ResMensualPersonalFragment.mesSeleccionado = listaMes.get(pos) //Agregando el beneficio por mes
-            viewHolderMes.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorSeleccion))
-        }else{
-            viewHolderMes.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorBlanco))
-        }
 
-        viewHolderMes.txtMes.setText(listaMes[i].mes.toString())
-        viewHolderMes.txtAño.setText(listaMes[i].año.toString())
         viewHolderMes.txtIngreso.setText(listaMes[i].ingresos.toString())
         viewHolderMes.txtGasto.setText(listaMes[i].gastos.toString())
         viewHolderMes.txtGanancia.setText(listaMes[i].beneficio.toString())
+        var mesLetras = when (listaMes[i].mes){
+            1 -> "Enero"
+            2 -> "Febrero"
+            3 -> "Marzo"
+            4 -> "Abril"
+            5 -> "Mayo"
+            6 -> "Junio"
+            7 -> "Julio"
+            8 -> "Agosto"
+            9 -> "Septiembre"
+            10 -> "Octubre"
+            11 -> "Noviembre"
+            12 -> "Diciembre"
+            else -> "Sin Fecha"
+        }
+
+        viewHolderMes.txtMes.setText(mesLetras + ". ")
+        viewHolderMes.txtAño.setText(listaMes[i].año.toString())
 
     }
 
@@ -104,7 +116,6 @@ class AdaptadorMesPersona(listaMesPersona: List<BeneficioPersonalVo>) :
         var txtIngreso: TextView
         var txtGanancia: TextView
         var cardMes: CardView
-        var barraSeleccion: TextView
 
         init {
             txtMes = itemView.findViewById(R.id.idMes)
@@ -113,7 +124,6 @@ class AdaptadorMesPersona(listaMesPersona: List<BeneficioPersonalVo>) :
             txtIngreso = itemView.findViewById(R.id.idIngresoMensual)
             txtGanancia = itemView.findViewById(R.id.idGanancias)
             cardMes = itemView.findViewById(R.id.cardMes)
-            barraSeleccion = itemView.findViewById((R.id.barraSeleccionMes))
         }
     }
 

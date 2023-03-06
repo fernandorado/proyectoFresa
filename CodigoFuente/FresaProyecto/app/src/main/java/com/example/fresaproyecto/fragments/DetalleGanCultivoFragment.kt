@@ -124,7 +124,7 @@ class DetalleGanCultivoFragment : Fragment() {
         txtIngreso.setText(Utilidades.listaBeneficioCultivo!![mes].ingresos.toString())
         txtGasto.setText(Utilidades.listaBeneficioCultivo!![mes].gastos.toString())
 
-        var miAdaptadorInforme = AdaptadorMesCultivo(Utilidades.listaBeneficioCultivo!!)
+        var miAdaptadorInforme = AdaptadorMesCultivo()
         miAdaptadorInforme.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))

@@ -42,7 +42,7 @@ class DialogosRegIngresos : DialogFragment() {
     lateinit var campoFecha: EditText
     lateinit var campoMonto: EditText
     lateinit var btnRegistrar: Button
-    lateinit var btnCerrar: Button
+    lateinit var btnCerrar: ImageButton
     lateinit var ingresosSpinner: Spinner
     var concepto: String = "" //Elemento seleccionado del Spinner (Concepto del ingreso)
     var dia: Int = 0
@@ -211,7 +211,7 @@ class DialogosRegIngresos : DialogFragment() {
             if(idResultante != -1){
                 println("Registrar: " +registro)
                 Toast.makeText(actividad, "¡Registro Éxitoso! " +registro, Toast.LENGTH_SHORT).show()
-                Utilidades.calcularBeneficioPersonal(actividad)
+                //Utilidades.calcularBeneficioPersonal(actividad)
 
             }else{
                 Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT).show()

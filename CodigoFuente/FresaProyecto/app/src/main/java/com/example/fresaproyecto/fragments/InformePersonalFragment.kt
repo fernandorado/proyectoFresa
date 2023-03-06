@@ -17,27 +17,30 @@ import com.echo.holographlibrary.BarGraph
 import com.example.fresaproyecto.MainActivity
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.adapters.AdaptadorMesCultivo
+import com.example.fresaproyecto.adapters.AdaptadorMesPersona
 import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
+import com.example.fresaproyecto.clases.vo.BeneficioPersonalVo
 import com.example.fresaproyecto.dialogos.DialogoGesCultivo
+import com.example.fresaproyecto.dialogos.DialogoGesPersona
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
 
-class InformeCultivoFragment : Fragment() {
+class InformePersonalFragment : Fragment() {
     lateinit var vista: View
     lateinit var actividad: Activity
 
     var año: Int = 0
     var mes: Int = 0
-    var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
+    var idPersona = DialogoGesPersona.personaSeleccionada.id
 
     //TextView de año
     //TextView de Informe General
     lateinit var txtFechaSelec: TextView
-    var listaInformeMes: ArrayList<BeneficioCultivoVo>? = null
+    var listaInformeMes: ArrayList<BeneficioPersonalVo>? = null
     var puntos = ArrayList<Bar>()
     //----------TextView por mes
     //TextView mes Enero
@@ -57,7 +60,7 @@ class InformeCultivoFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_informe_cultivo, container, false)
+        vista = inflater.inflate(R.layout.fragment_informe_personal, container, false)
         val dateFormatY = SimpleDateFormat("yyyy")
         val añoActual = dateFormatY.format(Date())
         añoSeleccionado = añoActual.toInt()
@@ -74,11 +77,12 @@ class InformeCultivoFragment : Fragment() {
         return vista
     }
 
-    fun monthYear(){
-        var today :Calendar = Calendar.getInstance()
-        val builder = MonthPickerDialog.Builder(actividad,
+    fun monthYear() {
+        var today: Calendar = Calendar.getInstance()
+        val builder = MonthPickerDialog.Builder(
+            actividad,
             { selectedMonth, selectedYear ->
-                txtFechaSelec.setText(""+selectedYear)
+                txtFechaSelec.setText("" + selectedYear)
                 añoSeleccionado = selectedYear
                 graficarBarras()
                 informePorFecha(selectedYear)
@@ -97,9 +101,9 @@ class InformeCultivoFragment : Fragment() {
     }
 
     fun graficarBarras() {
-        Utilidades.calcularBeneficioCultivo(actividad, añoSeleccionado, idCultivo)
+        Utilidades.calcularBeneficioPersonal(actividad, añoSeleccionado, idPersona)
 
-        listaInformeMes= Utilidades.listaBeneficioCultivo!!
+        listaInformeMes = Utilidades.listaBeneficioPersonal!!
 
         puntos.clear()
         for (i in listaInformeMes!!) {
@@ -140,11 +144,12 @@ class InformeCultivoFragment : Fragment() {
     }
 
     private fun informePorFecha(año: Int) {
-        //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
-        Utilidades.calcularBeneficioCultivo(actividad,año, idCultivo)
-        listaInformeMes= Utilidades.listaBeneficioCultivo!!
+        Utilidades.calcularBeneficioPersonal(actividad, año, idPersona)
 
-        var miAdaptadorInforme = AdaptadorMesCultivo()
+        listaInformeMes = Utilidades.listaBeneficioPersonal!!
+
+
+        var miAdaptadorInforme = AdaptadorMesPersona()
         miAdaptadorInforme.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))
@@ -158,14 +163,15 @@ class InformeCultivoFragment : Fragment() {
     companion object {
         var mesSeleccionado: Int = 0
         var añoSeleccionado: Int = 0
-        lateinit var fecha: BeneficioCultivoVo
+        lateinit var fecha: BeneficioPersonalVo
         lateinit var recyclerInformeMes: RecyclerView
         lateinit var barGraphMes: BarGraph
         lateinit var interfaceComunicaFragments: IComunicaFragments
 
         fun cambiarFragment(mes: Int) {
             mesSeleccionado = mes
-            interfaceComunicaFragments.resultadoMensualCultivo()
+            interfaceComunicaFragments.resultadoMensual()
         }
+
     }
 }
