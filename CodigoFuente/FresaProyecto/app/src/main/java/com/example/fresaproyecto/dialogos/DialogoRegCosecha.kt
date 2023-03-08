@@ -24,7 +24,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
@@ -32,26 +31,15 @@ import com.example.fresaproyecto.adapters.AdaptadorCosechaMesCultivo
 import com.example.fresaproyecto.clases.ConexionSQLiteHelper
 import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
+import com.example.fresaproyecto.clases.vo.CosechaCultivoVo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import java.io.ByteArrayOutputStream
-import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DialogoRegCosecha.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DialogoRegCosecha : DialogFragment() {
-    // TODO: Rename and change types of parameters
 
     var progreso: ProgressDialog? = null
 
@@ -59,11 +47,17 @@ class DialogoRegCosecha : DialogFragment() {
     var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
 
     lateinit var vista: View
+
+    lateinit var idLayoutAct: LinearLayout
+    lateinit var cosechaSeleccionada: CosechaCultivoVo
+    lateinit var txtTituloCosecha: TextView
     lateinit var vistaImagen: View
     lateinit var imgFactura: ImageView
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
     lateinit var btnGuardar: Button
+    lateinit var btnActualizar: Button
+    lateinit var btnCancelar: Button
     lateinit var fabAtras: ImageButton
     lateinit var btnExtra: Button
     lateinit var btnPrimera: Button
@@ -174,18 +168,8 @@ class DialogoRegCosecha : DialogFragment() {
 
     private val COD_SELECCIONA = 10
     private val COD_FOTO = 20
-    private val CARPETA_PRINCIPAL = "misImagenesApp/" //directorio principal
-    lateinit var fileImagen: File
     lateinit var bitmap: Bitmap
     lateinit var path: String
-    private val CARPETA_IMAGEN = "imagenes" //carpeta donde se guardan las fotos
-
-    private val DIRECTORIO_IMAGEN = CARPETA_PRINCIPAL + CARPETA_IMAGEN //ruta carpeta de directorios
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -207,8 +191,12 @@ class DialogoRegCosecha : DialogFragment() {
         vista = inflater.inflate(R.layout.fragment_dialogo_reg_cosecha, container, false)
         vistaImagen = inflater.inflate(R.layout.imagen, container, false)
 
+        txtTituloCosecha = vista.findViewById(R.id.txtTituloCosecha)
         imgFactura = vistaImagen.findViewById(R.id.imgFactura)
         btnGuardar = vista.findViewById(R.id.idBtnGuardar)
+        btnActualizar = vista.findViewById(R.id.idBtnActualizarCosecha)
+        btnCancelar = vista.findViewById(R.id.idBtnCancelarActCosecha)
+        idLayoutAct = vista.findViewById(R.id.idLayoutAct)
         btnExtra = vista.findViewById(R.id.btnExtra)
         btnPrimera = vista.findViewById(R.id.btnPrimera)
         btnSegunda = vista.findViewById(R.id.btnSegunda)
@@ -286,6 +274,11 @@ class DialogoRegCosecha : DialogFragment() {
         recyclerCosechaMes.layoutManager = LinearLayoutManager(actividad)
         recyclerCosechaMes.setHasFixedSize(true)
 
+        var miPath: Uri? = null
+        val archivo = "android.resource://" + actividad.packageName + "/" + R.drawable.sin_foto
+        miPath = Uri.parse(archivo)
+        bitmap = MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
+
         val dateFormat = SimpleDateFormat("MM")
         val mesActual = dateFormat.format(Date())
 
@@ -327,7 +320,16 @@ class DialogoRegCosecha : DialogFragment() {
 
         })
 
-        txtVerFoto.setOnClickListener{
+        btnCancelar.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                // Do some work here
+                cancelarAct()
+
+            }
+
+        })
+
+        txtVerFoto.setOnClickListener {
             val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(context)
             builder.setTitle("Factura")
                 .setPositiveButton("Cerrar") { dialog, _ ->
@@ -345,7 +347,7 @@ class DialogoRegCosecha : DialogFragment() {
         btnGuardar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
-                validadRegistro()
+                validarRegistro()
             }
         })
         btnCamara.setOnClickListener {
@@ -398,12 +400,17 @@ class DialogoRegCosecha : DialogFragment() {
 
         btnOkExtra.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                if (campoLibrasExtra.text.toString().isEmpty() or campoPrecioExtra.text.toString()
-                        .isEmpty()
+                if ((campoLibrasExtra.text.toString().isEmpty() or campoLibrasExtra.text.toString()
+                        .equals("0")) or (campoPrecioExtra.text.toString()
+                        .isEmpty() or campoPrecioExtra.text.toString().equals("0"))
                 ) {
-                    if (campoLibrasExtra.text.toString().isEmpty()) {
+                    if (campoLibrasExtra.text.toString()
+                            .isEmpty() or campoLibrasExtra.text.toString().equals("0")
+                    ) {
                         campoLibrasExtra.setError("Digite un valor mayor a cero para continuar")
-                    } else if (campoPrecioExtra.text.toString().isEmpty()) {
+                    } else if (campoPrecioExtra.text.toString()
+                            .isEmpty() or campoPrecioExtra.text.toString().equals("0")
+                    ) {
                         campoPrecioExtra.setError("Digite un valor mayor a cero para continuar")
                     }
                 } else {
@@ -435,13 +442,18 @@ class DialogoRegCosecha : DialogFragment() {
 
         btnOkPrimera.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                if (campoLibrasPrimera.text.toString()
-                        .isEmpty() or campoPrecioPrimera.text.toString()
-                        .isEmpty()
+                if ((campoLibrasPrimera.text.toString()
+                        .isEmpty() or campoLibrasPrimera.text.toString()
+                        .equals("0")) or (campoPrecioPrimera.text.toString()
+                        .isEmpty() or campoPrecioPrimera.text.toString().equals("0"))
                 ) {
-                    if (campoLibrasPrimera.text.toString().isEmpty()) {
+                    if (campoLibrasPrimera.text.toString()
+                            .isEmpty() or campoLibrasPrimera.text.toString().equals("0")
+                    ) {
                         campoLibrasPrimera.setError("Digite un valor mayor a cero para continuar")
-                    } else if (campoPrecioPrimera.text.toString().isEmpty()) {
+                    } else if (campoPrecioPrimera.text.toString()
+                            .isEmpty() or campoPrecioPrimera.text.toString().equals("0")
+                    ) {
                         campoPrecioPrimera.setError("Digite un valor mayor a cero para continuar")
                     }
                 } else {
@@ -474,13 +486,19 @@ class DialogoRegCosecha : DialogFragment() {
 
         btnOkSegunda.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                if (campoLibrasSegunda.text.toString()
+                if ((campoLibrasSegunda.text.toString()
+                        .isEmpty() or campoLibrasSegunda.text.toString()
+                        .equals("0")) or (campoPrecioSegunda.text.toString()
                         .isEmpty() or campoPrecioSegunda.text.toString()
-                        .isEmpty()
+                        .equals("0"))
                 ) {
-                    if (campoLibrasSegunda.text.toString().isEmpty()) {
+                    if (campoLibrasSegunda.text.toString()
+                            .isEmpty() or campoLibrasSegunda.text.toString().equals("0")
+                    ) {
                         campoLibrasSegunda.setError("Digite un valor mayor a cero para continuar")
-                    } else if (campoPrecioSegunda.text.toString().isEmpty()) {
+                    } else if (campoPrecioSegunda.text.toString()
+                            .isEmpty() or campoPrecioSegunda.text.toString().equals("0")
+                    ) {
                         campoPrecioSegunda.setError("Digite un valor mayor a cero para continuar")
                     }
                 } else {
@@ -513,13 +531,18 @@ class DialogoRegCosecha : DialogFragment() {
 
         btnOkTercera.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                if (campoLibrasTercera.text.toString()
-                        .isEmpty() or campoPrecioTercera.text.toString()
-                        .isEmpty()
+                if ((campoLibrasTercera.text.toString()
+                        .isEmpty() or campoLibrasTercera.text.toString()
+                        .equals("0")) or (campoPrecioTercera.text.toString()
+                        .isEmpty() or campoPrecioTercera.text.toString().equals("0"))
                 ) {
-                    if (campoLibrasTercera.text.toString().isEmpty()) {
+                    if (campoLibrasTercera.text.toString()
+                            .isEmpty() or campoLibrasTercera.text.toString().equals("0")
+                    ) {
                         campoLibrasTercera.setError("Digite un valor mayor a cero para continuar")
-                    } else if (campoPrecioTercera.text.toString().isEmpty()) {
+                    } else if (campoPrecioTercera.text.toString()
+                            .isEmpty() or campoPrecioTercera.text.toString().equals("0")
+                    ) {
                         campoPrecioTercera.setError("Digite un valor mayor a cero para continuar")
                     }
                 } else {
@@ -552,13 +575,18 @@ class DialogoRegCosecha : DialogFragment() {
 
         btnOkCuarta.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                if (campoLibrasCuarta.text.toString()
-                        .isEmpty() or campoPrecioCuarta.text.toString()
-                        .isEmpty()
+                if ((campoLibrasCuarta.text.toString()
+                        .isEmpty() or campoLibrasCuarta.text.toString()
+                        .equals("0")) or (campoPrecioCuarta.text.toString()
+                        .isEmpty() or campoPrecioCuarta.text.toString().equals("0"))
                 ) {
-                    if (campoLibrasCuarta.text.toString().isEmpty()) {
+                    if (campoLibrasCuarta.text.toString()
+                            .isEmpty() or campoLibrasCuarta.text.toString().equals("0")
+                    ) {
                         campoLibrasCuarta.setError("Digite un valor mayor a cero para continuar")
-                    } else if (campoPrecioCuarta.text.toString().isEmpty()) {
+                    } else if (campoPrecioCuarta.text.toString()
+                            .isEmpty() or campoPrecioCuarta.text.toString().equals("0")
+                    ) {
                         campoPrecioCuarta.setError("Digite un valor mayor a cero para continuar")
                     }
                 } else {
@@ -588,17 +616,23 @@ class DialogoRegCosecha : DialogFragment() {
         })
 
 
-
-
         btnOkQuinta.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                if (campoLibrasQuinta.text.toString()
+                if ((campoLibrasQuinta.text.toString()
+                        .isEmpty() or campoLibrasQuinta.text.toString()
+                        .equals("0")) or (campoPrecioQuinta.text.toString()
                         .isEmpty() or campoPrecioQuinta.text.toString()
-                        .isEmpty()
+                        .equals("0"))
                 ) {
-                    if (campoLibrasQuinta.text.toString().isEmpty()) {
+                    if (campoLibrasQuinta.text.toString()
+                            .isEmpty() or campoLibrasQuinta.text.toString()
+                            .equals("0")
+                    ) {
                         campoLibrasQuinta.setError("Digite un valor mayor a cero para continuar")
-                    } else if (campoPrecioQuinta.text.toString().isEmpty()) {
+                    } else if (campoPrecioQuinta.text.toString()
+                            .isEmpty() or campoPrecioQuinta.text.toString()
+                            .equals("0")
+                    ) {
                         campoPrecioQuinta.setError("Digite un valor mayor a cero para continuar")
                     }
                 } else {
@@ -628,12 +662,19 @@ class DialogoRegCosecha : DialogFragment() {
 
         btnOkMadura.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                if (campoLibrasMadura.text.toString()
-                        .isEmpty() or campoPrecioMadura.text.toString().isEmpty()
+                if ((campoLibrasMadura.text.toString()
+                        .isEmpty() or campoLibrasMadura.text.toString()
+                        .equals("0")) or (campoPrecioMadura.text.toString()
+                        .isEmpty() or campoPrecioMadura.text.toString().equals("0"))
                 ) {
-                    if (campoLibrasMadura.text.toString().isEmpty()) {
+                    if (campoLibrasMadura.text.toString()
+                            .isEmpty() or campoLibrasMadura.text.toString()
+                            .equals("0")
+                    ) {
                         campoLibrasMadura.setError("Digite un valor mayor a cero para continuar")
-                    } else if (campoPrecioMadura.text.toString().isEmpty()) {
+                    } else if (campoPrecioMadura.text.toString()
+                            .isEmpty() or campoPrecioMadura.text.toString().equals("0")
+                    ) {
                         campoPrecioMadura.setError("Digite un valor mayor a cero para continuar")
                     }
                 } else {
@@ -817,7 +858,12 @@ class DialogoRegCosecha : DialogFragment() {
             )
             .setPositiveButton("Si") { dialog, _ ->
                 dialog.dismiss()
-                registrarCosecha()
+                if (idLayoutAct.visibility == View.VISIBLE) {
+                    actualizarCosecha()
+                } else {
+                    registrarCosecha()
+                }
+
             }
             .setNegativeButton("No") { dialog, _ ->
                 dialog.dismiss()
@@ -847,13 +893,20 @@ class DialogoRegCosecha : DialogFragment() {
                 var alto: Float = (800).toFloat()
                 var miPath: Uri? = null
 
-                if(data == null){
-                    Toast.makeText(actividad, "¡No has seleccionado una imagen.! ", Toast.LENGTH_SHORT).show()
-                }else{
+                if (data == null) {
+                    Toast.makeText(
+                        actividad,
+                        "¡No has seleccionado una imagen.! ",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
                     miPath = data!!.data
                     try {
                         bitmap =
-                            MediaStore.Images.Media.getBitmap(requireContext().contentResolver, miPath)
+                            MediaStore.Images.Media.getBitmap(
+                                requireContext().contentResolver,
+                                miPath
+                            )
                         bitmap = redimensionarImagen(bitmap, ancho, alto)
 
                     } catch (e: IOException) {
@@ -899,7 +952,7 @@ class DialogoRegCosecha : DialogFragment() {
         db.close();
     }*/
 
-    private fun validadRegistro() {
+    private fun validarRegistro() {
         if (campoFecha.text.toString()
                 .isEmpty() or (contReg < 1)
         ) {
@@ -1015,37 +1068,197 @@ class DialogoRegCosecha : DialogFragment() {
 
     }
 
-    private fun cosechaPorDia(año: Int, mes: Int, dia:Int) {
-        //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
+    private fun cosechaPorDia(año: Int, mes: Int, dia: Int) {
         Utilidades.consultarCosechaDia(actividad, mes, año, dia, idCultivo)
 
-        var miAdaptadorCosecha = AdaptadorCosechaMesCultivo(Utilidades.listaCosechaCultivo!!)
+        var miAdaptadorCosecha = AdaptadorCosechaMesCultivo()
         miAdaptadorCosecha.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
-                //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))
+                cosechaSeleccionada = Utilidades.listaCosechaCultivo!!.get(
+                    recyclerCosechaMes.getChildAdapterPosition(view!!)
+                )
+                mostrarDialogOpcionesEdit()
             }
         })
-
         recyclerCosechaMes.adapter = miAdaptadorCosecha
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DialogoRegCosecha.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DialogoRegCosecha().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun mostrarDialogOpcionesEdit() {
+        println("DIALOGO OPCIONES POR DIA")
+        val opciones = arrayOf<CharSequence>("Editar", "Eliminar", "Cancelar")
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Elige una Opción")
+        builder.setItems(opciones, DialogInterface.OnClickListener { dialogInterface, i ->
+            if (opciones[i] == "Editar") {
+                editar()
+            } else {
+                if (opciones[i] == "Eliminar") {
+                    dialogoEliminar().show()
+                } else {
+                    dialogInterface.dismiss()
                 }
             }
+        })
+        builder.show()
     }
+
+    fun cancelarAct() {
+        campoFecha.setText("")
+
+        campoLibrasExtra.setText("")
+        campoLibrasPrimera.setText("")
+        campoLibrasSegunda.setText("")
+        campoLibrasTercera.setText("")
+        campoLibrasCuarta.setText("")
+        campoLibrasQuinta.setText("")
+        campoLibrasMadura.setText("")
+
+        campoPrecioExtra.setText("")
+        campoPrecioPrimera.setText("")
+        campoPrecioSegunda.setText("")
+        campoPrecioTercera.setText("")
+        campoPrecioCuarta.setText("")
+        campoPrecioQuinta.setText("")
+        campoPrecioMadura.setText("")
+
+        txtTituloCosecha.setText("REGISTRO DE COSECHA")
+        btnGuardar.visibility = View.VISIBLE
+        idLayoutAct.visibility = View.GONE
+    }
+
+    fun editar() {
+        campoFecha.setText("${cosechaSeleccionada.año}-${cosechaSeleccionada.mes}-${cosechaSeleccionada.dia}")
+
+        campoLibrasExtra.setText("" + cosechaSeleccionada.extra)
+        campoLibrasPrimera.setText("" + cosechaSeleccionada.primera)
+        campoLibrasSegunda.setText("" + cosechaSeleccionada.segunda)
+        campoLibrasTercera.setText("" + cosechaSeleccionada.tercera)
+        campoLibrasCuarta.setText("" + cosechaSeleccionada.cuarta)
+        campoLibrasQuinta.setText("" + cosechaSeleccionada.quinta)
+        campoLibrasMadura.setText("" + cosechaSeleccionada.madura)
+
+        campoPrecioExtra.setText("" + cosechaSeleccionada.precioExtra)
+        campoPrecioPrimera.setText("" + cosechaSeleccionada.precioPrimera)
+        campoPrecioSegunda.setText("" + cosechaSeleccionada.precioSegunda)
+        campoPrecioTercera.setText("" + cosechaSeleccionada.precioTercera)
+        campoPrecioCuarta.setText("" + cosechaSeleccionada.precioCuarta)
+        campoPrecioQuinta.setText("" + cosechaSeleccionada.precioQuinta)
+        campoPrecioMadura.setText("" + cosechaSeleccionada.precioMadura)
+
+        txtTituloCosecha.setText("ACTUALIZAR COSECHA")
+        btnGuardar.visibility = View.GONE
+        idLayoutAct.visibility = View.VISIBLE
+        btnActualizar.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(view: View?) {
+                // Do some work here
+                validarRegistro()
+
+            }
+
+        })
+
+    }
+
+    fun dialogoEliminar(): android.app.AlertDialog {
+
+        val builder = android.app.AlertDialog.Builder(vista.context)
+
+        builder.setTitle("Eliminar")
+            .setMessage("Esta seguro que quiere eliminar esta cosecha?")
+            .setPositiveButton("Si") { dialog, _ ->
+
+                eliminarCosecha()
+                dialog.dismiss()
+
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+
+        return builder.create()
+    }
+
+    private fun actualizarCosecha() {
+
+        val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
+        val db: SQLiteDatabase = conexion.writableDatabase
+        var values = ContentValues()
+
+        //valores para agregar a la tabla de cultivos
+        //values.put(Utilidades.CAMPO_ID_CULTIVO, .text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
+        values.put(Utilidades.CAMPO_DIA_COSECHA, dia)
+        values.put(Utilidades.CAMPO_MES_COSECHA, mes)
+        values.put(Utilidades.CAMPO_AÑO_COSECHA, año)
+        values.put(Utilidades.CAMPO_LIBRAS_EXTRA, campoLibrasExtra.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_EXTRA, campoPrecioExtra.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_PRIMERA, campoLibrasPrimera.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_PRIMERA, campoPrecioPrimera.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_SEGUNDA, campoLibrasSegunda.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_SEGUNDA, campoPrecioSegunda.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_TERCERA, campoLibrasTercera.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_TERCERA, campoPrecioTercera.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_CUARTA, campoLibrasCuarta.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_CUARTA, campoPrecioCuarta.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_QUINTA, campoLibrasQuinta.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_QUINTA, campoPrecioQuinta.text.toString())
+        values.put(Utilidades.CAMPO_LIBRAS_MADURA, campoLibrasMadura.text.toString())
+        values.put(Utilidades.CAMPO_PRECIO_MADURA, campoPrecioMadura.text.toString())
+        values.put(Utilidades.CAMPO_OBSERVACION_COSECHA, campoObservacion.text.toString().trim())
+        values.put(Utilidades.CAMPO_CULTIVO_COSECHA, DialogoGesCultivo.cultivoSeleccionado.id)
+        var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        var blob = baos.toByteArray()
+        values.put(Utilidades.CAMPO_IMG_FACTURA, blob)
+
+        val idResultante: Number = db.update(
+            Utilidades.TABLA_COSECHA,
+            values,
+            Utilidades.CAMPO_ID_COSECHA + "=" + cosechaSeleccionada.id,
+            null
+        )
+
+        if (idResultante != -1) {
+            cosechaPorDia(año, mes, dia)
+            cancelarAct()
+            Toast.makeText(
+                context,
+                "¡La cosecha se Actualizó Exitosamente!",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            Toast.makeText(
+                context,
+                "La cosecha no se pudo Actualizar, intente nuevamente.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        db.close()
+    }
+
+
+    private fun eliminarCosecha() {
+
+        val conexion =
+            ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
+        val db: SQLiteDatabase = conexion.writableDatabase
+
+        val idResultante: Number =
+            db.delete(
+                Utilidades.TABLA_COSECHA,
+                Utilidades.CAMPO_ID_COSECHA + "=" + cosechaSeleccionada.id,
+                null
+            )
+
+        if (idResultante != -1) {
+            Toast.makeText(context, "¡La cosecha se eliminó Exitosamente!", Toast.LENGTH_SHORT)
+                .show()
+            cosechaPorDia(año, mes, dia)
+
+        } else {
+            Toast.makeText(context, "La cosecha no se pudo Eliminar!", Toast.LENGTH_SHORT).show()
+        }
+        db.close()
+
+    }
+
 }

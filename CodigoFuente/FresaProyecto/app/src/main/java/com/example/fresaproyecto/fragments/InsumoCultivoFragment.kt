@@ -65,7 +65,7 @@ class InsumoCultivoFragment : Fragment() {
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
         Utilidades.consultarInsumosMes(actividad,mes, año, idCultivo)
 
-        var miAdaptadorInsumo = AdaptadorInsumoMesCultivo(Utilidades.listaInsumoCultivo!!)
+        var miAdaptadorInsumo = AdaptadorInsumoMesCultivo()
         miAdaptadorInsumo.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))

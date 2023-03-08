@@ -270,12 +270,6 @@ object Utilidades {
 
             }
         }
-
-
-        /*
-            for (item in listaCultivos!!) {
-                println("ID: "+item.id + "Nombre: " + item.nombre)
-            }*/
         db.close()
     }
 
@@ -287,15 +281,6 @@ object Utilidades {
         //Beneficio de Cultivo
 
         listaBeneficioCultivo = ArrayList<BeneficioCultivoVo>()
-
-        val dateFormat = SimpleDateFormat("MM")
-        val mesActual = dateFormat.format(Date())
-
-        val dateFormatY = SimpleDateFormat("yyyy")
-        val añoActual = dateFormatY.format(Date())
-
-        println("Mes Actual: $mesActual")
-        println("Año Actual: $añoActual")
 
         for (i in 1..12) {
             val cursor = db.rawQuery(
@@ -322,8 +307,6 @@ object Utilidades {
             while (cursor.moveToNext()) {
 
                 beneficioCultivo = BeneficioCultivoVo()
-                //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
-                // y le asigno la respuesta cuando sea diferente de nulo
 
                 beneficioCultivo.gastoJornal = cursor.getInt(0)
                 beneficioCultivo.gastoInsumo = cursor.getInt(1)
@@ -360,16 +343,6 @@ object Utilidades {
         //Beneficio de Cultivo
         listaJornalCultivo = ArrayList<JornalCultivoVo>()
 
-
-        val dateFormat = SimpleDateFormat("MM")
-        val mesActual = dateFormat.format(Date())
-
-        val dateFormatY = SimpleDateFormat("yyyy")
-        val añoActual = dateFormatY.format(Date())
-
-        println("Mes Actual: $mesActual")
-        println("Año Actual: $añoActual")
-
         val cursor = db.rawQuery(
             "select dia_jornal, mes_jornal, año_jornal,actv_jornal, cant_jornal, precio_jornal, (cant_jornal*precio_jornal)as Gasto_Total\n" +
                     "from jornal\n" +
@@ -378,9 +351,6 @@ object Utilidades {
         )
         while (cursor.moveToNext()) {
             jornalCultivo = JornalCultivoVo()
-
-            //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
-            // y le asigno la respuesta cuando sea diferente de nulo
 
             jornalCultivo.dia = cursor.getInt(0)
             jornalCultivo.mes = cursor.getInt(1)
@@ -403,16 +373,6 @@ object Utilidades {
         //Beneficio de Cultivo
         listaInsumoCultivo = ArrayList<InsumoCultivoVo>()
 
-
-        val dateFormat = SimpleDateFormat("MM")
-        val mesActual = dateFormat.format(Date())
-
-        val dateFormatY = SimpleDateFormat("yyyy")
-        val añoActual = dateFormatY.format(Date())
-
-        println("Mes Actual: $mesActual")
-        println("Año Actual: $añoActual")
-
         val cursor = db.rawQuery(
             "select dia_insumo, mes_insumo, año_insumo,nombre_insumo, precio_insumo, cant_usado, unidad_insumo, ((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado)as Gasto_Total\n" +
                     "from insumo\n" +
@@ -421,9 +381,6 @@ object Utilidades {
         )
         while (cursor.moveToNext()) {
             insumoCultivo = InsumoCultivoVo()
-
-            //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
-            // y le asigno la respuesta cuando sea diferente de nulo
 
             insumoCultivo.dia = cursor.getInt(0)
             insumoCultivo.mes = cursor.getInt(1)
@@ -448,15 +405,6 @@ object Utilidades {
         //Beneficio de Cultivo
         listaCosechaCultivo = ArrayList<CosechaCultivoVo>()
 
-        val dateFormat = SimpleDateFormat("MM")
-        val mesActual = dateFormat.format(Date())
-
-        val dateFormatY = SimpleDateFormat("yyyy")
-        val añoActual = dateFormatY.format(Date())
-
-        println("Mes Actual: $mesActual")
-        println("Año Actual: $añoActual")
-
         val cursor = db.rawQuery(
             "select  dia_cosecha, mes_cosecha, año_cosecha,libras_extra Extra, libras_primera Primera,libras_segunda Segunda, libras_tercera Tercera, libras_cuarta Cuarta, libras_quinta Quinta,libras_madura Madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta, \n" +
                     " precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha , img_factura \n" +
@@ -466,9 +414,6 @@ object Utilidades {
         )
         while (cursor.moveToNext()) {
             cosechaCultivo = CosechaCultivoVo()
-
-            //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
-            // y le asigno la respuesta cuando sea diferente de nulo
 
             cosechaCultivo.dia = cursor.getInt(0)
             cosechaCultivo.mes = cursor.getInt(1)
@@ -503,27 +448,15 @@ object Utilidades {
         //Beneficio de Cultivo
         listaCosechaCultivo = ArrayList<CosechaCultivoVo>()
 
-        val dateFormat = SimpleDateFormat("MM")
-        val mesActual = dateFormat.format(Date())
-
-        val dateFormatY = SimpleDateFormat("yyyy")
-        val añoActual = dateFormatY.format(Date())
-
-        println("Mes Actual: $mesActual")
-        println("Año Actual: $añoActual")
-
         val cursor = db.rawQuery(
             "select dia_cosecha, mes_cosecha, año_cosecha,libras_extra Extra, libras_primera Primera,libras_segunda Segunda, libras_tercera Tercera, libras_cuarta Cuarta, libras_quinta Quinta,libras_madura Madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta,\n" +
-                    "precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha, img_factura\n" +
+                    "precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha, img_factura, id_cosecha \n" +
                     "from cosecha \n" +
                     "WHERE año_cosecha = " + año + " and mes_cosecha = " + mes + " and dia_cosecha = " + dia + " and id_cultivo = " + idCultivo,
             null
         )
         while (cursor.moveToNext()) {
             cosechaCultivo = CosechaCultivoVo()
-
-            //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
-            // y le asigno la respuesta cuando sea diferente de nulo
 
             cosechaCultivo.dia = cursor.getInt(0)
             cosechaCultivo.mes = cursor.getInt(1)
@@ -544,6 +477,7 @@ object Utilidades {
             cosechaCultivo.precioMadura = cursor.getInt(16)
             cosechaCultivo.dineroTotal = cursor.getInt(17)
             cosechaCultivo.imgFactura = cursor.getBlob(18)
+            cosechaCultivo.id = cursor.getInt(19)
 
             listaCosechaCultivo!!.add(cosechaCultivo)
         }
@@ -558,15 +492,6 @@ object Utilidades {
         //Beneficio de Cultivo
         listaJornalCultivo = ArrayList<JornalCultivoVo>()
 
-        val dateFormat = SimpleDateFormat("MM")
-        val mesActual = dateFormat.format(Date())
-
-        val dateFormatY = SimpleDateFormat("yyyy")
-        val añoActual = dateFormatY.format(Date())
-
-        println("Mes Actual: $mesActual")
-        println("Año Actual: $añoActual")
-
         val cursor = db.rawQuery(
             "select dia_jornal, mes_jornal, año_jornal,actv_jornal, cant_jornal, precio_jornal, (cant_jornal*precio_jornal)as Gasto_Total, id_jornal\n" +
                     "from jornal\n" +
@@ -575,9 +500,6 @@ object Utilidades {
         )
         while (cursor.moveToNext()) {
             jornalCultivo = JornalCultivoVo()
-
-            //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
-            // y le asigno la respuesta cuando sea diferente de nulo
 
             jornalCultivo.dia = cursor.getInt(0)
             jornalCultivo.mes = cursor.getInt(1)
@@ -589,6 +511,42 @@ object Utilidades {
             jornalCultivo.id = cursor.getInt(7)
 
             listaJornalCultivo!!.add(jornalCultivo)
+        }
+        db.close()
+    }
+
+    fun consultarInsumosDia(actividad: Activity, mes: Int, año: Int, dia: Int, idCultivo: Int) {
+        val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
+        val db: SQLiteDatabase = conn.getReadableDatabase()
+        var insumoCultivo: InsumoCultivoVo
+
+        //Beneficio de Cultivo
+        listaInsumoCultivo = ArrayList<InsumoCultivoVo>()
+
+        val cursor = db.rawQuery(
+            "select dia_insumo, mes_insumo, año_insumo,nombre_insumo, precio_insumo, cant_insumo, cant_usado, unidad_insumo, ((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado)as Gasto_Total, id_insumo\n" +
+                    "from insumo\n" +
+                    "where mes_insumo = " + mes + " and año_insumo= " + año + " and dia_insumo = " + dia + " and id_cultivo = " + idCultivo,
+            null
+        )
+        while (cursor.moveToNext()) {
+            insumoCultivo = InsumoCultivoVo()
+
+            //Comparo si la respuesta de la consulta, el mes_ingreso es nulo, o el mes_gasto es nulo
+            // y le asigno la respuesta cuando sea diferente de nulo
+
+            insumoCultivo.dia = cursor.getInt(0)
+            insumoCultivo.mes = cursor.getInt(1)
+            insumoCultivo.año = cursor.getInt(2)
+            insumoCultivo.nombreInsumo = cursor.getString(3)
+            insumoCultivo.precioInsumo = cursor.getInt(4)
+            insumoCultivo.cantidadInsumo = cursor.getInt(5)
+            insumoCultivo.cantidadUsado = cursor.getInt(6)
+            insumoCultivo.unidadInsumo = cursor.getString(7)
+            insumoCultivo.gastoTotalInsumo = cursor.getInt(8)
+            insumoCultivo.id = cursor.getInt(9)
+
+            listaInsumoCultivo!!.add(insumoCultivo)
         }
         db.close()
     }

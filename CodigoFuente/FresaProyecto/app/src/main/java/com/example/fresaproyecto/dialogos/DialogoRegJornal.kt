@@ -21,6 +21,9 @@ import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.JornalCultivoVo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class DialogoRegJornal : DialogFragment() {
@@ -116,8 +119,7 @@ class DialogoRegJornal : DialogFragment() {
                 id: Long
             ) {
                 actividadSelec = actividadSpinner.adapter.getItem(position) as String
-                Toast.makeText(actividad, "Seleccionaste :\n" + actividadSelec, Toast.LENGTH_LONG)
-                    .show()
+
                 if(actividadSelec == "OTRO"){
                     actividadLinearLayout.visibility = View.VISIBLE
                 }else{
@@ -130,6 +132,17 @@ class DialogoRegJornal : DialogFragment() {
         recyclerJornalDia = vista.findViewById(R.id.recyclerJornalRegistros)
         recyclerJornalDia.layoutManager = LinearLayoutManager(actividad)
         recyclerJornalDia.setHasFixedSize(true)
+
+        val dateFormat = SimpleDateFormat("MM")
+        val mesActual = dateFormat.format(Date())
+
+        val dateFormatY = SimpleDateFormat("yyyy")
+        val añoActual = dateFormatY.format(Date())
+
+        val dateFormatD = SimpleDateFormat("dd")
+        val diaActual = dateFormatD.format(Date())
+
+        jornalPorDia(añoActual.toInt(), mesActual.toInt(), diaActual.toInt())
         eventosMenu()
         return vista
     }
@@ -273,14 +286,15 @@ class DialogoRegJornal : DialogFragment() {
     }
 
     fun editar() {
+        campoFecha.setText("${jornalSeleccionado.año}-${jornalSeleccionado.mes}-${jornalSeleccionado.dia}")
         if (listaActividad!!.contains(jornalSeleccionado.actividad) == false) {
             actividadSelec = "OTRO"
             val posicion = listaActividad!!.indexOf(actividadSelec)
-            actividadSpinner.adapter.getItem(posicion)
+            actividadSpinner.setSelection(posicion)
             campoActividad.setText(jornalSeleccionado.actividad)
         } else {
             val posicion = listaActividad!!.indexOf(jornalSeleccionado.actividad)
-            actividadSpinner.adapter.getItem(posicion)
+            actividadSpinner.setSelection(posicion)
         }
         campoCantidad.setText(""+jornalSeleccionado.cantidadJornal)
         campoPrecio.setText(""+jornalSeleccionado.precioJornal)
@@ -350,17 +364,16 @@ class DialogoRegJornal : DialogFragment() {
 
             if (idResultante != -1) {
                 jornalPorDia(año, mes, dia)
+                cancelarAct()
                 Toast.makeText(
                     context,
                     "¡El jornal se Actualizó Exitosamente!",
                     Toast.LENGTH_SHORT
                 ).show()
-
-
             } else {
                 Toast.makeText(
                     context,
-                    "EL usuario no se pudo Actualizar, intente nuevamente.",
+                    "EL jornal no se pudo Actualizar, intente nuevamente.",
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -370,6 +383,7 @@ class DialogoRegJornal : DialogFragment() {
     }
 
     fun cancelarAct(){
+        campoFecha.setText("")
         btnGuardar.visibility = View.VISIBLE
         idLayoutAct.visibility = View.GONE
         if (listaActividad!!.contains(jornalSeleccionado.actividad) == false) {
@@ -420,14 +434,14 @@ class DialogoRegJornal : DialogFragment() {
             )
 
         if (idResultante != -1) {
-            println("El usuario se eliminó Exitosamente")
-            Toast.makeText(context, "¡El usuario se eliminó Exitosamente!", Toast.LENGTH_SHORT)
+            println("El jornal se eliminó Exitosamente")
+            Toast.makeText(context, "¡El jornal se eliminó Exitosamente!", Toast.LENGTH_SHORT)
                 .show()
             //DialogoGesCultivo.llenarAdaptadorCultivos()
             jornalPorDia(año, mes, dia)
 
         } else {
-            Toast.makeText(context, "EL usuario no se pudo Eliminar!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "EL jornal no se pudo Eliminar!", Toast.LENGTH_SHORT).show()
         }
         db.close()
 

@@ -3,14 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".dialogos.DialogoRegInsumos">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/fondogeneral2" />
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -25,17 +19,6 @@
             android:layout_height="wrap_content"
             android:background="@color/colorSplash"
             android:elevation="8dp">
-
-            <ImageView
-                android:id="@+id/im"
-                android:layout_width="60dp"
-                android:layout_height="49dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="52dp"
-                android:layout_marginLeft="52dp"
-                android:src="@drawable/icono" />
 
             <ImageButton
                 android:id="@+id/btnIcoAtras"
@@ -79,6 +62,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtTituloInsumo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5sp"
@@ -206,8 +190,8 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@drawable/stylo_fondo_borde"
                                 android:layout_gravity="center"
+                                android:background="@drawable/stylo_fondo_borde"
                                 android:orientation="horizontal">
 
                                 <TextView
@@ -296,26 +280,71 @@
                                 android:hint="0"
                                 android:inputType="number" />
                         </LinearLayout>
+
+
                     </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardInusmoRegistros"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerInsumoRegistros"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 
-
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
 
+        </ScrollView>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/idBtnGuardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
         android:backgroundTint="@color/colorSplash"
         android:drawableLeft="@drawable/ic_confirmacion2"
         android:text="Guardar" />
+
+    <LinearLayout
+        android:id="@+id/idLayoutAct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/idBtnCancelarActInsumo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:backgroundTint="@color/colorSplash"
+            android:drawableLeft="@drawable/ic_confirmacion2"
+            android:text="Cancelar" />
+
+
+        <Button
+            android:id="@+id/idBtnActualizarInsumo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="@color/colorSplash"
+            android:drawableLeft="@drawable/ic_cerrar"
+            android:text="Actualizar" />
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

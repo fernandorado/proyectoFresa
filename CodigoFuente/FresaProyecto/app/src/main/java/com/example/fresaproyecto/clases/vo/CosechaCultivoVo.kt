@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream
 
 class CosechaCultivoVo {
 
+    var id = 0
     var extra = 0
     var precioExtra = 0
     var primera = 0
@@ -26,8 +27,9 @@ class CosechaCultivoVo {
 
     constructor(extra:Int,precioExtra:Int,primera:Int,precioPrimera:Int, segunda:Int,precioSegunda:Int,
                 tercera:Int,precioTercera:Int, cuarta:Int,precioCuarta:Int, quinta:Int,precioQuinta:Int,
-                madura:Int,precioMadura:Int,dineroTotal:Int,dia:Int,mes:Int, año:Int, imgFactura : ByteArray
+                madura:Int,precioMadura:Int,dineroTotal:Int,dia:Int,mes:Int, año:Int, imgFactura : ByteArray, id:Int
     ) {
+        this.id = id
         this.extra = extra
         this.precioExtra = precioExtra
         this.primera = primera

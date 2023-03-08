@@ -6,13 +6,6 @@
     android:layout_height="wrap_content"
     tools:context=".dialogos.DialogoRegCosecha">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/fondogeneral2" />
-
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -78,6 +71,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/txtTituloCosecha"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5sp"
@@ -253,7 +247,7 @@
 
                                         <EditText
                                             android:id="@+id/campoCantExtra"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -272,7 +266,7 @@
 
                                         <EditText
                                             android:id="@+id/campoPrecioExtra"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -329,7 +323,7 @@
 
                                         <EditText
                                             android:id="@+id/campoCantPrimera"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -348,7 +342,7 @@
 
                                         <EditText
                                             android:id="@+id/campoPrecioPrimera"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -405,7 +399,7 @@
 
                                         <EditText
                                             android:id="@+id/campoCantSegunda"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -424,7 +418,7 @@
 
                                         <EditText
                                             android:id="@+id/campoPrecioSegunda"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -481,7 +475,7 @@
 
                                         <EditText
                                             android:id="@+id/campoCantTercera"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -500,7 +494,7 @@
 
                                         <EditText
                                             android:id="@+id/campoPrecioTercera"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -557,7 +551,7 @@
 
                                         <EditText
                                             android:id="@+id/campoCantCuarta"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -576,7 +570,7 @@
 
                                         <EditText
                                             android:id="@+id/campoPrecioCuarta"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -633,7 +627,7 @@
 
                                         <EditText
                                             android:id="@+id/campoCantQuinta"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -652,7 +646,7 @@
 
                                         <EditText
                                             android:id="@+id/campoPrecioQuinta"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -709,7 +703,7 @@
 
                                         <EditText
                                             android:id="@+id/campoCantMaduraFF"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -728,7 +722,7 @@
 
                                         <EditText
                                             android:id="@+id/campoPrecioMaduraFF"
-                                            android:layout_width="40dp"
+                                            android:layout_width="60dp"
                                             android:layout_height="wrap_content"
                                             android:hint="0"
                                             android:inputType="number" />
@@ -1125,5 +1119,35 @@
         android:backgroundTint="@color/colorSplash"
         android:drawableLeft="@drawable/ic_confirmacion2"
         android:text="Guardar" />
+
+    <LinearLayout
+        android:id="@+id/idLayoutAct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/idBtnCancelarActCosecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:backgroundTint="@color/colorSplash"
+            android:drawableLeft="@drawable/ic_confirmacion2"
+            android:text="Cancelar" />
+
+
+        <Button
+            android:id="@+id/idBtnActualizarCosecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="@color/colorSplash"
+            android:drawableLeft="@drawable/ic_cerrar"
+            android:text="Actualizar" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

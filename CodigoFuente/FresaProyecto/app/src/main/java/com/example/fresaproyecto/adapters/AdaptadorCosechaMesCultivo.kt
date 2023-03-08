@@ -1,32 +1,24 @@
 package com.example.fresaproyecto.adapters
 
-
-
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.content.DialogInterface
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fresaproyecto.MainActivity
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.CosechaCultivoVo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import java.io.ByteArrayInputStream
 
-
-class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
+class AdaptadorCosechaMesCultivo() :
     RecyclerView.Adapter<AdaptadorCosechaMesCultivo.ViewHolderMes>(), View.OnClickListener {
     private var listener: View.OnClickListener? = null
     var listaCosechaMes: List<CosechaCultivoVo> = Utilidades.listaCosechaCultivo!!
@@ -41,9 +33,7 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
     var identificacion : Int = 0
     var nombre : String = ""
     lateinit var interfaceComunicaFragments: IComunicaFragments
-    var d: AlertDialog? = null
     lateinit var builder: AlertDialog
-    var posicionMarcada: Int = 0
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolderMes {
 
@@ -58,30 +48,11 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
         imgFactura = vistaImagen.findViewById(R.id.imgFactura)
         viewGroup.removeView(vista)
         viewGroup.removeView(vistaImagen)
+        vista.setOnClickListener(this)
         return ViewHolderMes(vista)
     }
 
     override fun onBindViewHolder(viewHolderMes: ViewHolderMes, i: Int) {
-
-        val pos: Int = i
-
-        //viewHolderMes.txtId.setText(listaPersona.get(i).nombre)  Otra forma
-        viewHolderMes.cardInformeMes.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                posicionMarcada=(pos+1)
-                notifyDataSetChanged()
-            }
-        })
-
-
-        /*viewHolderMes.txtMes.setText(listaCosechaMes[i].mes.toString())
-        viewHolderMes.txtAño.setText(listaCosechaMes[i].año.toString())
-        viewHolderMes.txtIngreso.setText(listaCosechaMes[i].ingresos.toString())
-        viewHolderMes.txtGastoJornal.setText(listaCosechaMes[i].gastoJornal.toString())
-        viewHolderMes.txtGastoInsumo.setText(listaCosechaMes[i].gastoInsumo.toString())
-        viewHolderMes.txtGanancia.setText(listaCosechaMes[i].beneficio.toString())
-
-         */
 
         var mesLetras = when (listaCosechaMes[i].mes){
             1 -> "Enero"
@@ -134,16 +105,6 @@ class AdaptadorCosechaMesCultivo(listaMesCultivo: List<CosechaCultivoVo>) :
         }
 
     }
-
-    /*fun mostrarDialogo(bitmap: Bitmap) {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-        builder.setTitle("Factura")
-            .setPositiveButton("Cerrar") { dialog, _ ->
-                dialog.dismiss()
-            }
-        builder.show()
-        imgFactura.setImageBitmap(bitmap)
-    }*/
 
     fun setOnClickListener(listener: View.OnClickListener?) {
         this.listener = listener

@@ -25,16 +25,6 @@ import com.example.fresaproyecto.dialogos.DialogoGesCultivo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import kotlin.math.roundToInt
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CosechaCultivoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CosechaCultivoFragment : Fragment() {
     // TODO: Rename and change types of parameters
     lateinit var vista: View
@@ -43,8 +33,6 @@ class CosechaCultivoFragment : Fragment() {
     lateinit var interfaceComunicaFragments: IComunicaFragments
     lateinit var pieGraphMes: PieGraph
     var listaInformeMes: List<BeneficioCultivoVo>? = null
-    var puntos = ArrayList<Bar>()
-    var listaCalidad = ArrayList<String>()
 
     lateinit var txtExtraLibra: TextView
     lateinit var txtPrimeraLibra: TextView
@@ -60,9 +48,6 @@ class CosechaCultivoFragment : Fragment() {
     var mes = InformeCultivoFragment.fecha.mes
     var año = InformeCultivoFragment.fecha.año
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -104,8 +89,8 @@ class CosechaCultivoFragment : Fragment() {
 
         listaInformeMes = Utilidades.listaBeneficioCultivo!!
 
-        mes = mes-1
-        if(listaInformeMes!![mes].ingresos >0){
+        mes = mes - 1
+        if (listaInformeMes!![mes].ingresos > 0) {
             layoutCalidad.visibility = View.VISIBLE
         }
         for (i in 1..7) {
@@ -115,38 +100,44 @@ class CosechaCultivoFragment : Fragment() {
             when (i) {
                 1 -> {
                     rebanada.value = listaInformeMes!![mes].extra.toString().toFloat()
-                    txtExtraLibra.text = "Extra: "+listaInformeMes!![mes].extra.toString() + "lb"
+                    txtExtraLibra.text = "Extra: " + listaInformeMes!![mes].extra.toString() + "lb"
                     txtExtraLibra.setBackgroundColor(Color.parseColor(color))
 
                 }
                 2 -> {
                     rebanada.value = listaInformeMes!![mes].primera.toString().toFloat()
-                    txtPrimeraLibra.text = "Primera: "+listaInformeMes!![mes].primera.toString() + "lb"
+                    txtPrimeraLibra.text =
+                        "Primera: " + listaInformeMes!![mes].primera.toString() + "lb"
                     txtPrimeraLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 3 -> {
                     rebanada.value = listaInformeMes!![mes].segunda.toString().toFloat()
-                    txtSegundaLibra.text = "Segunda: "+listaInformeMes!![mes].segunda.toString() + "lb"
+                    txtSegundaLibra.text =
+                        "Segunda: " + listaInformeMes!![mes].segunda.toString() + "lb"
                     txtSegundaLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 4 -> {
                     rebanada.value = listaInformeMes!![mes].tercera.toString().toFloat()
-                    txtTerceraLibra.text = "Tercera: "+listaInformeMes!![mes].tercera.toString() + "lb"
+                    txtTerceraLibra.text =
+                        "Tercera: " + listaInformeMes!![mes].tercera.toString() + "lb"
                     txtTerceraLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 5 -> {
                     rebanada.value = listaInformeMes!![mes].cuarta.toString().toFloat()
-                    txtCuartaLibra.text = "Cuarta: "+listaInformeMes!![mes].cuarta.toString() + "lb"
+                    txtCuartaLibra.text =
+                        "Cuarta: " + listaInformeMes!![mes].cuarta.toString() + "lb"
                     txtCuartaLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 6 -> {
                     rebanada.value = listaInformeMes!![mes].quinta.toString().toFloat()
-                    txtQuintaLibra.text = "Quinta: "+listaInformeMes!![mes].quinta.toString() + "lb"
+                    txtQuintaLibra.text =
+                        "Quinta: " + listaInformeMes!![mes].quinta.toString() + "lb"
                     txtQuintaLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 7 -> {
                     rebanada.value = listaInformeMes!![mes].madura.toString().toFloat()
-                    txtMaduraLibra.text = "Madura FF: "+listaInformeMes!![mes].madura.toString() + "lb"
+                    txtMaduraLibra.text =
+                        "Madura FF: " + listaInformeMes!![mes].madura.toString() + "lb"
                     txtMaduraLibra.setBackgroundColor(Color.parseColor(color))
                 }
                 else -> (0).toFloat()
@@ -169,7 +160,7 @@ class CosechaCultivoFragment : Fragment() {
     private fun cosechaPorFecha() {
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
 
-        var miAdaptadorCosecha = AdaptadorCosechaMesCultivo(Utilidades.listaCosechaCultivo!!)
+        var miAdaptadorCosecha = AdaptadorCosechaMesCultivo()
         miAdaptadorCosecha.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))
@@ -179,23 +170,4 @@ class CosechaCultivoFragment : Fragment() {
         recyclerCosechaMes.adapter = miAdaptadorCosecha
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CosechaCultivoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CosechaCultivoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

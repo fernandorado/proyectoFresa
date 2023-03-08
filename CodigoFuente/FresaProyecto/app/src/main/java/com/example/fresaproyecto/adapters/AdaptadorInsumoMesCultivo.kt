@@ -18,7 +18,7 @@ import com.example.fresaproyecto.fragments.InformeCultivoFragment
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 
-class AdaptadorInsumoMesCultivo(listaInsumoMesCultivo: List<InsumoCultivoVo>) :
+class AdaptadorInsumoMesCultivo() :
     RecyclerView.Adapter<AdaptadorInsumoMesCultivo.ViewHolderMes>(), View.OnClickListener {
     private var listener: View.OnClickListener? = null
     var listaInsumoMes: List<InsumoCultivoVo> = Utilidades.listaInsumoCultivo!!
@@ -26,7 +26,6 @@ class AdaptadorInsumoMesCultivo(listaInsumoMesCultivo: List<InsumoCultivoVo>) :
     lateinit var context: Context
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
-    var posicionMarcada: Int = 0
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolderMes {
         context = viewGroup.context
@@ -38,26 +37,6 @@ class AdaptadorInsumoMesCultivo(listaInsumoMesCultivo: List<InsumoCultivoVo>) :
     }
 
     override fun onBindViewHolder(viewHolderMes: ViewHolderMes, i: Int) {
-
-        val pos: Int = i
-
-        //viewHolderMes.txtId.setText(listaPersona.get(i).nombre)  Otra forma
-        viewHolderMes.cardInsumoMes.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View) {
-                posicionMarcada=(pos+1)
-                InformeCultivoFragment.cambiarFragment(posicionMarcada)
-                notifyDataSetChanged()
-            }
-        })
-
-        /*viewHolderMes.txtMes.setText(listaInsumoMes[i].mes.toString())
-        viewHolderMes.txtAño.setText(listaInsumoMes[i].año.toString())
-        viewHolderMes.txtIngreso.setText(listaInsumoMes[i].ingresos.toString())
-        viewHolderMes.txtGastoInsumo.setText(listaInsumoMes[i].gastoInsumo.toString())
-        viewHolderMes.txtGastoInsumo.setText(listaInsumoMes[i].gastoInsumo.toString())
-        viewHolderMes.txtGanancia.setText(listaInsumoMes[i].beneficio.toString())
-
-         */
 
         var mesLetras = when (listaInsumoMes[i].mes){
             1 -> "Enero"
