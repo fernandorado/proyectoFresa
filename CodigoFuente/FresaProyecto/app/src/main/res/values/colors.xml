@@ -18,7 +18,13 @@
     <color name="colorGrisClaro">#B5B2B2</color>
     <color name="colorGastos">#BAAA1E</color>
     <color name="colorGris">#505050</color>
-    <color name="colorCard">#FFEAE1E1</color>
+    <color name="colorCardCultivo">#FAEFEF</color>
+    <color name="colorCardCultivoInsumos">#D8EBFB</color>
+    <color name="colorCardCultivoJornal">#D8CDC0</color>
+    <color name="colorCardCultivoCosecha">#E8FFF1</color>
+    <color name="colorCardPersona">#FDE9CA</color>
+    <color name="colorCardPersonaGastos">#DAD9D9</color>
+    <color name="colorCardPersonaIngresos">#FCF8DC</color>
     <color name="colorFormularios">#FFEAE1E1</color>
     <color name="colorText">#CF3025</color>
     <color name="colorVerdePastel">#A7DFBE</color>

@@ -9,6 +9,7 @@
         android:id="@+id/cardUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorCardPersona"
         android:layout_margin="3dp"
         app:cardUseCompatPadding="true">
 
