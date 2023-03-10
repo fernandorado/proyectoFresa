@@ -4,7 +4,12 @@
     <color name="white">#FFFFFFFF</color>
     <color name="funcionesCardView">#F44336</color>
     <color name="colorRojo">#CF3025</color>
+    <color name="colorCultivo">#CF3025</color>
+    <color name="colorCultivoReg">#FFD0CE</color>
     <color name="colorSplash">#00BCD4</color>
+    <color name="colorPersonal">#FBA930</color>
+    <color name="colorPersonalReg">#F6E7D1</color>
+    <color name="colorPersonalReg2">#FFB851</color>
     <color name="colorAzul">#2998A6</color>
     <color name="colorNaranja">#FF9800</color>
     <color name="colorVerde">#1EB649</color>

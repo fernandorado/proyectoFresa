@@ -229,7 +229,10 @@ class DialogoRegInsumos : DialogFragment() {
     }
 
     fun editar() {
-        campoFecha.setText("${insumoSeleccionado.año}-${insumoSeleccionado.mes}-${insumoSeleccionado.dia}")
+        dia = insumoSeleccionado.dia
+        mes = insumoSeleccionado.mes
+        año = insumoSeleccionado.año
+        campoFecha.setText("${año}-${mes}-${dia}")
         campoNombre.setText(insumoSeleccionado.nombreInsumo)
         campoPrecio.setText("" + insumoSeleccionado.precioInsumo)
         campoCantidad.setText("" + insumoSeleccionado.cantidadInsumo)

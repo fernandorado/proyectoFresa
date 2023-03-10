@@ -254,12 +254,11 @@ class DialogoRegJornal : DialogFragment() {
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
         Utilidades.consultarJornalDia(actividad, mes, año, dia, idCultivo)
 
-        var miAdaptadorJornal = AdaptadorJornalMesCultivo(Utilidades.listaJornalCultivo!!)
+        var miAdaptadorJornal = AdaptadorJornalMesCultivo()
         miAdaptadorJornal.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
 
                 jornalSeleccionado = Utilidades.listaJornalCultivo!!.get(recyclerJornalDia.getChildAdapterPosition(view!!))
-                println(jornalSeleccionado.id)
                 mostrarDialogOpciones()
             }
         })
@@ -284,9 +283,11 @@ class DialogoRegJornal : DialogFragment() {
         })
         builder.show()
     }
-
     fun editar() {
-        campoFecha.setText("${jornalSeleccionado.año}-${jornalSeleccionado.mes}-${jornalSeleccionado.dia}")
+        dia = jornalSeleccionado.dia
+        mes = jornalSeleccionado.mes
+        año = jornalSeleccionado.año
+        campoFecha.setText("${año}-${mes}-${dia}")
         if (listaActividad!!.contains(jornalSeleccionado.actividad) == false) {
             actividadSelec = "OTRO"
             val posicion = listaActividad!!.indexOf(actividadSelec)
@@ -311,6 +312,7 @@ class DialogoRegJornal : DialogFragment() {
         })
 
     }
+
 
     private fun actualizarJornal() {
         if (campoFecha.text.isEmpty() or campoCantidad.text.isEmpty() or campoPrecio.text.isEmpty() or ((actividadSelec == "OTRO") and (campoActividad.text.toString().trim().equals("")))
@@ -408,7 +410,7 @@ class DialogoRegJornal : DialogFragment() {
             .setMessage("Esta seguro que quiere eliminar este Jornal?")
             .setPositiveButton("Si") { dialog, _ ->
 
-                eliminarCultivo()
+                eliminarJornal()
                 dialog.dismiss()
 
             }
@@ -419,7 +421,7 @@ class DialogoRegJornal : DialogFragment() {
         return builder.create()
     }
 
-    private fun eliminarCultivo() {
+    private fun eliminarJornal() {
 
 
         val conexion =
@@ -434,7 +436,6 @@ class DialogoRegJornal : DialogFragment() {
             )
 
         if (idResultante != -1) {
-            println("El jornal se eliminó Exitosamente")
             Toast.makeText(context, "¡El jornal se eliminó Exitosamente!", Toast.LENGTH_SHORT)
                 .show()
             //DialogoGesCultivo.llenarAdaptadorCultivos()

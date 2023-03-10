@@ -89,7 +89,7 @@ class AdaptadorPersona() :
 
         if (posicionMarcada == i){
             DialogoGesPersona.personaSeleccionada = listaPersona.get(pos) //Agregando la persona Seleccionada
-            viewHolderPersona.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorSeleccion))
+            viewHolderPersona.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorPersonal))
         }else{
             viewHolderPersona.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorBlanco))
         }

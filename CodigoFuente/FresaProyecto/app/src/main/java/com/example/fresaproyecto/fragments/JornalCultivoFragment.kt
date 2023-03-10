@@ -63,7 +63,7 @@ class JornalCultivoFragment : Fragment() {
         //Utilidades.calcularBeneficioCultivo(actividad,mes,año)
         Utilidades.consultarJornalesMes(actividad,mes, año, idCultivo)
 
-        var miAdaptadorJornal = AdaptadorJornalMesCultivo(Utilidades.listaJornalCultivo!!)
+        var miAdaptadorJornal = AdaptadorJornalMesCultivo()
         miAdaptadorJornal.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))

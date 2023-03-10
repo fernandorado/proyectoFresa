@@ -203,6 +203,36 @@ object Utilidades {
         db.close()
     }
 
+    fun consultaIngresoPersonalDia(actividad: Activity,dia: Int, mes: Int, año: Int, idPersona: Int) {
+        val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
+        val db: SQLiteDatabase = conn.getReadableDatabase()
+        var ingreso: IngresoPersonalVo
+        listaIngresoPersonal = ArrayList<IngresoPersonalVo>()
+
+        //select * from usuarios
+        val cursor = db.rawQuery(
+            "select dia_ingreso, mes_ingreso, año_ingreso, concepto, precio, id_ingreso " +
+                    " from ingreso_personal " +
+                    " WHERE dia_ingreso = " + dia + " and año_ingreso = " + año + " and mes_ingreso = " + mes + " and id_persona = " + idPersona , null
+        )
+        while (cursor.moveToNext()) {
+            ingreso = IngresoPersonalVo()
+            //ingreso.id= cursor.getInt(0)
+            ingreso.dia = cursor.getInt(0)
+            ingreso.mes = cursor.getInt(1)
+            ingreso.año = cursor.getInt(2)
+            ingreso.concepto = cursor.getString(3)
+            ingreso.precio = cursor.getInt(4)
+            ingreso.id = cursor.getInt(5)
+            listaIngresoPersonal!!.add(ingreso)
+
+        }/*
+        for (item in listaCultivos!!) {
+            println("ID: "+item.id + "Nombre: " + item.nombre)
+        }*/
+        db.close()
+    }
+
 
     //llenar lista de Gastos Personales
     fun consultarListaGastoPersonal(actividad: Activity, mes: Int, año: Int, idPersona: Int) {
@@ -226,6 +256,34 @@ object Utilidades {
             gasto.año = cursor.getInt(2)
             gasto.concepto = cursor.getString(3)
             gasto.precio = cursor.getInt(4)
+            listaGastoPersonal!!.add(gasto)
+
+        }
+        db.close()
+    }
+
+    fun consultarGastoPersonalDia(actividad: Activity, dia: Int, mes: Int, año: Int, idPersona: Int) {
+        val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
+        val db: SQLiteDatabase = conn.getReadableDatabase()
+        var gasto: GastoPersonalVo
+        listaGastoPersonal = ArrayList<GastoPersonalVo>()
+
+        //select * from usuarios
+        val cursor = db.rawQuery(
+            "select dia_gasto, mes_gasto, año_gasto, concepto, precio, id_gasto " +
+                    " from gasto_personal " +
+                    " WHERE dia_gasto = " + dia + " and año_gasto = " + año + " and mes_gasto = " + mes + " and id_persona = " + idPersona,
+            null
+        )
+        while (cursor.moveToNext()) {
+            gasto = GastoPersonalVo()
+
+            gasto.dia = cursor.getInt(0)
+            gasto.mes = cursor.getInt(1)
+            gasto.año = cursor.getInt(2)
+            gasto.concepto = cursor.getString(3)
+            gasto.precio = cursor.getInt(4)
+            gasto.id = cursor.getInt(5)
             listaGastoPersonal!!.add(gasto)
 
         }

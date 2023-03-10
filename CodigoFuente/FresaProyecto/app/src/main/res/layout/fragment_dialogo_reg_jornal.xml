@@ -6,8 +6,6 @@
     android:layout_height="wrap_content"
     tools:context=".dialogos.DialogoRegJornal">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,14 +15,14 @@
             android:id="@+id/idLayoutFondo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorSplash"
+            android:background="@color/colorCultivo"
             android:elevation="8dp">
 
             <ImageButton
                 android:id="@+id/btnIcoAtras"
                 android:layout_width="50dp"
                 android:layout_height="49dp"
-                android:background="@color/colorSplash"
+                android:background="@color/colorCultivo"
                 android:src="@drawable/ic_cerrar" />
 
         </RelativeLayout>
@@ -79,7 +77,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorSplash"
+                        android:backgroundTint="@color/colorCultivoReg"
                         android:orientation="horizontal">
 
                         <TextView
@@ -111,7 +109,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorSplash"
+                        android:backgroundTint="@color/colorCultivoReg"
                         android:orientation="horizontal">
 
                         <TextView
@@ -135,16 +133,14 @@
 
                     </LinearLayout>
 
-                    <HorizontalScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="5dp"
                             android:background="@drawable/stylo_fondo_borde"
-                            android:backgroundTint="@color/colorSplash">
+                            android:backgroundTint="@color/colorCultivoReg">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -158,6 +154,7 @@
                                 android:layout_width="1dp"
                                 android:layout_height="match_parent"
                                 android:background="@color/colorGrisClaro" />
+                            
 
                             <Spinner
                                 android:id="@+id/spinnerActividad"
@@ -185,14 +182,13 @@
 
                         </LinearLayout>
 
-                    </HorizontalScrollView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorSplash">
+                        android:backgroundTint="@color/colorCultivoReg">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -201,6 +197,11 @@
                             android:text="Precio del Jornal:"
                             android:textColor="@android:color/black"
                             android:textSize="20sp" />
+
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/colorGrisClaro" />
 
                         <EditText
                             android:id="@+id/campoPrecio"
@@ -238,7 +239,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/colorSplash"
+        android:backgroundTint="@color/colorCultivo"
         android:drawableLeft="@drawable/ic_confirmacion2"
         android:text="Guardar" />
 
@@ -255,7 +256,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:backgroundTint="@color/colorSplash"
+            android:backgroundTint="@color/colorCultivo"
             android:drawableLeft="@drawable/ic_confirmacion2"
             android:text="Cancelar" />
 
@@ -265,7 +266,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:backgroundTint="@color/colorSplash"
+            android:backgroundTint="@color/colorCultivo"
             android:drawableLeft="@drawable/ic_cerrar"
             android:text="Actualizar" />
 

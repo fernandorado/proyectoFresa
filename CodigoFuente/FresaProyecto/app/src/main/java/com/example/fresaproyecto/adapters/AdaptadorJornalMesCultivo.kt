@@ -17,7 +17,7 @@ import com.example.fresaproyecto.clases.vo.JornalCultivoVo
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 
 
-class AdaptadorJornalMesCultivo(listaMesCultivo: List<JornalCultivoVo>) :
+class AdaptadorJornalMesCultivo() :
     RecyclerView.Adapter<AdaptadorJornalMesCultivo.ViewHolderMes>(), View.OnClickListener {
     private var listener: View.OnClickListener? = null
     var listaJornalMes: List<JornalCultivoVo> = Utilidades.listaJornalCultivo!!

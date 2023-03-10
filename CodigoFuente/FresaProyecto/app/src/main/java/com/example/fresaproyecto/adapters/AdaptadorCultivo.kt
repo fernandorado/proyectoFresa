@@ -80,7 +80,7 @@ class AdaptadorCultivo() :
         if (posicionMarcada == i) {
             DialogoGesCultivo.cultivoSeleccionado =
                 listaCultivo.get(pos) //Agregando la persona Seleccionada
-            ViewHolderCultivo.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorSeleccion))
+            ViewHolderCultivo.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorCultivo))
         } else {
             ViewHolderCultivo.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorBlanco))
         }

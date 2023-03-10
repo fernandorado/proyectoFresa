@@ -15,25 +15,14 @@
             android:id="@+id/idLayoutFondo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorSplash"
+            android:background="@color/colorCultivo"
             android:elevation="8dp">
-
-            <ImageView
-                android:id="@+id/im"
-                android:layout_width="60dp"
-                android:layout_height="49dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="52dp"
-                android:layout_marginLeft="52dp"
-                android:src="@drawable/icono" />
 
             <ImageButton
                 android:id="@+id/btnIcoAtras"
                 android:layout_width="50dp"
                 android:layout_height="49dp"
-                android:background="@color/colorSplash"
+                android:background="@color/colorCultivo"
                 android:src="@drawable/ic_cerrar" />
 
         </RelativeLayout>
@@ -87,7 +76,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorSplash"
+                        android:backgroundTint="@color/colorCultivoReg"
                         android:orientation="horizontal">
 
                         <TextView
@@ -117,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorSplash"
+                        android:backgroundTint="@color/colorCultivoReg"
                         android:orientation="vertical">
 
                         <TextView
@@ -755,7 +744,7 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="5dp"
                         android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorSplash"
+                        android:backgroundTint="@color/colorCultivoReg"
                         android:orientation="horizontal">
 
                         <TextView
@@ -1116,7 +1105,7 @@
         android:layout_marginBottom="5dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/colorSplash"
+        android:backgroundTint="@color/colorCultivo"
         android:drawableLeft="@drawable/ic_confirmacion2"
         android:text="Guardar" />
 
@@ -1133,7 +1122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:backgroundTint="@color/colorSplash"
+            android:backgroundTint="@color/colorCultivo"
             android:drawableLeft="@drawable/ic_confirmacion2"
             android:text="Cancelar" />
 
@@ -1143,7 +1132,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:backgroundTint="@color/colorSplash"
+            android:backgroundTint="@color/colorCultivo"
             android:drawableLeft="@drawable/ic_cerrar"
             android:text="Actualizar" />
 

@@ -1127,7 +1127,10 @@ class DialogoRegCosecha : DialogFragment() {
     }
 
     fun editar() {
-        campoFecha.setText("${cosechaSeleccionada.año}-${cosechaSeleccionada.mes}-${cosechaSeleccionada.dia}")
+        dia = cosechaSeleccionada.dia
+        mes = cosechaSeleccionada.mes
+        año = cosechaSeleccionada.año
+        campoFecha.setText("${año}-${mes}-${dia}")
 
         campoLibrasExtra.setText("" + cosechaSeleccionada.extra)
         campoLibrasPrimera.setText("" + cosechaSeleccionada.primera)
