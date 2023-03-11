@@ -16,7 +16,7 @@
             android:id="@+id/idLayoutFondo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorSplash"
+            android:background="@color/colorRojoPastelTitulo"
             android:elevation="8dp"
             android:orientation="horizontal">
 
@@ -30,7 +30,7 @@
                     android:id="@+id/btnIcoAtras"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:background="@color/colorSplash"
+                    android:background="@color/colorRojoPastelTitulo"
                     android:src="@drawable/ic_flecha_atras" />
 
                 <TextView
@@ -47,7 +47,7 @@
 
             <TextView
                 android:id="@+id/txtFecha"
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:autoSizeTextType="uniform"
@@ -55,7 +55,7 @@
                 android:backgroundTint="#FF5722"
                 android:drawableRight="@drawable/ic_flecha_abajo"
                 android:gravity="center"
-                android:text="Fecha"
+                android:text="Año"
                 android:textColor="@color/white"/>
 
         </RelativeLayout>

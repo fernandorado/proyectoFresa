@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
-import com.example.fresaproyecto.adapters.AdaptadorGastoMesPersona
 import com.example.fresaproyecto.adapters.AdaptadorIngresoMesPersona
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.dialogos.DialogoGesPersona
@@ -42,8 +41,8 @@ class IngresoPersonalFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_gasto_personal, container, false)
-        recyclerJornalMes = vista.findViewById(R.id.recyclerGastos)
+        vista = inflater.inflate(R.layout.fragment_ingreso_personal, container, false)
+        recyclerJornalMes = vista.findViewById(R.id.recyclerIngreso)
         recyclerJornalMes.layoutManager = LinearLayoutManager(actividad)
         recyclerJornalMes.setHasFixedSize(true)
         jornalPorFecha()

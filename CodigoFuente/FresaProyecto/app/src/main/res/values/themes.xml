@@ -27,7 +27,7 @@
     </style>
 
     <style name="BottomNavigation">
-        <item name="android:background">@color/colorSplash</item>
+        <item name="android:background">@color/colorRojoPastelTitulo</item>
         <item name="itemIconTint">@color/white</item>
         <item name="itemTextColor">@color/white</item>
         <item name="selectableItemBackground">@color/colorSplash</item>

@@ -80,7 +80,7 @@
                             android:drawableTint="@color/colorRojo"
                             android:gravity="center"
                             android:textSize="15sp"
-                            android:text="Mis Gastos      "
+                            android:text="MIS GASTOS      "
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -93,16 +93,19 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
                                 android:background="@color/colorRojoPastelTitulo"
+                                android:gravity="center"
+                                android:textStyle="bold"
                                 android:text="Insumos"
                                 android:textSize="15sp" />
 
 
                             <TextView
                                 android:id="@+id/txtInsumo"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
                                 android:text="$0"
+                                android:background="@color/white"
                                 android:textColor="@color/colorRojo"
                                 android:textSize="15sp" />
                         </LinearLayout>
@@ -123,15 +126,18 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
                                 android:background="@color/colorRojoPastelTitulo"
+                                android:gravity="center"
+                                android:textStyle="bold"
                                 android:text="Jornales"
                                 android:textSize="15dp" />
 
                             <TextView
                                 android:id="@+id/txtJornal"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
                                 android:text="$0"
+                                android:background="@color/white"
                                 android:textColor="@color/colorRojo"
                                 android:textSize="15dp" />
                         </LinearLayout>
@@ -159,7 +165,7 @@
                             android:drawableTint="@color/colorVerde"
                             android:gravity="center"
                             android:textSize="15sp"
-                            android:text="Mis Ingresos   "
+                            android:text="MIS INGRESOS   "
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -173,15 +179,18 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
                                 android:background="@color/colorNaranjaPastelTitulo"
+                                android:gravity="center"
+                                android:textStyle="bold"
                                 android:text="Cosecha"
                                 android:textSize="15sp" />
 
                             <TextView
                                 android:id="@+id/txtIngreso"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
                                 android:text="$0"
+                                android:background="@color/white"
                                 android:textColor="@color/colorVerde"
                                 android:textSize="15dp" />
                         </LinearLayout>
@@ -205,13 +214,15 @@
                                 android:background="@color/colorVerdePastelTitulo"
                                 android:text="Beneficio"
                                 android:textSize="15sp"
+                                android:gravity="center"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:id="@+id/txtBeneficio"
-                                android:layout_width="wrap_content"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="1dp"
+                                android:background="@color/white"
                                 android:textSize="15sp"
                                 android:text="$0" />
 
@@ -259,7 +270,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Mi Cosecha Mensual"
+                            android:text="MI COSECHA MENSUAL"
                             android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>

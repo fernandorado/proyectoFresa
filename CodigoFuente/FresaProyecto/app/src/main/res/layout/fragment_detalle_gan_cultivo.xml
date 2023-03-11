@@ -15,26 +15,15 @@
             android:id="@+id/idLayoutFondo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorSplash"
+            android:background="@color/colorRojoPastelTitulo"
             android:elevation="8dp">
-
-            <ImageView
-                android:id="@+id/im"
-                android:layout_width="60dp"
-                android:layout_height="49dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="52dp"
-                android:layout_marginLeft="52dp"
-                android:src="@drawable/icono" />
 
             <ImageButton
                 android:id="@+id/btnIcoAtras"
                 android:layout_width="50dp"
                 android:layout_height="49dp"
-                android:background="@color/colorSplash"
-                android:src="@mipmap/ic_atras" />
+                android:background="@color/colorRojoPastelTitulo"
+                android:src="@drawable/ic_flecha_atras" />
 
         </RelativeLayout>
 

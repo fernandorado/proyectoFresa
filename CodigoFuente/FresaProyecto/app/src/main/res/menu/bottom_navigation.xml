@@ -4,6 +4,7 @@
     <item
         android:id="@+id/registro"
         android:icon="@drawable/ic_registro"
+        android:iconTint="@color/colorCardCultivo"
         android:title="Registro"/>
 
     <item

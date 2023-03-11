@@ -7,19 +7,18 @@
     tools:context=".fragments.RegistroCultivoFragment">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <RelativeLayout
             android:id="@+id/idLayoutFondo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorSplash"
-            android:elevation="8dp"
-            android:orientation="horizontal">
+            android:background="@color/colorRojoPastelTitulo"
+            android:elevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -28,9 +27,9 @@
 
                 <ImageButton
                     android:id="@+id/btnIcoAtras"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorSplash"
+                    android:layout_width="50dp"
+                    android:layout_height="49dp"
+                    android:background="@color/colorRojoPastelTitulo"
                     android:src="@drawable/ic_flecha_atras" />
 
                 <TextView
@@ -40,9 +39,7 @@
                     android:autoSizeTextType="uniform"
                     android:text="Registro"
                     android:textColor="@color/white" />
-
             </LinearLayout>
-
 
         </RelativeLayout>
 
@@ -65,10 +62,10 @@
                     android:autoSizeTextType="uniform"
                     android:background="@drawable/stylo_fondo_borde"
                     android:backgroundTint="@color/white"
-                    android:textStyle="bold"
                     android:text="@string/TituloMenuCultivo"
                     android:textAlignment="center"
-                    android:textColor="#121111" />
+                    android:textColor="#121111"
+                    android:textStyle="bold" />
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
@@ -146,9 +143,9 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="15sp"
-                                        android:layout_marginTop="15sp"
                                         android:layout_gravity="center_horizontal|center_vertical"
+                                        android:layout_marginTop="15sp"
+                                        android:layout_marginBottom="15sp"
                                         android:orientation="vertical">
 
                                         <ImageView
@@ -184,9 +181,9 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="15sp"
-                                        android:layout_marginTop="15sp"
                                         android:layout_gravity="center_horizontal|center_vertical"
+                                        android:layout_marginTop="15sp"
+                                        android:layout_marginBottom="15sp"
                                         android:orientation="vertical">
 
                                         <ImageView
@@ -268,8 +265,8 @@
                                     <LinearLayout
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginBottom="15sp"
                                         android:layout_gravity="center_horizontal|center_vertical"
+                                        android:layout_marginBottom="15sp"
                                         android:orientation="vertical">
 
                                         <ImageView
