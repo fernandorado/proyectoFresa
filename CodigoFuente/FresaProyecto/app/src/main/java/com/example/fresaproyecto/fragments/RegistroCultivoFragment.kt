@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -18,16 +19,6 @@ import com.example.fresaproyecto.interfaces.IComunicaFragments
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.io.ByteArrayInputStream
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [RegistroCultivoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegistroCultivoFragment : Fragment() {
     lateinit var blob: ByteArray
     lateinit var bitmap: Bitmap
@@ -42,7 +33,7 @@ class RegistroCultivoFragment : Fragment() {
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
-    lateinit var navigation: BottomNavigationView
+    lateinit var btnAtras : ImageButton
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -61,6 +52,7 @@ class RegistroCultivoFragment : Fragment() {
         bitmap = BitmapFactory.decodeStream(bais)
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_registro_cultivo, container, false)
+        btnAtras = vista.findViewById(R.id.btnIcoAtras)
         cardRegJornal = vista.findViewById(R.id.cardRegJornal)
         cardRegInsumos = vista.findViewById(R.id.cardRegInsumos)
         cardRegCosecha = vista.findViewById(R.id.cardRegCosecha)
@@ -100,6 +92,8 @@ class RegistroCultivoFragment : Fragment() {
 
             }
         })
+
+        btnAtras.setOnClickListener { requireActivity().onBackPressed() }
 
     }
 

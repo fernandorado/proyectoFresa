@@ -6,196 +6,127 @@
     android:layout_height="wrap_content"
     tools:context=".dialogos.DialogoRegInsumos">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardContenedor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp">
 
-        <RelativeLayout
-            android:id="@+id/idLayoutFondo"
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorCultivo"
-            android:elevation="8dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btnIcoAtras"
-                android:layout_width="50dp"
-                android:layout_height="49dp"
-                android:background="@color/colorCultivo"
-                android:src="@drawable/ic_cerrar" />
-
-        </RelativeLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp">
-
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/idLayoutFondo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:background="@color/colorCultivo"
+                android:elevation="8dp">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="40dp">
+                <ImageButton
+                    android:id="@+id/btnIcoAtras"
+                    android:layout_width="50dp"
+                    android:layout_height="49dp"
+                    android:background="@color/colorCultivo"
+                    android:src="@drawable/ic_cerrar" />
 
-                    <ImageView
-                        android:layout_width="109dp"
-                        android:layout_height="140dp"
-                        android:src="@drawable/icon_insumos" />
-                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:alpha="0.9"
-                    android:gravity="center"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/txtTituloInsumo"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="5sp"
-                        android:layout_marginBottom="5sp"
-                        android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/white"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="40dp">
+
+                        <ImageView
+                            android:layout_width="109dp"
+                            android:layout_height="140dp"
+                            android:src="@drawable/icon_insumos" />
+                    </androidx.cardview.widget.CardView>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:alpha="0.9"
                         android:gravity="center"
-                        android:text="REGISTRO DE INSUMOS"
-                        android:textColor="@color/black"
-                        android:textSize="25dp"
-                        android:textStyle="bold" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/stylo_fondo_borde"
-
-                        android:backgroundTint="@color/colorCultivoReg"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5sp"
-                            android:text="Fecha: "
-                            android:textColor="@android:color/black"
-                            android:textSize="20dp" />
-
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorGrisClaro" />
-
-                        <EditText
-                            android:id="@+id/campoFechaInsumo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clickable="false"
-                            android:focusable="false"
-                            android:hint="Seleccione la Fecha" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-
-                        android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorCultivoReg"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Nombre del Insumo: "
-                            android:textColor="@android:color/black"
-                            android:textSize="20sp" />
-
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorGrisClaro" />
-
-                        <EditText
-                            android:id="@+id/campoNombreInsumo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="Nombre del insumo" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-
-                        android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorCultivoReg"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Precio del Insumo:"
-                            android:textColor="@android:color/black"
-                            android:textSize="20sp" />
-
-                        <LinearLayout
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/colorGrisClaro" />
-
-                        <EditText
-                            android:id="@+id/campoPrecio"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="0"
-                            android:inputType="number" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:background="@drawable/stylo_fondo_borde"
-                        android:backgroundTint="@color/colorCultivoReg"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:id="@+id/txtTituloInsumo"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5sp"
+                            android:layout_marginBottom="5sp"
+                            android:background="@drawable/stylo_fondo_borde"
+                            android:backgroundTint="@color/white"
                             android:gravity="center"
-                            android:text="CANTIDAD APLICADA"
-                            android:textColor="@android:color/black"
-                            android:textSize="20sp" />
+                            android:text="REGISTRO DE INSUMOS"
+                            android:textColor="@color/black"
+                            android:textSize="25dp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/stylo_fondo_borde"
-                            android:gravity="center"
+
+                            android:backgroundTint="@color/colorCultivoReg"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5sp"
-                                android:text="Cantidad:"
+                                android:text="Fecha: "
+                                android:textColor="@android:color/black"
+                                android:textSize="20dp" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <EditText
+                                android:id="@+id/campoFechaInsumo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:clickable="false"
+                                android:focusable="false"
+                                android:hint="Seleccione la Fecha" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+
+                            android:background="@drawable/stylo_fondo_borde"
+                            android:backgroundTint="@color/colorCultivoReg"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nombre del Insumo: "
                                 android:textColor="@android:color/black"
                                 android:textSize="20sp" />
 
@@ -205,26 +136,43 @@
                                 android:background="@color/colorGrisClaro" />
 
                             <EditText
-                                android:id="@+id/campoCantidadUsada"
-                                android:layout_width="90dp"
+                                android:id="@+id/campoNombreInsumo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Nombre del insumo" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+
+                            android:background="@drawable/stylo_fondo_borde"
+                            android:backgroundTint="@color/colorCultivoReg"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Precio del Insumo:"
+                                android:textColor="@android:color/black"
+                                android:textSize="20sp" />
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <EditText
+                                android:id="@+id/campoPrecio"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="0"
                                 android:inputType="number" />
+
                         </LinearLayout>
 
-
-                    </LinearLayout>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cardInusmoRegistros"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerInsumoRegistros"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -239,17 +187,75 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5sp"
                                 android:gravity="center"
-                                android:text="PRESENTACIÓN DEL PRODUCTO"
+                                android:text="CANTIDAD APLICADA"
                                 android:textColor="@android:color/black"
                                 android:textSize="20sp" />
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/stylo_fondo_borde"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5sp"
+                                    android:text="Cantidad:"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="20sp" />
+
+                                <LinearLayout
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/colorGrisClaro" />
+
+                                <EditText
+                                    android:id="@+id/campoCantidadUsada"
+                                    android:layout_width="90dp"
+                                    android:layout_height="wrap_content"
+                                    android:hint="0"
+                                    android:inputType="number" />
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardInusmoRegistros"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerInsumoRegistros"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/stylo_fondo_borde"
+                                android:backgroundTint="@color/colorCultivoReg"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="5sp"
+                                    android:gravity="center"
+                                    android:text="PRESENTACIÓN DEL PRODUCTO"
+                                    android:textColor="@android:color/black"
+                                    android:textSize="20sp" />
 
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:gravity="center"
                                     android:background="@drawable/stylo_fondo_borde"
+                                    android:gravity="center"
                                     android:orientation="horizontal">
 
                                     <TextView
@@ -291,58 +297,57 @@
                                         android:layout_height="wrap_content" />
                                 </LinearLayout>
 
-                        </LinearLayout>
+                            </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </ScrollView>
 
-        </ScrollView>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/idBtnGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/colorCultivo"
-        android:drawableLeft="@drawable/ic_confirmacion2"
-        android:text="Guardar" />
-
-    <LinearLayout
-        android:id="@+id/idLayoutAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        </LinearLayout>
 
         <Button
-            android:id="@+id/idBtnCancelarActInsumo"
+            android:id="@+id/idBtnGuardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="5dp"
             android:backgroundTint="@color/colorCultivo"
             android:drawableLeft="@drawable/ic_confirmacion2"
-            android:text="Cancelar" />
+            android:text="Guardar" />
 
-
-        <Button
-            android:id="@+id/idBtnActualizarInsumo"
+        <LinearLayout
+            android:id="@+id/idLayoutAct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:backgroundTint="@color/colorCultivo"
-            android:drawableLeft="@drawable/ic_cerrar"
-            android:text="Actualizar" />
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="5dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/idBtnCancelarActInsumo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorCultivo"
+                android:drawableLeft="@drawable/ic_confirmacion2"
+                android:text="Cancelar" />
 
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/idBtnActualizarInsumo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:backgroundTint="@color/colorCultivo"
+                android:drawableLeft="@drawable/ic_cerrar"
+                android:text="Actualizar" />
+
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 
 </RelativeLayout>

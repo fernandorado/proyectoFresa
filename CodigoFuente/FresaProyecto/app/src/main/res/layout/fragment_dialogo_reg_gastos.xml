@@ -1,216 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".dialogos.DialogoRegGastos">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardContenedor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="0dp">
 
-        <RelativeLayout
-            android:id="@+id/idLayoutFondo"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPersonal"
-            android:elevation="8dp">
+            android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btnIcoCerrar"
-                android:layout_width="50dp"
-                android:layout_height="49dp"
-                android:background="@color/colorPersonal"
-                android:src="@drawable/ic_cerrar" />
-
-        </RelativeLayout>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp">
-
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/idLayoutFondo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:orientation="vertical">
+                android:background="@color/colorPersonal"
+                android:elevation="8dp">
 
-                <ImageView
-                    android:id="@+id/imgGastos"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:src="@drawable/gastos" />
+                <ImageButton
+                    android:id="@+id/btnIcoCerrar"
+                    android:layout_width="50dp"
+                    android:layout_height="49dp"
+                    android:background="@color/colorPersonal"
+                    android:src="@drawable/ic_cerrar" />
 
-                <TextView
-                    android:id="@+id/txtTituloGasto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="REGISTRO DE GASTO"
-                    android:textColor="@android:color/black"
-                    android:textSize="35sp" />
+            </RelativeLayout>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:orientation="vertical">
 
-                    android:alpha="0.9"
-                    android:background="@drawable/stylo_fondo_borde"
-                    android:backgroundTint="@color/colorPersonalReg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5sp"
-
-                        android:text="Fecha: "
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp" />
-
-                    <EditText
-                        android:id="@+id/campoFechaGasto"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:clickable="false"
-                        android:focusable="false"
-                        android:hint="Seleccione la Fecha" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:alpha="0.9"
-                    android:background="@drawable/stylo_fondo_borde"
-                    android:backgroundTint="@color/colorPersonalReg"
-                    android:orientation="horizontal">
+                    <ImageView
+                        android:id="@+id/imgGastos"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/gastos" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5sp"
-                        android:text="Seleccione una opción:"
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp" />
-
-                    <LinearLayout
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="@color/colorGrisClaro" />
-
-
-                    <Spinner
-                        android:id="@+id/spinnerGastos"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content" />
-
-                    <LinearLayout
-                        android:id="@+id/conceptoLinearLayout"
+                        android:id="@+id/txtTituloGasto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
+                        android:gravity="center"
+                        android:text="REGISTRO DE GASTO"
+                        android:textColor="@android:color/black"
+                        android:textSize="35sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:alpha="0.9"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:backgroundTint="@color/colorPersonalReg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5sp"
+
+                            android:text="Fecha: "
+                            android:textColor="@android:color/black"
+                            android:textSize="25sp" />
+
+                        <EditText
+                            android:id="@+id/campoFechaGasto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="false"
+                            android:focusable="false"
+                            android:hint="Seleccione la Fecha" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:alpha="0.9"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:backgroundTint="@color/colorPersonalReg"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5sp"
+                            android:text="Seleccione una opción:"
+                            android:textColor="@android:color/black"
+                            android:textSize="25sp" />
 
                         <LinearLayout
                             android:layout_width="1dp"
                             android:layout_height="match_parent"
                             android:background="@color/colorGrisClaro" />
 
-                        <EditText
-                            android:id="@+id/campoConceptoOtro"
+
+                        <Spinner
+                            android:id="@+id/spinnerGastos"
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content" />
+
+                        <LinearLayout
+                            android:id="@+id/conceptoLinearLayout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Concepto" />
+                            android:orientation="horizontal"
+                            android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/colorGrisClaro" />
+
+                            <EditText
+                                android:id="@+id/campoConceptoOtro"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Concepto" />
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:alpha="0.9"
-                    android:background="@drawable/stylo_fondo_borde"
-                    android:backgroundTint="@color/colorPersonalReg"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Monto:"
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp" />
-
-                    <EditText
-                        android:id="@+id/campoMonto"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Digite el monto"
-                        android:inputType="number" />
-                </LinearLayout>
+                        android:layout_marginTop="5dp"
+                        android:alpha="0.9"
+                        android:background="@drawable/stylo_fondo_borde"
+                        android:backgroundTint="@color/colorPersonalReg"
+                        android:orientation="horizontal">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardGastoRegistros"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Monto:"
+                            android:textColor="@android:color/black"
+                            android:textSize="25sp" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recyclerGastoRegistros"
+                        <EditText
+                            android:id="@+id/campoMonto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Digite el monto"
+                            android:inputType="number" />
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardGastoRegistros"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
 
-                </androidx.cardview.widget.CardView>
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerGastoRegistros"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
-    />
-
-    <Button
-        android:id="@+id/btnRegistrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/colorPersonal"
-        android:drawableLeft="@drawable/ic_confirmacion2"
-        android:text="Guardar"/>
-
-    <LinearLayout
-        android:id="@+id/idLayoutAct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone">
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
 
         <Button
-            android:id="@+id/idBtnCancelarActGasto"
+            android:id="@+id/btnRegistrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="5dp"
             android:backgroundTint="@color/colorPersonal"
             android:drawableLeft="@drawable/ic_confirmacion2"
-            android:text="Cancelar" />
+            android:text="Guardar" />
 
-
-        <Button
-            android:id="@+id/idBtnActualizarGasto"
+        <LinearLayout
+            android:id="@+id/idLayoutAct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:backgroundTint="@color/colorPersonal"
-            android:drawableLeft="@drawable/ic_cerrar"
-            android:text="Actualizar" />
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="5dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/idBtnCancelarActGasto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPersonal"
+                android:drawableLeft="@drawable/ic_confirmacion2"
+                android:text="Cancelar" />
 
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/idBtnActualizarGasto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:backgroundTint="@color/colorPersonal"
+                android:drawableLeft="@drawable/ic_cerrar"
+                android:text="Actualizar" />
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </RelativeLayout>

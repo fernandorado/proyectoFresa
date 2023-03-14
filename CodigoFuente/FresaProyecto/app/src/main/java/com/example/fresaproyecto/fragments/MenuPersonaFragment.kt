@@ -14,16 +14,6 @@ import com.example.fresaproyecto.dialogos.DialogoGesPersona
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MenuPersonaFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MenuPersonaFragment : Fragment() {
     var fragmentRegistro: RegistroPersonaFragment = RegistroPersonaFragment()
     var fragmentInforme: InformePersonalFragment = InformePersonalFragment()

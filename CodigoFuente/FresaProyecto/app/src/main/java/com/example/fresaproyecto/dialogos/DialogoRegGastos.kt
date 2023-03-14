@@ -1,10 +1,13 @@
 package com.example.fresaproyecto.dialogos
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -52,6 +55,12 @@ class DialogoRegGastos : DialogFragment() {
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //dialog.window!!.setGravity(Gravity.TOP)
+        return dialog
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

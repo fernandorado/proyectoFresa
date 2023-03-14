@@ -21,17 +21,13 @@ import com.example.fresaproyecto.dialogos.DialogoGesPersona
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import com.google.android.material.tabs.TabLayout
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class ResMensualPersonalFragment : Fragment() {
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var tab_layout: TabLayout
     lateinit var view_pager: ViewPager2
     lateinit var myViewPagerAdapter : MyViewPagerAdapterPersona
+    lateinit var btnAtras : ImageButton
     //TextView de Informe General
     lateinit var txtIngreso : TextView
     lateinit var txtFecha : TextView
@@ -42,10 +38,6 @@ class ResMensualPersonalFragment : Fragment() {
 
     var mes = InformePersonalFragment.fecha.mes
     var año = InformePersonalFragment.fecha.año
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -62,6 +54,7 @@ class ResMensualPersonalFragment : Fragment() {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_resultado_mensual_personal, container, false)
 
+        btnAtras = vista.findViewById(R.id.btnIcoAtras)
         txtIngreso = vista.findViewById(R.id.txtValorIngreso)
         txtFecha = vista.findViewById(R.id.txtFechaInf)
         txtGasto = vista.findViewById(R.id.txtValorGasto)
@@ -90,7 +83,12 @@ class ResMensualPersonalFragment : Fragment() {
                 tab_layout.getTabAt(position)?.select()
             }
         })
+        eventosClick()
         return vista
+    }
+
+    fun eventosClick(){
+        btnAtras.setOnClickListener { requireActivity().onBackPressed() }
     }
 
     private fun informePorFecha(año:Int){
@@ -131,24 +129,5 @@ class ResMensualPersonalFragment : Fragment() {
 
     companion object {
         lateinit var mesSeleccionado: BeneficioPersonalVo
-        lateinit var recyclerBeneficios: RecyclerView
-        lateinit var recyclerBeneficioAct: RecyclerView
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CalGananciasFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ResMensualPersonalFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

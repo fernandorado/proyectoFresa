@@ -15,8 +15,6 @@ import com.example.fresaproyecto.onboarding.screens.PresentacionFragment
 class MainActivity : AppCompatActivity(), IComunicaFragments{
         override fun onCreate(savedInstanceState: Bundle?) {
 
-        SplashActivity().finish()
-
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 

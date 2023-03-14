@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -24,6 +25,7 @@ class RegistroPersonaFragment : Fragment() {
     lateinit var cardRegIngresos: CardView
     lateinit var txtNombre: TextView
 
+    lateinit var btnAtras : ImageButton
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
@@ -41,6 +43,7 @@ class RegistroPersonaFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         vista = inflater.inflate(R.layout.fragment_menu_persona, container, false)
+        btnAtras = vista.findViewById(R.id.btnIcoAtras)
         cardRegIngresos = vista.findViewById(R.id.cardRegIngresos)
         cardRegGastos = vista.findViewById(R.id.cardRegGastos)
         txtNombre = vista.findViewById(R.id.textNombre)
@@ -68,6 +71,8 @@ class RegistroPersonaFragment : Fragment() {
 
             }
         })
+
+        btnAtras.setOnClickListener { requireActivity().onBackPressed() }
 
     }
 }

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,8 +43,7 @@ class InformePersonalFragment : Fragment() {
     lateinit var txtFechaSelec: TextView
     var listaInformeMes: ArrayList<BeneficioPersonalVo>? = null
     var puntos = ArrayList<Bar>()
-    //----------TextView por mes
-    //TextView mes Enero
+    lateinit var btnAtras : ImageButton
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -66,15 +66,21 @@ class InformePersonalFragment : Fragment() {
         añoSeleccionado = añoActual.toInt()
         txtFechaSelec = vista.findViewById(R.id.txtFecha)
         txtFechaSelec.setOnClickListener { monthYear() }
+        btnAtras = vista.findViewById(R.id.btnIcoAtras)
         barGraphMes = vista.findViewById(R.id.graphBar)
         recyclerInformeMes = vista.findViewById(R.id.recyclerInformeMes)
         recyclerInformeMes.layoutManager = LinearLayoutManager(actividad)
         recyclerInformeMes.setHasFixedSize(true)
 
+        eventosClick()
         graficarBarras()
         informePorFecha(añoActual.toInt())
 
         return vista
+    }
+
+    fun eventosClick(){
+        btnAtras.setOnClickListener { requireActivity().onBackPressed() }
     }
 
     fun monthYear() {

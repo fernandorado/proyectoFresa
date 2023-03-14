@@ -17,9 +17,11 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             if (onBoardingFinished()) {
                 val intent = Intent(this@SplashActivity, MainActivity::class.java)
+                finish()
                 startActivity(intent)
             } else {
                 val intent = Intent(this@SplashActivity, PresentacionActivity::class.java)
+                finish()
                 startActivity(intent)
             }
         }, 3000)

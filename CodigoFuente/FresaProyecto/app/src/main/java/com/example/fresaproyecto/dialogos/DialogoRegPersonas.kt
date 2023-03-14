@@ -1,9 +1,12 @@
 package com.example.fresaproyecto.dialogos
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,10 +30,16 @@ class DialogoRegPersonas : DialogFragment() {
     lateinit var btnCerrar: ImageButton
 
 
-
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //dialog.window!!.setGravity(Gravity.TOP)
+        return dialog
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -46,8 +55,7 @@ class DialogoRegPersonas : DialogFragment() {
     ): View? {
 
 
-
-        vista = inflater.inflate(R.layout.fragment_dialogo_reg_personas, container,false)
+        vista = inflater.inflate(R.layout.fragment_dialogo_reg_personas, container, false)
 
 
         campoNombre = vista.findViewById(R.id.campoNombreP)
@@ -60,12 +68,11 @@ class DialogoRegPersonas : DialogFragment() {
         return vista
     }
 
-    private fun eventosMenu(){
+    private fun eventosMenu() {
         btnRegistrar.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
                 registrarPersona()
-
 
 
             }
@@ -83,14 +90,16 @@ class DialogoRegPersonas : DialogFragment() {
         })
     }
 
-    private fun registrarPersona(){
+    private fun registrarPersona() {
 
 
+        if ((campoIdentificacion.text.toString() != null && !campoIdentificacion.text.toString()
+                .trim()
+                .equals("")) and (campoNombre.text.toString() != null && !campoNombre.text.toString()
+                .trim().equals(""))
+        ) {
 
-
-        if((campoIdentificacion.text.toString()!=null && !campoIdentificacion.text.toString().trim().equals("")) and (campoNombre.text.toString()!=null && !campoNombre.text.toString().trim().equals(""))) {
-
-            DialogoGesPersona.identificacion=campoIdentificacion.text.toString()
+            DialogoGesPersona.identificacion = campoIdentificacion.text.toString()
 
 
             var registro = "Identificacion: " + campoIdentificacion.text.toString() + "\n"
@@ -99,32 +108,42 @@ class DialogoRegPersonas : DialogFragment() {
             Toast.makeText(actividad, "REGISTRAR:\n" + registro, Toast.LENGTH_LONG).show()
 
 
-            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null,1)
-            val db:SQLiteDatabase = conexion.writableDatabase
+            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
+            val db: SQLiteDatabase = conexion.writableDatabase
             val values = ContentValues()
 
 
             //Esto podria modificarlo
-            values.put(Utilidades.CAMPO_ID_PERSONA, campoIdentificacion.text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
+            values.put(
+                Utilidades.CAMPO_ID_PERSONA,
+                campoIdentificacion.text.toString()
+            ) //SI quito esto, le asigna los ID en orden 1,2,3...
             values.put(Utilidades.CAMPO_NOMBRE_PERSONA, campoNombre.text.toString().trim())
-            val idResultante:Number = db.insert(Utilidades.TABLA_PERSONA, Utilidades.CAMPO_ID_PERSONA, values)
+            val idResultante: Number =
+                db.insert(Utilidades.TABLA_PERSONA, Utilidades.CAMPO_ID_PERSONA, values)
 
-            if(idResultante != -1){
-                println("Registrar: " +registro)
-                Toast.makeText(actividad, "¡Registro Éxitoso! " +registro, Toast.LENGTH_SHORT).show()
+            if (idResultante != -1) {
+                println("Registrar: " + registro)
+                Toast.makeText(actividad, "¡Registro Éxitoso! " + registro, Toast.LENGTH_SHORT)
+                    .show()
                 DialogoGesPersona.llenarAdaptadorUsuarios()
-            }else{
-                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
+                    .show()
             }
             db.close()
             dismiss()
-        }else{
-            if(campoIdentificacion.text.toString().isEmpty()){
+        } else {
+            if (campoIdentificacion.text.toString().isEmpty()) {
                 campoIdentificacion.setError("Este campo no puede quedar vacio")
-            }else if (campoNombre.text.toString().isEmpty()){
+            } else if (campoNombre.text.toString().isEmpty()) {
                 campoNombre.setError("Este campo no puede quedar vacio")
             }
-            Toast.makeText(actividad, "Verifique que todos los campos esten registrados \n ", Toast.LENGTH_LONG).show()
+            Toast.makeText(
+                actividad,
+                "Verifique que todos los campos esten registrados \n ",
+                Toast.LENGTH_LONG
+            ).show()
         }
 
     }

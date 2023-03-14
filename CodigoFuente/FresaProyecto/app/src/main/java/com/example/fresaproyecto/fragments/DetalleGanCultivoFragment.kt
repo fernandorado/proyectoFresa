@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,16 +21,6 @@ import com.example.fresaproyecto.interfaces.IComunicaFragments
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayout
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetalleGanCultivoFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetalleGanCultivoFragment : Fragment() {
     lateinit var vista: View
     lateinit var actividad: Activity
@@ -42,15 +33,13 @@ class DetalleGanCultivoFragment : Fragment() {
     lateinit var txtFechaSelec : TextView
     lateinit var txtGasto : TextView
     lateinit var txtBeneficio : TextView
+    lateinit var btnAtras : ImageButton
 
     var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
 
     var mes = InformeCultivoFragment.fecha.mes
     var año = InformeCultivoFragment.fecha.año
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -73,6 +62,7 @@ class DetalleGanCultivoFragment : Fragment() {
         txtGasto = vista.findViewById(R.id.txtValorGasto)
         txtBeneficio = vista.findViewById(R.id.txtBeneficio)
 
+        btnAtras = vista.findViewById(R.id.btnIcoAtras)
         view_pager = vista.findViewById(R.id.view_pager)
         tab_layout = vista.findViewById(R.id.tab_layout)
         myViewPagerAdapter = MyViewPagerAdapter(this)
@@ -96,7 +86,12 @@ class DetalleGanCultivoFragment : Fragment() {
                 tab_layout.getTabAt(position)?.select()
             }
         })
+        eventosClick()
         return vista
+    }
+
+    fun eventosClick(){
+        btnAtras.setOnClickListener { requireActivity().onBackPressed() }
     }
 
     private fun informePorFecha(año:Int){
@@ -134,32 +129,7 @@ class DetalleGanCultivoFragment : Fragment() {
         InformeCultivoFragment.recyclerInformeMes.adapter=miAdaptadorInforme
     }
 
-
-
-
-
     companion object {
-
-
-
-
         lateinit var interfaceComunicaFragments: IComunicaFragments
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetalleGanCultivoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetalleGanCultivoFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
