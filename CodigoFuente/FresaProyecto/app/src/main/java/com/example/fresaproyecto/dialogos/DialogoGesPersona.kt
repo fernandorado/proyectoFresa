@@ -1,7 +1,11 @@
 package com.example.fresaproyecto.dialogos
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
 import android.widget.*
@@ -23,7 +27,13 @@ class DialogoGesPersona : DialogFragment(), OnClickListenerPersona {
     lateinit var btnExtNuevo: ExtendedFloatingActionButton
     lateinit var btnExtContinuar: ExtendedFloatingActionButton
 
-
+    @SuppressLint("ResourceAsColor")
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //dialog.window!!.setGravity(Gravity.TOP)
+        return dialog
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

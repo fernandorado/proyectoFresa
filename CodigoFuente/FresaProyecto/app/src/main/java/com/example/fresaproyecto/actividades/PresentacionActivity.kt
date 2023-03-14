@@ -16,6 +16,7 @@ class PresentacionActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         val fragmentInicio =  PresentacionAplicacionFragment();
 
+        SplashActivity().finish()
         fragmentTransaction.replace(R.id.contenedorFragmentsPre, fragmentInicio).commit()
     }
 }

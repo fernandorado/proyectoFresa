@@ -1,11 +1,13 @@
 package com.example.fresaproyecto.dialogos
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
@@ -25,10 +27,15 @@ class DialogoGesCultivo : DialogFragment(), OnClickListenerCultivo {
     lateinit var btnExtNuevo: ExtendedFloatingActionButton
     lateinit var btnExtContinuar: ExtendedFloatingActionButton
     lateinit var interfaceComunicaFragments: IComunicaFragments
-
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         super.onCreate(savedInstanceState)
+    }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //dialog.window!!.setGravity(Gravity.TOP)
+        return dialog
     }
 
     override fun onAttach(context: Context) {
@@ -45,6 +52,7 @@ class DialogoGesCultivo : DialogFragment(), OnClickListenerCultivo {
     ): View? {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_dialogo_ges_cultivo, container, false)
+        vista.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         recyclerCultivos = vista.findViewById(R.id.recyclerCultivo)
         recyclerCultivos.layoutManager = GridLayoutManager(context, 2)
         recyclerCultivos.setHasFixedSize(true)

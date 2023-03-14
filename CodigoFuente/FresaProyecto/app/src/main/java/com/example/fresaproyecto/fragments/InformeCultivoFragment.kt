@@ -10,22 +10,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.PackageManagerCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.demogorgorn.monthpicker.MonthPickerDialog
 import com.echo.holographlibrary.Bar
 import com.echo.holographlibrary.BarGraph
-import com.example.fresaproyecto.MainActivity
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.adapters.AdaptadorMesCultivo
-import com.example.fresaproyecto.clases.DatePickerFragment
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.clases.vo.BeneficioCultivoVo
 import com.example.fresaproyecto.dialogos.DialogoGesCultivo
@@ -48,6 +46,7 @@ class InformeCultivoFragment : Fragment() {
     var mes: Int = 0
     var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
     var nombre = DialogoGesCultivo.cultivoSeleccionado.nombre
+    lateinit var btnIcoAtras : ImageButton
 
     //TextView de año
     //TextView de Informe General
@@ -86,6 +85,7 @@ class InformeCultivoFragment : Fragment() {
         txtFechaSelec = vista.findViewById(R.id.txtFecha)
         txtFechaSelec.setOnClickListener { monthYear() }
         barGraphMes = vista.findViewById(R.id.graphBar)
+        btnIcoAtras = vista.findViewById(R.id.btnIcoAtras)
         idBtnGuardarPDF = vista.findViewById(R.id.idBtnGuardarPDF)
         recyclerInformeMes = vista.findViewById(R.id.recyclerInformeMes)
         recyclerInformeMes.layoutManager = LinearLayoutManager(actividad)
@@ -100,6 +100,7 @@ class InformeCultivoFragment : Fragment() {
 
     private fun eventosClick() {
         idBtnGuardarPDF.setOnClickListener { verificarPermisos(it) }
+        btnIcoAtras.setOnClickListener { requireActivity().onBackPressed() }
     }
 
     private fun verificarPermisos(view: View) {

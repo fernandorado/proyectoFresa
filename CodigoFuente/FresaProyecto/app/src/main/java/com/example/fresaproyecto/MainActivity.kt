@@ -3,6 +3,7 @@ package com.example.fresaproyecto
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.fresaproyecto.actividades.SplashActivity
 import com.example.fresaproyecto.clases.ConexionSQLiteHelper
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.dialogos.*
@@ -12,51 +13,9 @@ import com.example.fresaproyecto.onboarding.PresentacionAplicacionFragment
 import com.example.fresaproyecto.onboarding.screens.PresentacionFragment
 
 class MainActivity : AppCompatActivity(), IComunicaFragments{
-    //val fragmentManager = supportFragmentManager
-    //val fragmentTransaction = fragmentManager.beginTransaction()
+        override fun onCreate(savedInstanceState: Bundle?) {
 
-
-/*
-    override fun onBackPressed() {
-        AlertDialog.Builder(this)
-            .setMessage("¿Salir de la aplicación?")
-            .setCancelable(false)
-            .setPositiveButton("Si") { dialog, whichButton ->
-                finishAffinity() //Sale de la aplicación.
-            }
-            .setNegativeButton("Cancelar") { dialog, whichButton ->
-
-            }
-            .show()
-    }*/
-
-    /*override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        // TODO Auto-generated method stub
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            val builder = AlertDialog.Builder(this)
-            builder.setMessage("¿Desea salir de Stroopers?")
-                .setPositiveButton("Si") { dialog, id ->
-                    val intent = Intent(Intent.ACTION_MAIN)
-                    intent.addCategory(Intent.CATEGORY_HOME)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                }
-                .setNegativeButton(
-                    "Cancelar"
-                ) { dialog, id -> dialog.dismiss() }
-            builder.show()
-        }
-        return super.onKeyDown(keyCode, event)
-    }*/
-
-
-
-
-
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+        SplashActivity().finish()
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
@@ -69,72 +28,6 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
 
 
     }
-
-    //Alerta de Dialogo para Registrar o Seleccionar un cultivo
-    /*fun createSimpleDialog(): AlertDialog? {
-        val builder = AlertDialog.Builder(this@MainActivity)
-        val fragmentMenuCultivo = MenuCultivoFragment()
-        val fragmentRegCultivo = DialogoRegCultivo()
-        builder.setTitle("GESTIONAR CULTIVO")
-            .setMessage(
-                """
-            Indique Si desea registrar un nuevo cultivo o si desea seleccionar uno ya existente.
-            
-            También podrá modificar un Cultivo desde la opción SELECCIONAR
-            """.trimIndent()
-            )
-            .setNegativeButton("REGISTRAR",
-                DialogInterface.OnClickListener { dialog, which ->
-
-
-
-                    regCultivo()
-                })
-            .setPositiveButton("SELECCIONAR",
-                DialogInterface.OnClickListener { dialog, which ->
-
-
-                    val transaction = supportFragmentManager.beginTransaction()
-                    transaction.replace(R.id.contenedorFragments, fragmentMenuCultivo)
-                    transaction.addToBackStack(null)
-                    transaction.commit()
-                })
-        return builder.create()
-    }
-
-    fun dialogoGestionUsuarios(): AlertDialog? {
-        val builder = AlertDialog.Builder(this@MainActivity)
-        val fragmentMenuCultivo = MenuCultivoFragment()
-        val fragmentRegCultivo = DialogoRegCultivo()
-        builder.setTitle("GESTIONAR CULTIVO")
-            .setMessage(
-                """
-            Indique Si desea registrar un nuevo usuario o si desea seleccionar uno ya existente.
-            
-            También podrá modificar un Usuario desde la opción SELECCIONAR
-            """.trimIndent()
-            )
-            .setNegativeButton("REGISTRAR",
-                DialogInterface.OnClickListener { dialog, which ->
-
-
-
-                    val dialogRegistro = DialogoRegPersonas()
-                    dialogRegistro.show(supportFragmentManager, "DialogoRegPersonas")
-
-
-                })
-            .setPositiveButton("SELECCIONAR",
-                DialogInterface.OnClickListener { dialog, which ->
-
-                    Utilidades.consultarListaPersonas(this)
-
-                    val dialogSeleccion = DialogoGesPersona()
-                    dialogSeleccion.show(supportFragmentManager, "DialogoGesPersona")
-
-                })
-        return builder.create()
-    }*/
 
     override fun presentacionApp() {
         //val fragmentManager = supportFragmentManager

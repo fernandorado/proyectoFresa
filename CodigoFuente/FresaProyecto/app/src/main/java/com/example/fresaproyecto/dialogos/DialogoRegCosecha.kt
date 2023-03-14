@@ -1,6 +1,7 @@
 package com.example.fresaproyecto.dialogos
 
 import android.app.Activity
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.ContentValues
 import android.content.Context
@@ -9,7 +10,9 @@ import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.Matrix
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
@@ -170,6 +173,13 @@ class DialogoRegCosecha : DialogFragment() {
     private val COD_FOTO = 20
     lateinit var bitmap: Bitmap
     lateinit var path: String
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //dialog.window!!.setGravity(Gravity.TOP)
+        return dialog
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
