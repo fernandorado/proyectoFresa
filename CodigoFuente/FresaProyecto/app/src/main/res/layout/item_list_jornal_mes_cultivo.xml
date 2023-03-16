@@ -28,8 +28,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:src="@drawable/icon_jornal"/>
                 <TextView
                     android:id="@+id/txtFechaJornal"
@@ -38,7 +38,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="1dp"
                     android:text="Mes. "
-                    android:textSize="12dp"
+                    android:textSize="25dp"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -61,12 +61,14 @@
                         android:id="@+id/txtActividadJornal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Actividad" />
 
                     <TextView
                         android:id="@+id/txtCantidadJornal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:gravity="center"
                         android:text="Cantidad de Jornales" />
 
@@ -80,9 +82,10 @@
                     android:layout_gravity="right|bottom"
                     android:gravity="right"
                     android:layout_marginTop="1dp"
+                    android:textSize="18dp"
+                    android:layout_marginRight="10dp"
                     android:text="$0"
-                    android:textColor="@color/colorRojo"
-                    android:textSize="12dp" />
+                    android:textColor="@color/colorRojo" />
 
 
             </LinearLayout>
@@ -97,6 +100,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:textSize="25dp"
+                android:layout_marginRight="10dp"
                 android:textColor="@color/colorRojo"
                 android:text="Precio Total"/>
 

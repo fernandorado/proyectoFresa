@@ -889,7 +889,7 @@ class DialogoRegCosecha : DialogFragment() {
                 var imageBitmap = intent?.extras?.get("data") as Bitmap
                 var ancho: Float = (600).toFloat()
                 var alto: Float = (800).toFloat()
-                bitmap = redimensionarImagen(imageBitmap, ancho, alto)
+                bitmap = imageBitmap
             }
 
         }

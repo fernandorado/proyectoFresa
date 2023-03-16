@@ -7,6 +7,12 @@
     android:layout_marginBottom="50dp"
     tools:context=".fragments.InformePersonalFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondocontabilidadpersonal" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,8 +34,8 @@
 
                 <ImageButton
                     android:id="@+id/btnIcoAtras"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="49dp"
                     android:background="@color/colorRojoPastelTitulo"
                     android:src="@drawable/ic_flecha_atras" />
 
@@ -52,9 +58,11 @@
                 android:layout_alignParentRight="true"
                 android:autoSizeTextType="uniform"
                 android:background="@drawable/stylo_fondo_borde"
-                android:backgroundTint="#FF5722"
+                android:backgroundTint="@color/colorAzul"
                 android:drawableRight="@drawable/ic_flecha_abajo"
                 android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_centerInParent="true"
                 android:text="Año"
                 android:textColor="@color/white"/>
 

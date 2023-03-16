@@ -56,7 +56,7 @@ class AdaptadorIngresoMesPersona() :
 
         viewHolderMes.txtFecha.setText(listaIngresoMes[i].dia.toString() + " de " + mesLetras + " de " + listaIngresoMes[i].año.toString())
         viewHolderMes.txtConceptoIngreso.setText(listaIngresoMes[i].concepto)
-        viewHolderMes.txtCostoIngreso.setText(listaIngresoMes[i].precio.toString())
+        viewHolderMes.txtCostoIngreso.setText("$"+listaIngresoMes[i].precio.toString())
 
     }
 

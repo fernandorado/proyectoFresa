@@ -37,28 +37,28 @@ open class MenuCultivoFragment : Fragment() {
 
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_menu_cultivo, container, false)
-        reemplazarFragment(fragmentRegistro)
 
         navigation = vista.findViewById(R.id.bottom_navigation)
         navigation.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.informe -> reemplazarFragment(fragmentInforme)
                 R.id.registro -> reemplazarFragment(fragmentRegistro)
-                else ->{
 
-                }
             }
             true
         }
+        navigation.selectedItemId = R.id.registro
 
+
+        this.onPause()
         return vista
     }
 
-    private fun reemplazarFragment(fragment: Fragment){
+    private fun reemplazarFragment(fragment: Fragment) {
         val fragmentManager = activity?.supportFragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
         fragmentTransaction!!.replace(R.id.frame_container, fragment)
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
-
 }

@@ -69,9 +69,9 @@ class AdaptadorMesPersona() :
         })
 
 
-        viewHolderMes.txtIngreso.setText(listaMes[i].ingresos.toString())
-        viewHolderMes.txtGasto.setText(listaMes[i].gastos.toString())
-        viewHolderMes.txtGanancia.setText(listaMes[i].beneficio.toString())
+        viewHolderMes.txtIngreso.setText("$"+listaMes[i].ingresos.toString())
+        viewHolderMes.txtGasto.setText("$"+listaMes[i].gastos.toString())
+        viewHolderMes.txtGanancia.setText("$"+listaMes[i].beneficio.toString())
         var mesLetras = when (listaMes[i].mes){
             1 -> "Enero"
             2 -> "Febrero"

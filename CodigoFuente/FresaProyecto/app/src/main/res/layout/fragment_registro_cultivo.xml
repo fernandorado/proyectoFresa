@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".fragments.RegistroCultivoFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logofresa" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,7 +50,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50sp">
 
 
             <LinearLayout
@@ -136,6 +142,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="45dp"
+                                    android:layout_marginBottom="5dp"
                                     android:foreground="?selectableItemBackground"
                                     app:cardCornerRadius="60dp"
                                     app:cardElevation="2dp">
@@ -149,7 +156,7 @@
                                         android:orientation="vertical">
 
                                         <ImageView
-                                            android:layout_width="110dp"
+                                            android:layout_width="150dp"
                                             android:layout_height="100dp"
                                             android:layout_gravity="center_horizontal"
                                             android:src="@drawable/jornal" />
@@ -187,7 +194,7 @@
                                         android:orientation="vertical">
 
                                         <ImageView
-                                            android:layout_width="110dp"
+                                            android:layout_width="150dp"
                                             android:layout_height="100dp"
                                             android:layout_gravity="center_horizontal"
                                             android:src="@drawable/fertilizante" />
@@ -259,6 +266,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:foreground="?selectableItemBackground"
+                                    android:layout_marginBottom="5dp"
                                     app:cardCornerRadius="60dp"
                                     app:cardElevation="2dp">
 
@@ -270,7 +278,7 @@
                                         android:orientation="vertical">
 
                                         <ImageView
-                                            android:layout_width="110dp"
+                                            android:layout_width="150dp"
                                             android:layout_height="100dp"
                                             android:layout_gravity="center_horizontal"
                                             android:src="@drawable/cosecha" />

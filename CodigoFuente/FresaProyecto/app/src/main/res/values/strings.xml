@@ -13,6 +13,7 @@
     <string name="VerFact"><u>Ver Factura</u></string>
     <string name="VerImg"><u>Ver Foto</u></string>
     <string name="TituloMenuCultivo">Bienvenido al Registro Contable de su Cultivo</string>
+    <string name="TituloMenuPersonal">Bienvenido al Registro Contable Personal</string>
     <string name="TituloPresentacion">PRESENTACIÓN</string>
     <string name="TituloAutorizacion">PERMISOS</string>
     <string name="Presentacion">Esta aplicación móvil permite llevar registros productivos y contables a los beneficiarios del proyecto de fresa, en el marco de la ejecución del Convenio No. 156 suscrito entre la EPSEA Fundación Sembrar Futuro-Grupo ALICA y la Fundación Mundo Mujer.</string>

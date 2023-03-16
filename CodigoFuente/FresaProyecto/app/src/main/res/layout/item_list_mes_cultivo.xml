@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:text="Mes. "
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -44,7 +44,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:text="Año"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -163,9 +163,9 @@
                             android:background="@color/colorGrisClaro"
                             android:drawableLeft="@drawable/ic_ingreso"
                             android:drawableTint="@color/colorVerde"
-                            android:gravity="center"
                             android:textSize="15sp"
                             android:text="MIS INGRESOS   "
+                            android:gravity="center"
                             android:textStyle="bold" />
 
                         <LinearLayout

@@ -30,8 +30,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
                         android:src="@drawable/icon_cosecha"/>
                     <TextView
                         android:id="@+id/txtFechaCosecha"
@@ -40,7 +40,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="1dp"
                         android:text="Mes. "
-                        android:textSize="12dp"
+                        android:textSize="25dp"
                         android:textStyle="bold"/>
                 </LinearLayout>
 
@@ -51,6 +51,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="10dp"
                     android:text="@string/VerFact"
+                    android:textSize="22dp"
                     android:textColor="#0099CC"
                     android:textStyle="italic" />
 
@@ -73,18 +74,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Calidad"
+                        android:textSize="20dp"
                         android:textStyle="bold"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Libras"
+                        android:textSize="20dp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Precio"
+                        android:textSize="20dp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -98,6 +102,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Extra:" />
 
                     <TextView
@@ -109,6 +114,7 @@
                         android:id="@+id/txtLibraExtra"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -116,6 +122,7 @@
                         android:id="@+id/txtPrecioExtra"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -130,6 +137,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Primera:" />
 
                     <TextView
@@ -141,6 +149,7 @@
                         android:id="@+id/txtLibraPrimera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -148,6 +157,7 @@
                         android:id="@+id/txtPrecioPrimera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -162,6 +172,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Segunda:" />
 
                     <TextView
@@ -173,6 +184,7 @@
                         android:id="@+id/txtLibraSegunda"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -180,6 +192,7 @@
                         android:id="@+id/txtPrecioSegunda"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -194,6 +207,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Tercera:" />
 
                     <TextView
@@ -205,6 +219,7 @@
                         android:id="@+id/txtLibraTercera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -212,6 +227,7 @@
                         android:id="@+id/txtPrecioTercera"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -227,6 +243,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Cuarta:" />
 
                     <TextView
@@ -238,6 +255,7 @@
                         android:id="@+id/txtLibraCuarta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -245,6 +263,7 @@
                         android:id="@+id/txtPrecioCuarta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -259,6 +278,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Quinta:" />
 
                     <TextView
@@ -270,6 +290,7 @@
                         android:id="@+id/txtLibraQuinta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -277,6 +298,7 @@
                         android:id="@+id/txtPrecioQuinta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -291,6 +313,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="Madura FF:" />
 
                     <TextView
@@ -302,6 +325,7 @@
                         android:id="@+id/txtLibraMadura"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -309,6 +333,7 @@
                         android:id="@+id/txtPrecioMadura"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="20dp"
                         android:text="$0"
                         android:textColor="@color/colorAzul" />
 
@@ -327,6 +352,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:layout_marginRight="10dp"
+                android:textSize="25dp"
                 android:textColor="@color/colorRojo"
                 android:text="Precio Total"/>
 

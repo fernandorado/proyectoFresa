@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.demogorgorn.monthpicker.MonthPickerDialog
@@ -69,7 +70,7 @@ class InformePersonalFragment : Fragment() {
         btnAtras = vista.findViewById(R.id.btnIcoAtras)
         barGraphMes = vista.findViewById(R.id.graphBar)
         recyclerInformeMes = vista.findViewById(R.id.recyclerInformeMes)
-        recyclerInformeMes.layoutManager = LinearLayoutManager(actividad)
+        recyclerInformeMes.layoutManager = GridLayoutManager(context, 2)
         recyclerInformeMes.setHasFixedSize(true)
 
         eventosClick()

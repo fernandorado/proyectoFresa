@@ -28,7 +28,7 @@ open class InicioFragment : Fragment() {
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
 
-    private var urlSembrarFuturo : String = "https://www.facebook.com/people/Fundaci%C3%B3n-Sembrar-Futuro/100063007820541/"
+    private var urlSembrarFuturo : String = "https://www.facebook.com/profile.php?id=100063007820541"
     private var urlMundoMujer : String = "https://www.fmm.org.co/"
 
     override fun onAttach(context: Context) {

@@ -35,6 +35,7 @@ class AutorizacionFragment : Fragment() {
                 val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)
                 onBoardingFinished()
+                activity!!.finish()
             }
         })
     }

@@ -4,11 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.InicioFragment">
+    tools:context=".fragments.RegistroPersonaFragment">
 
-
-
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondocontabilidadpersonal" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,32 +18,66 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:id="@+id/idLayoutFondo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorRojoPastelTitulo"
+            android:elevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnIcoAtras"
+                    android:layout_width="50dp"
+                    android:layout_height="49dp"
+                    android:background="@color/colorRojoPastelTitulo"
+                    android:src="@drawable/ic_flecha_atras" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:autoSizeTextType="uniform"
+                    android:text="Registro"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:autoSizeMaxTextSize="50sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeTextType="uniform"
+            android:text="@string/TituloMenuPersonal"
+            android:textAlignment="center"
+            android:textColor="#121111"
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/avatarImage"
             android:layout_width="match_parent"
             android:layout_height="116dp"
             android:layout_marginTop="15dp"
-            android:src="@drawable/icono" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/avatarImage"
-            android:layout_alignParentBottom="true"
-            android:text="Bienvenido "
-            android:textColor="#121111"
-            android:textSize="35sp"
-            android:textStyle="bold" />
+            android:src="@drawable/ahorros" />
 
         <TextView
             android:id="@+id/textNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/avatarImage"
-            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:autoSizeMaxTextSize="60sp"
+            android:autoSizeMinTextSize="10sp"
+            android:autoSizeTextType="uniform"
             android:text="Nombre "
+            android:textAlignment="center"
             android:textColor="#121111"
-            android:textSize="35sp"
             android:textStyle="bold" />
 
 
@@ -71,7 +107,7 @@
                         android:text="Registro de Gastos e Ingresos "
                         android:textAlignment="center"
                         android:textColor="#121111"
-                        android:textSize="35sp"
+                        android:textSize="45sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -91,6 +127,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="45dp"
+                                android:layout_marginBottom="5dp"
                                 android:foreground="?selectableItemBackground"
                                 app:cardCornerRadius="60dp"
                                 app:cardElevation="2dp">
@@ -102,7 +139,7 @@
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:layout_width="110dp"
+                                        android:layout_width="150dp"
                                         android:layout_height="100dp"
                                         android:layout_gravity="center_horizontal"
                                         android:src="@drawable/ingresos" />
@@ -115,7 +152,7 @@
                                         android:text="Ingresos"
                                         android:textAlignment="center"
                                         android:textColor="@color/funcionesCardView"
-                                        android:textSize="22sp"
+                                        android:textSize="30sp"
                                         android:textStyle="bold" />
 
 
@@ -140,7 +177,7 @@
                                     android:orientation="vertical">
 
                                     <ImageView
-                                        android:layout_width="110dp"
+                                        android:layout_width="150dp"
                                         android:layout_height="100dp"
                                         android:layout_gravity="center_horizontal"
                                         android:src="@drawable/gastos" />
@@ -153,7 +190,7 @@
                                         android:text="Gastos"
                                         android:textAlignment="center"
                                         android:textColor="@color/funcionesCardView"
-                                        android:textSize="22sp"
+                                        android:textSize="30sp"
                                         android:textStyle="bold" />
 
 
@@ -170,7 +207,6 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
 
         </LinearLayout>

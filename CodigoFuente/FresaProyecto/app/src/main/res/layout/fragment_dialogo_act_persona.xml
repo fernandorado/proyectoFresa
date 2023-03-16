@@ -51,20 +51,65 @@
             android:text="Digite sus datos:"
             android:textSize="25sp" />
 
-        <EditText
-            android:id="@+id/campoIdentificacionAct"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Digite su numero de Documento"
-            android:inputType="number" />
+            android:alpha="0.9"
+            android:background="@drawable/stylo_fondo_borde"
+            android:backgroundTint="@color/colorAzulPastel"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/campoNombreAct"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:text="Identificación: "
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorGrisClaro" />
+
+            <EditText
+                android:id="@+id/campoIdentificacionAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Identificación"
+                android:inputType="number" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:hint="Digite su nombre" />
+            android:layout_marginTop="5dp"
+            android:alpha="0.9"
+            android:background="@drawable/stylo_fondo_borde"
+            android:backgroundTint="@color/colorAzulPastel"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5sp"
+                android:text="Nombre: "
+                android:textColor="@android:color/black"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorGrisClaro" />
+
+            <EditText
+                android:id="@+id/campoNombreAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nombre" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"

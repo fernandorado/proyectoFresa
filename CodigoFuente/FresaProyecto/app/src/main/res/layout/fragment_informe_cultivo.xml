@@ -7,6 +7,12 @@
     android:layout_marginBottom="50dp"
     tools:context=".fragments.InformeCultivoFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/logofresa" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,8 +34,8 @@
 
                 <ImageButton
                     android:id="@+id/btnIcoAtras"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="49dp"
                     android:background="@color/colorRojoPastelTitulo"
                     android:src="@drawable/ic_flecha_atras" />
 
@@ -49,10 +55,12 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
                 android:autoSizeTextType="uniform"
                 android:background="@drawable/stylo_fondo_borde"
                 android:backgroundTint="@color/colorAzul"
                 android:drawableRight="@drawable/ic_flecha_abajo"
+                android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="Año"
                 android:textColor="@color/white"/>

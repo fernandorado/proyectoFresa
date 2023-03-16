@@ -11,6 +11,7 @@ import android.view.*
 import android.widget.*
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fresaproyecto.R
@@ -51,7 +52,7 @@ class DialogoGesPersona : DialogFragment(), OnClickListenerPersona {
         vista = inflater.inflate(R.layout.fragment_dialogo_ges_persona, container,false)
 
         recyclerUsuarios = vista.findViewById(R.id.recyclerUsuario)
-        recyclerUsuarios.layoutManager = LinearLayoutManager(actividad)
+        recyclerUsuarios.layoutManager = GridLayoutManager(context, 2)
         recyclerUsuarios.setHasFixedSize(true)
 
 
@@ -119,7 +120,7 @@ class DialogoGesPersona : DialogFragment(), OnClickListenerPersona {
                     interfaceComunicaFragments.menuPersonal()
                     dismiss()
                 } else {
-                    val text = "Registre un cultivo para continuar"
+                    val text = "Haga un registro para continuar"
                     val duration = Toast.LENGTH_SHORT
                     val toast = Toast.makeText(context, text, duration)
                     toast.show()
