@@ -110,7 +110,7 @@ class InformeCultivoFragment : Fragment() {
                 android.Manifest.permission.WRITE_EXTERNAL_STORAGE
             )
                     == PackageManager.PERMISSION_GRANTED -> {
-                Toast.makeText(actividad, "PERMISOS CONCEDIDOS", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(actividad, "PERMISOS CONCEDIDOS", Toast.LENGTH_SHORT).show()
                 crearPDF()
             }
 
@@ -269,6 +269,7 @@ class InformeCultivoFragment : Fragment() {
         }
 
         documento.close()
+        Toast.makeText(actividad, "PDF Guardado en su Dispositivo", Toast.LENGTH_SHORT).show()
     }
 
 

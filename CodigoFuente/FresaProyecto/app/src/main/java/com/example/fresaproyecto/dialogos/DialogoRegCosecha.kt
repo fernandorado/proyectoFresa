@@ -917,7 +917,6 @@ class DialogoRegCosecha : DialogFragment() {
                                 requireContext().contentResolver,
                                 miPath
                             )
-                        bitmap = redimensionarImagen(bitmap, ancho, alto)
 
                     } catch (e: IOException) {
                         e.printStackTrace()
@@ -933,34 +932,6 @@ class DialogoRegCosecha : DialogFragment() {
             }
         }
     }
-
-    private fun redimensionarImagen(bitmap: Bitmap, anchoNuevo: Float, altoNuevo: Float): Bitmap {
-        var ancho = bitmap.width
-        var alto = bitmap.height
-        if (ancho > anchoNuevo || alto > altoNuevo) {
-            var escalaAncho = anchoNuevo / ancho
-            var escalaAlto = altoNuevo / alto
-
-            var matrix: Matrix = Matrix()
-            matrix.postScale(escalaAncho, escalaAlto)
-            return Bitmap.createBitmap(bitmap, 0, 0, ancho, alto, matrix, false)
-        } else {
-            return bitmap
-        }
-    }
-/*
-    public fun guardarImagen(id:Long, bitmap:Bitmap ){
-        // tamaño del baos depende del tamaño de tus imagenes en promedio
-        var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0 , baos)
-        var blob = baos.toByteArray()
-        // aqui tenemos el byte[] con el imagen comprimido, ahora lo guardemos en SQLite
-        insert.clearBindings();
-        insert.bindLong(1, id));
-        insert.bindBlob(2, blob);
-        insert.executeInsert();
-        db.close();
-    }*/
 
     private fun validarRegistro() {
         if (campoFecha.text.toString()

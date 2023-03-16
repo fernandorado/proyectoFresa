@@ -58,7 +58,6 @@ open class MenuCultivoFragment : Fragment() {
         val fragmentManager = activity?.supportFragmentManager
         val fragmentTransaction = fragmentManager?.beginTransaction()
         fragmentTransaction!!.replace(R.id.frame_container, fragment)
-        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 }

@@ -112,14 +112,13 @@ class DialogoRegCultivo : DialogFragment() {
         })
     }
 
+
     private val startForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val intent = result.data
                 var imageBitmap = intent?.extras?.get("data") as Bitmap
-                var ancho: Float = (600).toFloat()
-                var alto: Float = (800).toFloat()
-                bitmap = redimensionarImagen(imageBitmap, ancho, alto)
+                bitmap = imageBitmap
                 imgCultivo.setImageBitmap(bitmap)
             }
 
@@ -149,7 +148,6 @@ class DialogoRegCultivo : DialogFragment() {
                                 requireContext().contentResolver,
                                 miPath
                             )
-                        bitmap = redimensionarImagen(bitmap, ancho, alto)
                         imgCultivo.setImageBitmap(bitmap)
 
                     } catch (e: IOException) {
@@ -166,21 +164,6 @@ class DialogoRegCultivo : DialogFragment() {
             }
         }
 
-    }
-
-    private fun redimensionarImagen(bitmap: Bitmap, anchoNuevo: Float, altoNuevo: Float): Bitmap {
-        var ancho = bitmap.width
-        var alto = bitmap.height
-        if (ancho > anchoNuevo || alto > altoNuevo) {
-            var escalaAncho = anchoNuevo / ancho
-            var escalaAlto = altoNuevo / alto
-
-            var matrix: Matrix = Matrix()
-            matrix.postScale(escalaAncho, escalaAlto)
-            return Bitmap.createBitmap(bitmap, 0, 0, ancho, alto, matrix, false)
-        } else {
-            return bitmap
-        }
     }
 
     private fun mostrarDialogOpciones() {
