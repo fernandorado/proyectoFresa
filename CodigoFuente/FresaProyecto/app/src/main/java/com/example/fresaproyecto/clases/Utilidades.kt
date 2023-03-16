@@ -2,16 +2,7 @@ package com.example.fresaproyecto.clases
 
 import android.app.Activity
 import android.database.sqlite.SQLiteDatabase
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.fresaproyecto.clases.vo.*
-import com.example.fresaproyecto.dialogos.DialogoGesCultivo
-import com.example.fresaproyecto.dialogos.DialogoGesPersona
-import com.example.fresaproyecto.fragments.InformeCultivoFragment
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -166,10 +157,7 @@ object Utilidades {
             cultivo.imgCultivo = cursor.getBlob(3)
             listaCultivos!!.add(cultivo)
 
-        }/*
-        for (item in listaCultivos!!) {
-            println("ID: "+item.id + "Nombre: " + item.nombre)
-        }*/
+        }
         db.close()
     }
 
@@ -196,10 +184,7 @@ object Utilidades {
             ingreso.precio = cursor.getInt(4)
             listaIngresoPersonal!!.add(ingreso)
 
-        }/*
-        for (item in listaCultivos!!) {
-            println("ID: "+item.id + "Nombre: " + item.nombre)
-        }*/
+        }
         db.close()
     }
 
@@ -226,10 +211,7 @@ object Utilidades {
             ingreso.id = cursor.getInt(5)
             listaIngresoPersonal!!.add(ingreso)
 
-        }/*
-        for (item in listaCultivos!!) {
-            println("ID: "+item.id + "Nombre: " + item.nombre)
-        }*/
+        }
         db.close()
     }
 
@@ -383,12 +365,6 @@ object Utilidades {
                 listaBeneficioCultivo!!.add(beneficioCultivo)
 
             }
-        }
-
-        println("Beneficio: ")
-        for (i in listaBeneficioCultivo!!) {
-            println("------------------")
-            println("Lista de Beneficios: " + i.ingresos + " " + i.gastos + " " + i.beneficio)
         }
         db.close()
     }

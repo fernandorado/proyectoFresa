@@ -3,6 +3,7 @@ package com.example.fresaproyecto.dialogos
 import android.app.Activity
 import android.app.Dialog
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,11 +11,11 @@ import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Matrix
 import android.graphics.drawable.ColorDrawable
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
@@ -24,13 +25,18 @@ import android.widget.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
 import com.example.fresaproyecto.R
 import com.example.fresaproyecto.clases.ConexionSQLiteHelper
 import com.example.fresaproyecto.clases.Utilidades
 import com.example.fresaproyecto.interfaces.IComunicaFragments
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.io.IOException
+import java.io.InputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DialogoRegCultivo : DialogFragment() {
 
@@ -112,31 +118,58 @@ class DialogoRegCultivo : DialogFragment() {
         })
     }
 
+    @Throws(IOException::class)
+    private fun createImageFile(): File? {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val imageFileName = "JPEG_" + timeStamp + "_"
+        val storageDir: File? = requireContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        val image: File = File.createTempFile(
+            imageFileName,  /* prefix */
+            ".jpg",  /* suffix */
+            storageDir /* directory */
+        )
+        path = image.getAbsolutePath()
+        return image
+    }
 
-    private val startForResult =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val intent = result.data
-                var imageBitmap = intent?.extras?.get("data") as Bitmap
-                bitmap = imageBitmap
-                imgCultivo.setImageBitmap(bitmap)
+    private fun dispatchTakePictureIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            // Ensure that there's a camera activity to handle the intent
+            takePictureIntent.resolveActivity(requireActivity().getPackageManager())?.also {
+                // Create the File where the photo should go
+                val photoFile: File? = try {
+                    createImageFile()
+                } catch (ex: IOException) {
+                    null
+                }
+                // Continue only if the File was successfully created
+                photoFile?.also {
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        actividad,
+                        "com.example.fresaproyecto",
+                        it
+                    )
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(takePictureIntent, COD_FOTO)
+                }
+
             }
-
         }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        var miPath: Uri? = null
         when (requestCode) {
 
             COD_SELECCIONA -> {
-                var ancho: Float = (600).toFloat()
-                var alto: Float = (800).toFloat()
-                var miPath: Uri? = null
 
                 if (data == null) {
                     Toast.makeText(
                         actividad,
-                        "¡No has seleccionado una imagen.! ",
+                        "¡No has seleccionado una imagen!",
                         Toast.LENGTH_SHORT
                     ).show()
                 } else {
@@ -157,10 +190,8 @@ class DialogoRegCultivo : DialogFragment() {
 
             }
             COD_FOTO -> {
-                MediaScannerConnection.scanFile(
-                    context, arrayOf<String>(path), null
-                ) { path, uri -> Log.i("Path", "" + path) }
                 bitmap = BitmapFactory.decodeFile(path)
+                imgCultivo.setImageBitmap(bitmap)
             }
         }
 
@@ -172,7 +203,7 @@ class DialogoRegCultivo : DialogFragment() {
         builder.setTitle("Elige una Opción")
         builder.setItems(opciones, DialogInterface.OnClickListener { dialogInterface, i ->
             if (opciones[i] == "Tomar Foto") {
-                startForResult.launch(Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { })
+                dispatchTakePictureIntent()
             } else {
                 if (opciones[i] == "Elegir de Galeria") {
                     val intent = Intent(

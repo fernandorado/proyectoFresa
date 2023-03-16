@@ -98,6 +98,8 @@ class AdaptadorCosechaMesCultivo() :
                     viewGroup2.removeView(vista)
                     viewGroup2.removeView(vistaImagen)
                 }
+            viewGroup2.removeView(vista)
+            viewGroup2.removeView(vistaImagen)
             var titulo:AlertDialog = builder.create()
             imgFactura.setImageBitmap(bitmap)
             titulo.setView(vistaImagen)
