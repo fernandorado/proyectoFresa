@@ -204,6 +204,7 @@ class DialogoRegCosecha : DialogFragment() {
         vista = inflater.inflate(R.layout.fragment_dialogo_reg_cosecha, container, false)
         vistaImagen = inflater.inflate(R.layout.imagen, container, false)
 
+        container?.removeView(vistaImagen)
         txtTituloCosecha = vista.findViewById(R.id.txtTituloCosecha)
         imgFactura = vistaImagen.findViewById(R.id.imgFactura)
         btnGuardar = vista.findViewById(R.id.idBtnGuardar)
@@ -345,6 +346,8 @@ class DialogoRegCosecha : DialogFragment() {
         txtVerFoto.setOnClickListener {
             val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(context)
             builder.setTitle("Factura")
+                .setOnCancelListener { val parent = vistaImagen!!.parent as ViewGroup
+                    parent?.removeView(vistaImagen) }
                 .setPositiveButton("Cerrar") { dialog, _ ->
                     dialog.dismiss()
                     if (vistaImagen != null) {
@@ -354,6 +357,10 @@ class DialogoRegCosecha : DialogFragment() {
                 }
             var titulo: android.app.AlertDialog = builder.create()
             imgFactura.setImageBitmap(bitmap)
+            titulo.setOnCancelListener{
+                val parent = vistaImagen!!.parent as ViewGroup
+                parent?.removeView(vistaImagen)
+            }
             titulo.setView(vistaImagen)
             titulo.show()
         }
@@ -473,8 +480,9 @@ class DialogoRegCosecha : DialogFragment() {
                     mostrarSegundad()
                     contReg = contReg + 1
 
-                    librasPrimera = campoLibrasPrimera.text.toString()
-                    precioPrimera = campoPrecioPrimera.text.toString()
+                    librasPrimera = campoLibrasPrimera.text.toString().replaceAfter("^0+", "")
+                    //librasPrimera.replaceAfter("^0+", "")
+                    precioPrimera = campoPrecioPrimera.text.toString().replaceAfter("^0+", "")
 
                     //Variables de libras y precio por calidad
                     lp = librasPrimera.toInt()
@@ -1137,6 +1145,8 @@ class DialogoRegCosecha : DialogFragment() {
         txtTituloCosecha.setText("REGISTRO DE COSECHA")
         btnGuardar.visibility = View.VISIBLE
         idLayoutAct.visibility = View.GONE
+
+        cardListaReg.visibility = View.GONE
     }
 
     fun editar() {

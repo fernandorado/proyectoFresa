@@ -345,11 +345,6 @@ class InformeCultivoFragment : Fragment() {
         listaInformeMes = Utilidades.listaBeneficioCultivo!!
 
         var miAdaptadorInforme = AdaptadorMesCultivo()
-        miAdaptadorInforme.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(view: View?) {
-                //mesSeleccionado = Utilidades.listaBeneficioCultivo!!.get(recyclerInformeMes.getChildAdapterPosition(view!!))
-            }
-        })
 
         recyclerInformeMes.adapter = miAdaptadorInforme
     }

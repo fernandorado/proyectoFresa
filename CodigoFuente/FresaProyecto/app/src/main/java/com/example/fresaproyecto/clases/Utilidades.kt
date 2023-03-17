@@ -440,8 +440,8 @@ object Utilidades {
         listaCosechaCultivo = ArrayList<CosechaCultivoVo>()
 
         val cursor = db.rawQuery(
-            "select  dia_cosecha, mes_cosecha, año_cosecha,libras_extra Extra, libras_primera Primera,libras_segunda Segunda, libras_tercera Tercera, libras_cuarta Cuarta, libras_quinta Quinta,libras_madura Madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta, \n" +
-                    " precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha , img_factura \n" +
+            "select dia_cosecha, mes_cosecha, año_cosecha,libras_extra, libras_primera,libras_segunda, libras_tercera, libras_cuarta, libras_quinta,libras_madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta, \n" +
+                    "precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha , img_factura \n" +
                     "from cosecha\n" +
                     "where mes_cosecha = " + mes + " and año_cosecha = " + año + " and id_cultivo = " + idCultivo,
             null
@@ -483,7 +483,7 @@ object Utilidades {
         listaCosechaCultivo = ArrayList<CosechaCultivoVo>()
 
         val cursor = db.rawQuery(
-            "select dia_cosecha, mes_cosecha, año_cosecha,libras_extra Extra, libras_primera Primera,libras_segunda Segunda, libras_tercera Tercera, libras_cuarta Cuarta, libras_quinta Quinta,libras_madura Madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta,\n" +
+            "select dia_cosecha, mes_cosecha, año_cosecha,libras_extra, libras_primera,libras_segunda, libras_tercera, libras_cuarta, libras_quinta,libras_madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta, \n" +
                     "precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha, img_factura, id_cosecha \n" +
                     "from cosecha \n" +
                     "WHERE año_cosecha = " + año + " and mes_cosecha = " + mes + " and dia_cosecha = " + dia + " and id_cultivo = " + idCultivo,
@@ -504,7 +504,7 @@ object Utilidades {
             cosechaCultivo.madura = cursor.getInt(9)
             cosechaCultivo.precioExtra = cursor.getInt(10)
             cosechaCultivo.precioPrimera = cursor.getInt(11)
-            cosechaCultivo.precioPrimera = cursor.getInt(12)
+            cosechaCultivo.precioSegunda = cursor.getInt(12)
             cosechaCultivo.precioTercera = cursor.getInt(13)
             cosechaCultivo.precioCuarta = cursor.getInt(14)
             cosechaCultivo.precioQuinta = cursor.getInt(15)

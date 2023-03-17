@@ -18,9 +18,4 @@ interface IComunicaFragments {
     fun presentacionApp()
     fun actPersona()
     fun actCultivo()
-    fun actJornal()
-    fun actInsumo()
-    fun actCosecha()
-    fun actGasto()
-    fun actIngreso()
 }

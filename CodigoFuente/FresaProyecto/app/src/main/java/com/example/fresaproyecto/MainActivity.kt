@@ -37,11 +37,6 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         transaction.replace(R.id.contenedorFragments, presentacionFragment)
         transaction.addToBackStack(null)
         transaction.commit()
-
-        val text ="Presentación de Aplicación"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
     }
 
     override fun menuCultivo() {
@@ -54,11 +49,6 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         transaction.replace(R.id.contenedorFragments, fragmentMenuCultivo)
         transaction.addToBackStack(null)
         transaction.commit()
-
-        val text ="Mi Cultivo"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
     }
 
 
@@ -72,44 +62,25 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         transaction.replace(R.id.contenedorFragments, fragmentMenuPersonaFragment)
         transaction.addToBackStack(null)
         transaction.commit()
-
-        val text ="Registro Personal"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
     }
 
     override fun regCultivo() {
-        //val fragmentManager = supportFragmentManager
-        //val fragmentTransaction = fragmentManager.beginTransaction()
-
-
         val dialog = DialogoRegCultivo()
         dialog.show(supportFragmentManager, "DialogoRegGastos")
     }
 
     override fun regPersona() {
-        //val fragmentManager = supportFragmentManager
-        //val fragmentTransaction = fragmentManager.beginTransaction()
-
-
         val dialog = DialogoRegPersonas()
         dialog.show(supportFragmentManager, "DialogoRegPersonas")
     }
 
     override fun regGastos() {
-        //val fragmentManager = supportFragmentManager
-        //val fragmentTransaction = fragmentManager.beginTransaction()
-
         val dialog = DialogoRegGastos()
         dialog.show(supportFragmentManager, "DialogoRegGastos")
 
     }
 
     override fun regIngresos() {
-        //val fragmentManager = supportFragmentManager
-        //val fragmentTransaction = fragmentManager.beginTransaction()
-
         val dialog = DialogosRegIngresos()
         dialog.show(supportFragmentManager, "DialogoRegIngresos")
     }
@@ -123,10 +94,6 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         transaction.addToBackStack(null)
         transaction.commit()
 
-        val text ="Resultado Mensual"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
     }
 
     override fun resultadoMensualCultivo() {
@@ -138,10 +105,6 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         transaction.addToBackStack(null)
         transaction.commit()
 
-        val text ="Resultado Mensual"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
     }
 
     override fun regJornal() {
@@ -154,21 +117,11 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
     override fun regCosecha() {
         val dialog = DialogoRegCosecha()
         dialog.show(supportFragmentManager, "DialogoRegCosecha")
-
-        val text ="Registro de Cosecha"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
     }
 
     override fun regInsumos() {
         val dialog = DialogoRegInsumos()
         dialog.show(supportFragmentManager, "DialogoRegInsumos")
-
-        val text ="Registro de Insumos"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
     }
 
     override fun inicio() {
@@ -178,11 +131,6 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
         transaction.replace(R.id.contenedorFragments, fragmentInicioFragment)
         transaction.addToBackStack(null)
         transaction.commit()
-
-        val text ="Inicio"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
     }
 
     override fun gestionarCultivo(){
@@ -204,30 +152,6 @@ class MainActivity : AppCompatActivity(), IComunicaFragments{
     override fun actCultivo(){
         val dialog = DialogoActCultivo()
         dialog.show(supportFragmentManager, "DialogoActCultivo")
-    }
-
-    override fun actJornal() {
-        val dialog = DialogoActCultivo()
-        dialog.show(supportFragmentManager, "DialogoActCultivo")
-    }
-
-    override fun actInsumo() {
-        val dialog = DialogoActCultivo()
-        dialog.show(supportFragmentManager, "DialogoActCultivo")
-    }
-
-    override fun actCosecha() {
-        val dialog = DialogoActCultivo()
-        dialog.show(supportFragmentManager, "DialogoActCultivo")
-    }
-
-    override fun actGasto() {
-        val dialog = DialogoActCultivo()
-        dialog.show(supportFragmentManager, "DialogoActCultivo")
-    }
-
-    override fun actIngreso() {
-        TODO("Not yet implemented")
     }
 
 

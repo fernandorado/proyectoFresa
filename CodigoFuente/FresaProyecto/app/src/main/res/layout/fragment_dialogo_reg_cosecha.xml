@@ -17,8 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="60dp">
+            android:layout_marginBottom="60dp"
+            android:orientation="vertical">
 
             <RelativeLayout
                 android:id="@+id/idLayoutFondo"
@@ -1138,7 +1138,7 @@
                 android:id="@+id/idBtnActualizarCosecha"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="8dp"
                 android:backgroundTint="@color/colorCultivo"
                 android:drawableLeft="@drawable/ic_cerrar"
                 android:text="Actualizar" />
