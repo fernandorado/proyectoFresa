@@ -436,9 +436,9 @@ class DialogoRegCosecha : DialogFragment() {
                 } else {
                     mostrarPrimera()
                     contReg = contReg + 1
-                    librasExtra = campoLibrasExtra.text.toString()
+                    librasExtra = campoLibrasExtra.text.toString().replaceAfter("^0+", "")
 
-                    precioExtra = campoPrecioExtra.text.toString()
+                    precioExtra = campoPrecioExtra.text.toString().replaceAfter("^0+", "")
 
                     //Variables de libras y precio por calidad
                     le = librasExtra.toInt()
@@ -480,7 +480,7 @@ class DialogoRegCosecha : DialogFragment() {
                     mostrarSegundad()
                     contReg = contReg + 1
 
-                    librasPrimera = campoLibrasPrimera.text.toString().replaceAfter("^0+", "")
+                    librasPrimera = campoLibrasPrimera.text.toString().replaceFirst("^0+", "")
                     //librasPrimera.replaceAfter("^0+", "")
                     precioPrimera = campoPrecioPrimera.text.toString().replaceAfter("^0+", "")
 
@@ -526,9 +526,9 @@ class DialogoRegCosecha : DialogFragment() {
                     mostrarTercera()
                     contReg = contReg + 1
 
-                    librasSegunda = campoLibrasSegunda.text.toString()
+                    librasSegunda = campoLibrasSegunda.text.toString().replaceAfter("^0+", "")
 
-                    precioSegunda = campoPrecioSegunda.text.toString()
+                    precioSegunda = campoPrecioSegunda.text.toString().replaceAfter("^0+", "")
 
                     //Variables de libras y precio por calidad
                     ls = librasSegunda.toInt()
@@ -570,9 +570,9 @@ class DialogoRegCosecha : DialogFragment() {
                     mostrarCuarta()
                     contReg = contReg + 1
 
-                    librasTercera = campoLibrasTercera.text.toString()
+                    librasTercera = campoLibrasTercera.text.toString().replaceAfter("^0+", "")
 
-                    precioTercera = campoPrecioTercera.text.toString()
+                    precioTercera = campoPrecioTercera.text.toString().replaceAfter("^0+", "")
 
                     //Variables de libras y precio por calidad
                     lt = librasTercera.toInt()
@@ -614,9 +614,9 @@ class DialogoRegCosecha : DialogFragment() {
                     mostrarQuinta()
                     contReg = contReg + 1
 
-                    librasCuarta = campoLibrasCuarta.text.toString()
+                    librasCuarta = campoLibrasCuarta.text.toString().replaceAfter("^0+", "")
 
-                    precioCuarta = campoPrecioCuarta.text.toString()
+                    precioCuarta = campoPrecioCuarta.text.toString().replaceAfter("^0+", "")
 
                     //Variables de libras y precio por calidad
                     lc = librasCuarta.toInt()
@@ -660,9 +660,9 @@ class DialogoRegCosecha : DialogFragment() {
                     mostrarMadura()
                     contReg = contReg + 1
 
-                    librasQuinta = campoLibrasQuinta.text.toString()
+                    librasQuinta = campoLibrasQuinta.text.toString().replaceAfter("^0+", "")
 
-                    precioQuinta = campoPrecioQuinta.text.toString()
+                    precioQuinta = campoPrecioQuinta.text.toString().replaceAfter("^0+", "")
 
                     //Variables de libras y precio por calidad
                     lq = librasQuinta.toInt()
@@ -703,8 +703,8 @@ class DialogoRegCosecha : DialogFragment() {
                     layoutMadura.visibility = View.GONE
                     contReg = contReg + 1
 
-                    librasMadura = campoLibrasMadura.text.toString()
-                    precioMadura = campoPrecioMadura.text.toString()
+                    librasMadura = campoLibrasMadura.text.toString().replaceAfter("^0+", "")
+                    precioMadura = campoPrecioMadura.text.toString().replaceAfter("^0+", "")
 
                     //Variables de libras y precio por calidad
                     lm = librasMadura.toInt()
@@ -1150,6 +1150,7 @@ class DialogoRegCosecha : DialogFragment() {
     }
 
     fun editar() {
+        total = 0
         dia = cosechaSeleccionada.dia
         mes = cosechaSeleccionada.mes
         año = cosechaSeleccionada.año
