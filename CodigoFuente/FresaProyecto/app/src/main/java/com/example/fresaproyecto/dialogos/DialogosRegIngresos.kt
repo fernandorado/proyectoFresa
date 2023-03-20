@@ -33,8 +33,6 @@ import kotlin.collections.ArrayList
 
 class DialogosRegIngresos : DialogFragment() {
 
-    // TODO: Rename and change types of parameters
-
 
     lateinit var campoFecha: EditText
     lateinit var campoMonto: EditText
@@ -84,7 +82,6 @@ class DialogosRegIngresos : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        listaIngresos!!.add("Venta de Fresa")
         listaIngresos!!.add("Jornales")
         listaIngresos!!.add("Venta de Ganado")
         listaIngresos!!.add("Venta de Leche")
@@ -210,7 +207,6 @@ class DialogosRegIngresos : DialogFragment() {
                 ingresoSeleccionado = Utilidades.listaIngresoPersonal!!.get(
                     recyclerIngresoDia.getChildAdapterPosition(view!!)
                 )
-                println(ingresoSeleccionado.id)
                 mostrarDialogOpciones()
             }
         })

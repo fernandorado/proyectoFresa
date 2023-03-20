@@ -57,25 +57,32 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:text="Producto" />
+
+                    <TextView
                         android:id="@+id/txtNombreInsumo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="20dp"
-                        android:text="Actividad" />
+                        android:text="Insumo" />
 
                     <TextView
-                        android:id="@+id/txtCantUsoInsumo"
+                        android:id="@+id/txtCantInsumo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:textSize="20dp"
-                        android:text="Cantidad de Insumo" />
+                        android:text="Cantidad de presentación" />
 
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/txtPrecioInsumoTotal"
+                    android:id="@+id/txtPrecioInsumo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|bottom"
@@ -90,6 +97,53 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGrisClaro" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="22dp"
+                        android:textStyle="bold"
+                        android:text="Usado" />
+
+                    <TextView
+                        android:id="@+id/txtCantUsoInsumo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="22dp"
+                        android:text="Cantidad Usado" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/txtPrecioInsumoTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|bottom"
+                    android:gravity="right"
+                    android:layout_marginTop="1dp"
+                    android:text="$0"
+                    android:textStyle="bold"
+                    android:layout_marginRight="10dp"
+                    android:textSize="22dp"
+                    android:textColor="@color/colorRojo" />
+
+            </LinearLayout>
 
 
         </LinearLayout>

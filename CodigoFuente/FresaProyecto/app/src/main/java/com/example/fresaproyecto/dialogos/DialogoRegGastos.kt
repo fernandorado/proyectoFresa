@@ -88,8 +88,6 @@ class DialogoRegGastos : DialogFragment() {
         listaGastos!!.add("Ciudado Personal")
         listaGastos!!.add("Gustos")
         listaGastos!!.add("Especiales")
-        listaGastos!!.add("Pago de Jornales")
-        listaGastos!!.add("Cultivo de Fresa")
         listaGastos!!.add("OTRO")
 
         adp = ArrayAdapter(
@@ -209,7 +207,6 @@ class DialogoRegGastos : DialogFragment() {
                 gastoSeleccionado = Utilidades.listaGastoPersonal!!.get(
                     recyclerGastoDia.getChildAdapterPosition(view!!)
                 )
-                println(gastoSeleccionado.id)
                 mostrarDialogOpciones()
             }
         })

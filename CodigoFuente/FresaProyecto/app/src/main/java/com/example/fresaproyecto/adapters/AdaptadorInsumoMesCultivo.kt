@@ -56,9 +56,10 @@ class AdaptadorInsumoMesCultivo() :
 
         viewHolderMes.txtFecha.setText(listaInsumoMes[i].dia.toString()+ " de "+mesLetras+ " de "+listaInsumoMes[i].año.toString())
         viewHolderMes.txtNombreInsumo.setText(listaInsumoMes[i].nombreInsumo)
-        viewHolderMes.txtCantUsoInsumo.setText(listaInsumoMes[i].cantidadInsumo.toString() + " " + listaInsumoMes[i].unidadInsumo)
-        viewHolderMes.txtPrecioInsumoTotal.setText("$"+listaInsumoMes[i].gastoTotalInsumo.toString())
-
+        viewHolderMes.txtCantInsumo.setText(listaInsumoMes[i].cantidadInsumo.toString() + " " + listaInsumoMes[i].unidadInsumo)
+        viewHolderMes.txtPrecioInsumo.setText("$"+listaInsumoMes[i].precioInsumo.toString())
+        viewHolderMes.txtCantUsoInsumo.setText(listaInsumoMes[i].cantidadUsado.toString() + " " + listaInsumoMes[i].unidadInsumo)
+        viewHolderMes.txtPrecioInsumoTotal.setText("$" + listaInsumoMes[i].gastoTotalInsumo.toString())
     }
 
 
@@ -80,14 +81,17 @@ class AdaptadorInsumoMesCultivo() :
     inner class ViewHolderMes(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var txtFecha : TextView
         var txtNombreInsumo :TextView
+        var txtCantInsumo :TextView
+        var txtPrecioInsumo :TextView
         var txtCantUsoInsumo :TextView
         var txtPrecioInsumoTotal :TextView
-
         var cardInsumoMes: CardView
 
         init {
             txtFecha = vista.findViewById(R.id.txtFechaInsumo)
             txtNombreInsumo = vista.findViewById(R.id.txtNombreInsumo)
+            txtCantInsumo = vista.findViewById(R.id.txtCantInsumo)
+            txtPrecioInsumo = vista.findViewById(R.id.txtPrecioInsumo)
             txtCantUsoInsumo = vista.findViewById(R.id.txtCantUsoInsumo)
             txtPrecioInsumoTotal = vista.findViewById(R.id.txtPrecioInsumoTotal)
             cardInsumoMes = vista.findViewById(R.id.cardInsumoMes)

@@ -17,6 +17,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.demogorgorn.monthpicker.MonthPickerDialog
@@ -46,6 +47,7 @@ class InformeCultivoFragment : Fragment() {
     var mes: Int = 0
     var idCultivo = DialogoGesCultivo.cultivoSeleccionado.id
     var nombre = DialogoGesCultivo.cultivoSeleccionado.nombre
+    var cantidadPlantas = DialogoGesCultivo.cultivoSeleccionado.cantidad
     lateinit var btnIcoAtras : ImageButton
 
     //TextView de año
@@ -88,6 +90,7 @@ class InformeCultivoFragment : Fragment() {
         btnIcoAtras = vista.findViewById(R.id.btnIcoAtras)
         idBtnGuardarPDF = vista.findViewById(R.id.idBtnGuardarPDF)
         recyclerInformeMes = vista.findViewById(R.id.recyclerInformeMes)
+        //recyclerInformeMes.layoutManager = GridLayoutManager(context, 2)
         recyclerInformeMes.layoutManager = LinearLayoutManager(actividad)
         recyclerInformeMes.setHasFixedSize(true)
 
@@ -145,8 +148,8 @@ class InformeCultivoFragment : Fragment() {
         PdfWriter.getInstance(documento, fileOutputStream)
         documento.open()
         val titulo = Paragraph(
-            "Informe del Cultivo:\n" + nombre + " para el año " + añoSeleccionado + "\n\n",
-            FontFactory.getFont("arial", 22f, Font.BOLD, BaseColor.BLUE)
+            "Informe del Cultivo:\n" + nombre + " para el año " + añoSeleccionado + "\n"+"Cantidad de plantas: "+cantidadPlantas+"\n",
+            FontFactory.getFont("arial", 13f, Font.BOLD, BaseColor.BLUE)
         )
         val salto = Paragraph(
             "\n",
@@ -235,7 +238,7 @@ class InformeCultivoFragment : Fragment() {
             tablaInforme.addCell("$" + item.beneficio.toString())
 
             //TABLA DE GASTOS
-            var tablaGastos = PdfPTable(3)
+            var tablaGastos = PdfPTable(2)
             tablaGastos.addCell(insumos)
             tablaGastos.addCell(jornales)
 

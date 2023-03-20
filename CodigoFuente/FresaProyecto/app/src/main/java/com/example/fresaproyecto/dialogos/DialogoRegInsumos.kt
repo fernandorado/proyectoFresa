@@ -81,6 +81,8 @@ class DialogoRegInsumos : DialogFragment() {
         listaUnidad!!.add("Kg (Kilogramos)")
         listaUnidad!!.add("g (Gramos)")
         listaUnidad!!.add("cm³ (Centimetros Cúbicos)")
+        listaUnidad!!.add("Bulto")
+        listaUnidad!!.add("Unidad")
 
 
         adp = ArrayAdapter(
@@ -117,7 +119,7 @@ class DialogoRegInsumos : DialogFragment() {
                 id: Long
             ) {
                 elemento = unidadSpinner.adapter.getItem(position) as String
-                Toast.makeText(actividad, "Seleccionaste :\n" + elemento, Toast.LENGTH_LONG).show()
+                //Toast.makeText(actividad, "Seleccionaste :\n" + elemento, Toast.LENGTH_LONG).show()
 
             }
 

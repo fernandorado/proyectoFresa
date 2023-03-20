@@ -8,8 +8,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardInformeMes"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:backgroundTint="@color/colorCardCultivo"
         android:layout_margin="5dp"
         app:cardCornerRadius="8dp"
@@ -35,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:text="Mes. "
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -44,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:text="Año"
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -148,7 +149,7 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginLeft="20dp"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="9dp">
 
@@ -240,10 +241,10 @@
                 android:background="@color/colorGrisClaro" />
 
             <androidx.cardview.widget.CardView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="3dp"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="9dp">
 
