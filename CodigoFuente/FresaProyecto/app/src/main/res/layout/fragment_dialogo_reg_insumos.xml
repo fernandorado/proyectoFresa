@@ -55,7 +55,7 @@
                         <ImageView
                             android:layout_width="109dp"
                             android:layout_height="140dp"
-                            android:src="@drawable/icon_insumos" />
+                            android:src="@drawable/fertilizante" />
                     </androidx.cardview.widget.CardView>
 
 
@@ -79,7 +79,7 @@
                             android:gravity="center"
                             android:text="REGISTRO DE INSUMOS"
                             android:textColor="@color/black"
-                            android:textSize="25dp"
+                            android:textSize="22dp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -95,8 +95,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5sp"
                                 android:text="Fecha: "
-                                android:textColor="@android:color/black"
-                                android:textSize="20dp" />
+                                android:textColor="@android:color/black" />
 
                             <LinearLayout
                                 android:layout_width="1dp"
@@ -127,8 +126,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Nombre del Insumo: "
-                                android:textColor="@android:color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@android:color/black" />
 
                             <LinearLayout
                                 android:layout_width="1dp"
@@ -156,8 +154,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Precio del Insumo:"
-                                android:textColor="@android:color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@android:color/black" />
 
                             <LinearLayout
                                 android:layout_width="1dp"
@@ -188,8 +185,7 @@
                                 android:layout_marginLeft="5sp"
                                 android:gravity="center"
                                 android:text="PRESENTACIÓN DEL PRODUCTO"
-                                android:textColor="@android:color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@android:color/black" />
 
 
                             <LinearLayout
@@ -203,8 +199,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Cantidad:"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="20sp" />
+                                    android:textColor="@android:color/black" />
 
                                 <LinearLayout
                                     android:layout_width="1dp"
@@ -224,8 +219,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="15dp"
                                     android:text="Unidad: "
-                                    android:textColor="@android:color/black"
-                                    android:textSize="20sp" />
+                                    android:textColor="@android:color/black" />
 
                                 <LinearLayout
                                     android:layout_width="1dp"
@@ -254,8 +248,7 @@
                                 android:layout_marginLeft="5sp"
                                 android:gravity="center"
                                 android:text="CANTIDAD USADO"
-                                android:textColor="@android:color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@android:color/black" />
 
                             <LinearLayout
                                 android:layout_width="match_parent"
@@ -269,8 +262,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="5sp"
                                     android:text="Cantidad:"
-                                    android:textColor="@android:color/black"
-                                    android:textSize="20sp" />
+                                    android:textColor="@android:color/black" />
 
                                 <LinearLayout
                                     android:layout_width="1dp"

@@ -56,7 +56,7 @@
                         android:gravity="center"
                         android:text="ACTUALIZAR CULTIVO"
                         android:textColor="@android:color/black"
-                        android:textSize="30sp"
+                        android:textSize="22sp"
                         android:textStyle="bold" />
 
                     <LinearLayout
@@ -111,8 +111,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5sp"
                             android:text="Nombre o Lote: "
-                            android:textColor="@android:color/black"
-                            android:textSize="20sp" />
+                            android:textColor="@android:color/black" />
 
                         <LinearLayout
                             android:layout_width="1dp"
@@ -141,8 +140,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5sp"
                             android:text="Número de Plantas:"
-                            android:textColor="@android:color/black"
-                            android:textSize="20sp" />
+                            android:textColor="@android:color/black"/>
 
                         <LinearLayout
                             android:layout_width="1dp"

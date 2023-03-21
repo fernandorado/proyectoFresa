@@ -66,7 +66,7 @@ class DialogoActPersona : DialogFragment() {
             ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conexion.writableDatabase
 
-        if((campoId.text.toString()!=null && !campoId.text.toString().trim().equals("")) and (campoNombre.text.toString()!=null && !campoNombre.text.toString().trim().equals(""))) {
+        if (campoId.text.isEmpty() or campoNombre.text.toString().trim().equals("")) {
 
             val values = ContentValues()
             //Esto podria modificarlo

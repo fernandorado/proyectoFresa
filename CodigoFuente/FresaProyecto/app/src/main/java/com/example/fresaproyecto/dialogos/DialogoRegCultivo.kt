@@ -224,16 +224,20 @@ class DialogoRegCultivo : DialogFragment() {
     }
 
     private fun registrarCultivo() {
-        if ((campoName.text.toString() != null && !campoName.text.toString().trim()
-                .equals("")) and (campoCant.text.toString() != null && !campoCant.text.toString()
-                .trim().equals(""))
+        if ((campoName.text.toString().trim().equals("")) or (campoCant.text.isEmpty())
         ) {
-            var registro = "Nombre: " + campoName.text.toString() + "\n"
-            registro += "Cantidad: " + campoCant.text.toString() + "\n"
-            print("Registrar:  " + registro)
-            Toast.makeText(actividad, "REGISTRAR:\n" + registro, Toast.LENGTH_LONG).show()
-            //La linea sigueinte deberia ir dentro de un IF que verifique si la consulta SQL es correcta
-            //interfaceComunicaFragments.menuCultivo()
+            Toast.makeText(
+                actividad,
+                "Verifique que todos los campos esten registrados \n ",
+                Toast.LENGTH_LONG
+            ).show()
+            if (campoName.text.toString().trim().equals("")) {
+                campoName.setError("Este campo no puede quedar vacio")
+            } else if (campoCant.text.isEmpty()) {
+                campoCant.setError("Este campo no puede quedar vacio")
+            }
+
+        } else {
             //conexion con la base de datos
             val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
             val db: SQLiteDatabase = conexion.writableDatabase
@@ -241,7 +245,7 @@ class DialogoRegCultivo : DialogFragment() {
 
             //valores para agregar a la tabla de cultivos
             //values.put(Utilidades.CAMPO_ID_CULTIVO, .text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
-            values.put(Utilidades.CAMPO_NOMBRE_CULTIVO, campoName.text.toString())
+            values.put(Utilidades.CAMPO_NOMBRE_CULTIVO, campoName.text.toString().trim())
             values.put(Utilidades.CAMPO_CANT_PLANTAS, campoCant.text.toString())
             var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
@@ -251,28 +255,18 @@ class DialogoRegCultivo : DialogFragment() {
                 db.insert(Utilidades.TABLA_CULTIVO, Utilidades.CAMPO_ID_CULTIVO, values)
 
             if (idResultante != -1) {
-                println("Registrar: " + registro)
-                Toast.makeText(actividad, "¡Registro Éxitoso! " + registro, Toast.LENGTH_SHORT)
+                Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT)
                     .show()
                 DialogoGesCultivo.llenarAdaptadorCultivos()
+                db.close()
+                dismiss()
             } else {
                 Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
                     .show()
             }
-            db.close()
 
-            dismiss()
-        } else {
-            if (campoName.text.toString().isEmpty()) {
-                campoName.setError("Este campo no puede quedar vacio")
-            } else if (campoCant.text.toString().isEmpty()) {
-                campoCant.setError("Este campo no puede quedar vacio")
-            }
-            Toast.makeText(
-                actividad,
-                "Verifique que todos los campos esten registrados \n ",
-                Toast.LENGTH_LONG
-            ).show()
+
+
         }
     }
 }

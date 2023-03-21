@@ -14,7 +14,6 @@
         app:cardCornerRadius="24dp"
         app:cardElevation="0dp">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,7 +78,7 @@
                             android:gravity="center"
                             android:text="REGISTRO DE JORNAL"
                             android:textColor="@color/black"
-                            android:textSize="25dp"
+                            android:textSize="22dp"
                             android:textStyle="bold" />
 
                         <LinearLayout
@@ -94,8 +93,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5sp"
                                 android:text="Fecha: "
-                                android:textColor="@android:color/black"
-                                android:textSize="20dp" />
+                                android:textColor="@android:color/black" />
 
                             <LinearLayout
                                 android:layout_width="1dp"
@@ -125,8 +123,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Jornales de hoy: "
-                                android:textColor="@android:color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@android:color/black"/>
 
                             <LinearLayout
                                 android:layout_width="1dp"
@@ -155,8 +152,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:text="Actividad: "
-                                android:textColor="@android:color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@android:color/black"/>
 
                             <LinearLayout
                                 android:layout_width="1dp"
@@ -203,8 +199,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5sp"
                                 android:text="Precio del Jornal:"
-                                android:textColor="@android:color/black"
-                                android:textSize="20sp" />
+                                android:textColor="@android:color/black"/>
 
                             <LinearLayout
                                 android:layout_width="1dp"

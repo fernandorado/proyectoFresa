@@ -148,8 +148,8 @@ class InformeCultivoFragment : Fragment() {
         PdfWriter.getInstance(documento, fileOutputStream)
         documento.open()
         val titulo = Paragraph(
-            "Informe del Cultivo:\n" + nombre + " para el año " + añoSeleccionado + "\n"+"Cantidad de plantas: "+cantidadPlantas+"\n",
-            FontFactory.getFont("arial", 13f, Font.BOLD, BaseColor.BLUE)
+            "Informe del Cultivo:\n" + nombre + " para el año " + añoSeleccionado + "\n"+"Cantidad de plantas: "+cantidadPlantas+"\n\n",
+            FontFactory.getFont("arial", 13f, Font.BOLD, BaseColor.BLACK)
         )
         val salto = Paragraph(
             "\n",

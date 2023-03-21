@@ -81,7 +81,7 @@ class DialogoActCultivo : DialogFragment() {
         return vista
     }
 
-    private fun eventosMenu(){
+    private fun eventosMenu() {
         fabAtras.setOnClickListener(object : View.OnClickListener {
             override fun onClick(view: View?) {
                 // Do some work here
@@ -212,16 +212,22 @@ class DialogoActCultivo : DialogFragment() {
     }
 
     private fun actualizarCultivo() {
-        val conexion =
-            ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
-        val db: SQLiteDatabase = conexion.writableDatabase
+        if ((campoName.text.toString().trim().equals("")) or (campoCant.text.isEmpty())) {
+            Toast.makeText(
+                actividad,
+                "Verifique que todos los campos esten registrados \n ",
+                Toast.LENGTH_LONG
+            ).show()
+            if (campoName.text.toString().trim().equals("")) {
+                campoName.setError("Este campo no puede quedar vacio")
+            } else if (campoCant.text.isEmpty()) {
+                campoCant.setError("Este campo no puede quedar vacio")
+            }
+        } else {
 
-
-        if ((campoName.text.toString() != null && !campoName.text.toString().trim()
-                .equals("")) and (campoCant.text.toString() != null && !campoCant.text.toString()
-                .trim().equals(""))
-        ) {
-
+            val conexion =
+                ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
+            val db: SQLiteDatabase = conexion.writableDatabase
             val values = ContentValues()
             var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
@@ -240,21 +246,14 @@ class DialogoActCultivo : DialogFragment() {
             )
 
             if (idResultante != -1) {
-                /*Utilidades.listaCultivos!!.removeAt(identificacion)
-            notifyDataSetChanged()
-            //Es para remover con un efecto bonito pero no funcionó del todo bien, elimanaba unos y a veces los confundia en la base de datos*/
-                println("El usuario se Actualizó Exitosamente")
                 Toast.makeText(
                     context,
                     "¡El usuario se Actualizó Exitosamente!",
                     Toast.LENGTH_SHORT
                 ).show()
-                //Utilidades.consultarlistaCultivos(MainActivity())
                 DialogoGesCultivo.llenarAdaptadorCultivos()
-
+                db.close()
                 dismiss()
-
-
             } else {
                 Toast.makeText(
                     context,
@@ -262,19 +261,7 @@ class DialogoActCultivo : DialogFragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        } else {
-            if (campoName.text.toString().isEmpty()) {
-                campoName.setError("Este campo no puede quedar vacio")
-            } else if (campoCant.text.toString().isEmpty()) {
-                campoCant.setError("Este campo no puede quedar vacio")
-            }
-            Toast.makeText(
-                context,
-                "Verifique que todos los campos esten registrados \n ",
-                Toast.LENGTH_LONG
-            ).show()
         }
-        db.close()
     }
 
     companion object {

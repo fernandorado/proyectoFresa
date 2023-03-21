@@ -93,57 +93,42 @@ class DialogoRegPersonas : DialogFragment() {
     private fun registrarPersona() {
 
 
-        if ((campoIdentificacion.text.toString() != null && !campoIdentificacion.text.toString()
-                .trim()
-                .equals("")) and (campoNombre.text.toString() != null && !campoNombre.text.toString()
-                .trim().equals(""))
-        ) {
+        if (campoIdentificacion.text.isEmpty() or campoNombre.text.toString().trim().equals("")) {
 
-            DialogoGesPersona.identificacion = campoIdentificacion.text.toString()
-
-
-            var registro = "Identificacion: " + campoIdentificacion.text.toString() + "\n"
-            registro += "Nombre: " + campoNombre.text.toString() + "\n"
-            print("Registrar:  " + registro)
-            Toast.makeText(actividad, "REGISTRAR:\n" + registro, Toast.LENGTH_LONG).show()
-
-
-            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
-            val db: SQLiteDatabase = conexion.writableDatabase
-            val values = ContentValues()
-
-
-            //Esto podria modificarlo
-            values.put(
-                Utilidades.CAMPO_ID_PERSONA,
-                campoIdentificacion.text.toString()
-            ) //SI quito esto, le asigna los ID en orden 1,2,3...
-            values.put(Utilidades.CAMPO_NOMBRE_PERSONA, campoNombre.text.toString().trim())
-            val idResultante: Number =
-                db.insert(Utilidades.TABLA_PERSONA, Utilidades.CAMPO_ID_PERSONA, values)
-
-            if (idResultante != -1) {
-                println("Registrar: " + registro)
-                Toast.makeText(actividad, "¡Registro Éxitoso! " + registro, Toast.LENGTH_SHORT)
-                    .show()
-                DialogoGesPersona.llenarAdaptadorUsuarios()
-            } else {
-                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
-                    .show()
-            }
-            db.close()
-            dismiss()
-        } else {
-            if (campoIdentificacion.text.toString().isEmpty()) {
-                campoIdentificacion.setError("Este campo no puede quedar vacio")
-            } else if (campoNombre.text.toString().isEmpty()) {
-                campoNombre.setError("Este campo no puede quedar vacio")
-            }
             Toast.makeText(
                 actividad,
                 "Verifique que todos los campos esten registrados \n ",
                 Toast.LENGTH_LONG
             ).show()
+            if (campoIdentificacion.text.isEmpty()) {
+                campoIdentificacion.setError("Este campo no puede quedar vacio")
+            } else if (campoNombre.text.toString().trim().equals("")) {
+                campoNombre.setError("Este campo no puede quedar vacio")
+            }
+
+        } else {
+            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
+            val db: SQLiteDatabase = conexion.writableDatabase
+            val values = ContentValues()
+
+            values.put(Utilidades.CAMPO_ID_PERSONA,campoIdentificacion.text.toString()
+            ) //SI quito esto, le asigna los ID en orden 1,2,3...
+            values.put(Utilidades.CAMPO_NOMBRE_PERSONA, campoNombre.text.toString().trim())
+            val idResultante: Number = db.insert(Utilidades.TABLA_PERSONA, Utilidades.CAMPO_ID_PERSONA, values)
+
+            if (idResultante != -1) {
+                Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT)
+                    .show()
+                DialogoGesPersona.llenarAdaptadorUsuarios()
+                db.close()
+                dismiss()
+            } else {
+                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+
+
         }
 
     }

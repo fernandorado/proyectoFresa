@@ -378,7 +378,7 @@ object Utilidades {
         listaJornalCultivo = ArrayList<JornalCultivoVo>()
 
         val cursor = db.rawQuery(
-            "select dia_jornal, mes_jornal, año_jornal,actv_jornal, cant_jornal, precio_jornal, (cant_jornal*precio_jornal)as Gasto_Total\n" +
+            "select dia_jornal, mes_jornal, año_jornal,actv_jornal, cant_jornal, precio_jornal, (cant_jornal*precio_jornal)as Gasto_Total, id_jornal\n" +
                     "from jornal\n" +
                     "where mes_jornal = " + mes + " and año_jornal= " + año + " and id_cultivo = " + idCultivo,
             null
@@ -393,6 +393,7 @@ object Utilidades {
             jornalCultivo.cantidadJornal = cursor.getInt(4)
             jornalCultivo.precioJornal = cursor.getInt(5)
             jornalCultivo.gastoTotalJornal = cursor.getInt(6)
+            jornalCultivo.id = cursor.getInt(7)
 
             listaJornalCultivo!!.add(jornalCultivo)
         }
@@ -408,7 +409,7 @@ object Utilidades {
         listaInsumoCultivo = ArrayList<InsumoCultivoVo>()
 
         val cursor = db.rawQuery(
-            "select dia_insumo, mes_insumo, año_insumo,nombre_insumo, precio_insumo, cant_usado, unidad_insumo, ((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado)as Gasto_Total\n" +
+            "select dia_insumo, mes_insumo, año_insumo,nombre_insumo, precio_insumo, cant_insumo, cant_usado, unidad_insumo, ((insumo.precio_insumo/insumo.cant_insumo)*insumo.cant_usado)as Gasto_Total, id_insumo\n" +
                     "from insumo\n" +
                     "where mes_insumo = " + mes + " and año_insumo= " + año + " and id_cultivo = " + idCultivo,
             null
@@ -422,8 +423,10 @@ object Utilidades {
             insumoCultivo.nombreInsumo = cursor.getString(3)
             insumoCultivo.precioInsumo = cursor.getInt(4)
             insumoCultivo.cantidadInsumo = cursor.getInt(5)
-            insumoCultivo.unidadInsumo = cursor.getString(6)
-            insumoCultivo.gastoTotalInsumo = cursor.getInt(7)
+            insumoCultivo.cantidadUsado = cursor.getInt(6)
+            insumoCultivo.unidadInsumo = cursor.getString(7)
+            insumoCultivo.gastoTotalInsumo = cursor.getInt(8)
+            insumoCultivo.id = cursor.getInt(9)
 
 
             listaInsumoCultivo!!.add(insumoCultivo)
@@ -441,7 +444,7 @@ object Utilidades {
 
         val cursor = db.rawQuery(
             "select dia_cosecha, mes_cosecha, año_cosecha,libras_extra, libras_primera,libras_segunda, libras_tercera, libras_cuarta, libras_quinta,libras_madura,precio_extra, precio_primera,precio_segunda, precio_tercera, precio_cuarta, precio_quinta, \n" +
-                    "precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha , img_factura \n" +
+                    "precio_madura, ((libras_extra*precio_extra)+(libras_primera*precio_primera) +(libras_segunda*precio_segunda) +(libras_tercera*precio_tercera)+(libras_cuarta*precio_cuarta)+(libras_quinta*precio_quinta)+(libras_madura*precio_madura)) AS TotalCosecha, img_factura, id_cosecha \n" +
                     "from cosecha\n" +
                     "where mes_cosecha = " + mes + " and año_cosecha = " + año + " and id_cultivo = " + idCultivo,
             null
@@ -468,6 +471,7 @@ object Utilidades {
             cosechaCultivo.precioMadura = cursor.getInt(16)
             cosechaCultivo.dineroTotal = cursor.getInt(17)
             cosechaCultivo.imgFactura = cursor.getBlob(18)
+            cosechaCultivo.id = cursor.getInt(19)
 
             listaCosechaCultivo!!.add(cosechaCultivo)
         }

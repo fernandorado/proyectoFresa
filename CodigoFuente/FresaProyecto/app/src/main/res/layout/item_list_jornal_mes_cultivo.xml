@@ -38,7 +38,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="1dp"
                     android:text="Mes. "
-                    android:textSize="25dp"
+                    android:textSize="20dp"
                     android:textStyle="bold"/>
             </LinearLayout>
 
@@ -60,7 +60,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
+                        android:textSize="18dp"
                         android:textStyle="bold"
                         android:text="Actividad" />
 
@@ -68,14 +68,14 @@
                         android:id="@+id/txtActividadJornal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
+                        android:textSize="18dp"
                         android:text="Actividad" />
 
                     <TextView
                         android:id="@+id/txtCantidadJornal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
+                        android:textSize="18dp"
                         android:gravity="center"
                         android:text="Cantidad de Jornales" />
 
@@ -107,7 +107,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:textSize="25dp"
+                android:textSize="20dp"
                 android:layout_marginRight="10dp"
                 android:textColor="@color/colorRojo"
                 android:text="Precio Total"/>
