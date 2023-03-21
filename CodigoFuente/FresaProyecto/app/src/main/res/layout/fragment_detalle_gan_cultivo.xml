@@ -43,16 +43,6 @@
                     android:layout_gravity="center"
                     android:src="@drawable/detalle"></ImageView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
-                    android:gravity="center"
-                    android:text="Detalle de Gastos de Ingresos del mes de:"
-                    android:textColor="@android:color/black"
-                    android:textSize="25sp" />
-
-
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
