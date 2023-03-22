@@ -1,8 +1,11 @@
 package com.example.fresaproyecto.dialogos
 
+import android.app.Dialog
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,6 +27,12 @@ class DialogoActPersona : DialogFragment() {
     lateinit var btnCerrar: ImageButton
     lateinit var btnActualizar: Button
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //dialog.window!!.setGravity(Gravity.TOP)
+        return dialog
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,12 +71,20 @@ class DialogoActPersona : DialogFragment() {
     }
 
     private fun actualizarUsuario() {
-        val conexion =
-            ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
-        val db: SQLiteDatabase = conexion.writableDatabase
 
         if (campoId.text.isEmpty() or campoNombre.text.toString().trim().equals("")) {
+            if(campoId.text.toString().isBlank()){
+                //id.setError("Este campo no puede quedar vacio")
+                campoId.error = "Este Campo no puede quedar vacio"
+            }else if (campoNombre.text.toString().isBlank()){
+                campoNombre.setError("Este campo no puede quedar vacio")
+            }
+            Toast.makeText(context, "Verifique que todos los campos esten llenos\n ", Toast.LENGTH_LONG).show()
+        }else{
 
+            val conexion =
+            ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
+            val db: SQLiteDatabase = conexion.writableDatabase
             val values = ContentValues()
             //Esto podria modificarlo
             values.put(Utilidades.CAMPO_ID_PERSONA,campoId.text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
@@ -88,7 +105,7 @@ class DialogoActPersona : DialogFragment() {
                 ).show()
                 DialogoGesPersona.llenarAdaptadorUsuarios()
                 dismiss()
-
+                db.close()
 
             } else {
                 Toast.makeText(
@@ -97,16 +114,9 @@ class DialogoActPersona : DialogFragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-        }else{
-            if(campoId.text.toString().isBlank()){
-                //id.setError("Este campo no puede quedar vacio")
-                campoId.error = "Este Campo no puede quedar vacio"
-            }else if (campoNombre.text.toString().isBlank()){
-                campoNombre.setError("Este campo no puede quedar vacio")
-            }
-            Toast.makeText(context, "Verifique que todos los campos esten llenos\n ", Toast.LENGTH_LONG).show()
+
         }
-        db.close()
+
     }
 
     companion object {

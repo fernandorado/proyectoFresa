@@ -873,7 +873,7 @@ class DialogoRegCosecha : DialogFragment() {
 
         builder.setTitle("Registro")
             .setMessage(
-                "¿Esta seguro que el registro de cosecha está completo?" +
+                "¿Esta seguro que el registro de cosecha está completo?\n" +
                         "Verifique la información.\n" +
                         "Recuerde tomar la foto a su factura."
             )

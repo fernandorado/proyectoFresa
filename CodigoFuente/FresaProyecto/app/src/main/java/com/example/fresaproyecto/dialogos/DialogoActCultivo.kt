@@ -1,6 +1,7 @@
 package com.example.fresaproyecto.dialogos
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
@@ -8,7 +9,9 @@ import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.graphics.Matrix
+import android.graphics.drawable.ColorDrawable
 import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
@@ -50,6 +53,13 @@ class DialogoActCultivo : DialogFragment() {
     lateinit var path: String
     private val COD_SELECCIONA = 10
     private val COD_FOTO = 20
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = super.onCreateDialog(savedInstanceState)
+        dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        //dialog.window!!.setGravity(Gravity.TOP)
+        return dialog
+    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

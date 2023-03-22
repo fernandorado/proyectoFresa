@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondogeneral"
     tools:context=".onboarding.PresentacionAplicacionFragment">
 
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/fondogeneral2" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

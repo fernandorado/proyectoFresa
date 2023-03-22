@@ -26,7 +26,6 @@ import com.example.fresaproyecto.interfaces.IComunicaFragments
 import kotlin.math.roundToInt
 
 class CosechaCultivoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     lateinit var vista: View
     lateinit var recyclerCosechaMes: RecyclerView
     lateinit var actividad: Activity

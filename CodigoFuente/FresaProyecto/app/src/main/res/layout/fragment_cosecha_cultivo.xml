@@ -5,97 +5,92 @@
     android:layout_height="match_parent"
     tools:context=".fragments.CosechaCultivoFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txtCosecha"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Cosecha"
-            android:textColor="#121111"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <com.echo.holographlibrary.PieGraph
-            android:id="@+id/graphPie"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="5dp" />
-
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-
-            <LinearLayout
-                android:id="@+id/layoutCalidad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtExtra"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Libras" />
-
-                <TextView
-                    android:id="@+id/txtPrimera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Libras" />
-
-                <TextView
-                    android:id="@+id/txtSegunda"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Libras" />
-
-                <TextView
-                    android:id="@+id/txtTercera"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Libras" />
-
-                <TextView
-                    android:id="@+id/txtCuarta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Libras" />
-
-                <TextView
-                    android:id="@+id/txtQuinta"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:text="Libras" />
-
-                <TextView
-                    android:id="@+id/txtMadura"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Libras" />
-
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerCosecha"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp" />
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <com.echo.holographlibrary.PieGraph
+                android:id="@+id/graphPie"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="5dp" />
 
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/layoutCalidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtExtra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Libras" />
+
+                    <TextView
+                        android:id="@+id/txtPrimera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Libras" />
+
+                    <TextView
+                        android:id="@+id/txtSegunda"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Libras" />
+
+                    <TextView
+                        android:id="@+id/txtTercera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Libras" />
+
+                    <TextView
+                        android:id="@+id/txtCuarta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Libras" />
+
+                    <TextView
+                        android:id="@+id/txtQuinta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:text="Libras" />
+
+                    <TextView
+                        android:id="@+id/txtMadura"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Libras" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerCosecha"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </RelativeLayout>
