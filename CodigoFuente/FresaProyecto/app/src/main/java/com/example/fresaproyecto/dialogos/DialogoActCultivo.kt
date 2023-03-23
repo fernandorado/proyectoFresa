@@ -188,8 +188,16 @@ class DialogoActCultivo : DialogFragment() {
 
             }
             COD_FOTO -> {
-                bitmap = BitmapFactory.decodeFile(path)
-                imgCultivo.setImageBitmap(bitmap)
+                if (data == null) {
+                    Toast.makeText(
+                        actividad,
+                        "¡No has tomado una foto!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    bitmap = BitmapFactory.decodeFile(path)
+                    imgCultivo.setImageBitmap(bitmap)
+                }
             }
         }
 

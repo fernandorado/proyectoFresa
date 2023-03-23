@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/logofresa" />
+        android:src="@drawable/fondofresa" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/stylo_fondo_borde"
                     android:backgroundTint="@color/white"
                     android:text="@string/TituloMenuCultivo"
