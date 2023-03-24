@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "FresaProyecto"
+rootProject.name = "MisRegistros"
 include ':app'

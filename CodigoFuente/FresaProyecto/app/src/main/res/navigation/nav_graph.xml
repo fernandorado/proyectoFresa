@@ -6,12 +6,12 @@
     app:startDestination="@id/splashActivity">
     <fragment
         android:id="@+id/presentacionAplicacionFragment"
-        android:name="com.example.fresaproyecto.onboarding.PresentacionAplicacionFragment"
+        android:name="com.misRegistros.onboarding.PresentacionAplicacionFragment"
         android:label="fragment_presentacion_aplicacion"
-        tools:layout="@layout/fragment_presentacion_aplicacion" />
+        tools:layout="@layout/fragment_presentacion_contenedor" />
     <fragment
         android:id="@+id/splashActivity"
-        android:name="com.example.fresaproyecto.actividades.SplashActivity"
+        android:name="com.misRegistros.actividades.SplashActivity"
         android:label="activity_splash"
         tools:layout="@layout/activity_splash" >
         <action
@@ -23,17 +23,17 @@
     </fragment>
     <fragment
         android:id="@+id/inicioFragment"
-        android:name="com.example.fresaproyecto.fragments.InicioFragment"
+        android:name="com.misRegistros.fragments.InicioFragment"
         android:label="fragment_inicio"
         tools:layout="@layout/fragment_inicio" />
     <dialog
         android:id="@+id/dialogoRegCultivo"
-        android:name="com.example.fresaproyecto.dialogos.DialogoRegCultivo"
+        android:name="com.misRegistros.dialogos.DialogoRegCultivo"
         android:label="fragment_dialogo_reg_cultivo"
         tools:layout="@layout/fragment_dialogo_reg_cultivo" />
     <dialog
         android:id="@+id/dialogoRegJornal"
-        android:name="com.example.fresaproyecto.dialogos.DialogoRegJornal"
+        android:name="com.misRegistros.dialogos.DialogoRegJornal"
         android:label="fragment_dialogo_reg_jornal"
         tools:layout="@layout/fragment_dialogo_reg_jornal" >
         <action
