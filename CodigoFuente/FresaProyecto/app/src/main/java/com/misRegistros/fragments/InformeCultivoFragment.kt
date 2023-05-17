@@ -2,6 +2,7 @@ package com.misRegistros.fragments
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
@@ -13,6 +14,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -22,21 +24,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.demogorgorn.monthpicker.MonthPickerDialog
 import com.echo.holographlibrary.Bar
 import com.echo.holographlibrary.BarGraph
+import com.google.android.material.snackbar.Snackbar
+import com.itextpdf.text.*
+import com.itextpdf.text.pdf.PdfPTable
+import com.itextpdf.text.pdf.PdfWriter
 import com.misRegistros.R
 import com.misRegistros.adapters.AdaptadorMesCultivo
 import com.misRegistros.clases.Utilidades
 import com.misRegistros.clases.vo.BeneficioCultivoVo
 import com.misRegistros.dialogos.DialogoGesCultivo
 import com.misRegistros.interfaces.IComunicaFragments
-import com.google.android.material.snackbar.Snackbar
-import com.itextpdf.text.*
-import com.itextpdf.text.pdf.PdfPTable
-import com.itextpdf.text.pdf.PdfWriter
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
+
 
 class InformeCultivoFragment : Fragment() {
     lateinit var vista: View
@@ -51,14 +54,11 @@ class InformeCultivoFragment : Fragment() {
 
     //TextView de año
     //TextView de Informe General
+    lateinit var requestPermissionLaunquer: ActivityResultLauncher<String>
     lateinit var txtFechaSelec: TextView
     lateinit var idBtnGuardarPDF: Button
-    private val requestPermissionLaunquer = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isAceptado ->
-        if (isAceptado) Toast.makeText(context, "PERMISOS CONCEDIDOS", Toast.LENGTH_SHORT).show()
-        else Toast.makeText(context, "PERMISOS DENEGADOS", Toast.LENGTH_SHORT).show()
-    }
+
+
     var listaInformeMes: ArrayList<BeneficioCultivoVo>? = null
     var puntos = ArrayList<Bar>()
     //----------TextView por mes
@@ -92,6 +92,13 @@ class InformeCultivoFragment : Fragment() {
         //recyclerInformeMes.layoutManager = GridLayoutManager(context, 2)
         recyclerInformeMes.layoutManager = LinearLayoutManager(actividad)
         recyclerInformeMes.setHasFixedSize(true)
+
+        requestPermissionLaunquer = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isAceptado ->
+            if (isAceptado) Toast.makeText(context, "PERMISOS CONCEDIDOS", Toast.LENGTH_SHORT).show()
+            else Toast.makeText(context, "PERMISOS DENEGADOS", Toast.LENGTH_SHORT).show()
+        }
 
         eventosClick()
         graficarBarras()

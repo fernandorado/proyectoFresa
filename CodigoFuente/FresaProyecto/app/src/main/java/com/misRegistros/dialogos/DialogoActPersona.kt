@@ -1,7 +1,9 @@
 package com.misRegistros.dialogos
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.ContentValues
+import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -17,19 +19,31 @@ import androidx.fragment.app.DialogFragment
 import com.misRegistros.R
 import com.misRegistros.clases.ConexionSQLiteHelper
 import com.misRegistros.clases.Utilidades
+import com.misRegistros.clases.vo.PersonaVo
+import com.misRegistros.controllers.PersonaRestController
+import com.misRegistros.interfaces.IComunicaFragments
 
 class DialogoActPersona : DialogFragment() {
     lateinit var vista: View
+    lateinit var actividad: Activity
     lateinit var campoId: EditText
     lateinit var campoNombre: EditText
     lateinit var btnCerrar: ImageButton
     lateinit var btnActualizar: Button
+    var personaController: PersonaRestController = PersonaRestController()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
         dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         //dialog.window!!.setGravity(Gravity.TOP)
         return dialog
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is Activity) {
+            actividad = context
+        }
     }
 
     override fun onCreateView(
@@ -79,8 +93,23 @@ class DialogoActPersona : DialogFragment() {
             }
             Toast.makeText(context, "Verifique que todos los campos esten llenos\n ", Toast.LENGTH_LONG).show()
         }else{
+            var persona : PersonaVo
+            persona = PersonaVo()
+            persona.id = (campoId.text.toString()).toInt()
+            persona.nombre = campoNombre.text.toString().trim()
 
-            val conexion =
+            var personaActual : PersonaVo? = personaController.update(actividad as Context,persona,identificacion)
+            if(personaActual != null){
+                Toast.makeText(context, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT)
+                    .show()
+                DialogoGesPersona.llenarAdaptadorUsuarios()
+                dismiss()
+            } else {
+                Toast.makeText(context, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            /*val conexion =
             ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
             val db: SQLiteDatabase = conexion.writableDatabase
             val values = ContentValues()
@@ -110,7 +139,7 @@ class DialogoActPersona : DialogFragment() {
                     "EL usuario no se pudo Actualizar, intente nuevamente.",
                     Toast.LENGTH_SHORT
                 ).show()
-            }
+            }*/
 
         }
 

@@ -44,7 +44,7 @@
             android:theme="@style/Theme.FresaProyecto"></activity>
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.fresaproyecto"
+            android:authorities="com.misRegistros"
             android:exported="false"
             android:grantUriPermissions="true"
             tools:ignore="WrongManifestParent">

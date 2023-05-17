@@ -51,12 +51,6 @@ class DialogoGesPersona : DialogFragment(), OnClickListenerPersona {
         recyclerUsuarios.layoutManager = GridLayoutManager(context, 2)
         recyclerUsuarios.setHasFixedSize(true)
 
-
-
-
-
-
-
         btnCerrar = vista.findViewById(R.id.btnCerrar)
         btnExtNuevo = vista.findViewById(R.id.btnNuevo)
         btnExtContinuar = vista.findViewById(R.id.btnContinuar)
@@ -126,7 +120,7 @@ class DialogoGesPersona : DialogFragment(), OnClickListenerPersona {
 
 
         fun llenarAdaptadorUsuarios() {
-            Utilidades.consultarListaPersonas(actividad)
+            Utilidades.consultarListaPersonas(actividad as Context)
             var miAdaptadorPersona = AdaptadorPersona()
 
             miAdaptadorPersona.setOnClickListener(object : View.OnClickListener {

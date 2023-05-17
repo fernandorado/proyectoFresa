@@ -16,6 +16,8 @@ import androidx.fragment.app.DialogFragment
 import com.misRegistros.R
 import com.misRegistros.clases.ConexionSQLiteHelper
 import com.misRegistros.clases.Utilidades
+import com.misRegistros.clases.vo.PersonaVo
+import com.misRegistros.controllers.PersonaRestController
 import com.misRegistros.interfaces.IComunicaFragments
 
 class DialogoRegPersonas : DialogFragment() {
@@ -28,6 +30,7 @@ class DialogoRegPersonas : DialogFragment() {
 
     lateinit var vista: View
     lateinit var actividad: Activity
+    var personnaController: PersonaRestController = PersonaRestController()
     lateinit var interfaceComunicaFragments: IComunicaFragments
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -103,7 +106,23 @@ class DialogoRegPersonas : DialogFragment() {
             }
 
         } else {
-            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
+            var persona : PersonaVo
+            persona = PersonaVo()
+            persona.id = (campoIdentificacion.text.toString().toInt())
+            persona.nombre = campoNombre.text.toString().trim()
+
+            var personaActual : PersonaVo? = personnaController.create(actividad as Context,persona)
+
+            if(personaActual != null){
+                Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT)
+                    .show()
+                DialogoGesPersona.llenarAdaptadorUsuarios()
+                dismiss()
+            } else {
+                Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            /*val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
             val db: SQLiteDatabase = conexion.writableDatabase
             val values = ContentValues()
 
@@ -123,7 +142,7 @@ class DialogoRegPersonas : DialogFragment() {
                     .show()
             }
 
-
+*/
 
         }
 

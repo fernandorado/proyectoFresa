@@ -3,7 +3,7 @@ package com.misRegistros.clases.vo
 class JornalCultivoVo {
 
     var actividad :String = ""
-    var cantidadJornal = 0
+    var cantidadJornal = 0.0
     var precioJornal = 0
     var gastoTotalJornal = 0
     var dia = 0
@@ -11,7 +11,7 @@ class JornalCultivoVo {
     var mes = 0
     var año = 0
 
-    constructor(actividad: String,cantidadJornal:Int,precioJornal:Int,gastoTotalJornal:Int,
+    constructor(actividad: String,cantidadJornal:Double,precioJornal:Int,gastoTotalJornal:Int,
                 mes:Int,dia:Int, año:Int, id:Int) {
         this.actividad = actividad
         this.cantidadJornal = cantidadJornal

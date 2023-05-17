@@ -135,7 +135,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="0"
-                                android:inputType="number" />
+                                android:inputType="numberDecimal" />
 
                         </LinearLayout>
 
@@ -259,7 +259,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/colorCultivo"
-                android:drawableLeft="@drawable/ic_confirmacion2"
+                android:drawableLeft="@drawable/ic_cerrar"
                 android:text="Cancelar" />
 
 
@@ -269,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:backgroundTint="@color/colorCultivo"
-                android:drawableLeft="@drawable/ic_cerrar"
+                android:drawableLeft="@drawable/ic_confirmacion2"
                 android:text="Actualizar" />
 
 

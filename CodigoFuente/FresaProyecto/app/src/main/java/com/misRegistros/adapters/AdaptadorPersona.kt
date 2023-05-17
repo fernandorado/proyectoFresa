@@ -16,6 +16,7 @@ import com.misRegistros.R
 import com.misRegistros.clases.ConexionSQLiteHelper
 import com.misRegistros.clases.Utilidades
 import com.misRegistros.clases.vo.PersonaVo
+import com.misRegistros.controllers.PersonaRestController
 import com.misRegistros.dialogos.DialogoActPersona
 import com.misRegistros.dialogos.DialogoGesPersona
 import com.misRegistros.interfaces.IComunicaFragments
@@ -32,6 +33,7 @@ class AdaptadorPersona() :
     var identificacion: Int = 0
     var nombre: String = ""
     lateinit var interfaceComunicaFragments: IComunicaFragments
+    var personaController: PersonaRestController = PersonaRestController()
     var d: AlertDialog? = null
     lateinit var builder: AlertDialog
     var posicionMarcada: Int = 0
@@ -40,7 +42,6 @@ class AdaptadorPersona() :
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolderPersona {
         vgrupo = viewGroup
         context = viewGroup.context
-
         vista = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_list_persona, viewGroup, false)
 
@@ -145,8 +146,16 @@ class AdaptadorPersona() :
 
 
     private fun eliminarUsuario() {
+        if (personaController.delete(vista.context, identificacion) == true) {
+            Toast.makeText(context, "¡El usuario se eliminó Exitosamente!", Toast.LENGTH_SHORT)
+                .show()
+            DialogoGesPersona.llenarAdaptadorUsuarios()
 
-        val conexion =
+        } else {
+            Toast.makeText(context, "EL usuario no se pudo Eliminar!", Toast.LENGTH_SHORT).show()
+        }
+
+        /*val conexion =
             ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conexion.writableDatabase
 
@@ -165,7 +174,7 @@ class AdaptadorPersona() :
         } else {
             Toast.makeText(context, "EL usuario no se pudo Eliminar!", Toast.LENGTH_SHORT).show()
         }
-        db.close()
+        db.close()*/
     }
 
     fun setOnClickListener(listener: View.OnClickListener?) {

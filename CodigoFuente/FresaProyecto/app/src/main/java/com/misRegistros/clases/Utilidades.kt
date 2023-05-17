@@ -1,8 +1,10 @@
 package com.misRegistros.clases
 
 import android.app.Activity
+import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.misRegistros.clases.vo.*
+import com.misRegistros.dialogos.DialogoGesPersona
 import kotlin.collections.ArrayList
 
 
@@ -114,7 +116,7 @@ object Utilidades {
         "CREATE TABLE " + TABLA_CULTIVO + " (" + CAMPO_ID_CULTIVO + " INTEGER PRIMARY KEY, " + CAMPO_NOMBRE_CULTIVO + " TEXT, " + CAMPO_CANT_PLANTAS + " INTEGER, " + CAMPO_FOTO_CULTIVO + " BLOB);"
     const val CREAR_TABLA_JORNAL =
         //"DROP TABLE" + TABLA_JORNAL+";" +
-        "CREATE TABLE " + TABLA_JORNAL + " (" + CAMPO_ID_JORNAL + " INTEGER PRIMARY KEY, " + CAMPO_DIA_JORNAL + " INTEGER, " + CAMPO_MES_JORNAL + " INTEGER, " + CAMPO_AÑO_JORNAL + " INTEGER, " + CAMPO_CANT_JORNAL + " INTEGER, " + CAMPO_ACTV_JORNAL + " TEXT, " + CAMPO_PRECIO_JORNAL + " INTEGER, " + CAMPO_CULTIVO_JORNAL + " INTEGER REFERENCES " + TABLA_CULTIVO + "(" + CAMPO_ID_CULTIVO + ") ON DELETE NO ACTION ON UPDATE CASCADE);"
+        "CREATE TABLE " + TABLA_JORNAL + " (" + CAMPO_ID_JORNAL + " INTEGER PRIMARY KEY, " + CAMPO_DIA_JORNAL + " INTEGER, " + CAMPO_MES_JORNAL + " INTEGER, " + CAMPO_AÑO_JORNAL + " INTEGER, " + CAMPO_CANT_JORNAL + " DOUBLE, " + CAMPO_ACTV_JORNAL + " TEXT, " + CAMPO_PRECIO_JORNAL + " INTEGER, " + CAMPO_CULTIVO_JORNAL + " INTEGER REFERENCES " + TABLA_CULTIVO + "(" + CAMPO_ID_CULTIVO + ") ON DELETE NO ACTION ON UPDATE CASCADE);"
     const val CREAR_TABLA_COSECHA =
         //"DROP TABLE" + TABLA_COSECHA+";" +
         "CREATE TABLE " + TABLA_COSECHA + " (" + CAMPO_ID_COSECHA + " INTEGER PRIMARY KEY, " + CAMPO_DIA_COSECHA + " INTEGER, " + CAMPO_MES_COSECHA + " INTEGER, " + CAMPO_AÑO_COSECHA + " INTEGER, " + CAMPO_LIBRAS_EXTRA + " INTEGER, " + CAMPO_PRECIO_EXTRA + " INTEGER, " + CAMPO_LIBRAS_PRIMERA + " INTEGER, " + CAMPO_PRECIO_PRIMERA + " INTEGER, " + CAMPO_LIBRAS_SEGUNDA + " INTEGER, " + CAMPO_PRECIO_SEGUNDA + " INTEGER, " +
@@ -124,8 +126,9 @@ object Utilidades {
         "CREATE TABLE " + TABLA_INSUMOS + " (" + CAMPO_ID_INSUMO + " INTEGER PRIMARY KEY, " + CAMPO_DIA_INSUMO + " INTEGER, " + CAMPO_MES_INSUMO + " INTEGER, " + CAMPO_AÑO_INSUMO + " INTEGER, " + CAMPO_NOMBRE_INSUMO + " TEXT, " + CAMPO_PRECIO_INSUMO + " INTEGER, " + CAMPO_CANT_INSUMO + " INTEGER, " + CAMPO_CANT_USADO_INSUMO + " INTEGER, " + CAMPO_UNIDAD_INSUMO + " TEXT, " + CAMPO_CULTIVO_INSUMO + " INTEGER REFERENCES " + TABLA_CULTIVO + "(" + CAMPO_ID_CULTIVO + ") ON DELETE NO ACTION ON UPDATE CASCADE);"
 
 
-    fun consultarListaPersonas(actividad: Activity) {
-        val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
+    fun consultarListaPersonas(context: Context):ArrayList<PersonaVo> {
+
+        val conn = ConexionSQLiteHelper(context, NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conn.getReadableDatabase()
         var persona: PersonaVo
         listaPersonas = ArrayList<PersonaVo>()
@@ -138,6 +141,7 @@ object Utilidades {
             listaPersonas!!.add(persona)
         }
         db.close()
+        return listaPersonas!!
     }
 
     fun consultarListaCultivos(actividad: Activity) {
@@ -381,7 +385,7 @@ object Utilidades {
             jornalCultivo.mes = cursor.getInt(1)
             jornalCultivo.año = cursor.getInt(2)
             jornalCultivo.actividad = cursor.getString(3)
-            jornalCultivo.cantidadJornal = cursor.getInt(4)
+            jornalCultivo.cantidadJornal = cursor.getDouble(4)
             jornalCultivo.precioJornal = cursor.getInt(5)
             jornalCultivo.gastoTotalJornal = cursor.getInt(6)
             jornalCultivo.id = cursor.getInt(7)
@@ -534,7 +538,7 @@ object Utilidades {
             jornalCultivo.mes = cursor.getInt(1)
             jornalCultivo.año = cursor.getInt(2)
             jornalCultivo.actividad = cursor.getString(3)
-            jornalCultivo.cantidadJornal = cursor.getInt(4)
+            jornalCultivo.cantidadJornal = cursor.getDouble(4)
             jornalCultivo.precioJornal = cursor.getInt(5)
             jornalCultivo.gastoTotalJornal = cursor.getInt(6)
             jornalCultivo.id = cursor.getInt(7)
