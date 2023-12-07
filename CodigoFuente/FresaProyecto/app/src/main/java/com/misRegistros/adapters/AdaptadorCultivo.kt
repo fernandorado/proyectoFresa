@@ -19,6 +19,7 @@ import com.misRegistros.R
 import com.misRegistros.clases.ConexionSQLiteHelper
 import com.misRegistros.clases.Utilidades
 import com.misRegistros.clases.vo.CultivoVo
+import com.misRegistros.controllers.CultivoRestController
 import com.misRegistros.dialogos.DialogoActCultivo
 import com.misRegistros.dialogos.DialogoGesCultivo
 import com.misRegistros.dialogos.DialogoRegCultivo
@@ -43,6 +44,7 @@ class AdaptadorCultivo() :
     var nombre: String = ""
     var cantidad: Int = 0
     lateinit var interfaceComunicaFragments: IComunicaFragments
+    var cultivoController: CultivoRestController = CultivoRestController()
     lateinit var builder: AlertDialog
     var posicionMarcada: Int = 0
     lateinit var bitmap: Bitmap
@@ -79,7 +81,7 @@ class AdaptadorCultivo() :
 
         if (posicionMarcada == i) {
             DialogoGesCultivo.cultivoSeleccionado =
-                listaCultivo.get(pos) //Agregando la persona Seleccionada
+                listaCultivo.get(pos) //Agregando el cultivo Seleccionado
             ViewHolderCultivo.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorCultivo))
         } else {
             ViewHolderCultivo.barraSeleccion.setBackgroundColor(vista.resources.getColor(R.color.colorBlanco))
@@ -165,27 +167,14 @@ class AdaptadorCultivo() :
 
     private fun eliminarCultivo() {
 
-
-        val conexion =
-            ConexionSQLiteHelper(vista.context, Utilidades.NOMBRE_BD, null, 1)
-        val db: SQLiteDatabase = conexion.writableDatabase
-
-        val idResultante: Number =
-            db.delete(
-                Utilidades.TABLA_CULTIVO,
-                Utilidades.CAMPO_ID_CULTIVO + "=" + identificacion,
-                null
-            )
-
-        if (idResultante != -1) {
-            Toast.makeText(context, "¡El usuario se eliminó Exitosamente!", Toast.LENGTH_SHORT)
+        if (cultivoController.delete(vista.context, identificacion) == true) {
+            Toast.makeText(context, "¡El cultivo se eliminó Exitosamente!", Toast.LENGTH_SHORT)
                 .show()
             DialogoGesCultivo.llenarAdaptadorCultivos()
 
         } else {
-            Toast.makeText(context, "EL usuario no se pudo Eliminar!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "EL cultivo no se pudo Eliminar!", Toast.LENGTH_SHORT).show()
         }
-        db.close()
 
     }
 

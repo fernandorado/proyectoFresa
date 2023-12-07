@@ -2,11 +2,9 @@ package com.misRegistros.dialogos
 
 import android.app.Activity
 import android.app.Dialog
-import android.content.ContentValues
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -24,8 +22,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.fragment.app.DialogFragment
 import com.misRegistros.R
-import com.misRegistros.clases.ConexionSQLiteHelper
-import com.misRegistros.clases.Utilidades
+import com.misRegistros.clases.vo.CultivoVo
+import com.misRegistros.controllers.CultivoRestController
 import com.misRegistros.interfaces.IComunicaFragments
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -38,6 +36,7 @@ class DialogoRegCultivo : DialogFragment() {
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
+    var cultivoController: CultivoRestController = CultivoRestController()
     lateinit var btnGuardar: Button
     lateinit var fabAtras: ImageButton
     lateinit var campoName: EditText
@@ -260,27 +259,25 @@ class DialogoRegCultivo : DialogFragment() {
             }
 
         } else {
-            //conexion con la base de datos
-            val conexion = ConexionSQLiteHelper(actividad, Utilidades.NOMBRE_BD, null, 1)
-            val db: SQLiteDatabase = conexion.writableDatabase
-            val values = ContentValues()
-
-            //valores para agregar a la tabla de cultivos
-            //values.put(Utilidades.CAMPO_ID_CULTIVO, .text.toString()) //SI quito esto, le asigna los ID en orden 1,2,3...
-            values.put(Utilidades.CAMPO_NOMBRE_CULTIVO, campoName.text.toString().trim())
-            values.put(Utilidades.CAMPO_CANT_PLANTAS, campoCant.text.toString())
             var baos: ByteArrayOutputStream = ByteArrayOutputStream(20480)
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
             var blob = baos.toByteArray()
-            values.put(Utilidades.CAMPO_FOTO_CULTIVO, blob)
-            val idResultante: Number =
-                db.insert(Utilidades.TABLA_CULTIVO, Utilidades.CAMPO_ID_CULTIVO, values)
+            var cultivo : CultivoVo
+            cultivo = CultivoVo()
+            cultivo.nombre = (campoName.text.toString().trim())
+            cultivo.cantidad = (campoCant.text.toString().toInt())
+            cultivo.imgCultivo = blob
 
-            if (idResultante != -1) {
+            var cultivoActual : CultivoVo? = cultivoController.create(actividad as Context,cultivo)
+
+
+            //valores para agregar a la tabla de cultivos
+
+
+            if (cultivoActual != null) {
                 Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT)
                     .show()
                 DialogoGesCultivo.llenarAdaptadorCultivos()
-                db.close()
                 dismiss()
             } else {
                 Toast.makeText(actividad, "Verifique los datos de Registro!", Toast.LENGTH_SHORT)

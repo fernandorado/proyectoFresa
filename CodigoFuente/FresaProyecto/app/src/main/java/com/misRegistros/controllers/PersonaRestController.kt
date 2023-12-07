@@ -2,7 +2,6 @@ package com.misRegistros.controllers
 
 import android.content.Context
 import com.misRegistros.clases.vo.PersonaVo
-import com.misRegistros.dialogos.DialogoGesPersona
 import com.misRegistros.services.PersonaServiceImpl
 
 class PersonaRestController {

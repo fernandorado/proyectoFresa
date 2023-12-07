@@ -30,7 +30,7 @@ class DialogoRegPersonas : DialogFragment() {
 
     lateinit var vista: View
     lateinit var actividad: Activity
-    var personnaController: PersonaRestController = PersonaRestController()
+    var personaController: PersonaRestController = PersonaRestController()
     lateinit var interfaceComunicaFragments: IComunicaFragments
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -111,7 +111,7 @@ class DialogoRegPersonas : DialogFragment() {
             persona.id = (campoIdentificacion.text.toString().toInt())
             persona.nombre = campoNombre.text.toString().trim()
 
-            var personaActual : PersonaVo? = personnaController.create(actividad as Context,persona)
+            var personaActual : PersonaVo? = personaController.create(actividad as Context,persona)
 
             if(personaActual != null){
                 Toast.makeText(actividad, "¡Registro Éxitoso! ", Toast.LENGTH_SHORT)

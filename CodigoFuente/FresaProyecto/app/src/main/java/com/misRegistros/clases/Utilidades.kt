@@ -144,8 +144,8 @@ object Utilidades {
         return listaPersonas!!
     }
 
-    fun consultarListaCultivos(actividad: Activity) {
-        val conn = ConexionSQLiteHelper(actividad, NOMBRE_BD, null, 1)
+    fun consultarListaCultivos(context: Context):ArrayList<CultivoVo> {
+        val conn = ConexionSQLiteHelper(context, NOMBRE_BD, null, 1)
         val db: SQLiteDatabase = conn.getReadableDatabase()
         var cultivo: CultivoVo
         listaCultivos = ArrayList<CultivoVo>()
@@ -161,6 +161,7 @@ object Utilidades {
 
         }
         db.close()
+        return listaCultivos!!
     }
 
     //llenar lista de Ingresos Personales

@@ -1,17 +1,12 @@
 package com.misRegistros.repositories
 
-import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.widget.Toast
 import com.misRegistros.adapters.AdaptadorPersona
 import com.misRegistros.clases.ConexionSQLiteHelper
 import com.misRegistros.clases.Utilidades
 import com.misRegistros.clases.vo.PersonaVo
-import com.misRegistros.dialogos.DialogoActPersona
-import com.misRegistros.dialogos.DialogoGesPersona
-import com.misRegistros.dialogos.DialogoRegPersonas
 
 
 class PersonaRepository {
@@ -26,8 +21,6 @@ class PersonaRepository {
         var objPersona: PersonaVo? = null
         for (i in utilidades.listaPersonas!!) {
             if (i.id == id) {
-                println("IDENTIFICAICON")
-                println(i.id)
                 objPersona = i
                 break
             }
@@ -75,7 +68,6 @@ class PersonaRepository {
     }
 
     fun delete(context: Context,id:Int): Boolean{
-        var adaptadorPersona:AdaptadorPersona= AdaptadorPersona()
         var bandera:Boolean=false
         val conexion =
             ConexionSQLiteHelper(context, Utilidades.NOMBRE_BD, null, 1)

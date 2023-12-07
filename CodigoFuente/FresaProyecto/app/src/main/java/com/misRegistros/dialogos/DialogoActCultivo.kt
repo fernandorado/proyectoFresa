@@ -26,6 +26,7 @@ import androidx.fragment.app.DialogFragment
 import com.misRegistros.R
 import com.misRegistros.clases.ConexionSQLiteHelper
 import com.misRegistros.clases.Utilidades
+import com.misRegistros.controllers.PersonaRestController
 import com.misRegistros.interfaces.IComunicaFragments
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -37,6 +38,7 @@ class DialogoActCultivo : DialogFragment() {
     lateinit var vista: View
     lateinit var actividad: Activity
     lateinit var interfaceComunicaFragments: IComunicaFragments
+    var personaController: PersonaRestController = PersonaRestController()
     lateinit var btnActualizar: Button
     lateinit var fabAtras: ImageButton
     lateinit var campoName: EditText
